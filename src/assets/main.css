@@ -1,0 +1,24 @@
+.nav-menu-animation {
+    position: relative;
+}
+
+.nav-menu-animation::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1.2px;
+    width: 0%;
+    transition: width 0.5s;
+    background-color: #8F2B83;
+}
+
+.nav-menu-animation:hover::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1.2px;
+    width: 100%;
+    background-color: #8F2B83;
+}
