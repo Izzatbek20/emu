@@ -3,29 +3,47 @@
         <div class="carousel">
             <div class="carousel-slide">
                 <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-bold leading-[110%] z-20">
-                        <span class="text-orange-light">EMU express</span>
-                        Biz bilan masofa yaqin!
+                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
+                        <span class="text-orange-light">EMU express</span> Biz bilan masofa yaqin!
                     </div>
-                    <img src="@/static/slide/1.png" alt="1 image" class="absolute bottom-0 right-0 w-96" srcset="">
+                    <img src="@/assets/images/slide/1.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
+                        srcset="">
                 </div>
             </div>
             <div class="carousel-slide">
                 <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-bold leading-[110%] z-20">
-                        <span class="text-orange-light">EMU express</span>
-                        Biz bilan masofa yaqin! 2
+                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
+                        <span class="text-orange-light">EMU bosh ofisimiz</span> yangi manzilga ko'chdi
                     </div>
-                    <img src="@/static/slide/1.png" alt="1 image" class="absolute bottom-0 right-0 w-96" srcset="">
+                    <img src="@/assets/images/slide/2.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
+                        srcset="">
                 </div>
             </div>
             <div class="carousel-slide">
                 <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-bold leading-[110%] z-20">
-                        <span class="text-orange-light">EMU express</span>
-                        Biz bilan masofa yaqin! 3
+                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
+                        <span class="text-orange-light">Qashqadaryo viloyati,</span> yangi 81chi filialimiz ochildi
                     </div>
-                    <img src="@/static/slide/1.png" alt="1 image" class="absolute bottom-0 right-0 w-96" srcset="">
+                    <img src="@/assets/images/slide/3.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
+                        srcset="">
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="flex items-center">
+                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
+                        <span class="text-orange-light">Kuryer chaqirish</span> BEPUL
+                    </div>
+                    <img src="@/assets/images/slide/4.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
+                        srcset="">
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="flex items-center">
+                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
+                        <span class="text-orange-light">Farg'ona viloyati,</span> yangi filialimiz ochildi
+                    </div>
+                    <img src="@/assets/images/slide/5.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
+                        srcset="">
                 </div>
             </div>
         </div>
@@ -37,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const slides = document.querySelectorAll(".carousel-slide");
     const pagination = document.querySelector(".pagination");
     let currentSlide = 0;
-    const slideInterval = 2000; // Millisecond interval for autoplay
+    const slideInterval = 5000; // Millisecond interval for autoplay
 
     // Show the first slide initially
     slides[currentSlide].classList.add("active");
@@ -64,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const goToSlide = (slideIndex) => {
         slides[currentSlide].classList.remove("active");
         pagination.children[currentSlide].classList.remove("corusel-pagination-active");
+
         currentSlide = slideIndex;
         slides[currentSlide].classList.add("active");
         pagination.children[currentSlide].classList.add("corusel-pagination-active");
@@ -86,6 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <style scoped>
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 .carousel {
     width: 100%;
     height: 100%;
@@ -97,13 +122,17 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 
 .carousel-slide {
-    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
     height: 100%;
     width: 100%;
+    transition: opacity .5s ease;
 }
 
 .carousel-slide.active {
-    display: block;
+    opacity: 1;
 }
 
 .pagination {

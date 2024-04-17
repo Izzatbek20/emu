@@ -1,0 +1,56 @@
+<template>
+    <div class="rounded-3xl mt-20 relative h-64 p-10" :class="bgColor">
+        <div class="w-3/4 grid grid-row-2 gap-8">
+            <h2 class="h2 text-white">{{ title }}</h2>
+            <component :is="button" :title="bgTitle"></component>
+        </div>
+        <img :src="image" alt="image-1" srcset="" class="absolute right-0 bottom-0">
+    </div>
+</template>
+<script>
+import image1 from '@/assets/images/img_1.png'
+import image2 from '@/assets/images/img_2.png'
+
+export default {
+    props: {
+        title: {
+            type: String,
+            required: true,
+        },
+        bgColor: {
+            type: String,
+            required: true,
+        },
+        bgTitle: {
+            type: String,
+            required: true,
+        },
+        type: {
+            type: Number,
+            default: 1
+        }
+    },
+    data() {
+        return {
+            image: image1,
+            button: 'ButtonWhiteOrange'
+        }
+    },
+    mounted() {
+        switch (this.type) {
+            case 1:
+                this.image = image1
+                this.button = 'ButtonWhiteOrange'
+                break;
+            case 2:
+                this.image = image2
+                this.button = 'ButtonWhiteViolety'
+                break;
+
+            default:
+                break;
+        }
+    },
+}
+</script>
+<style></style>

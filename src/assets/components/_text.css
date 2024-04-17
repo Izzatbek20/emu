@@ -1,0 +1,140 @@
+@layer components {
+    .h0 {
+        font-family: AsylbekM09Handel;
+        font-size: 55px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%;
+        /* 60.5px */
+        letter-spacing: 1.1px;
+    }
+
+    .h1 {
+        font-family: AsylbekM09Handel;
+        font-size: 45px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 125%;
+        /* 56.25px */
+        letter-spacing: 0.9px;
+    }
+
+    .h2 {
+        font-family: AsylbekM09Handel;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%;
+        /* 44px */
+    }
+
+    .h3 {
+        font-family: AsylbekM09Handel;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 125%;
+        /* 40px */
+        letter-spacing: 0.64px;
+    }
+
+    .h3-2 {
+        /* H3 - type 2 */
+        font-family: Gilroy;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 110%;
+        /* 35.2px */
+    }
+
+    .h4 {
+        /* H4 */
+        font-family: Gilroy;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 125%;
+        /* 30px */
+    }
+
+    .h5 {
+        /* H5 */
+        font-family: Gilroy;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 125%;
+        /* 25px */
+    }
+
+    .h6 {
+        /* H6 */
+        font-family: Gilroy;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 125%;
+        /* 22.5px */
+    }
+
+    .h7 {
+        /* H7 */
+        font-family: Gilroy;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 125%;
+        /* 20px */
+    }
+
+    .txt-big {
+        /* Big Text */
+        font-family: Gilroy;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%;
+        /* 25px */
+    }
+
+    .txt-normal {
+        /* Normal Text */
+        font-family: Gilroy;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%;
+        /* 22.5px */
+    }
+
+    .txt-small {
+        /* Small Text */
+        font-family: Gilroy;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%;
+        /* 20px */
+    }
+
+    .txt-micro {
+        /* Micro Text */
+        font-family: Gilroy;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%;
+        /* 17.5px */
+    }
+
+    .txt-micro-2 {
+        /* Micro Text 2 */
+        font-family: Gilroy;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%;
+        /* 15px */
+    }
+}

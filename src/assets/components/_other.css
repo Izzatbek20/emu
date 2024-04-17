@@ -1,0 +1,29 @@
+@layer components {
+    html {
+        font-family: "Gilroy", system-ui, sans-serif;
+    }
+
+    .nav-messanger-gray {
+        @apply fill-icon-gray transition-colors
+    }
+
+    .nav-messanger-orange {
+        @apply fill-orange transition-colors
+    }
+
+    .nav-menu {
+        @apply cursor-pointer transition-colors hover:text-violet
+    }
+
+    .active {
+        @apply text-violet
+    }
+
+    .corusel-pagination {
+        @apply w-[6px] h-[6px] bg-white rounded-full mx-1
+    }
+
+    .corusel-pagination-active {
+        @apply w-[9px] h-[9px] bg-orange rounded-full mx-1
+    }
+}

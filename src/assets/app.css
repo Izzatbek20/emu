@@ -2,24 +2,7 @@
 @import 'tailwind/_components.css';
 @import 'tailwind/_utilities.css';
 
-@layer components {
-    .nav-messanger-gray {
-        @apply fill-icon-gray transition-colors
-    }
+@import 'fonts/_fonts.css';
 
-    .nav-messanger-orange {
-        @apply fill-orange transition-colors
-    }
-
-    .nav-menu {
-        @apply cursor-pointer transition-colors hover:text-violet
-    }
-
-    .corusel-pagination {
-        @apply w-[6px] h-[6px] bg-white rounded-full mx-1
-    }
-
-    .corusel-pagination-active {
-        @apply w-[9px] h-[9px] bg-orange rounded-full mx-1
-    }
-}
+@import 'components/_text.css';
+@import 'components/_other.css';

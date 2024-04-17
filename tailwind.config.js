@@ -28,8 +28,13 @@ export default {
       'xl': '1280px',
       '2xl': '1536px',
     },
+    fontFamily: {
+      gilory: ["Gilroy", "sans-serif"],
+      asyl: ["AsylbekM09Handel", "sans-serif"],
+    },
     container: {
       center: true,
+      padding: "1rem"
     }
   },
   plugins: [],
