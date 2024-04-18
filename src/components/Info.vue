@@ -3,7 +3,7 @@
         <h2 class="h2 text-center pt-20">
             Nima uchun EMU express?
         </h2>
-        <div class="grid grid-cols-4 gap-7 mt-10">
+        <div class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-7 mt-10">
 
             <div v-for="data in datas" class="p-5 bg-white flex flex-col items-center gap-4 rounded-2xl">
                 <component :is="data.icon">

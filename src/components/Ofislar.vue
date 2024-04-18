@@ -1,7 +1,9 @@
 <template>
 
-    <div class="mt-10 p-10 bg-white flex flex-row gap-7 rounded-3xl">
-        <MapUzb class="flex-1" />
+    <div class="mt-10 p-10 bg-white flex flex-row max-md:flex-col gap-7 rounded-3xl">
+        <div class="flex-1">
+            <MapUzb class="w-full" />
+        </div>
         <div class="h-full overflow-hidden z-0 flex-1 flex flex-col gap-8">
             <h2 class="h1">O’zbekiston bo’ylab 75ta ofislarimiz mavjud</h2>
             <div class="flex flex-row items-center flex-nowrap">

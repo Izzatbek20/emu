@@ -10,6 +10,7 @@
 <script>
 import image1 from '@/assets/images/img_1.png'
 import image2 from '@/assets/images/img_2.png'
+import image3 from '@/assets/images/img_3.png'
 
 export default {
     props: {
@@ -44,6 +45,10 @@ export default {
                 break;
             case 2:
                 this.image = image2
+                this.button = 'ButtonWhiteViolety'
+                break;
+            case 3:
+                this.image = image3
                 this.button = 'ButtonWhiteViolety'
                 break;
 

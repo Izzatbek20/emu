@@ -1,0 +1,33 @@
+<template>
+    <Card class="bg-white mt-0 p-5">
+        <div class="flex flex-col justify-between gap-5">
+            <div class="flex-1">
+                <div class="relative">
+                    <img src="@/assets/images/mijoz/1.jpg" alt="image"
+                        class="rounded-lg rounded-bl-[3rem] object-cover object-center" srcset="">
+                    <Play class="size-20 absolute bottom-2 left-2" />
+                </div>
+            </div>
+            <div class="flex-1">
+                <h3 class="h5 mb-1 text-violet">
+                    Alisher, 32 yosh
+                </h3>
+                <div class="txt-small mb-4">Internet magazin asoschisi</div>
+                <div class="h6 text-wrap line-clamp-3 whitespace-nowrap">
+                    “Ajoyib xizmat! Tez yetkazib berish orqali biznesimda buyurtma hajmini sezilarli darajada oshirdim.
+                    Rahmat!”
+                </div>
+            </div>
+        </div>
+    </Card>
+</template>
+<script>
+import Card from '@/components/Card.vue';
+
+export default {
+    components: {
+        Card
+    }
+}
+</script>
+<style></style>

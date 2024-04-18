@@ -3,7 +3,7 @@
   <Navbar />
 
   <!-- Main -->
-  <div class="container w-10/12 xs:max-md:w-full">
+  <div class="container-rs">
     <RouterView />
   </div>
 

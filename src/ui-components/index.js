@@ -1,5 +1,3 @@
-import Icons from './icons/Icons.vue';
-
 // Navbar icons
 import Telegram from './icons/Telegram.vue';
 import Facebook from './icons/Facebook.vue';
@@ -21,6 +19,13 @@ import Phone from './icons/Phone.vue';
 import CheverLeft from './icons/CheverLeft.vue';
 import CheverRight from './icons/CheverRight.vue';
 import Calendar from './icons/Calendar.vue';
+import Search from './icons/Search.vue';
+import User from './icons/User.vue';
+import ChevorDown from './icons/ChevorDown.vue';
+import Calculator from './icons/Calculator.vue';
+import Hand from './icons/Hand.vue';
+import Curier from './icons/Curier.vue';
+import BoxSearch from './icons/BoxSearch.vue';
 
 // Mijozlar
 import Uzum from './icons/Uzum.vue';
@@ -37,12 +42,12 @@ import Email from './icons/Email.vue';
 // Form
 import ButtonWhiteOrange from './ButtonWhiteOrange.vue';
 import ButtonWhiteViolety from './ButtonWhiteViolety.vue';
-import Search from './icons/Search.vue';
-import User from './icons/User.vue';
-import ChevorDown from './icons/ChevorDown.vue';
+import Aloqa from './icons/Aloqa.vue';
+import ButtonOranger from './ButtonOranger.vue';
+import Menu from './icons/Menu.vue';
 
 export default [
-    Telegram, Facebook, Instagram, Icons, Kafolat, Onlayn, Qadoqlash, Qayta, Qaytajonatish, Saqlash, Treking, Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight, Calendar, Email, Clock, Search, User, ChevorDown,
+    Telegram, Facebook, Instagram, Kafolat, Onlayn, Qadoqlash, Qayta, Qaytajonatish, Saqlash, Treking, Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight, Calendar, Email, Clock, Search, User, ChevorDown, Calculator, Hand, Curier, BoxSearch, Aloqa, Menu,
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
-    ButtonWhiteOrange, ButtonWhiteViolety, Play
+    ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play
 ];

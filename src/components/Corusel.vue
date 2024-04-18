@@ -1,107 +1,84 @@
 <template>
     <div class="ml-10 carousel-container">
         <div class="carousel">
-            <div class="carousel-slide">
-                <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
-                        <span class="text-orange-light">EMU express</span> Biz bilan masofa yaqin!
-                    </div>
-                    <img src="@/assets/images/slide/1.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
-                        srcset="">
+
+            <div v-for="(item, index) in data" :key="index" class="carousel-slide">
+                <div class="flex items-center max-md:items-start max-md:py-8">
+                    <div class="w-2/5 max-lg:w-3/5 max-md:w-4/6 text-white text-5xl font-asyl leading-[110%] z-20"
+                        v-html="item.title"></div>
+                    <img :src="item.image" alt="image" class="absolute bottom-0 right-0 w-96" srcset="">
                 </div>
             </div>
-            <div class="carousel-slide">
-                <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
-                        <span class="text-orange-light">EMU bosh ofisimiz</span> yangi manzilga ko'chdi
-                    </div>
-                    <img src="@/assets/images/slide/2.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
-                        srcset="">
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
-                        <span class="text-orange-light">Qashqadaryo viloyati,</span> yangi 81chi filialimiz ochildi
-                    </div>
-                    <img src="@/assets/images/slide/3.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
-                        srcset="">
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
-                        <span class="text-orange-light">Kuryer chaqirish</span> BEPUL
-                    </div>
-                    <img src="@/assets/images/slide/4.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
-                        srcset="">
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <div class="flex items-center">
-                    <div class="w-2/5 text-white text-5xl font-asyl leading-[110%] z-20">
-                        <span class="text-orange-light">Farg'ona viloyati,</span> yangi filialimiz ochildi
-                    </div>
-                    <img src="@/assets/images/slide/5.png" alt="1 image" class="absolute bottom-0 right-0 w-96"
-                        srcset="">
-                </div>
-            </div>
+
         </div>
-        <div class="pagination"></div>
+        <div :style="data.length == 1 ? 'display:none' : null" class="pagination"></div>
     </div>
 </template>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll(".carousel-slide");
-    const pagination = document.querySelector(".pagination");
-    let currentSlide = 0;
-    const slideInterval = 5000; // Millisecond interval for autoplay
+export default {
+    props: {
+        data: {
+            type: Array,
+            required: true
+        }
+    },
+    data() {
+        return {
+            currentSlide: 0,
+            slideInterval: 5000,
+        }
+    },
+    mounted() {
+        const slides = document.querySelectorAll(".carousel-slide");
+        const pagination = document.querySelector(".pagination");
 
-    // Show the first slide initially
-    slides[currentSlide].classList.add("active");
+        // Show the first slide initially
+        slides[this.currentSlide].classList.add("active");
 
-    // Create pagination buttons
-    slides.forEach((slide, index) => {
-        const button = document.createElement("button");
-        button.classList = "corusel-pagination"
-        button.addEventListener("click", () => {
-            goToSlide(index);
+        // Create pagination buttons
+        slides.forEach((slide, index) => {
+            const button = document.createElement("button");
+            button.classList = "corusel-pagination"
+            button.addEventListener("click", () => {
+                goToSlide(index);
+            });
+            pagination.appendChild(button);
         });
-        pagination.appendChild(button);
-    });
 
-    // Add active class to the current pagination button
-    pagination.children[currentSlide].classList.add("corusel-pagination-active");
+        // Add active class to the current pagination button
+        pagination.children[this.currentSlide].classList.add("corusel-pagination-active");
 
-    // Autoplay function
-    const nextSlide = () => {
-        goToSlide((currentSlide + 1) % slides.length);
-    };
+        // Autoplay function
+        const nextSlide = () => {
+            goToSlide((this.currentSlide + 1) % slides.length);
+        };
 
-    // Go to a specific slide
-    const goToSlide = (slideIndex) => {
-        slides[currentSlide].classList.remove("active");
-        pagination.children[currentSlide].classList.remove("corusel-pagination-active");
+        // Go to a specific slide
+        const goToSlide = (slideIndex) => {
+            slides[this.currentSlide].classList.remove("active");
+            pagination.children[this.currentSlide].classList.remove("corusel-pagination-active");
 
-        currentSlide = slideIndex;
-        slides[currentSlide].classList.add("active");
-        pagination.children[currentSlide].classList.add("corusel-pagination-active");
-    };
+            this.currentSlide = slideIndex;
+            slides[this.currentSlide].classList.add("active");
+            pagination.children[this.currentSlide].classList.add("corusel-pagination-active");
+        };
 
-    // Start autoplay
-    let slideTimer = setInterval(nextSlide, slideInterval);
+        // Start autoplay
+        let slideTimer = setInterval(nextSlide, this.slideInterval);
 
-    // Stop autoplay when mouse hovers over the carousel
-    const carouselContainer = document.querySelector(".carousel-container");
-    carouselContainer.addEventListener("mouseenter", () => {
-        clearInterval(slideTimer);
-    });
+        // Stop autoplay when mouse hovers over the carousel
+        const carouselContainer = document.querySelector(".carousel-container");
+        carouselContainer.addEventListener("mouseenter", () => {
+            clearInterval(slideTimer);
+        });
 
-    // Resume autoplay when mouse leaves the carousel
-    carouselContainer.addEventListener("mouseleave", () => {
-        slideTimer = setInterval(nextSlide, slideInterval);
-    });
-});
+        // Resume autoplay when mouse leaves the carousel
+        carouselContainer.addEventListener("mouseleave", () => {
+            slideTimer = setInterval(nextSlide, this.slideInterval);
+        });
+    },
+}
+
 </script>
 
 <style scoped>

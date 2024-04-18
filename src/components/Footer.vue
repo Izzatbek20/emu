@@ -1,6 +1,6 @@
 <template>
     <div class="mt-20 py-10 px-5 bg-violet text-white">
-        <div class="container w-10/12 xs:max-md:w-full">
+        <div class="container-rs">
             <div class="flex flex-col">
                 <div class="flex flex-row items-start justify-between relative">
                     <ul v-for="(menu, index) in menus" :key="1 + index">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-2 w-56">
-                            <Marker :classNew="'fill-white'" class="w-5" />
+                            <Marker :fillColor="'fill-white'" :classNew="'w-5'" />
                             <div class="flex flex-col items-start">
                                 <div class="h7">Manzil</div>
                                 <div class="txt-micro">
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-2 w-56">
-                            <Email :classNew="'fill-white'" class="w-5" />
+                            <Email :fillColor="'fill-white'" class="w-5" />
                             <div class="flex flex-col items-start">
                                 <div class="h7">E-mail</div>
                                 <div class="txt-micro">
@@ -70,17 +70,17 @@
                         <ul class="flex flex-row items-center gap-x-2 mt-4">
                             <li class="cursor-pointer group transition-colors">
                                 <a href="http://" target="_blank" rel="noopener noreferrer">
-                                    <Instagram :classNew="'fill-white group-hover:fill-orange'" />
+                                    <Instagram :fillColor="'fill-white group-hover:fill-orange'" />
                                 </a>
                             </li>
                             <li class="cursor-pointer group">
                                 <a href="http://" target="_blank" rel="noopener noreferrer">
-                                    <Telegram :classNew="'fill-white group-hover:fill-orange'" />
+                                    <Telegram :fillColor="'fill-white group-hover:fill-orange'" />
                                 </a>
                             </li>
                             <li class="cursor-pointer group">
                                 <a href="http://" target="_blank" rel="noopener noreferrer">
-                                    <Facebook :classNew="'fill-white group-hover:fill-orange'" />
+                                    <Facebook :fillColor="'fill-white group-hover:fill-orange'" />
                                 </a>
                             </li>
                         </ul>
