@@ -1,7 +1,7 @@
 <template>
     <div class="h-14">
         <button
-            class="group hover-button inline-flex px-8 max-md:px-4 h-full items-center justify-center relative bg-white overflow-hidden rounded-[100px] flex-shrink-0">
+            class="group hover-button inline-flex px-8 max-md:p-4 h-full items-center justify-center relative bg-white overflow-hidden rounded-[100px] flex-shrink-0">
             <span class="group-hover:text-white transition-color duration-500 text-violet z-20"
                 :class="titleClass ?? 'text-xl max-md:text-sm font-semibold leading-normal'">
                 {{ title }}
@@ -33,7 +33,7 @@ export default {
 }
 
 .hover-button:hover .effect {
-    width: 120%;
+    width: 130%;
 }
 
 .hover-button:hover .effect::before {

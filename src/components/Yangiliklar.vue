@@ -1,21 +1,25 @@
 <template>
     <Splide :has-track="false" :options="options" aria-label="Hududlar" class="mt-10">
-        <SplideTrack>
+        <SplideTrack class="flex flex-row gap-7 flex-wrap">
+
             <template v-for="(data, index) in datas" :key="index">
-                <SplideSlide>
-                    <div class="p-6 w-96 bg-white flex flex-col items-start rounded-[2rem] cursor-pointer">
-                        <div class="w-full h-[15rem] rounded-xl"
-                            :style="'background-image: url(\'' + data.image + '\')'">
+                <SplideSlide class="w-[32.5%] ">
+                    <div
+                        class="p-6 max-xl:p-5 max-md:p-4 bg-white flex flex-col items-start rounded-[2rem] cursor-pointer">
+                        <div class="w-full h-[15rem] max-lg:h-[10rem] rounded-xl bg-no-repeat bg-center bg-cover"
+                            :style="{ backgroundImage: `url(${data.image})` }">
                         </div>
-                        <div class="flex items-center gap-1 mt-5 mb-2">
-                            <Calendar class="size-4" />
+                        <div class="flex items-center gap-1 mt-1 mb-1.5">
+                            <Calendar class="size-4 max-md:size-3.5" />
                             <span class="txt-micro text-gray">{{ data.date }}</span>
                         </div>
-                        <h2 class="h4 text-orange">{{ data.title }}</h2>
-                        <div class="txt-big line-clamp-3">{{ data.body }}</div>
+                        <h2 class="h4 max-lg:h5 text-orange mb-0.5">{{ data.title }}</h2>
+                        <div class="txt-small max-md:txt-micro max-md:font-normal line-clamp-3">{{ data.body }}
+                        </div>
                     </div>
                 </SplideSlide>
             </template>
+
         </SplideTrack>
         <div class="splide__arrows">
             <div class="splide__arrow_in">
@@ -111,7 +115,7 @@ export default {
 </script>
 <style scoped>
 .splide {
-    padding: 0 1.2rem;
+    padding: 0 0rem;
     position: relative;
     display: flex;
     align-items: center;

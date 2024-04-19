@@ -147,4 +147,24 @@
         line-height: 125%;
         /* 15px */
     }
+
+    .txt-micro-2-600 {
+        /* Micro Text 2 */
+        font-family: Gilroy;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 125%;
+        /* 15px */
+    }
+
+    .txt-nano {
+        /* Micro Text 2 */
+        font-family: Gilroy;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%;
+        /* 15px */
+    }
 }

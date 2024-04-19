@@ -1,14 +1,14 @@
 <template>
 
     <div class="mt-10 p-10 max-xl:p-5 bg-white flex flex-row max-lg:flex-col gap-7 rounded-3xl">
-        <div class="flex-1">
-            <MapUzb class="w-full" />
+        <div class="flex-1 py-3">
+            <MapUzb class="w-full  max-md:h-56" />
         </div>
         <div class="flex-1 w-[50%] max-lg:w-[100%] z-0 flex flex-col gap-8 ">
             <Title class="pt-0 text-start">
                 O’zbekiston bo’ylab 75ta ofislarimiz mavjud
             </Title>
-            <div class="flex flex-row items-center flex-nowrap overflow-hidden">
+            <div class="flex flex-row items-center flex-nowrap overflow-hidden cursor-ew-resize">
                 <span v-for="(region, index) in regions" class="font-bold mr-5 text-nowrap"
                     :class="index == 0 ? 'text-violet text-3xl max-xl:h5' : 'text-icon-gray max-xl:h7 h4'">
                     {{ region }}
@@ -16,7 +16,7 @@
             </div>
 
             <Splide :has-track="false" :options="options" aria-label="Hududlar">
-                <SplideTrack class="overflow-hidden ">
+                <SplideTrack class="overflow-hidden cursor-ew-resize">
                     <SplideSlide>
                         <div
                             class=" flex flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
@@ -122,6 +122,7 @@
 
 </template>
 <script>
+import Title from './Title.vue';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
 
 // Default theme
@@ -133,7 +134,6 @@ import '@splidejs/vue-splide/css/sea-green';
 
 // or only core styles
 import '@splidejs/vue-splide/css/core';
-import Title from './Title.vue';
 
 export default {
     components: {

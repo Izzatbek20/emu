@@ -1,6 +1,7 @@
 <template>
     <div>
         <Banner :corusel="corusel" />
+        
 
         <!-- Information -->
         <Title>
