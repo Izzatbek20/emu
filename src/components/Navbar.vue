@@ -45,7 +45,7 @@
                     </li>
                     <li class="flex gap-x-2 cursor-pointer max-sm:hidden">
                         <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
-                            <User class="size-4" :fillColor="'fill-white'" />
+                            <User class="size-3" :fillColor="'fill-white'" />
                         </div>
                         Shaxsiy kabinet
                     </li>
