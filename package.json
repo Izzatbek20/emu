@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "node gh-pages-deploy.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
