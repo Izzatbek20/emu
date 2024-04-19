@@ -3,25 +3,38 @@
         <Banner :corusel="corusel" />
 
         <!-- Information -->
+        <Title>
+            Nima uchun EMU express?
+        </Title>
         <Info />
+
         <InfoBanner :type="1" :bg-color="'bg-orange'" :title="'Har kuni 15 000dan ortiq odam xizmatimizdan foydalanadi'"
             :bg-title="'Xizmatdan foydalanish'" />
-        <Xizmatlar :title="'Xizmatlarimiz'" :items="xizmatlar" />
+
+        <Title>
+            Xizmatlarimiz
+        </Title>
+        <Xizmatlar :items="xizmatlar" />
+
         <Ofislar />
+
+        <Title>
+            Bizning mijozlarimiz
+        </Title>
         <BizniMijozlar />
 
-        <h2 class="h1 text-center pt-20">
-            Bizning mijozlarimiz
-        </h2>
+        <Title>
+            Mijozlarimizning biz haqimizda fikrlari
+        </Title>
         <Mijoz />
 
         <InfoBanner :type="2" :bg-color="'bg-violet'"
             :title="'Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling'"
             :bg-title="'Telegram Bot'" />
 
-        <h2 class="h1 text-center pt-20">
+        <Title>
             Yangiliklar
-        </h2>
+        </Title>
         <Yangiliklar />
 
     </div>
@@ -52,11 +65,12 @@ import usltaman_tolov from '@/assets/images/usltaman-tolov.png'
 import fullfilment from '@/assets/images/fullfilment.png'
 import individual from '@/assets/images/individual.png'
 import kargo from '@/assets/images/kargo.png'
+import Title from '@/components/Title.vue';
 
 
 export default {
     components: {
-        Corusel, Info, InfoBanner, Xizmatlar, Ofislar, BizniMijozlar, Mijoz, Yangiliklar, Banner
+        Corusel, Info, InfoBanner, Xizmatlar, Ofislar, BizniMijozlar, Mijoz, Yangiliklar, Banner, Title
     },
     data() {
         return {

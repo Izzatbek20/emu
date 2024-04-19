@@ -1,26 +1,31 @@
 <template>
 
-    <div class="mt-10 p-10 bg-white flex flex-row max-md:flex-col gap-7 rounded-3xl">
+    <div class="mt-10 p-10 max-xl:p-5 bg-white flex flex-row max-lg:flex-col gap-7 rounded-3xl">
         <div class="flex-1">
             <MapUzb class="w-full" />
         </div>
-        <div class="h-full overflow-hidden z-0 flex-1 flex flex-col gap-8">
-            <h2 class="h1">O’zbekiston bo’ylab 75ta ofislarimiz mavjud</h2>
-            <div class="flex flex-row items-center flex-nowrap">
-                <span v-for="region in regions"
-                    class="font-bold mr-5 text-nowrap text-icon-gray first:text-violet first:text-3xl h4">
+        <div class="flex-1 w-[50%] max-lg:w-[100%] z-0 flex flex-col gap-8 ">
+            <Title class="pt-0 text-start">
+                O’zbekiston bo’ylab 75ta ofislarimiz mavjud
+            </Title>
+            <div class="flex flex-row items-center flex-nowrap overflow-hidden">
+                <span v-for="(region, index) in regions" class="font-bold mr-5 text-nowrap"
+                    :class="index == 0 ? 'text-violet text-3xl max-xl:h5' : 'text-icon-gray max-xl:h7 h4'">
                     {{ region }}
                 </span>
             </div>
+
             <Splide :has-track="false" :options="options" aria-label="Hududlar">
-                <SplideTrack>
+                <SplideTrack class="overflow-hidden ">
                     <SplideSlide>
-                        <div class=" flex flex-col w-80 p-5 items-start gap-3 border border-line-gray rounded-2xl">
+                        <div
+                            class=" flex flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
                             <div class="flex items-start gap-2">
                                 <Marker class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Manzil</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
+                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
+                                        35
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +33,8 @@
                                 <Marker2 class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Moljal</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
+                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
+                                        35
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +53,8 @@
                                 <Marker class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Manzil</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
+                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
+                                        35
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +62,37 @@
                                 <Marker2 class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Moljal</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
+                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
+                                        35
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <Phone class="size-5" />
+                                <div class="flex flex-col items-start">
+                                    <div class="h6">Tel.raqam</div>
+                                    <div class="txt-small">+998 71 200 96-69</div>
+                                </div>
+                            </div>
+                        </div>
+                    </SplideSlide>
+                    <SplideSlide>
+                        <div class="flex flex-col w-80 p-5 items-start gap-3 border border-line-gray rounded-2xl">
+                            <div class="flex items-start gap-2">
+                                <Marker class="size-5" />
+                                <div class="flex flex-col items-start">
+                                    <div class="h6">Manzil</div>
+                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
+                                        35
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <Marker2 class="size-5" />
+                                <div class="flex flex-col items-start">
+                                    <div class="h6">Moljal</div>
+                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
+                                        35
                                     </div>
                                 </div>
                             </div>
@@ -96,12 +133,14 @@ import '@splidejs/vue-splide/css/sea-green';
 
 // or only core styles
 import '@splidejs/vue-splide/css/core';
+import Title from './Title.vue';
 
 export default {
     components: {
         Splide,
         SplideSlide,
-        SplideTrack
+        SplideTrack,
+        Title
     },
     data() {
         return {
@@ -149,7 +188,7 @@ export default {
 </script>
 <style scoped>
 .splide {
-    padding: 0 1.2rem;
+    padding: 0 0;
     position: relative;
     display: flex;
     align-items: center;
@@ -186,10 +225,12 @@ export default {
 }
 
 .splide__arrow--prev {
-    left: 0rem;
+    left: -2rem;
+    z-index: 9999;
 }
 
 .splide__arrow--next {
-    right: 0rem;
+    right: -2rem;
+    z-index: 9999;
 }
 </style>

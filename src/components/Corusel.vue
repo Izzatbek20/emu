@@ -4,8 +4,9 @@
 
             <div v-for="(item, index) in data" :key="index" class="carousel-slide">
                 <div class="flex items-center max-md:items-start max-md:py-8">
-                    <div class="w-2/5 max-lg:w-3/5 max-md:w-4/6 text-white text-5xl font-asyl leading-[110%] z-20"
-                        v-html="item.title"></div>
+                    <div class="w-2/5 max-lg:w-3/5 max-md:w-4/6 text-white h1 max-2xl:h2 max-sm:h3 z-20"
+                        v-html="item.title">
+                    </div>
                     <img :src="item.image" alt="image" class="absolute bottom-0 right-0 w-96" srcset="">
                 </div>
             </div>

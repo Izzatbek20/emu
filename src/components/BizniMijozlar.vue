@@ -1,18 +1,13 @@
 <template>
-    <div>
-        <h2 class="h1 text-center pt-20">
-            Bizning mijozlarimiz
-        </h2>
-        <div
-            class="grid grid-cols-6 max-2xl::grid-cols-5 max-xl:grid-cols-4 max-lg:grid-cols-3 gap-5 max-sm:gap-3 mt-10 flex-wrap">
+    <div
+        class="grid grid-cols-6 max-2xl::grid-cols-5 max-xl:grid-cols-4 max-lg:grid-cols-3 gap-5 max-sm:gap-3 mt-10 flex-wrap">
 
-            <div v-for="data in datas"
-                class="py-9 px-10  max-sm:py-4 max-sm:px-5 bg-orange flex flex-row items-center justify-center gap-2 rounded-lg">
-                <component :is="data">
-                </component>
-            </div>
-
+        <div v-for="data in datas"
+            class="py-9 px-10  max-sm:py-4 max-sm:px-5 bg-orange flex flex-row items-center justify-center gap-2 rounded-lg">
+            <component :is="data">
+            </component>
         </div>
+
     </div>
 </template>
 <script>

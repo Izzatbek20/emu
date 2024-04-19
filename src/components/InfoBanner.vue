@@ -1,8 +1,8 @@
 <template>
-    <div class="rounded-3xl mt-20 relative h-64 p-10" :class="bgColor">
-        <div class="w-3/4 grid grid-row-2 gap-8">
-            <h2 class="h2 text-white">{{ title }}</h2>
-            <component :is="button" :title="bgTitle"></component>
+    <div class="rounded-3xl mt-20 relative h-64 max-md:h-[30rem] p-10 overflow-hidden" :class="bgColor">
+        <div class="w-3/4 max-md:w-full grid grid-row-2 gap-8">
+            <h2 class="h2 max-xl:h3 max-lg:h4-2 text-white z-50 tracking-normal">{{ title }}</h2>
+            <component :is="button" :title="bgTitle" class="z-50"></component>
         </div>
         <img :src="image" alt="image-1" srcset="" class="absolute right-0 bottom-0">
     </div>

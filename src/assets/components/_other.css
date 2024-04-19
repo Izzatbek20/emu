@@ -4,7 +4,7 @@
     }
 
     .container-rs {
-        @apply container w-10/12 max-2xl:w-full max-sm:p-2
+        @apply container w-10/12 max-2xl:max-w-[100%] max-2xl:w-full max-sm:p-2
     }
 
     .nav-messanger-gray {
