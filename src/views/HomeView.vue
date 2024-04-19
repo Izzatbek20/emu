@@ -53,6 +53,7 @@ import fullfilment from '@/assets/images/fullfilment.png'
 import individual from '@/assets/images/individual.png'
 import kargo from '@/assets/images/kargo.png'
 
+
 export default {
     components: {
         Corusel, Info, InfoBanner, Xizmatlar, Ofislar, BizniMijozlar, Mijoz, Yangiliklar, Banner

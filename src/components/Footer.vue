@@ -25,7 +25,7 @@
                     </div>
                     <div class="grid grid-cols-2 gap-7">
                         <div class="flex items-start gap-2 w-56">
-                            <Clock :classNew="'fill-white'" class="w-5" />
+                            <Clock :classNew="'fill-white'" class="size-5" />
                             <div class="flex flex-col items-start">
                                 <div class="h7">Ish vaqti</div>
                                 <div class="txt-micro">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-2 w-56">
-                            <Phone :classNew="'fill-white'" class="w-5" />
+                            <Phone :fillColor="'fill-white'" class="size-5" />
                             <div class="flex flex-col items-start">
                                 <div class="h7">Telefon</div>
                                 <div class="txt-micro">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-2 w-56">
-                            <Marker :fillColor="'fill-white'" :classNew="'w-5'" />
+                            <Marker :fillColor="'fill-white'" class="w-5" />
                             <div class="flex flex-col items-start">
                                 <div class="h7">Manzil</div>
                                 <div class="txt-micro">
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-2 w-56">
-                            <Email :fillColor="'fill-white'" class="w-5" />
+                            <Email :fillColor="'fill-white'" class="size-5" />
                             <div class="flex flex-col items-start">
                                 <div class="h7">E-mail</div>
                                 <div class="txt-micro">

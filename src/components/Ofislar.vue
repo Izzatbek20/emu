@@ -17,7 +17,7 @@
                     <SplideSlide>
                         <div class=" flex flex-col w-80 p-5 items-start gap-3 border border-line-gray rounded-2xl">
                             <div class="flex items-start gap-2">
-                                <Marker class="w-5" />
+                                <Marker class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Manzil</div>
                                     <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
-                                <Marker2 class="w-5" />
+                                <Marker2 class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Moljal</div>
                                     <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
-                                <Phone class="w-5" />
+                                <Phone class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Tel.raqam</div>
                                     <div class="txt-small">+998 71 200 96-69</div>
@@ -44,7 +44,7 @@
                     <SplideSlide>
                         <div class="flex flex-col w-80 p-5 items-start gap-3 border border-line-gray rounded-2xl">
                             <div class="flex items-start gap-2">
-                                <Marker class="w-5" />
+                                <Marker class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Manzil</div>
                                     <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
-                                <Marker2 class="w-5" />
+                                <Marker2 class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Moljal</div>
                                     <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
-                                <Phone class="w-5" />
+                                <Phone class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Tel.raqam</div>
                                     <div class="txt-small">+998 71 200 96-69</div>
@@ -72,10 +72,10 @@
                 <div class="splide__arrows">
                     <div class="splide__arrow_in">
                         <button class="splide__arrow_my splide__arrow--prev group">
-                            <CheverRight />
+                            <CheverRight :fillColor="'group-hover:fill-white'" />
                         </button>
                         <button class="splide__arrow_my splide__arrow--next group">
-                            <CheverRight />
+                            <CheverRight :fillColor="'group-hover:fill-white'" />
                         </button>
                     </div>
                 </div>

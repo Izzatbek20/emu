@@ -22,31 +22,36 @@
                 </ul>
             </div>
             <ul class="flex flex-row items-center gap-x-5 xs:max-xl:hidden">
-                <li v-for="(menu, index) in menus" :key="index" class="nav-menu nav-menu-animation "
+                <li v-for="(menu, index) in menus" :key="index" class="nav-menu nav-menu-animation relative"
                     :class="$route.name == menu.name ? 'active' : null">
                     <router-link :to="{ name: menu.name }">{{ menu.title }}</router-link>
+
+                    <ul v-if="menu.sub.length > 0"
+                        class="absolute z-50 left-0 mt-12 flex flex-col items-start gap-6 bg-white rounded-xl p-7">
+                        <li v-for="(item, i) in menu.sub" :key="index + i" class="text-smal"> {{ item.title }}</li>
+                    </ul>
                 </li>
             </ul>
             <div class="flex flex-row justify-between items-center gap-6">
                 <a href="tel://+998712009669" class="flex flex-row items-center cursor-pointer xs:max-md:hidden">
-                    <Phone class="h-4" classNew="fill-text-gray" />
+                    <Phone class="size-4" :fillColor="'fill-text-gray'" />
                     <span class="text-text-gray">
                         +998 71 <span class="text-violet font-bold">200 96-36</span>
                     </span>
                 </a>
                 <ul class="flex flex-row items-center gap-x-5">
                     <li class="cursor-pointer">
-                        <Search class="h-5" classNew="fill-violet" />
+                        <Search class="size-5" :fillColor="'fill-violet'" />
                     </li>
                     <li class="flex gap-x-2 cursor-pointer max-sm:hidden">
                         <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
-                            <User class="w-4" classNew="fill-white" />
+                            <User class="size-4" :fillColor="'fill-white'" />
                         </div>
                         Shaxsiy kabinet
                     </li>
                     <li class="flex flex-row items-center gap-x-2 text-violet cursor-pointer">
                         O'z
-                        <ChevorDown class="w-5 h-5" classNew="fill-line-gray" />
+                        <ChevorDown class="size-5" :fillColor="'fill-line-gray'" />
                     </li>
                 </ul>
                 <div class="rounded-lg p-2 border border-line-gray hidden xs:max-xl:block cursor-pointer">
@@ -57,7 +62,6 @@
     </nav>
 </template>
 <script>
-import ChevorDown from '@/ui-components/icons/ChevorDown.vue';
 
 export default {
     data() {
@@ -71,7 +75,32 @@ export default {
                 {
                     title: 'Biz haqimizda',
                     name: 'bizHaqimizda',
-                    sub: []
+                    sub: [
+                        {
+                            title: 'Asosiy',
+                            name: 'home',
+                        },
+                        {
+                            title: 'Biz haqimizda',
+                            name: 'bizHaqimizda',
+                        },
+                        {
+                            title: 'Mijozlarga',
+                            name: 'mijozlarga',
+                        },
+                        {
+                            title: 'Xizmatlar',
+                            name: 'xizmatlar',
+                        },
+                        {
+                            title: 'Vakansiya',
+                            name: 'vakansiya',
+                        },
+                        {
+                            title: 'Biz bilan bog\'lanish',
+                            name: 'aloqa',
+                        },
+                    ]
                 },
                 {
                     title: 'Mijozlarga',

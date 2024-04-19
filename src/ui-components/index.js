@@ -45,9 +45,22 @@ import ButtonWhiteViolety from './ButtonWhiteViolety.vue';
 import Aloqa from './icons/Aloqa.vue';
 import ButtonOranger from './ButtonOranger.vue';
 import Menu from './icons/Menu.vue';
+import Question from './icons/Question.vue';
+import Docs from './icons/Docs.vue';
+import Plus from './icons/Plus.vue';
+import Minus from './icons/Minus.vue';
+import CloseX from './icons/CloseX.vue';
+import Home from './icons/Home.vue';
+import Ranking from './icons/Ranking.vue';
 
 export default [
-    Telegram, Facebook, Instagram, Kafolat, Onlayn, Qadoqlash, Qayta, Qaytajonatish, Saqlash, Treking, Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight, Calendar, Email, Clock, Search, User, ChevorDown, Calculator, Hand, Curier, BoxSearch, Aloqa, Menu,
+    Telegram, Facebook, Instagram, Kafolat, Onlayn,
+    Qadoqlash, Qayta, Qaytajonatish, Saqlash, Treking,
+    Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight,
+    Calendar, Email, Clock, Search, User, ChevorDown,
+    Calculator, Hand, Curier, BoxSearch, Aloqa, Menu,
+    Question, Docs, Plus, Minus, CloseX, Home, Ranking,
+
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play
 ];

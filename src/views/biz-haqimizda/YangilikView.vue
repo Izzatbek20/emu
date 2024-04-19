@@ -13,7 +13,7 @@
                         </div>
                         <div class="flex-1">
                             <div class="flex gap-2 mb-4">
-                                <Calendar />
+                                <Calendar class="size-4" />
                                 <span class="text-gray text-sm">
                                     02.02.2024
                                 </span>

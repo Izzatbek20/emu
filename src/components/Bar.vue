@@ -6,8 +6,9 @@
                 class="px-[2rem] xs:max-xl:px-0 flex items-center justify-between cursor-pointer group hover:bg-violet max-xl:text-sm max-lg:text-[10px] hover:text-white transition-colors duration-700 h-full">
                 <div class="group-hover:border-violet xs:max-xl:px-2 ease-in-out w-full h-full flex items-center text-wrap xs:max-xl:leading-3"
                     :class="(index + 1) != menu[name].length ? 'border-b-[1px] border-line-gray max-xl:border-b-0 max-xl:border-r-[1px]' : null">
-                    <component :is="item.icon"
-                        classNew="mr-2 w-6 h-6 xs:max-xl:w-5 xs:max-xl:h-5 max-sm:w-10 max-sm:h-10"></component>
+                    <component :is="item.icon" class="mr-2 size-6 xs:max-xl:size-5 max-sm:size-10"
+                        :fillColor="'fill-violet group-hover:fill-white transition-colors duration-700'">
+                    </component>
                     {{ item.title }}
                 </div>
             </router-link>

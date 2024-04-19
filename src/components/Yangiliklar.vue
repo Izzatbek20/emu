@@ -8,7 +8,7 @@
                             :style="'background-image: url(\'' + data.image + '\')'">
                         </div>
                         <div class="flex items-center gap-1 mt-5 mb-2">
-                            <Calendar />
+                            <Calendar class="size-4" />
                             <span class="txt-micro text-gray">{{ data.date }}</span>
                         </div>
                         <h2 class="h4 text-orange">{{ data.title }}</h2>
