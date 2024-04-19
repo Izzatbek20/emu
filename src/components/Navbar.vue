@@ -26,10 +26,10 @@
                     :class="$route.name == menu.name ? 'active' : null">
                     <router-link :to="{ name: menu.name }">{{ menu.title }}</router-link>
 
-                    <ul v-if="menu.sub.length > 0"
+                    <!-- <ul v-if="menu.sub.length > 0"
                         class="absolute z-50 left-0 mt-12 flex flex-col items-start gap-6 bg-white rounded-xl p-7">
                         <li v-for="(item, i) in menu.sub" :key="index + i" class="text-smal"> {{ item.title }}</li>
-                    </ul>
+                    </ul> -->
                 </li>
             </ul>
             <div class="flex flex-row justify-between items-center gap-6">
