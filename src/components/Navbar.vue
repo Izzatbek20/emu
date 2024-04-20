@@ -60,7 +60,7 @@
                     <Menu />
                 </div>
                 <div v-show="menuMini"
-                    class="absolute right-0 top-0 bg-white rounded-xl shadow-xl z-50 w-full flex flex-col place-items-end p-5 py-8">
+                    class="absolute right-0 top-0 bg-white rounded-xl shadow-xl z-50 w-full flex-col place-items-end p-5 py-8 hidden xs:max-xl:flex">
                     <div @click="miniMenuMobileClose"
                         class="rounded-lg border border-line-gray hidden xs:max-xl:flex cursor-pointer w-8 h-8 items-center justify-center">
                         <CloseX @click="menuMini != menuMini" />

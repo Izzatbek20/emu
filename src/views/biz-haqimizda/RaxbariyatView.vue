@@ -1,29 +1,26 @@
 <template>
     <div>
+        <!-- Banner -->
+        <BarGorizontal :name="'bizHaqimizda'" class="max-xl:h-14 my-10" />
         <!-- Navigation -->
         <Navigation>Raxbariyat</Navigation>
 
-        <div class="flex flex-row items-start gap-8 mt-10">
-            <div class="basis-3/4">
-                <RaxbariyatItem />
-                <RaxbariyatItem />
-                <RaxbariyatItem />
-            </div>
-            <div class="basis-1/4">
-                <Bar :name="'bizHaqimizda'" />
-            </div>
+        <div class="flex flex-col items-start gap-8 mt-10">
+            <RaxbariyatItem />
+            <RaxbariyatItem />
+            <RaxbariyatItem />
         </div>
     </div>
 </template>
 
 <script>
-import Bar from '@/components/Bar.vue';
+import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import RaxbariyatItem from '@/components/RaxbariyatItem.vue';
 
 export default {
     components: {
-        Navigation, RaxbariyatItem, Bar
+        Navigation, RaxbariyatItem, BarGorizontal
     }
 }
 </script>

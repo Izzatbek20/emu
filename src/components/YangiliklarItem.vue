@@ -1,5 +1,5 @@
 <template>
-    <Card class="bg-white mt-0 p-5">
+    <Card class="bg-white mt-0 p-5 max-xl:p-3 max-md:p-2">
         <div class="flex flex-col justify-between gap-5">
             <div class="flex-1">
                 <router-link :to="{ name: 'yangilik', params: { id: 1 } }">

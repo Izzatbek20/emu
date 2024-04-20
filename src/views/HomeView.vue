@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Banner :corusel="corusel" />
-        
+        <HomeBanner :corusel="corusel" />
+
 
         <!-- Information -->
         <Title>
@@ -50,7 +50,7 @@ import Ofislar from '@/components/Ofislar.vue';
 import BizniMijozlar from '@/components/BizniMijozlar.vue';
 import Mijoz from '@/components/Mijoz.vue';
 import Yangiliklar from '@/components/Yangiliklar.vue';
-import Banner from '@/components/Banner.vue';
+import HomeBanner from '@/components/HomeBanner.vue';
 
 import image1 from '@/assets/images/slide/1.png';
 import image2 from '@/assets/images/slide/2.png';
@@ -71,7 +71,7 @@ import Title from '@/components/Title.vue';
 
 export default {
     components: {
-        Corusel, Info, InfoBanner, Xizmatlar, Ofislar, BizniMijozlar, Mijoz, Yangiliklar, Banner, Title
+        Corusel, Info, InfoBanner, Xizmatlar, Ofislar, BizniMijozlar, Mijoz, Yangiliklar, HomeBanner, Title
     },
     data() {
         return {

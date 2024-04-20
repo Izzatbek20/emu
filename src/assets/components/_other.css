@@ -36,7 +36,7 @@
     }
 
     .pagination-items {
-        @apply w-12 h-12 rounded-full bg-white flex items-center justify-center text-xl cursor-pointer
+        @apply w-12 h-12 max-sm:w-8 max-sm:h-8 rounded-full bg-white flex items-center justify-center text-xl max-sm:text-base cursor-pointer
     }
 
     .pagination-active {

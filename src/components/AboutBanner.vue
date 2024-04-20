@@ -7,8 +7,8 @@
             </div>
             <Play class="absolute left-7 bottom-7 w-24 h-24 z-20" />
         </div>
-        <img src="@/assets/images/slide/6.png" alt="image"
-            class="absolute bottom-0 right-0 max-md:bottom-32 w-4/5" srcset="">
+        <img src="@/assets/images/slide/6.png" alt="image" class="absolute bottom-0 right-0 max-md:bottom-32 w-4/5"
+            srcset="">
     </div>
 </template>
 <script>

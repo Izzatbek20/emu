@@ -5,15 +5,15 @@
                 <div class="relative">
                     <img src="@/assets/images/mijoz/1.jpg" alt="image"
                         class="rounded-lg rounded-bl-[3rem] object-cover object-center" srcset="">
-                    <Play class="size-20 absolute bottom-2 left-2" />
+                    <Play class="size-20 absolute bottom-2 left-2 max-lg:bottom-3 max-lg:left-3 max-lg:size-14" />
                 </div>
             </div>
             <div class="flex-1">
-                <h3 class="h5 mb-1 text-violet">
+                <h3 class="h5 max-xl:h6 max-md:h7 mb-1 text-violet">
                     Alisher, 32 yosh
                 </h3>
-                <div class="txt-small mb-4">Internet magazin asoschisi</div>
-                <div class="h6 text-wrap line-clamp-3 whitespace-nowrap">
+                <div class="txt-small max-lg:txt-micro max-sm:txt-micro-2  mb-4">Internet magazin asoschisi</div>
+                <div class="h6 max-lg:h7 text-wrap line-clamp-3 whitespace-nowrap">
                     “Ajoyib xizmat! Tez yetkazib berish orqali biznesimda buyurtma hajmini sezilarli darajada oshirdim.
                     Rahmat!”
                 </div>
