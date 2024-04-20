@@ -6,9 +6,11 @@
         <!-- Banner -->
         <div
             class="flex flex-row-reverse max-xl:flex-col gap-8 mt-10 h-96 max-xl:h-[40rem] max-lg:h-[44rem] max-md:h-[50rem] max-sm:h-[45rem]">
-            <Bar :name="'bizHaqimizda'" />
+            <div class="basis-1/4">
+                <Bar :name="'bizHaqimizda'" />
+            </div>
             <Navigation class="hidden max-xl:block">Kompaniya haqida</Navigation>
-            <div class="basis-full flex flex-row">
+            <div class="basis-3/4 flex flex-row">
                 <div class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden rounded-bl-[6rem]">
                     <AboutBanner />
                 </div>
