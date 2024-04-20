@@ -22,30 +22,41 @@
                 </ul>
             </div>
             <ul class="flex flex-row items-center gap-x-5 xs:max-xl:hidden">
-                <li v-for="(menu, index) in menus" :key="index" class="nav-menu nav-menu-animation relative"
+                <li v-for="(menu, index) in menus" :key="index" :id="'nab-link-' + index" class="relative z-50"
                     :class="$route.name == menu.name ? 'active' : null">
-                    <router-link :to="{ name: menu.name }">{{ menu.title }}</router-link>
-
-                    <!-- <ul v-if="menu.sub.length > 0"
-                        class="absolute z-50 left-0 mt-12 flex flex-col items-start gap-6 bg-white rounded-xl p-7">
-                        <li v-for="(item, i) in menu.sub" :key="index + i" class="text-smal"> {{ item.title }}</li>
-                    </ul> -->
+                    <router-link :to="{ name: menu.name }" @click="select('nab-link-' + index, menu.sub)"
+                        class="nav-menu nav-menu-animation">
+                        {{ menu.title }}
+                    </router-link>
                 </li>
             </ul>
+            <template v-if="navData && navTo">
+                <Teleport :to="'#' + navTo">
+                    <div class="absolute left-0 mt-12 py-2 w-52 bg-white rounded-xl shadow-xl">
+                        <ul>
+                            <router-link @click="navDataChange([])" :to="{ name: item.name }"
+                                v-for="(item, i) in navData" :key="i + 'sub'"
+                                class="block mx-4 my-2 text-gray-800 hover:bg-indigo-500 text-small nav-menu nav-menu-animation">
+                                {{ item.title }}
+                            </router-link>
+                        </ul>
+                    </div>
+                </Teleport>
+            </template>
             <div class="flex flex-row justify-between items-center gap-6">
                 <a href="tel://+998712009669" class="flex flex-row items-center cursor-pointer xs:max-md:hidden">
-                    <Phone class="size-4" :fillColor="'fill-text-gray'" />
+                    <Phone class="size-4 h-4" :fillColor="'fill-text-gray'" />
                     <span class="text-text-gray">
                         +998 71 <span class="text-violet font-bold">200 96-36</span>
                     </span>
                 </a>
                 <ul class="flex flex-row items-center gap-x-5">
                     <li class="cursor-pointer">
-                        <Search class="size-5" :fillColor="'fill-violet'" />
+                        <Search class="size-4" :fillColor="'fill-violet'" />
                     </li>
                     <li class="flex gap-x-2 cursor-pointer max-sm:hidden">
                         <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
-                            <User class="size-3" :fillColor="'fill-white'" />
+                            <User class="size-3 h-4" :fillColor="'fill-white'" />
                         </div>
                         Shaxsiy kabinet
                     </li>
@@ -62,6 +73,8 @@
     </nav>
 </template>
 <script>
+import { ref } from 'vue';
+
 
 export default {
     data() {
@@ -74,38 +87,48 @@ export default {
                 },
                 {
                     title: 'Biz haqimizda',
-                    name: 'bizHaqimizda',
+                    name: null,
                     sub: [
                         {
-                            title: 'Asosiy',
-                            name: 'home',
-                        },
-                        {
-                            title: 'Biz haqimizda',
+                            title: 'Kompaniya haqida',
                             name: 'bizHaqimizda',
                         },
                         {
-                            title: 'Mijozlarga',
-                            name: 'mijozlarga',
+                            title: 'Raxbariyat',
+                            name: 'raxbariyat',
                         },
                         {
-                            title: 'Xizmatlar',
-                            name: 'xizmatlar',
+                            title: 'Hududiy menedjerlar',
+                            name: 'hududiy',
                         },
                         {
-                            title: 'Vakansiya',
-                            name: 'vakansiya',
+                            title: 'Kompaniya yangiliklari',
+                            name: 'yangiliklar',
                         },
                         {
-                            title: 'Biz bilan bog\'lanish',
-                            name: 'aloqa',
+                            title: 'Biz haqimizda fikrlar',
+                            name: 'fikirlar',
                         },
                     ]
                 },
                 {
                     title: 'Mijozlarga',
                     name: 'mijozlarga',
-                    sub: []
+                    sub: [
+
+                        {
+                            title: 'Kompaniya yangiliklari',
+                            name: 'yangiliklar',
+                        },
+                        {
+                            title: 'Raxbariyat',
+                            name: 'raxbariyat',
+                        },
+                        {
+                            title: 'Biz haqimizda fikrlar',
+                            name: 'fikirlar',
+                        },
+                    ]
                 },
                 {
                     title: 'Xizmatlar',
@@ -115,7 +138,20 @@ export default {
                 {
                     title: 'Vakansiya',
                     name: 'vakansiya',
-                    sub: []
+                    sub: [
+                        {
+                            title: 'Hududiy menedjerlar',
+                            name: 'hududiy',
+                        },
+                        {
+                            title: 'Kompaniya yangiliklari',
+                            name: 'yangiliklar',
+                        },
+                        {
+                            title: 'Biz haqimizda fikrlar',
+                            name: 'fikirlar',
+                        },
+                    ]
                 },
                 {
                     title: 'Biz bilan bog\'lanish',
@@ -123,6 +159,23 @@ export default {
                     sub: []
                 },
             ]
+        }
+    },
+    setup() {
+        const navTo = ref(null)
+        const navData = ref(null)
+
+        return {
+            navTo, navData
+        }
+    },
+    methods: {
+        select(tagId, data) {
+            this.navTo = tagId;
+            this.navDataChange(data)
+        },
+        navDataChange(data) {
+            this.navData = data.length > 0 ? data : null
         }
     }
 }

@@ -22,3 +22,22 @@
     width: 100%;
     background-color: #8F2B83;
 }
+
+/* Chrome, Safari, Edge (Chromium-based) */
+.scrollbar-imm {
+    position: relative;
+}
+
+.scrollbar-imm::-webkit-scrollbar {
+    scrollbar-width: none;
+}
+/* .scrollbar-imm::-webkit-scrollbar {
+    height: 3px;
+    background-color: #F5F5F5;
+}
+
+.scrollbar-imm::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+} */

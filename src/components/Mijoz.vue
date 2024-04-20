@@ -6,7 +6,7 @@
             <template v-for="(data, index) in datas" :key="index">
                 <SplideSlide class="w-[32.5%] max-md:w-[40.5%]">
                     <div
-                        class="max-xl:p-5 max-md:p-4 h-full bg-white flex flex-col items-start gap-3 max-xl:gap-2 rounded-[2rem]">
+                        class="p-6 max-xl:p-5 max-md:p-4 h-full bg-white flex flex-col items-start gap-3 max-xl:gap-2 rounded-[2rem]">
                         <div class="w-full h-[15rem] max-lg:h-[10rem] rounded-xl rounded-bl-[3.5rem] relative bg-no-repeat bg-center bg-cover"
                             :style="{ backgroundImage: `url(${data.image})` }">
                             <Play
