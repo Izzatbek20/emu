@@ -55,8 +55,33 @@
                         <ChevorDown class="size-5" :fillColor="'fill-line-gray'" />
                     </li>
                 </ul>
-                <div class="rounded-lg p-2 border border-line-gray hidden xs:max-xl:block cursor-pointer">
+                <div @click="miniMenuMobileOpen"
+                    class="rounded-lg p-2 border border-line-gray hidden xs:max-xl:block cursor-pointer gap-12">
                     <Menu />
+                </div>
+                <div v-show="menuMini"
+                    class="absolute right-0 top-0 bg-white rounded-xl shadow-xl z-50 w-full flex flex-col place-items-end p-5 py-8">
+                    <div @click="miniMenuMobileClose"
+                        class="rounded-lg border border-line-gray hidden xs:max-xl:flex cursor-pointer w-8 h-8 items-center justify-center">
+                        <CloseX @click="menuMini != menuMini" />
+                    </div>
+                    <ul class="flex flex-col place-items-end gap-12 mt-12">
+                        <li v-for="(menu, index) in menus" :key="index" class="relative z-50"
+                            :class="$route.name == menu.name ? 'active' : null">
+                            <template v-if="menu.sub.length == 0">
+                                <router-link :to="{ name: menu.name }" @click="select('nab-link-' + index, menu.sub)"
+                                    class="nav-menu nav-menu-animation">
+                                    {{ menu.title }}
+                                </router-link>
+                            </template>
+                            <template v-else>
+                                <router-link :to="{ name: menu.sub[0].name }" @click="navDataChange([])"
+                                    class="nav-menu nav-menu-animation">
+                                    {{ menu.title }}
+                                </router-link>
+                            </template>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -245,6 +270,12 @@ export default {
         },
         miniMenuToggle() {
             this.$store.commit('miniMenuToggle', (this.navData && this.navTo) ? true : false)
+        },
+        miniMenuMobileOpen() {
+            this.$store.commit('miniMenuToggle', true)
+        },
+        miniMenuMobileClose() {
+            this.$store.commit('miniMenuToggle', false)
         },
         // miniMenuClose() {
         //     if ((this.navData && this.navTo)) {
