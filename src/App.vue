@@ -2,13 +2,15 @@
   <!-- Navbar -->
   <Navbar />
 
-  <!-- Main -->
-  <div class="container-rs">
-    <RouterView />
-  </div>
+  <div @click="miniMenuClose">
+    <!-- Main -->
+    <div class="container-rs">
+      <RouterView />
+    </div>
 
-  <!-- Footer -->
-  <Footer />
+    <!-- Footer -->
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -18,6 +20,11 @@ import Footer from '@/components/Footer.vue';
 export default {
   components: {
     Navbar, Footer
+  },
+  methods: {
+    miniMenuClose() {
+      this.$store.commit('miniMenuToggle', false)
+    },
   }
 }
 </script>

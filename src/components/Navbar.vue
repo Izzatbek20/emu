@@ -30,20 +30,8 @@
                     </router-link>
                 </li>
             </ul>
-            <template v-if="navData && navTo">
-                <Teleport :to="'#' + navTo">
-                    <div class="absolute left-0 mt-12 py-2 w-52 bg-white rounded-xl shadow-xl">
-                        <ul>
-                            <router-link @click="navDataChange([])" :to="{ name: item.name }"
-                                v-for="(item, i) in navData" :key="i + 'sub'"
-                                class="block mx-4 my-2 text-gray-800 hover:bg-indigo-500 text-small nav-menu nav-menu-animation">
-                                {{ item.title }}
-                            </router-link>
-                        </ul>
-                    </div>
-                </Teleport>
-            </template>
-            <div class="flex flex-row justify-between items-center gap-6">
+
+            <div class="flex flex-row items-center gap-x-5">
                 <a href="tel://+998712009669" class="flex flex-row items-center cursor-pointer xs:max-md:hidden">
                     <Phone class="size-4 h-4" :fillColor="'fill-text-gray'" />
                     <span class="text-text-gray">
@@ -54,13 +42,15 @@
                     <li class="cursor-pointer">
                         <Search class="size-4" :fillColor="'fill-violet'" />
                     </li>
-                    <li class="flex gap-x-2 cursor-pointer max-sm:hidden">
+                    <li id="profil" class="flex gap-x-2 cursor-pointer max-sm:hidden relative"
+                        @click="select('profil', profil)">
                         <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
                             <User class="size-3 h-4" :fillColor="'fill-white'" />
                         </div>
                         Shaxsiy kabinet
                     </li>
-                    <li class="flex flex-row items-center gap-x-2 text-violet cursor-pointer">
+                    <li id="profil" class="flex flex-row items-center gap-x-2 text-violet cursor-pointer relative"
+                        @click="select('profil', til)">
                         O'z
                         <ChevorDown class="size-5" :fillColor="'fill-line-gray'" />
                     </li>
@@ -70,10 +60,25 @@
                 </div>
             </div>
         </div>
+        <template v-if="menuMini">
+            <Teleport id="menuBottom" :to="'#' + navTo">
+                <div class="absolute left-0 py-2 bg-white rounded-xl shadow-xl z-50"
+                    :class="[(navTo == 'nab-link-3' ? 'w-[26rem]' : 'w-56'), (navTo == 'profil' || navTo == 'til') ? 'mt-20' : 'mt-12']">
+                    <ul>
+                        <router-link @click="navDataChange([])" :to="{ name: item.name }" v-for="(item, i) in navData"
+                            :key="i + 'sub'"
+                            class="block mx-4 my-2 text-gray-800 hover:bg-indigo-500 text-small nav-menu nav-menu-animation">
+                            {{ item.title }}
+                        </router-link>
+                    </ul>
+                </div>
+            </Teleport>
+        </template>
     </nav>
 </template>
 <script>
 import { ref } from 'vue';
+import { mapState } from 'vuex';
 
 
 export default {
@@ -117,49 +122,109 @@ export default {
                     sub: [
 
                         {
-                            title: 'Kompaniya yangiliklari',
+                            title: 'Xizmat narxini xisoblash',
                             name: 'yangiliklar',
                         },
                         {
-                            title: 'Raxbariyat',
-                            name: 'raxbariyat',
+                            title: 'Ofislar',
+                            name: 'yangiliklar',
                         },
                         {
-                            title: 'Biz haqimizda fikrlar',
-                            name: 'fikirlar',
+                            title: 'Kuryer chaqirish',
+                            name: 'yangiliklar',
                         },
+                        {
+                            title: 'Ko’p beriladigan savollar',
+                            name: 'yangiliklar',
+                        },
+                        {
+                            title: 'Shartnoma va umumiy shartlar',
+                            name: 'yangiliklar',
+                        },
+
                     ]
                 },
                 {
                     title: 'Xizmatlar',
                     name: 'xizmatlar',
-                    sub: []
+                    sub: [
+
+                        {
+                            title: 'Ichki kuryerlik xizmatlar',
+                            name: 'yangiliklar',
+                        },
+                        {
+                            title: 'Xalqaro kuryerlik xizmatlar',
+                            name: 'raxbariyat',
+                        },
+                        {
+                            title: 'Ustama to’lovli pochta jo’natmalarini yetkazib berish',
+                            name: 'raxbariyat',
+                        },
+                        {
+                            title: 'Fullfilment xizmati',
+                            name: 'raxbariyat',
+                        },
+                        {
+                            title: 'Yuk tashish xizmati',
+                            name: 'raxbariyat',
+                        },
+                        {
+                            title: 'EMU kargo xizmati',
+                            name: 'raxbariyat',
+                        },
+
+                    ]
                 },
                 {
                     title: 'Vakansiya',
                     name: 'vakansiya',
-                    sub: [
-                        {
-                            title: 'Hududiy menedjerlar',
-                            name: 'hududiy',
-                        },
-                        {
-                            title: 'Kompaniya yangiliklari',
-                            name: 'yangiliklar',
-                        },
-                        {
-                            title: 'Biz haqimizda fikrlar',
-                            name: 'fikirlar',
-                        },
-                    ]
+                    sub: []
                 },
                 {
                     title: 'Biz bilan bog\'lanish',
                     name: 'aloqa',
                     sub: []
                 },
+            ],
+            profil: [
+                {
+                    title: 'Profil',
+                    name: 'hududiy',
+                },
+                {
+                    title: 'Qabul qilingan pochtalar',
+                    name: 'yangiliklar',
+                },
+                {
+                    title: 'Jo’natilgan pochtalar',
+                    name: 'fikirlar',
+                },
+                {
+                    title: 'Kirish / Chiqish',
+                    name: 'fikirlar',
+                }
+            ],
+            til: [
+                {
+                    title: 'O\'zbekcha',
+                    name: 'hududiy',
+                },
+                {
+                    title: 'Русский',
+                    name: 'yangiliklar',
+                },
+                {
+                    title: 'English',
+                    name: 'fikirlar',
+                }
             ]
         }
+    },
+    computed: {
+        ...mapState({
+            menuMini: state => state.main.menuMini
+        })
     },
     setup() {
         const navTo = ref(null)
@@ -176,7 +241,19 @@ export default {
         },
         navDataChange(data) {
             this.navData = data.length > 0 ? data : null
-        }
+            this.miniMenuToggle()
+        },
+        miniMenuToggle() {
+            this.$store.commit('miniMenuToggle', (this.navData && this.navTo) ? true : false)
+        },
+        // miniMenuClose() {
+        //     if ((this.navData && this.navTo)) {
+        //         this.$store.commit('miniMenuToggle', false)
+        //     }
+        // }
+    },
+    mounted() {
+        // document.addEventListener('click', this.miniMenuClose);
     }
 }
 </script>
