@@ -143,20 +143,20 @@ export default {
                 },
                 {
                     title: 'Mijozlarga',
-                    name: 'mijozlarga',
+                    name: null,
                     sub: [
 
                         {
                             title: 'Xizmat narxini xisoblash',
-                            name: 'yangiliklar',
+                            name: 'xizmatXisoblash',
                         },
                         {
                             title: 'Ofislar',
-                            name: 'yangiliklar',
+                            name: 'ofislarimiz',
                         },
                         {
                             title: 'Kuryer chaqirish',
-                            name: 'yangiliklar',
+                            name: 'kuryerChaqirish',
                         },
                         {
                             title: 'Ko’p beriladigan savollar',

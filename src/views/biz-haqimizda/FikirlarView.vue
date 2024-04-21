@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Banner -->
-        <div class="hidden max-xl:flex">
+        <div class="hidden max-xl:flex justify-center">
             <BarGorizontal :name="'bizHaqimizda'" class="max-xl:h-14 my-10" />
         </div>
 

@@ -9,6 +9,12 @@ import HududView from '@/views/biz-haqimizda/HududView.vue'
 import YangiliklarView from '@/views/biz-haqimizda/YangiliklarView.vue'
 import YangilikView from '@/views/biz-haqimizda/YangilikView.vue'
 import FikirlarView from '@/views/biz-haqimizda/FikirlarView.vue'
+import NarxXisoblashView from '@/views/mijozlar/NarxXisoblashView.vue'
+import NarxXisoblashShinishView from '@/views/mijozlar/NarxXisoblashShinishView.vue'
+import OfislarimizView from '@/views/mijozlar/OfislarimizView.vue'
+import KuryerChaqirishTolovView from '@/views/mijozlar/KuryerChaqirishTolovView.vue'
+import KuryerChaqirishView from '@/views/mijozlar/KuryerChaqirishView.vue'
+import KuryerChaqirishFinishView from '@/views/mijozlar/KuryerChaqirishFinishView.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -53,9 +59,38 @@ const router = createRouter({
       ]
     },
     {
-      path: '/mijozlarga',
-      name: 'mijozlarga',
-      component: KompaniyaView
+      path: '',
+      children: [{
+          path: 'xizmat-narxini-xisoblang',
+          name: 'xizmatXisoblash',
+          component: NarxXisoblashView
+        },
+        {
+          path: 'xizmat-narx-xisobi',
+          name: 'xizmatXisoblashFinish',
+          component: NarxXisoblashShinishView
+        },
+        {
+          path: 'ofislarimiz',
+          name: 'ofislarimiz',
+          component: OfislarimizView
+        },
+        {
+          path: 'kuryer-chaqirish',
+          name: 'kuryerChaqirish',
+          component: KuryerChaqirishView
+        },
+        {
+          path: 'kuryer-chaqirish',
+          name: 'kuryerChaqirishTolov',
+          component: KuryerChaqirishTolovView
+        },
+        {
+          path: 'kuryer-chaqirish',
+          name: 'kuryerChaqirishFinish',
+          component: KuryerChaqirishFinishView
+        },
+      ]
     },
     {
       path: '/xizmatlar',

@@ -52,6 +52,14 @@ import Minus from './icons/Minus.vue';
 import CloseX from './icons/CloseX.vue';
 import Home from './icons/Home.vue';
 import Ranking from './icons/Ranking.vue';
+import Input from './Input.vue';
+import InputPhone from './InputPhone.vue';
+import InputSelect from './InputSelect.vue';
+import InputConuter from './InputConuter.vue';
+import Radio from './Radio.vue';
+import CheckBox from './CheckBox.vue';
+import ButtonViolet from './ButtonViolet.vue';
+import InputPreview from './InputPreview.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -62,5 +70,7 @@ export default [
     Question, Docs, Plus, Minus, CloseX, Home, Ranking,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
-    ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play
+    ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
+
+    Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview
 ];

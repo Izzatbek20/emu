@@ -33,7 +33,7 @@ export default {
 }
 
 .hover-button:hover .effect {
-    width: 120%;
+    width: 130%;
 }
 
 .hover-button:hover .effect::before {
