@@ -18,6 +18,12 @@ import KuryerChaqirishFinishView from '@/views/mijozlar/KuryerChaqirishFinishVie
 import EngKopBeriladiganSavollar from '@/views/mijozlar/EngKopBeriladiganSavollar.vue'
 import UmumiyShartlarView from '@/views/mijozlar/UmumiyShartlarView.vue'
 import UmumiyShartlarKorishView from '@/views/mijozlar/UmumiyShartlarKorishView.vue'
+import KuryerXizmatiView from '@/views/xizmatlar/KuryerXizmatiView.vue'
+import XalqaroKuryerlikXizmatiView from '@/views/xizmatlar/XalqaroKuryerlikXizmatiView.vue'
+import UstamaTolovliView from '@/views/xizmatlar/UstamaTolovliView.vue'
+import FullfilmentView from '@/views/xizmatlar/FullfilmentView.vue'
+import IndividualView from '@/views/xizmatlar/IndividualView.vue'
+import KargoView from '@/views/xizmatlar/KargoView.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -111,9 +117,38 @@ const router = createRouter({
       ]
     },
     {
-      path: '/xizmatlar',
-      name: 'xizmatlar',
-      component: KompaniyaView
+      path: '',
+      children: [{
+          path: '/kuryer-xizmati',
+          name: 'kuryerXizmati',
+          component: KuryerXizmatiView
+        },
+        {
+          path: '/xalqaro-kuryerlik-xizmatlar',
+          name: 'xalqaroKuryerlikXizmati',
+          component: XalqaroKuryerlikXizmatiView
+        },
+        {
+          path: '/ustama-tolovli-yetkazib-berish',
+          name: 'ustamaTolovli',
+          component: UstamaTolovliView
+        },
+        {
+          path: '/fullfilment-xizmat',
+          name: 'fullfilmentView',
+          component: FullfilmentView
+        },
+        {
+          path: '/individual',
+          name: 'individual',
+          component: IndividualView
+        },
+        {
+          path: '/kargo',
+          name: 'kargo',
+          component: KargoView
+        },
+      ]
     },
     {
       path: '/vakansiya',

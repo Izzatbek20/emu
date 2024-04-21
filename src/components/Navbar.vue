@@ -171,32 +171,32 @@ export default {
                 },
                 {
                     title: 'Xizmatlar',
-                    name: 'xizmatlar',
+                    name: null,
                     sub: [
 
                         {
                             title: 'Ichki kuryerlik xizmatlar',
-                            name: 'yangiliklar',
+                            name: 'kuryerXizmati',
                         },
                         {
                             title: 'Xalqaro kuryerlik xizmatlar',
-                            name: 'raxbariyat',
+                            name: 'xalqaroKuryerlikXizmati',
                         },
                         {
                             title: 'Ustama to’lovli pochta jo’natmalarini yetkazib berish',
-                            name: 'raxbariyat',
+                            name: 'ustamaTolovli',
                         },
                         {
                             title: 'Fullfilment xizmati',
-                            name: 'raxbariyat',
+                            name: 'fullfilmentView',
                         },
                         {
                             title: 'Yuk tashish xizmati',
-                            name: 'raxbariyat',
+                            name: 'individual',
                         },
                         {
                             title: 'EMU kargo xizmati',
-                            name: 'raxbariyat',
+                            name: 'kargo',
                         },
 
                     ]

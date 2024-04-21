@@ -23,8 +23,14 @@ export default {
         }
     },
     props: {
-        bgItems: 'bg-orange',
-        iconColor: 'fill-white'
+        bgItems: {
+            type: String,
+            default: 'bg-orange'
+        },
+        iconColor: {
+            type: String,
+            default: 'fill-white'
+        }
     }
 }
 </script>
