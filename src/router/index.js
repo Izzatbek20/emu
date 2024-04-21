@@ -15,6 +15,9 @@ import OfislarimizView from '@/views/mijozlar/OfislarimizView.vue'
 import KuryerChaqirishTolovView from '@/views/mijozlar/KuryerChaqirishTolovView.vue'
 import KuryerChaqirishView from '@/views/mijozlar/KuryerChaqirishView.vue'
 import KuryerChaqirishFinishView from '@/views/mijozlar/KuryerChaqirishFinishView.vue'
+import EngKopBeriladiganSavollar from '@/views/mijozlar/EngKopBeriladiganSavollar.vue'
+import UmumiyShartlarView from '@/views/mijozlar/UmumiyShartlarView.vue'
+import UmumiyShartlarKorishView from '@/views/mijozlar/UmumiyShartlarKorishView.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -89,6 +92,21 @@ const router = createRouter({
           path: 'kuryer-chaqirish',
           name: 'kuryerChaqirishFinish',
           component: KuryerChaqirishFinishView
+        },
+        {
+          path: 'eng-kop-beriladigan-savollar',
+          name: 'savollar',
+          component: EngKopBeriladiganSavollar
+        },
+        {
+          path: 'shartnoma-va-umumiy-shartlar',
+          name: 'umumiyShartlar',
+          component: UmumiyShartlarView
+        },
+        {
+          path: 'shartnoma-va-umumiy-shartlar-sertifikat',
+          name: 'umumiyShartlarKorish',
+          component: UmumiyShartlarKorishView
         },
       ]
     },

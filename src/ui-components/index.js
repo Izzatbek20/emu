@@ -60,6 +60,8 @@ import Radio from './Radio.vue';
 import CheckBox from './CheckBox.vue';
 import ButtonViolet from './ButtonViolet.vue';
 import InputPreview from './InputPreview.vue';
+import Collaps from './Collaps.vue';
+import Pdf from './icons/Pdf.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -67,10 +69,10 @@ export default [
     Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight,
     Calendar, Email, Clock, Search, User, ChevorDown,
     Calculator, Hand, Curier, BoxSearch, Aloqa, Menu,
-    Question, Docs, Plus, Minus, CloseX, Home, Ranking,
+    Question, Docs, Plus, Minus, CloseX, Home, Ranking, Pdf,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
 
-    Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview
+    Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview, Collaps
 ];

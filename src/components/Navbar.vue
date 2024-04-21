@@ -160,11 +160,11 @@ export default {
                         },
                         {
                             title: 'Ko’p beriladigan savollar',
-                            name: 'yangiliklar',
+                            name: 'savollar',
                         },
                         {
                             title: 'Shartnoma va umumiy shartlar',
-                            name: 'yangiliklar',
+                            name: 'umumiyShartlar',
                         },
 
                     ]
