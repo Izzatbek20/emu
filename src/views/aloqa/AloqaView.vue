@@ -95,7 +95,25 @@
 
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'vakansiya'" />
+                <button
+                    class="group hover-button inline-flex p-4 max-md:p-2 h-full items-center relative bg-violet overflow-hidden rounded-[100px] flex-shrink-0">
+                    <span class="group-hover:text-white transition-color duration-500 text-white z-20"
+                        :class="'text-xl max-md:text-sm font-semibold leading-normal'">
+                        <div class="flex justify-start item flex-row gap-2">
+                            <Phone :fillColor="'fill-white'" class="mt-1.5" />
+                            <div>
+                                <div
+                                    class="text-white  text-start text-lg max-xl:text-base font-normal leading-none mb-1">
+                                    Qong’iroqga buyurtma
+                                </div>
+                                <div class="txt-micro text-start max-xl:txt-micro-2 font-normal leading-none">30
+                                    soniyada sizga
+                                    qong’iroq qilishadi</div>
+                            </div>
+                        </div>
+                    </span>
+                    <div class="effect"></div>
+                </button>
             </div>
         </div>
     </div>
