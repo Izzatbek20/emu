@@ -24,6 +24,8 @@ import UstamaTolovliView from '@/views/xizmatlar/UstamaTolovliView.vue'
 import FullfilmentView from '@/views/xizmatlar/FullfilmentView.vue'
 import IndividualView from '@/views/xizmatlar/IndividualView.vue'
 import KargoView from '@/views/xizmatlar/KargoView.vue'
+import VakansiyaView from '@/views/vakansiya/VakansiyaView.vue'
+import AloqaView from '@/views/aloqa/AloqaView.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -153,12 +155,12 @@ const router = createRouter({
     {
       path: '/vakansiya',
       name: 'vakansiya',
-      component: KompaniyaView
+      component: VakansiyaView
     },
     {
       path: '/aloqa',
       name: 'aloqa',
-      component: KompaniyaView
+      component: AloqaView
     },
   ]
 })
