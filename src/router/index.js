@@ -26,6 +26,10 @@ import IndividualView from '@/views/xizmatlar/IndividualView.vue'
 import KargoView from '@/views/xizmatlar/KargoView.vue'
 import VakansiyaView from '@/views/vakansiya/VakansiyaView.vue'
 import AloqaView from '@/views/aloqa/AloqaView.vue'
+import ProfilView from '@/views/profil/ProfilView.vue'
+import QabulView from '@/views/profil/QabulView.vue'
+import JonatilganView from '@/views/profil/JonatilganView.vue'
+import TrakingView from '@/views/profil/TrakingView.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -161,6 +165,26 @@ const router = createRouter({
       path: '/aloqa',
       name: 'aloqa',
       component: AloqaView
+    },
+    {
+      path: '',
+      children: [{
+        path: '/profil',
+        name: 'profil',
+        component: ProfilView
+      }, {
+        path: '/qabul',
+        name: 'qabul',
+        component: QabulView
+      }, {
+        path: '/jonatilgan',
+        name: 'jonatilgan',
+        component: JonatilganView
+      }, {
+        path: '/traking/:id',
+        name: 'traking',
+        component: TrakingView
+      }, ]
     },
   ]
 })

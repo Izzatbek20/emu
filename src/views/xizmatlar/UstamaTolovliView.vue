@@ -2,7 +2,7 @@
     <div>
         <!-- Banner -->
         <div class="hidden max-xl:flex justify-center">
-            <BarGorizontal :name="'bizHaqimizda'" class="max-xl:h-14 my-10" />
+            <BarGorizontal :name="'xizmlatlar'" class="max-xl:h-14 my-10" />
         </div>
 
         <div class="flex flex-row items-start gap-8 mt-10">
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'bizHaqimizda'" />
+                <Bar :name="'xizmlatlar'" />
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
     <ul
-        class="grid grid-cols-1 h-96 rounded-3xl relative max-xl:divide-x max-xl:divide-line-gray overflow-hidden bg-white max-sm:overflow-y-hidden max-sm:overflow-scroll max-xl:grid-cols-5 max-xl:h-20 max-sm:flex scrollbar-imm">
-        <li v-for="(item, index) in menu[name]" :key="index" class="transition-colors duration-700">
+        class="grid grid-cols-1 rounded-3xl relative max-xl:divide-x max-xl:divide-line-gray overflow-hidden bg-white max-sm:overflow-y-hidden max-sm:overflow-scroll max-xl:grid-cols-5 max-xl:h-20 max-sm:flex scrollbar-imm">
+        <li v-for="(item, index) in menu[name]" :key="index" class="transition-colors duration-700 h-20">
             <router-link :to="{ name: item.link }"
                 class="px-[2rem] xs:max-xl:px-0 flex items-center justify-between cursor-pointer group hover:bg-violet max-xl:text-sm max-lg:text-[10px] h-full transition-colors duration-700">
                 <div class="group-hover:border-opacity-0 xs:max-xl:px-2 ease-in-out w-full h-full flex items-center text-wrap xs:max-xl:leading-3"
@@ -16,8 +16,7 @@
                     <span class="group-hover:text-white">
                         {{ item.title }}
                         <br>
-                        <span v-if="item.description"
-                            class="txt-micro text-gray group-hover:text-white">{{
+                        <span v-if="item.description" class="txt-micro text-gray group-hover:text-white">{{
                             item.description }}</span>
                     </span>
                 </div>
@@ -40,54 +39,113 @@ export default {
                     {
                         title: "Yuk narxini xisoblash",
                         icon: 'Calculator',
-                        link: 'bizHaqimizda'
+                        link: 'xizmatXisoblash'
                     },
                     {
                         title: "Kuryer chaqirish",
                         icon: 'Curier',
-                        link: 'raxbariyat'
+                        link: 'kuryerChaqirish'
                     },
                     {
                         title: "Yukni kuzatish",
                         icon: 'BoxSearch',
-                        link: 'hududiy'
+                        link: ''
                     },
                     {
                         title: "Ofislarimiz",
                         icon: 'Marker',
-                        link: 'yangiliklar'
+                        link: 'ofislarimiz'
                     },
                     {
                         title: "Hamkorlik bo'yicha",
                         icon: 'Hand',
-                        link: 'fikirlar'
+                        link: ''
                     },
                 ],
                 bizHaqimizda: [
                     {
                         title: "Kompaniya haqida",
-                        icon: 'Calculator',
+                        icon: 'Home',
                         link: 'bizHaqimizda'
                     },
                     {
                         title: "Raxbariyat",
-                        icon: 'Curier',
+                        icon: 'UserGroup',
                         link: 'raxbariyat'
                     },
                     {
                         title: "Hududiy menedjerlar",
-                        icon: 'BoxSearch',
+                        icon: '',
                         link: 'hududiy'
                     },
                     {
                         title: "Kompaniya yangiliklari",
-                        icon: 'Marker',
+                        icon: '',
                         link: 'yangiliklar'
                     },
                     {
                         title: "Biz haqimizda fikrlar",
-                        icon: 'Hand',
+                        icon: '',
                         link: 'fikirlar'
+                    },
+                ],
+                mijoz: [
+                    {
+                        title: "Xizmat narxini xisoblash",
+                        icon: 'Calculator',
+                        link: 'xizmatXisoblash'
+                    },
+                    {
+                        title: "Ofislar",
+                        icon: 'Marker',
+                        link: 'ofislarimiz'
+                    },
+                    {
+                        title: "Kuryer chaqirish",
+                        icon: 'Curier',
+                        link: 'kuryerChaqirish'
+                    },
+                    {
+                        title: "Ko’p beriladigan savollar",
+                        icon: 'Question',
+                        link: 'savollar'
+                    },
+                    {
+                        title: "Shartnoma va umumiy shartlar",
+                        icon: 'Docs',
+                        link: 'umumiyShartlar'
+                    },
+                ],
+                xizmlatlar: [
+                    {
+                        title: "Ichki kuryerlik xizmatlar",
+                        icon: 'Map',
+                        link: 'kuryerXizmati'
+                    },
+                    {
+                        title: "Xalqaro kuryerlik xizmatlar",
+                        icon: 'Global',
+                        link: 'xalqaroKuryerlikXizmati'
+                    },
+                    {
+                        title: "Ustama to’lovli pochta jo’natmalarini yetkazib berish",
+                        icon: '',
+                        link: 'ustamaTolovli'
+                    },
+                    {
+                        title: "Fullfilment xizmati",
+                        icon: 'WhereHouse',
+                        link: 'fullfilmentView'
+                    },
+                    {
+                        title: "Yuk tashish xizmati",
+                        icon: 'Truck',
+                        link: 'individual'
+                    },
+                    {
+                        title: "EMU kargo xizmati",
+                        icon: 'Container',
+                        link: 'kargo'
                     },
                 ],
                 vakansiya: [
@@ -130,6 +188,32 @@ export default {
                         count: 0,
                         description: 'bo’sh ish o’rni mavjud',
                         link: 'vakansiya'
+                    },
+                ],
+                profil: [
+                    {
+                        id: 1,
+                        title: "Profil",
+                        icon: 'UserOctagon',
+                        count: null,
+                        description: null,
+                        link: 'profil'
+                    },
+                    {
+                        id: 1,
+                        title: "Qabul qilingan pochtalar",
+                        icon: 'ReceiveSquery',
+                        count: null,
+                        description: null,
+                        link: 'qabul'
+                    },
+                    {
+                        id: 1,
+                        title: "Jo’natilgan pochtalar",
+                        icon: 'SendRequest',
+                        count: null,
+                        description: null,
+                        link: 'jonatilgan'
                     },
                 ]
             }

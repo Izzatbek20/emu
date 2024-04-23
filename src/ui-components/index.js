@@ -63,6 +63,21 @@ import InputPreview from './InputPreview.vue';
 import Collaps from './Collaps.vue';
 import Pdf from './icons/Pdf.vue';
 import Textarea from './Textarea.vue';
+import Edit from './icons/Edit.vue';
+import UserOctagon from './icons/UserOctagon.vue';
+import SendRequest from './icons/SendRequest.vue';
+import ReceiveSquery from './icons/ReceiveSquery.vue';
+import BoxTime from './icons/BoxTime.vue';
+import Barcode from './icons/Barcode.vue';
+import Weight from './icons/Weight.vue';
+import BoxTick from './icons/BoxTick.vue';
+import WhereHouse from './icons/WhereHouse.vue';
+import UserGroup from './icons/UserGroup.vue';
+import Marker3 from './icons/Marker3.vue';
+import Map from './icons/Map.vue';
+import Global from './icons/Global.vue';
+import Truck from './icons/Truck.vue';
+import Container from './icons/Container.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -70,7 +85,10 @@ export default [
     Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight,
     Calendar, Email, Clock, Search, User, ChevorDown,
     Calculator, Hand, Curier, BoxSearch, Aloqa, Menu,
-    Question, Docs, Plus, Minus, CloseX, Home, Ranking, Pdf,
+    Question, Docs, Plus, Minus, CloseX, Home, Ranking,
+    Pdf, Edit, UserOctagon, SendRequest, ReceiveSquery,
+    BoxTime, Barcode, Weight, BoxTick, WhereHouse, UserGroup,
+    Marker3, Map, Global, Truck, Container,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,

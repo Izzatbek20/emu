@@ -215,15 +215,15 @@ export default {
             profil: [
                 {
                     title: 'Profil',
-                    name: 'hududiy',
+                    name: 'profil',
                 },
                 {
                     title: 'Qabul qilingan pochtalar',
-                    name: 'yangiliklar',
+                    name: 'qabul',
                 },
                 {
                     title: 'Jo’natilgan pochtalar',
-                    name: 'fikirlar',
+                    name: 'jonatilgan',
                 },
                 {
                     title: 'Kirish / Chiqish',

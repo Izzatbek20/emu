@@ -2,7 +2,7 @@
     <div>
         <!-- Banner -->
         <div class="hidden max-xl:flex justify-center">
-            <BarGorizontal :name="'bizHaqimizda'" class="max-xl:h-14 my-10" />
+            <BarGorizontal :name="'mijoz'" class="max-xl:h-14 my-10" />
         </div>
 
         <!-- Navigation -->
@@ -116,7 +116,7 @@
 
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'bizHaqimizda'" />
+                <Bar :name="'mijoz'" />
             </div>
         </div>
     </div>
