@@ -2,7 +2,7 @@
   <!-- Navbar -->
   <Navbar />
 
-  <div @click="miniMenuClose" class="mt-40">
+  <div @click="miniMenuClose" class="mt-40 max-xl:mt-[80px]">
     <!-- Main -->
     <div class="container-rs">
       <RouterView />

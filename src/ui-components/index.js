@@ -79,6 +79,7 @@ import Global from './icons/Global.vue';
 import Truck from './icons/Truck.vue';
 import Container from './icons/Container.vue';
 import ButtonVioletLogin from './ButtonVioletLogin.vue';
+import Modal from './Modal.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -95,5 +96,5 @@ export default [
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
 
     Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview,
-    Collaps, Textarea, ButtonVioletLogin
+    Collaps, Textarea, ButtonVioletLogin, Modal
 ];

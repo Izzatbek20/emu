@@ -1,12 +1,12 @@
 <template>
-    <div class="mb-6 max-md:mb-3">
+    <div class="max-md:mb-3" :class="{ mb: 'mb-6' }">
         <div class="flex items-center">
-            <div
-                class="bg-white rounded w-6 h-6 flex flex-shrink-0 justify-center border border-icon-gray checked:border-violet items-center relative">
+            <div class="bg-white rounded w-6 h-6 flex flex-shrink-0 justify-center border border-icon-gray checked:border-violet items-center relative"
+                :style="inputStyle">
                 <input aria-labelledby="{{ label1 }}"
                     class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-violet focus:outline-none border rounded border-gray absolute cursor-pointer w-full h-full checked:border-2 checked:border-violet checked:bg-violet"
-                    :id="id" :class="[(error ? 'border-red' : null), (checkboxClass)]" :checked="modelValue"
-                    type="checkbox" @change="updateValue" />
+                    :id="id" :class="error ? 'border-red' : null" :checked="modelValue" type="checkbox"
+                    @change="updateValue" />
                 <div @click="updateValue"
                     class="check-icon cursor-pointer flex items-center justify-center rounded w-full h-full z-20">
                     <span class="text-white peer-checked:opacity-100">
@@ -38,7 +38,6 @@ export default {
     props: {
         label: String,
         labelClass: String,
-        checkboxClass: String,
         type: {
             type: String,
             default: 'text',
@@ -48,7 +47,10 @@ export default {
             default: false
         },
         error: String,
-        modelValue: [Boolean]
+        modelValue: [Boolean],
+        // Login sahifasida ishlatilgan
+        inputStyle: String,
+        mb: true,
     },
     methods: {
         updateValue(e) {

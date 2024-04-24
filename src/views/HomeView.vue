@@ -2,6 +2,9 @@
     <div>
         <HomeBanner :corusel="corusel" />
 
+        <button class="bg-green-500 text-white px-4 py-2 rounded" @click="openModal">
+            Open Modal
+        </button>
 
         <!-- Information -->
         <Title>
@@ -67,7 +70,6 @@ import fullfilment from '@/assets/images/fullfilment.png'
 import individual from '@/assets/images/individual.png'
 import kargo from '@/assets/images/kargo.png'
 import Title from '@/components/Title.vue';
-
 
 export default {
     components: {

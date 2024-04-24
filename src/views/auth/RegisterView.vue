@@ -12,9 +12,9 @@
             <InputPhone label="Telefon raqami" v-model="password" />
 
             <div
-                class="flex max-[360px]:flex-col items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
-                <CheckBox label="Qabul qilaman" :labelClass="'text-gray txt-normal max-md:txt-small'" class="h-2"
-                    v-model="password" />
+                class="flex max-md:flex-col items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
+                <CheckBox label="Qabul qilaman" :labelClass="'text-gray txt-normal max-md:txt-small'"
+                    :inputStyle="'width: 17px; height: 17px;'" v-model="password" />
                 <router-link :to="''"
                     class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">Foydalanish
                     shartlari</router-link>
