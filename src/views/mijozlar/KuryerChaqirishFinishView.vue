@@ -41,14 +41,41 @@
                     </div>
                 </div>
                 <div class="flex items-start gap-6 mt-10">
-                    <ButtonViolet title="Barcha ma’lumotlar tog’ri" />
+                    <ButtonViolet @click="submit" title="Barcha ma’lumotlar tog’ri" />
                 </div>
-
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'mijoz'" />
+                <Bar :name="'xizmlatlar'" />
             </div>
         </div>
+        <!-- Modal -->
+        <Modal title="SMS kod" :isOpen="isOpen" @close="closeModal">
+
+            <div class="txt-big my-10 text-center">Sizning so'rovingizni tasdiqlash maqsadida telefon raqamingizga SMS
+                orqali kod jo'natildi. Bu kod orqali shaxsingizni identifikatsiya qilishingiz mumkin.</div>
+
+            <!-- <form action="#"> -->
+                <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
+                <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
+                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                </div>
+
+                <div
+                    class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
+                    <router-link :to="''"
+                        class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
+                        Yana bir marta kod jo’natish
+                    </router-link>
+                    <div class="text-gray txt-normal max-md:txt-small">59 soniya</div>
+                </div>
+                <ButtonVioletLogin @click="closeModal" title="Kirish" class="mx-auto mt-10 " />
+            <!-- </form> -->
+        </Modal>
     </div>
 </template>
 
@@ -62,15 +89,23 @@ export default {
         return {
             ino: '',
             ino2: '',
+            login: null,
             ino3: 0,
             ino4: 'off',
-            koropka: true
+            koropka: true,
+            isOpen: false,
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
     methods: {
+        submit() {
+            this.isOpen = true
+        },
+        closeModal() {
+            this.isOpen = false
+        }
     }
 }
 </script>

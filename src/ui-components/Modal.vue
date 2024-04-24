@@ -1,29 +1,20 @@
 <template>
     <transition name="fade">
         <div v-if="isModalVisible">
-            <div @click="closeModal"
-                class="fixed h-dvh w-dvw bg-black top-0 left-0 opacity-70 inset-0 z-[70] flex items-center justify-center">
-            </div>
-            <div @click="closeModal"
-                class="fixed h-dvh w-dvw top-0 left-0 inset-0 z-[70] flex items-center justify-center">
+
+            <div class="fixed h-dvh w-dvw top-0 left-0 inset-0 z-[70] flex items-center justify-center">
                 <div
-                    class="w-11/12 max-w-md md:max-w-lg lg:max-w-xl p-3 relative mx-auto my-auto rounded-xl shadow-lg opacity-1 bg-white">
+                    class="absolute z-[90] w-11/12 max-w-sm md:max-w-sm lg:max-w-md p-10 max-sm:p-5 mx-auto my-auto rounded-3xl shadow-lg opacity-1 bg-white">
                     <div>
                         <div class="flex items-center justify-between">
-                            <h3 class="h3-2 max-md:h4 max-[360px]:h5">Xizmatdan foydalanish</h3>
-                            <CloseX @click="closeModal" :fillColor="'fill-orange'" />
+                            <h3 class="h3-2 max-md:h4">{{ title }}</h3>
+                            <CloseX @click="closeModal" :fillColor="'fill-orange'" class="cursor-pointer" />
                         </div>
-
-                        <div class="my-10">
-
-                            <slot />
-
-                        </div>
-
-                        <div class="p-3 mt-2 text-center space-x-4 md:block">
-                            <ButtonVioletLogin title="Saqlash" class="w-full" />
-                        </div>
+                        <slot />
                     </div>
+                </div>
+                <div @click="closeModal"
+                    class="fixed h-dvh w-dvw bg-black top-0 left-0 opacity-70 inset-0 flex items-center justify-center">
                 </div>
             </div>
         </div>
@@ -38,6 +29,7 @@ export default {
             type: Boolean,
             required: true,
         },
+        title: String
     },
     computed: {
         isModalVisible() {
@@ -45,6 +37,9 @@ export default {
         }
     },
     methods: {
+        confirm() {
+            this.$emit('confirm');
+        },
         closeModal() {
             this.$emit('close');
         },

@@ -68,7 +68,7 @@
                     <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" v-model="ino3" class="w-full mt-6" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet @click="xabar" title="Yuborish" class="max-md:w-full" />
                     </div>
                 </div>
                 <div class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet title="Jo’natish" class="max-md:w-full" />
+                        <ButtonViolet @click="shikoyat" title="Jo’natish" class="max-md:w-full" />
                     </div>
                 </div>
 
@@ -116,6 +116,16 @@
                 </button>
             </div>
         </div>
+
+        <!-- Modal -->
+        <Modal title="Bog‘lanish" :isOpen="isOpen" @close="closeModal">
+
+            <div class="h5 my-10 text-center">Tez orada sizga javob bilan qaytamiz.</div>
+
+            <div class="mt-2 p-3 text-center space-x-4 md:block">
+                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -131,13 +141,23 @@ export default {
             ino2: '',
             ino3: 0,
             ino4: 'off',
-            koropka: true
+            koropka: true,
+            isOpen: false
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
     methods: {
+        xabar() {
+            this.isOpen = true
+        },
+        shikoyat() {
+            this.isOpen = true
+        },
+        closeModal() {
+            this.isOpen = false
+        }
     }
 }
 </script>
