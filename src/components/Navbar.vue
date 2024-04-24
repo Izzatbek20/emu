@@ -49,8 +49,8 @@
                         </div>
                         Shaxsiy kabinet
                     </li>
-                    <li id="profil" class="flex flex-row items-center gap-x-2 text-violet cursor-pointer relative"
-                        @click="select('profil', til)">
+                    <li id="til" class="flex flex-row items-center gap-x-2 text-violet cursor-pointer relative"
+                        @click="select('til', til)">
                         O'z
                         <ChevorDown class="size-5" :fillColor="'fill-line-gray'" />
                     </li>
@@ -59,6 +59,8 @@
                     class="rounded-lg p-2 border border-line-gray hidden xs:max-xl:block cursor-pointer gap-12">
                     <Menu />
                 </div>
+
+                <!-- Mobile menu -->
                 <div v-show="menuMini"
                     class="absolute right-0 top-0 bg-white rounded-xl shadow-xl z-50 w-full flex-col place-items-end p-5 py-8 hidden xs:max-xl:flex">
                     <div @click="miniMenuMobileClose"
@@ -85,10 +87,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- Active Nav -->
         <template v-if="menuMini">
             <Teleport id="menuBottom" :to="'#' + navTo">
-                <div class="absolute left-0 py-2 bg-white rounded-xl shadow-xl z-50"
-                    :class="[(navTo == 'nab-link-3' ? 'w-[26rem]' : 'w-56'), (navTo == 'profil' || navTo == 'til') ? 'mt-20' : 'mt-12']">
+                <div class="absolute left-0  py-2 bg-white rounded-xl shadow-xl z-50"
+                    :class="[(navTo == 'nab-link-3' ? 'w-[26rem]' : 'w-56'), (navTo == 'profil' || navTo == 'til') ? 'mt-20 ' : 'mt-12']">
                     <ul>
                         <router-link @click="navDataChange([])" :to="{ name: item.name }" v-for="(item, i) in navData"
                             :key="i + 'sub'"

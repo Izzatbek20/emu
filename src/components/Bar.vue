@@ -1,6 +1,6 @@
 <template>
     <ul
-        class="grid grid-cols-1 rounded-3xl relative max-xl:divide-x max-xl:divide-line-gray overflow-hidden bg-white max-sm:overflow-y-hidden max-sm:overflow-scroll max-xl:grid-cols-5 max-xl:h-20 max-sm:flex scrollbar-imm">
+        class="grid grid-cols-1 rounded-2xl relative max-xl:divide-x max-xl:divide-line-gray overflow-hidden bg-white max-sm:overflow-y-hidden max-sm:overflow-scroll max-xl:grid-cols-5 max-xl:h-20 max-sm:flex scrollbar-imm">
         <li v-for="(item, index) in menu[name]" :key="index" class="transition-colors duration-700 h-20">
             <router-link :to="{ name: item.link }"
                 class="px-[2rem] xs:max-xl:px-0 flex items-center justify-between cursor-pointer group hover:bg-violet max-xl:text-sm max-lg:text-[10px] h-full transition-colors duration-700">
