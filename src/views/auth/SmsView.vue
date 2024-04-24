@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center w-full rounded-3xl">
+    <div class="min-h-screen flex items-start justify-center w-full rounded-3xl">
         <div class="bg-white dark:bg-gray-900 shadow rounded-3xl px-8 py-6 max-w-md">
             <div class="my-8 txt-normal max-md:txt-small text-center">
                 Sizning so'rovingizni tasdiqlash maqsadida telefon raqamingizga SMS orqali kod jo'natildi. Bu kod orqali

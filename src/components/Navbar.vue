@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-white py-4">
+    <nav class="bg-white py-4 fixed w-full top-0 left-0 z-50">
         <div class="container-rs flex flex-row justify-between items-center mx-auto gap-3">
             <div class="flex flex-row justify-between items-center gap-6">
                 <img class="cursor-pointer max-md:h-11" src="@/assets/images/logo/emulogo.png" alt="logo" srcset="">

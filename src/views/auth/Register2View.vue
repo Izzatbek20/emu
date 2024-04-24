@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center w-full rounded-3xl">
+    <div class="min-h-screen flex items-start justify-center w-full rounded-3xl">
         <div class="bg-white w-3/4 max-sm:w-full shadow rounded-3xl px-8 py-6 max-w-md">
             <h3 class="h3-2 text-center">Login va parol</h3>
             <div class="mt-8 mb-4 txt-normal max-md:txt-small text-center">

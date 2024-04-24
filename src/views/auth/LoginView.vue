@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center w-full rounded-3xl">
-        <div class="bg-white dark:bg-gray-900 shadow rounded-3xl px-8 py-6 max-w-md">
+    <div class="min-h-screen flex items-start justify-center w-full rounded-3xl">
+        <div class="bg-white shadow rounded-3xl px-8 py-6 max-w-md">
             <h3 class="h3-2 text-center">Shaxsiy kabinetiga kirish</h3>
             <Input label="Login" v-model="login" class="mt-4" />
             <Input label="Parol" v-model="password" />
