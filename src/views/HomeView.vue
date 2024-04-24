@@ -36,7 +36,6 @@
             Yangiliklar
         </Title>
         <Yangiliklar />
-
     </div>
 </template>
 

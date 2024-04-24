@@ -38,21 +38,21 @@
                         +998 71 <span class="text-violet font-bold">200 96-36</span>
                     </span>
                 </a>
-                <ul class="flex flex-row items-center gap-x-5">
+                <ul class="flex relative flex-row items-center gap-x-5">
                     <li class="cursor-pointer">
                         <Search class="size-4" :fillColor="'fill-violet'" />
                     </li>
-                    <li id="profil" class="flex gap-x-2 cursor-pointer max-sm:hidden relative"
+                    <li id="profil" class="flex items-center gap-x-2 cursor-pointer max-sm:hidden relative"
                         @click="select('profil', profil)">
                         <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
                             <User class="size-3 h-4" :fillColor="'fill-white'" />
                         </div>
                         Shaxsiy kabinet
                     </li>
-                    <li id="til" class="flex flex-row items-center gap-x-2 text-violet cursor-pointer relative"
+                    <li id="til" class="flex items-center flex-row h-7 gap-x-2 text-violet cursor-pointer relative"
                         @click="select('til', til)">
                         O'z
-                        <ChevorDown class="size-5" :fillColor="'fill-line-gray'" />
+                        <ChevorDown class="size-4" :fillColor="'fill-line-gray'" />
                     </li>
                 </ul>
                 <div @click="miniMenuMobileOpen"
@@ -91,12 +91,11 @@
         <!-- Active Nav -->
         <template v-if="menuMini">
             <Teleport id="menuBottom" :to="'#' + navTo">
-                <div class="absolute left-0  py-2 bg-white rounded-xl shadow-xl z-50"
-                    :class="[(navTo == 'nab-link-3' ? 'w-[26rem]' : 'w-56'), (navTo == 'profil' || navTo == 'til') ? 'mt-20 ' : 'mt-12']">
-                    <ul>
+                <div class="absolute top-0 left-0 bg-white rounded-xl shadow-xl z-50 translate-y-20"
+                    :class="[((navTo == 'nab-link-3' || navTo == 'nab-link-2') ? 'w-[26rem]' : 'w-56'), (navTo == 'profil' || navTo == 'til') ? 'left-auto right-0' : null]">
+                    <ul class="w-full h-full py-2 flex flex-col">
                         <router-link @click="navDataChange([])" :to="{ name: item.name }" v-for="(item, i) in navData"
-                            :key="i + 'sub'"
-                            class="block mx-4 my-2 text-gray-800 hover:bg-indigo-500 text-small nav-menu nav-menu-animation">
+                            :key="i + 'sub'" class="mx-4 my-2 text-small nav-menu nav-menu-animation">
                             {{ item.title }}
                         </router-link>
                     </ul>
@@ -286,10 +285,18 @@ export default {
         //         this.$store.commit('miniMenuToggle', false)
         //     }
         // }
+        handleClickOutside(event) {
+            if (!this.$refs.targetElement.contains(event.target)) {
+                this.$store.commit('miniMenuToggle', (this.navData && this.navTo) ? true : false)
+            }
+        }
     },
     mounted() {
-        // document.addEventListener('click', this.miniMenuClose);
-    }
+        document.addEventListener('click', this.handleClickOutside);
+    },
+    beforeDestroy() {
+        document.removeEventListener('click', this.handleClickOutside);
+    },
 }
 </script>
 <style scoped></style>
