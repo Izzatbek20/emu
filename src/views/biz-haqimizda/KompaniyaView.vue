@@ -1,19 +1,22 @@
 <template>
     <div>
+        <!-- Banner -->
+        <div class="hidden max-xl:flex justify-center">
+            <BarGorizontal :name="'bizHaqimizda'" class="max-xl:h-14 my-10" />
+        </div>
+
         <!-- Navigation -->
         <Navigation class="max-xl:hidden">Kompaniya haqida</Navigation>
 
-        <!-- Banner -->
-        <div
-            class="flex flex-row-reverse max-xl:flex-col gap-8 mt-10 h-96 max-xl:h-[40rem] max-lg:h-[44rem] max-md:h-[50rem] max-sm:h-[45rem]">
-            <div class="basis-1/4">
-                <Bar :name="'bizHaqimizda'" />
-            </div>
-            <Navigation class="hidden max-xl:block">Kompaniya haqida</Navigation>
-            <div class="basis-3/4 flex flex-row">
-                <div class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden rounded-bl-[6rem]">
+        <div class="flex flex-row items-start gap-8 mt-10">
+            <div class="basis-3/4 max-xl:flex-1 max-md:p-4  flex flex-row">
+                <div
+                    class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden rounded-bl-[6rem] h-96 max-xl:h-[46rem] max-lg:h-[42rem] max-md:h-[38rem] max-sm:h-[35rem]">
                     <AboutBanner />
                 </div>
+            </div>
+            <div class="basis-1/4 max-xl:hidden">
+                <Bar :name="'bizHaqimizda'" />
             </div>
         </div>
 
@@ -42,10 +45,11 @@ import Navigation from '@/components/Navigation.vue';
 import AboutBanner from '@/components/AboutBanner.vue';
 import Bar from '@/components/Bar.vue';
 import Title from '@/components/Title.vue';
+import BarGorizontal from '@/components/BarGorizontal.vue';
 
 export default {
     components: {
-        AboutBanner, InfoBanner, About, Card, Xizmatlar2, Navigation, Bar, Title
+        AboutBanner, InfoBanner, About, Card, Xizmatlar2, Navigation, Bar, Title, BarGorizontal
     },
     data() {
         return {
