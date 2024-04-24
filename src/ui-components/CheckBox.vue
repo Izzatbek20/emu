@@ -5,8 +5,8 @@
                 class="bg-white rounded w-6 h-6 flex flex-shrink-0 justify-center border border-icon-gray checked:border-violet items-center relative">
                 <input aria-labelledby="{{ label1 }}"
                     class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-violet focus:outline-none border rounded border-gray absolute cursor-pointer w-full h-full checked:border-2 checked:border-violet checked:bg-violet"
-                    :id="id" :class="error ? 'border-red' : null" :checked="modelValue" type="checkbox"
-                    @change="updateValue" />
+                    :id="id" :class="[(error ? 'border-red' : null), (checkboxClass)]" :checked="modelValue"
+                    type="checkbox" @change="updateValue" />
                 <div @click="updateValue"
                     class="check-icon cursor-pointer flex items-center justify-center rounded w-full h-full z-20">
                     <span class="text-white peer-checked:opacity-100">
@@ -19,7 +19,7 @@
                     </span>
                 </div>
             </div>
-            <label v-if="label" class="ml-2 text-black txt-normal cursor-pointer" :for="id">
+            <label v-if="label" :class="labelClass" class="ml-2 text-black txt-normal cursor-pointer" :for="id">
                 {{ label }}
                 <span v-if="required" class="text-red">*</span>
             </label>
@@ -37,6 +37,8 @@ export default {
     },
     props: {
         label: String,
+        labelClass: String,
+        checkboxClass: String,
         type: {
             type: String,
             default: 'text',

@@ -1,9 +1,9 @@
 <template>
-    <div class="h-14">
+    <div class="h-14 max-md:h-12 max-sm:h-11">
         <button
-            class="group hover-button inline-flex px-8 max-md:p-4 h-full items-center justify-center relative bg-violet overflow-hidden rounded-[100px] flex-shrink-0">
+            class="group hover-button inline-flex px-8 max-md:p-4 h-full items-center justify-center relative bg-violet overflow-hidden rounded-[100px]">
             <span class="group-hover:text-white transition-color duration-500 text-white z-20"
-                :class="titleClass ?? 'text-xl max-md:text-sm font-semibold leading-normal'">
+                :class="[(titleClass ?? 'text-xl max-md:text-sm font-semibold leading-normal'), classNew]">
                 {{ title }}
             </span>
             <div class="effect"></div>
@@ -20,6 +20,10 @@ export default {
             required: true,
         },
         titleClass: {
+            type: String,
+            default: null
+        },
+        classNew: {
             type: String,
             default: null
         }

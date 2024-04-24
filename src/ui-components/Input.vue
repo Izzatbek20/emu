@@ -6,8 +6,8 @@
         </label>
         <input
             class="appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors"
-            :class="error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'" :id="id"
-            :type="type" :placeholder="placeholder ?? label" @input="updateValue">
+            :class="[(error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'), classInput]"
+            :id="id" :type="type" :placeholder="placeholder ?? label" @input="updateValue">
         <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>
     </div>
 </template>
@@ -23,6 +23,7 @@ export default {
     props: {
         label: String,
         placeholder: String,
+        classInput: String,
         type: {
             type: String,
             default: 'text',

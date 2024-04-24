@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-20 py-10 px-5 bg-violet text-white">
+    <div v-if="show" class="mt-20 py-10 px-5 bg-violet text-white">
         <div class="container-rs">
             <div class="flex flex-col">
                 <div
@@ -114,6 +114,7 @@
 export default {
     data() {
         return {
+            show: true,
             menus: [
                 {
                     title: 'Asosiy',
@@ -248,6 +249,14 @@ export default {
                     ]
                 },
             ]
+        }
+    },
+    mounted() {
+        // Shu shartlar qanoqatlantirsa footer ko'rinmasligi kerak
+        const routeName = this.$route.name;
+        // console.log(routeName);
+        if (routeName == 'login' || routeName == 'register' || routeName == 'sms' || routeName == 'register-2') {
+            this.show = false
         }
     }
 }

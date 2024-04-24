@@ -227,7 +227,7 @@ export default {
                 },
                 {
                     title: 'Kirish / Chiqish',
-                    name: 'fikirlar',
+                    name: 'login',
                 }
             ],
             til: [

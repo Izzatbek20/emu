@@ -30,6 +30,10 @@ import ProfilView from '@/views/profil/ProfilView.vue'
 import QabulView from '@/views/profil/QabulView.vue'
 import JonatilganView from '@/views/profil/JonatilganView.vue'
 import TrakingView from '@/views/profil/TrakingView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
+import RegisterView from '@/views/auth/RegisterView.vue'
+import SmsView from '@/views/auth/SmsView.vue'
+import Register2View from '@/views/auth/Register2View.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -185,6 +189,30 @@ const router = createRouter({
         name: 'traking',
         component: TrakingView
       }, ]
+    },
+    {
+      path: '',
+      children: [{
+          path: '/login',
+          name: 'login',
+          component: LoginView
+        },
+        {
+          path: '/register',
+          name: 'register',
+          component: RegisterView
+        },
+        {
+          path: '/sms',
+          name: 'sms',
+          component: SmsView
+        },
+        {
+          path: '/register-2',
+          name: 'register2',
+          component: Register2View
+        },
+      ]
     },
   ]
 })

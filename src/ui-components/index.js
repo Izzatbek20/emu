@@ -78,6 +78,7 @@ import Map from './icons/Map.vue';
 import Global from './icons/Global.vue';
 import Truck from './icons/Truck.vue';
 import Container from './icons/Container.vue';
+import ButtonVioletLogin from './ButtonVioletLogin.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -93,5 +94,6 @@ export default [
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
 
-    Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview, Collaps, Textarea
+    Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview,
+    Collaps, Textarea, ButtonVioletLogin
 ];
