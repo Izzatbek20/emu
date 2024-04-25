@@ -44,7 +44,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '',
+      path: '/kompaniya',
       children: [{
           path: 'biz-haqimizda',
           name: 'bizHaqimizda',
@@ -78,7 +78,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '',
+      path: '/mijoz',
       children: [{
           path: 'xizmat-narxini-xisoblang',
           name: 'xizmatXisoblash',
@@ -127,34 +127,34 @@ const router = createRouter({
       ]
     },
     {
-      path: '',
+      path: '/xizmatlar',
       children: [{
-          path: '/kuryer-xizmati',
+          path: 'kuryer-xizmati',
           name: 'kuryerXizmati',
           component: KuryerXizmatiView
         },
         {
-          path: '/xalqaro-kuryerlik-xizmatlar',
+          path: 'xalqaro-kuryerlik-xizmatlar',
           name: 'xalqaroKuryerlikXizmati',
           component: XalqaroKuryerlikXizmatiView
         },
         {
-          path: '/ustama-tolovli-yetkazib-berish',
+          path: 'ustama-tolovli-yetkazib-berish',
           name: 'ustamaTolovli',
           component: UstamaTolovliView
         },
         {
-          path: '/fullfilment-xizmat',
+          path: 'fullfilment-xizmat',
           name: 'fullfilmentView',
           component: FullfilmentView
         },
         {
-          path: '/individual',
+          path: 'individual',
           name: 'individual',
           component: IndividualView
         },
         {
-          path: '/kargo',
+          path: 'kargo',
           name: 'kargo',
           component: KargoView
         },
@@ -171,44 +171,44 @@ const router = createRouter({
       component: AloqaView
     },
     {
-      path: '',
+      path: '/profil',
       children: [{
-        path: '/profil',
+        path: 'user',
         name: 'profil',
         component: ProfilView
       }, {
-        path: '/qabul',
+        path: 'qabul',
         name: 'qabul',
         component: QabulView
       }, {
-        path: '/jonatilgan',
+        path: 'jonatilgan',
         name: 'jonatilgan',
         component: JonatilganView
       }, {
-        path: '/traking/:id',
+        path: 'traking/:id',
         name: 'traking',
         component: TrakingView
       }, ]
     },
     {
-      path: '',
+      path: '/auth',
       children: [{
-          path: '/login',
+          path: 'login',
           name: 'login',
           component: LoginView
         },
         {
-          path: '/register',
+          path: 'register',
           name: 'register',
           component: RegisterView
         },
         {
-          path: '/sms',
+          path: 'sms',
           name: 'sms',
           component: SmsView
         },
         {
-          path: '/register-2',
+          path: 'register-2',
           name: 'register2',
           component: Register2View
         },

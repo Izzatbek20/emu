@@ -2,7 +2,7 @@
   <!-- Navbar -->
   <Navbar />
 
-  <div @click="miniMenuClose" class="mt-40 max-xl:mt-[80px]">
+  <div @click="menuClose" class="mt-40 max-xl:mt-[80px]">
     <!-- Main -->
     <div class="container-rs">
       <RouterView />
@@ -22,8 +22,9 @@ export default {
     Navbar, Footer
   },
   methods: {
-    miniMenuClose() {
+    menuClose() {
       this.$store.commit('miniMenuToggle', false)
+      this.$store.commit('menuMobileToggle', false)
     },
   }
 }
