@@ -2,7 +2,8 @@
     <nav class="bg-white py-4 fixed w-full top-0 left-0 z-[60]">
         <div class="container-rs flex flex-row justify-between items-center mx-auto gap-3">
             <div class="flex flex-row justify-between items-center gap-6">
-                <img class="cursor-pointer max-md:h-11" src="@/assets/images/logo/emulogo.png" alt="logo" srcset="">
+                <img class="cursor-pointer max-md:h-11" src="@/assets/images/logo/emulogo.png" alt="logo" srcset=""
+                    @click="$router.push('/')">
                 <ul class="flex flex-row items-center gap-x-2 xs:max-md:hidden">
                     <li class="cursor-pointer group transition-colors">
                         <a href="http://" target="_blank" rel="noopener noreferrer">
@@ -107,146 +108,15 @@
 <script>
 import { ref } from 'vue';
 import { mapState } from 'vuex';
+import { menus, profil, til } from '@/constants/navbar.js';
 
 
 export default {
     data() {
         return {
-            menus: [
-                {
-                    title: 'Asosiy',
-                    name: 'home',
-                    sub: []
-                },
-                {
-                    title: 'Biz haqimizda',
-                    name: null,
-                    sub: [
-                        {
-                            title: 'Kompaniya haqida',
-                            name: 'bizHaqimizda',
-                        },
-                        {
-                            title: 'Raxbariyat',
-                            name: 'raxbariyat',
-                        },
-                        {
-                            title: 'Hududiy menedjerlar',
-                            name: 'hududiy',
-                        },
-                        {
-                            title: 'Kompaniya yangiliklari',
-                            name: 'yangiliklar',
-                        },
-                        {
-                            title: 'Biz haqimizda fikrlar',
-                            name: 'fikirlar',
-                        },
-                    ]
-                },
-                {
-                    title: 'Mijozlarga',
-                    name: null,
-                    sub: [
-
-                        {
-                            title: 'Xizmat narxini xisoblash',
-                            name: 'xizmatXisoblash',
-                        },
-                        {
-                            title: 'Ofislar',
-                            name: 'ofislarimiz',
-                        },
-                        {
-                            title: 'Kuryer chaqirish',
-                            name: 'kuryerChaqirish',
-                        },
-                        {
-                            title: 'Ko’p beriladigan savollar',
-                            name: 'savollar',
-                        },
-                        {
-                            title: 'Shartnoma va umumiy shartlar',
-                            name: 'umumiyShartlar',
-                        },
-
-                    ]
-                },
-                {
-                    title: 'Xizmatlar',
-                    name: null,
-                    sub: [
-
-                        {
-                            title: 'Ichki kuryerlik xizmatlar',
-                            name: 'kuryerXizmati',
-                        },
-                        {
-                            title: 'Xalqaro kuryerlik xizmatlar',
-                            name: 'xalqaroKuryerlikXizmati',
-                        },
-                        {
-                            title: 'Ustama to’lovli pochta jo’natmalarini yetkazib berish',
-                            name: 'ustamaTolovli',
-                        },
-                        {
-                            title: 'Fullfilment xizmati',
-                            name: 'fullfilmentView',
-                        },
-                        {
-                            title: 'Yuk tashish xizmati',
-                            name: 'individual',
-                        },
-                        {
-                            title: 'EMU kargo xizmati',
-                            name: 'kargo',
-                        },
-
-                    ]
-                },
-                {
-                    title: 'Vakansiya',
-                    name: 'vakansiya',
-                    sub: []
-                },
-                {
-                    title: 'Biz bilan bog\'lanish',
-                    name: 'aloqa',
-                    sub: []
-                },
-            ],
-            profil: [
-                {
-                    title: 'Profil',
-                    name: 'profil',
-                },
-                {
-                    title: 'Qabul qilingan pochtalar',
-                    name: 'qabul',
-                },
-                {
-                    title: 'Jo’natilgan pochtalar',
-                    name: 'jonatilgan',
-                },
-                {
-                    title: 'Kirish / Chiqish',
-                    name: 'login',
-                }
-            ],
-            til: [
-                {
-                    title: 'O\'zbekcha',
-                    name: 'hududiy',
-                },
-                {
-                    title: 'Русский',
-                    name: 'yangiliklar',
-                },
-                {
-                    title: 'English',
-                    name: 'fikirlar',
-                }
-            ]
+            menus: menus,
+            profil: profil,
+            til: til,
         }
     },
     computed: {
