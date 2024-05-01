@@ -3,9 +3,10 @@
         <div class="flex flex-col justify-between gap-5">
             <div class="flex-1">
                 <div class="relative">
-                    <img src="@/assets/images/mijoz/1.jpg" alt="image"
-                        class="rounded-lg rounded-bl-[3rem] object-cover object-center" srcset="">
-                    <Play class="size-20 absolute bottom-2 left-2 max-lg:bottom-3 max-lg:left-3 max-lg:size-14" />
+                    <img :src="url" alt="image" class="rounded-lg rounded-bl-[3rem] object-cover object-center"
+                        srcset="">
+                    <Play class="size-20 absolute cursor-pointer bottom-2 left-2 max-lg:bottom-3 max-lg:left-3 max-lg:size-14"
+                        @click="openModal" />
                 </div>
             </div>
             <div class="flex-1">
@@ -19,6 +20,8 @@
                 </div>
             </div>
         </div>
+
+        <YoutubeModal :isOpen="isOpen" :v="v" @close="closeModal" />
     </Card>
 </template>
 <script>
@@ -27,6 +30,26 @@ import Card from '@/components/Card.vue';
 export default {
     components: {
         Card
+    },
+    props: {
+        v: String
+    },
+    data() {
+        return {
+            url: null,
+            isOpen: false
+        }
+    },
+    beforeMount() {
+        this.url = `https://img.youtube.com/vi/${this.v}/maxresdefault.jpg`
+    },
+    methods: {
+        closeModal() {
+            this.isOpen = false
+        },
+        openModal() {
+            this.isOpen = true
+        }
     }
 }
 </script>

@@ -10,7 +10,7 @@
 
         <div class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
-
+                <img :src="sertificat" class="object-cover w-full">
 
                 <div class="flex items-center gap-6 mt-10">
                     <ButtonOranger title="Orqaga qaytish" @click="$router.go(-1)" />
@@ -27,22 +27,20 @@
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+import SERTIFICAT from '@/assets/files/GIUZ-1030-QC+2023.svg';
+
 
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true
+            sertificat: SERTIFICAT
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
     methods: {
-    }
+    },
 }
 </script>
 

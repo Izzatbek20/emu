@@ -34,7 +34,9 @@
                         <div class="grid grid-cols-1">
                             <span class="txt-small">EMU umumiy oferta shartlari.pdf</span>
                             <div>
-                                <span class="txt-micro text-violet underline cursor-pointer mr-2">Yuklab olish</span>
+                                <span class="txt-micro text-violet underline cursor-pointer mr-2"
+                                    @click="downloadPdf(omaviy_oferta_shartlari, 'OMMAVIY OFERTA SHARTNOMASI EMU.pdf')">Yuklab
+                                    olish</span>
                                 <span class="txt-micro text-gray">1.2 mb</span>
                             </div>
                         </div>
@@ -46,7 +48,9 @@
                         <div class="grid grid-cols-1">
                             <span class="txt-small">EMU umumiy shartlar.pdf</span>
                             <div>
-                                <span class="txt-micro text-violet underline cursor-pointer mr-2">Yuklab olish</span>
+                                <span class="txt-micro text-violet underline cursor-pointer mr-2"
+                                    @click="downloadPdf(jismoni_shaxslar, 'Жисмоний_шахслар_томонидан_почта_ва_курьерлик_жўнатмалари_орқали.pdf')">Yuklab
+                                    olish</span>
                                 <span class="txt-micro text-gray">1.2 mb</span>
                             </div>
                         </div>
@@ -65,21 +69,38 @@
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+import OMMAVIY_OFERTA_SHARTNOMASI_UZ from '@/assets/files/OMMAVIY OFERTA SHARTNOMASI EMU.pdf';
+import OMMAVIY_OFERTA_SHARTNOMASI_RU from '@/assets/files/Публичная оферта компании EMU.pdf';
+import JISMONISHAXSLAR from '@/assets/files/Жисмоний_шахслар_томонидан_почта_ва_курьерлик_жўнатмалари_орқали.pdf';
 
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true
+            omaviy_oferta_shartlari: OMMAVIY_OFERTA_SHARTNOMASI_UZ,
+            jismoni_shaxslar: JISMONISHAXSLAR
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
     methods: {
+        async downloadPdf(fileUrl, filename) {
+            try {
+                // Faylni yuklash uchun link yaratish
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.setAttribute('download', filename); // Faylni yuklash uchun fayl nomini belgilash
+
+                // Linkni simulyatsiya qilish
+                document.body.appendChild(link);
+                link.click();
+
+                // Linkni olib tashlash
+                document.body.removeChild(link);
+            } catch (error) {
+                console.error('PDF faylini yuklashda xatolik yuz berdi:', error);
+            }
+        },
     }
 }
 </script>

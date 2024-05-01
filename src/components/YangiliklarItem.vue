@@ -2,9 +2,8 @@
     <Card class="bg-white mt-0 p-5 max-xl:p-3 max-md:p-2">
         <div class="flex flex-col justify-between gap-5">
             <div class="flex-1">
-                <router-link :to="{ name: 'yangilik', params: { id: 1 } }">
-                    <img src="@/assets/images/news_1.png" alt="image" class="rounded-lg object-cover object-center"
-                        srcset="">
+                <router-link :to="{ name: 'yangilik', params: { id: id } }">
+                    <img :src="image" alt="image" class="rounded-lg object-cover object-center" srcset="">
                 </router-link>
             </div>
             <div class="flex-1">
@@ -15,18 +14,12 @@
                     </span>
                 </div>
                 <h3 class="h5 mb-1">
-                    <router-link :to="{ name: 'yangilik', params: { id: 1 } }">
-                        Yangilik nomi
+                    <router-link :to="{ name: 'yangilik', params: { id: id } }">
+                        {{ title }}
                     </router-link>
                 </h3>
-                <div class="txt-small text-wrap space line-clamp-3 whitespace-nowrap">
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Sunt
-                    vero
-                    at
-                    id, molestiae omnis laboriosam asperiores ipsam maiores voluptas quae rerum
-                    accusantium
-                    dignissimos unde maxime similique itaque repudiandae impedit dicta?</div>
+                <div class="txt-small text-wrap space line-clamp-3 whitespace-pre-line" v-html="body">
+                </div>
             </div>
         </div>
     </Card>
@@ -37,6 +30,12 @@ import Card from '@/components/Card.vue';
 export default {
     components: {
         Card
+    },
+    props: {
+        id: Number,
+        title: String,
+        image: String,
+        body: String,
     }
 }
 </script>

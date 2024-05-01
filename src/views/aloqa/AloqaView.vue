@@ -49,9 +49,16 @@
                         </div>
                     </div>
 
-                    <iframe class="mt-8 rounded-md border border-line-gray"
-                        src="https://yandex.com/map-widget/v1/?ll=71.786840%2C40.386674&z=15" width="100%" height="300"
-                        frameborder="1" allowfullscreen="true"></iframe>
+                    <div class="mt-8 rounded-md border border-line-gray" style="position:relative;overflow:hidden;"><a
+                            href="https://yandex.uz/maps/org/emu/125146085698/?utm_medium=mapframe&utm_source=maps"
+                            style="color:#eee;font-size:12px;position:absolute;top:0px;">Emu</a><a
+                            href="https://yandex.uz/maps/10335/tashkent/category/courier_services/184105430/?utm_medium=mapframe&utm_source=maps"
+                            style="color:#eee;font-size:12px;position:absolute;top:14px;">Kurer xizmatlari
+                            Toshkentda</a><iframe
+                            src="https://yandex.uz/map-widget/v1/?ll=69.300596%2C41.243656&mode=search&oid=125146085698&ol=biz&sctx=ZAAAAAgBEAAaKAoSCa6gaYmVVVFAEXcVUn5SpURAEhIJtJQsJ6H01j8RxhaCHJQwwz8iBgABAgMEBSgKOABAn58GSAFqAnV6nQHNzEw9oAEAqAEAvQFDTUemwgEGwvKmmtIDggIKZW11IHBvY2h0YYoCAJICAJoCDGRlc2t0b3AtbWFwcw%3D%3D&sll=69.300596%2C41.243656&sspn=0.006048%2C0.002530&text=emu%20pochta&z=17.9"
+                            width="100%" height="300" frameborder="0" allowfullscreen="true"
+                            style="position:relative;"></iframe>
+                    </div>
 
                 </div>
 
