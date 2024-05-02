@@ -11,21 +11,13 @@
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4">
                 <div class="mb-4 w-full">
                     <h3 class="h3 max-xl:h4-2 mb-4">Toshkent viloyati</h3>
-                    <RaxbariyatItem />
-                    <RaxbariyatItem />
+                    <RaxbariyatItem v-for="(item, i) in data" :key="i" :user="item" />
                 </div>
                 <div class="mb-4 w-full">
                     <h3 class="h3 max-xl:h4-2 mb-4">Andijon viloyati</h3>
-                    <RaxbariyatItem />
-                    <RaxbariyatItem />
-                    <RaxbariyatItem />
                 </div>
                 <div class="mb-4 w-full">
                     <h3 class="h3 max-xl:h4-2 mb-4">Buxoro viloyati</h3>
-                    <RaxbariyatItem />
-                    <RaxbariyatItem />
-                    <RaxbariyatItem />
-                    <RaxbariyatItem />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -40,10 +32,16 @@ import Bar from '@/components/Bar.vue';
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import RaxbariyatItem from '@/components/RaxbariyatItem.vue';
+import { data } from '@/constants/raxbariyat';
 
 export default {
     components: {
         Navigation, RaxbariyatItem, BarGorizontal, Bar
+    },
+    data() {
+        return {
+            data: data
+        }
     }
 }
 </script>
