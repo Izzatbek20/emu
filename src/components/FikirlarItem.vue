@@ -41,7 +41,7 @@ export default {
         }
     },
     beforeMount() {
-        this.url = `https://img.youtube.com/vi/${this.v}/maxresdefault.jpg`
+        this.url = `https://img.youtube.com/vi/${this.v}/mqdefault.jpg`
     },
     methods: {
         closeModal() {
