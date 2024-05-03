@@ -1,5 +1,5 @@
 <template>
-    <div class="h-16 rounded-2xl bg-white flex items-center overflow-hidden p-2">
+    <div class="h-16 rounded-2xl bg-white flex items-center overflow-hidden">
         <Splide :has-track="false" :options="optionsMaxScreen768" aria-label="Hududlar">
             <SplideTrack class="h-full">
 
