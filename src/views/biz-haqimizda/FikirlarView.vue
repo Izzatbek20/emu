@@ -8,7 +8,7 @@
         <!-- Navigation -->
         <Navigation>Mijozlarimizning biz haqimizda fikrlari</Navigation>
 
-        <div class="flex flex-row items-start gap-8 mt-10">
+        <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1">
 
                 <div class="grid grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-5 mt-5">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class=" basis-1/4 max-xl:hidden">
-                <Bar :name="'bizHaqimizda'" />
+                <Bar id="pin" :name="'bizHaqimizda'" />
             </div>
         </div>
         <!-- <Pagination class="mt-20" /> -->
@@ -40,6 +40,10 @@ import BarGorizontal from '@/components/BarGorizontal.vue';
 import Title from '@/components/Title.vue';
 import BizniMijozlar from '@/components/BizniMijozlar.vue';
 import { data } from '@/constants/youtube';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
     components: {
@@ -51,6 +55,18 @@ export default {
         };
     },
     mounted() {
-    },
+        let pin = document.getElementById("pin");
+        let notPin = document.getElementById("pin-conatiner");
+
+        ScrollTrigger.create({
+            trigger: pin,
+            start: "top 20%",
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            invalidateOnRefresh: true,
+            pin: pin,
+            pinSpacing: true,
+
+        });
+    }
 }
 </script>

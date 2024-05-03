@@ -31,7 +31,7 @@
                     </component>
                     <div v-if="item.count != null"
                         class="mr-2 xs:max-xl:size-5 max-sm:size-10 bg-[#F7F5F7] rounded-full transition-colors duration-700 group-hover:text-black flex items-center justify-center size-8"
-                        :class="{ 'active-vakansiya': isActive(item.link, item.id) }">
+                        :class="{ 'active-vakansiya group-hover:bg-[#F7F5F7]': isActive(item.link, item.id) }">
                         {{ item.count }}
                     </div>
                     <span class="group-hover:text-white">
@@ -39,7 +39,7 @@
                         <br>
                         <span v-if="item.description" class="txt-micro text-gray group-hover:text-white"
                             :class="{ active: isActive(item.link, item.id) }">{{
-                                item.description }}</span>
+                            item.description }}</span>
                     </span>
                 </div>
             </router-link>

@@ -8,7 +8,7 @@
         <!-- Navigation -->
         <Navigation>Mijozlarimizning biz haqimizda fikrlari</Navigation>
 
-        <div class="flex flex-row items-start gap-8 mt-10">
+        <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
 
                 <div class="flex flex-row max-md:flex-col gap-7 mt-5">
@@ -38,7 +38,8 @@
                         <div class="gap-6">
                             <CheckBox label="Korobka" v-model="koropka" />
                             <Transition name="slide-fade">
-                                <div v-if="koropka" class="grid grid-cols-3 max-sm:grid-cols-2 max-[360px]:grid-cols-1 gap-4">
+                                <div v-if="koropka"
+                                    class="grid grid-cols-3 max-sm:grid-cols-2 max-[360px]:grid-cols-1 gap-4">
                                     <InputConuter label="Kenglik (sm):" v-model="ino3" />
                                     <InputConuter label="Uzunlik (sm):" v-model="ino3" />
                                     <InputConuter label="Balandlik (sm):" v-model="ino3" />
@@ -59,7 +60,7 @@
 
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'mijoz'" />
+                <Bar id="pin" :name="'mijoz'" />
             </div>
         </div>
     </div>
@@ -69,6 +70,10 @@
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
@@ -84,6 +89,20 @@ export default {
         BarGorizontal, Bar, Navigation
     },
     methods: {
+    },
+    mounted() {
+        let pin = document.getElementById("pin");
+        let notPin = document.getElementById("pin-conatiner");
+
+        ScrollTrigger.create({
+            trigger: pin,
+            start: "top 20%",
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            invalidateOnRefresh: true,
+            pin: pin,
+            pinSpacing: true,
+
+        });
     }
 }
 </script>

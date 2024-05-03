@@ -18,7 +18,7 @@
                 </SplideTrack>
             </Splide>
         </div>
-        <div class="flex flex-row items-start gap-8 mt-10">
+        <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:basis-auto max-xl:w-full">
 
                 <div class="flex flex-row max-lg:hidden gap-3 flex-wrap">
@@ -116,7 +116,7 @@
 
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'mijoz'" />
+                <Bar id="pin" :name="'mijoz'" />
             </div>
         </div>
     </div>
@@ -128,6 +128,11 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
 
 
 // Default theme
@@ -202,6 +207,19 @@ export default {
     mounted() {
         // Oynaning o'lchamlarini kuzatish
         window.addEventListener('resize', this.updateWindowSize);
+        
+        let pin = document.getElementById("pin");
+        let notPin = document.getElementById("pin-conatiner");
+
+        ScrollTrigger.create({
+            trigger: pin,
+            start: "top 20%",
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            invalidateOnRefresh: true,
+            pin: pin,
+            pinSpacing: true,
+
+        });
     },
     beforeUnmount() {
         // Kuzatishni to'xtatish

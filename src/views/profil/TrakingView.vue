@@ -8,7 +8,7 @@
         <!-- Navigation -->
         <Navigation>Treking</Navigation>
 
-        <div class="flex flex-row items-start gap-8 mt-10">
+        <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:basis-full max-xl:w-full bg-white rounded-3xl p-7 max-md:p-4">
 
                 <div
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'profil'" />
+                <Bar id="pin" :name="'profil'" />
             </div>
         </div>
     </div>
@@ -115,6 +115,10 @@
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
@@ -133,6 +137,20 @@ export default {
         to(id) {
             alert(id)
         }
+    },
+    mounted() {
+        let pin = document.getElementById("pin");
+        let notPin = document.getElementById("pin-conatiner");
+
+        ScrollTrigger.create({
+            trigger: pin,
+            start: "top 20%",
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            invalidateOnRefresh: true,
+            pin: pin,
+            pinSpacing: true,
+
+        });
     }
 }
 </script>

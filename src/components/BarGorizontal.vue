@@ -27,7 +27,7 @@
                             </span>
                         </div>
                     </router-link>
-                    <router-link v-else :to="{ name: item.link, params: { id: 1 } }"
+                    <router-link v-else :to="{ name: item.link, params: { id: item.id } }"
                         :class="{ active: isActive(item.link) }"
                         class="px-[2rem] min-w-32 xs:max-xl:px-0 flex items-center justify-between cursor-pointer group hover:bg-violet max-xl:text-sm max-lg:text-[10px] hover:text-white transition-colors duration-700 h-full">
                         <div class="group-hover:border-opacity-0 xs:max-xl:px-2 ease-in-out w-full h-full flex items-center text-wrap xs:max-xl:leading-3 transition-colors duration-700"
@@ -38,10 +38,10 @@
                             </component>
                             <div v-if="item.count != null"
                                 class="mr-2 xs:max-xl:size-5 max-sm:size-10 bg-[#F7F5F7] rounded-full transition-colors duration-700 group-hover:text-black flex items-center justify-center size-8"
-                                :class="{ 'active-vakansiya': isActive(item.link, item.id) }">
+                                :class="{ 'active-vakansiya group-hover:bg-[#F7F5F7]': isActive(item.link, item.id) }">
                                 {{ item.count }}
                             </div>
-                            <span class="group-hover:text-white">
+                            <span class="group-hover:text-white" :class="{ active: isActive(item.link, item.id) }">
                                 {{ item.title }}
                                 <br>
                                 <span v-if="item.description"

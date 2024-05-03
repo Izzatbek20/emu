@@ -8,7 +8,7 @@
         <!-- Navigation -->
         <Navigation>Kuryer chaqirish</Navigation>
 
-        <div class="flex flex-row items-start gap-8 mt-10">
+        <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
                 <div class="h4">
                     Yukingizni olib ketish uchun kuryerimiz tez orada yo’lga chiqadi. Iltimos berilgan ma’lumotlar
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'xizmlatlar'" />
+                <Bar id="pin" :name="'xizmlatlar'" />
             </div>
         </div>
         <!-- Modal -->
@@ -55,25 +55,24 @@
                 orqali kod jo'natildi. Bu kod orqali shaxsingizni identifikatsiya qilishingiz mumkin.</div>
 
             <!-- <form action="#"> -->
-                <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
-                <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
-                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                    <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                </div>
+            <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
+            <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
+                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+            </div>
 
-                <div
-                    class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
-                    <router-link :to="''"
-                        class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
-                        Yana bir marta kod jo’natish
-                    </router-link>
-                    <div class="text-gray txt-normal max-md:txt-small">59 soniya</div>
-                </div>
-                <ButtonVioletLogin @click="closeModal" title="Kirish" class="mx-auto mt-10 " />
+            <div
+                class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
+                <router-link :to="''" class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
+                    Yana bir marta kod jo’natish
+                </router-link>
+                <div class="text-gray txt-normal max-md:txt-small">59 soniya</div>
+            </div>
+            <ButtonVioletLogin @click="closeModal" title="Kirish" class="mx-auto mt-10 " />
             <!-- </form> -->
         </Modal>
     </div>
@@ -83,6 +82,10 @@
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
@@ -106,6 +109,20 @@ export default {
         closeModal() {
             this.isOpen = false
         }
+    },
+    mounted() {
+        let pin = document.getElementById("pin");
+        let notPin = document.getElementById("pin-conatiner");
+
+        ScrollTrigger.create({
+            trigger: pin,
+            start: "top 20%",
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            invalidateOnRefresh: true,
+            pin: pin,
+            pinSpacing: true,
+
+        });
     }
 }
 </script>

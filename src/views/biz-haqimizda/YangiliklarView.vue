@@ -9,7 +9,7 @@
         <Navigation>Kompaniya yangiliklari</Navigation>
 
         <div class="flex flex-row items-start gap-8 mt-10">
-            <div class="basis-3/4 max-xl:flex-1 max-md:p-4">
+            <div id="pin-conatiner" class="basis-3/4 max-xl:flex-1 max-md:p-4">
 
                 <div class="w-full">
                     <Card class="bg-white p-5 w-full">
@@ -46,7 +46,7 @@
 
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar :name="'bizHaqimizda'" />
+                <Bar id="pin" :name="'bizHaqimizda'" />
             </div>
         </div>
 
@@ -63,6 +63,11 @@ import Pagination from '@/components/Pagination.vue';
 import RaxbariyatItem from '@/components/RaxbariyatItem.vue';
 import YangiliklarItem from '@/components/YangiliklarItem.vue';
 import { data } from '@/constants/news';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
+
 export default {
     components: {
         Navigation, RaxbariyatItem, BarGorizontal, Card, YangiliklarItem, Pagination, Bar
@@ -73,5 +78,19 @@ export default {
             topNew: data['uz'].find((item) => item.top == true)
         }
     },
+    mounted() {
+        let pin = document.getElementById("pin");
+        let notPin = document.getElementById("pin-conatiner");
+
+        ScrollTrigger.create({
+            trigger: pin,
+            start: "top 20%",
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            invalidateOnRefresh: true,
+            pin: pin,
+            pinSpacing: true,
+
+        });
+    }
 }
 </script>
