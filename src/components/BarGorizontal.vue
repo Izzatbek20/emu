@@ -1,6 +1,6 @@
 <template>
     <div class="h-16 rounded-2xl bg-white flex items-center overflow-hidden">
-        <Splide :has-track="false" :options="optionsMaxScreen768" aria-label="Hududlar">
+        <Splide :has-track="false" ref="splide" :options="optionsMaxScreen768" aria-label="Hududlar">
             <SplideTrack class="h-full">
 
                 <SplideSlide v-for="(item, index) in menu[name]" :key="index" class="transition-colors duration-700">
@@ -78,6 +78,7 @@ import '@splidejs/vue-splide/css/sea-green';
 
 // or only core styles
 import '@splidejs/vue-splide/css/core';
+import { ref } from 'vue';
 
 export default {
     components: {
@@ -90,6 +91,8 @@ export default {
         }
     },
     setup() {
+        const splide = ref();
+        const splideActiveIndex = ref(0);
         const optionsMaxScreen768 = {
             focus: 'left',
             arrows: false,
@@ -97,7 +100,7 @@ export default {
             autoWidth: true,
         };
 
-        return { optionsMaxScreen768 };
+        return { optionsMaxScreen768, splide, splideActiveIndex };
     },
     data() {
         return {
@@ -111,12 +114,25 @@ export default {
             }
         }
     },
+    mounted() {
+        this.$refs.splide.splide.go(this.splideActiveIndex);
+    },
     methods: {
         isActive(link, id = null) {
             if (this.name == 'vakansiya') {
                 return this.$route.name === link && this.$route.params.id == id;
             } else {
+                this.element()
                 return this.$route.name === link;
+            }
+        },
+        element() {
+            if (this.menu[this.name]) {
+                this.menu[this.name].forEach((element, index) => {
+                    if (this.$route.name == element.link) {
+                        this.splideActiveIndex = index
+                    }
+                });
             }
         }
     }

@@ -42,7 +42,7 @@
                     <li class="cursor-pointer">
                         <Search class="size-4" :fillColor="'fill-violet'" />
                     </li>
-                    <li id="profil" class=" max-sm:hidden relative">
+                    <li id="profil" class="max-sm:hidden relative">
                         <div @click="select('profil', profil)"
                             class="flex items-center gap-x-2 cursor-pointer w-full h-full">
 
@@ -73,6 +73,19 @@
                         <CloseX @click="menuMobile != menuMobile" />
                     </div>
                     <ul class="flex flex-col place-items-end gap-12 mt-12">
+                        <li id="profil" class="hidden max-sm:block relative">
+                            <router-link :to="{ name: 'profil' }" @click="select('nab-link-' + 15, [])"
+                                class="nav-menu nav-menu-animation">
+                                <div @click="select('profil', profil)"
+                                    class="flex items-center gap-x-2 cursor-pointer w-full h-full">
+
+                                    <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
+                                        <User class="size-3 h-4" :fillColor="'fill-white'" />
+                                    </div>
+                                    {{ $t('menu.shaxsiyKabinet') }}
+                                </div>
+                            </router-link>
+                        </li>
                         <li v-for="(menu, index) in menus" :key="index" class="relative z-50"
                             :class="$route.name == menu.name ? 'active' : null">
                             <template v-if="menu.sub.length == 0">
@@ -89,6 +102,34 @@
                                     {{ $t(menu.title) }}
                                 </router-link>
                             </template>
+                        </li>
+                        <li class="hidden xs:max-md:block">
+                            <a href="tel://+998712009669"
+                                class="flex flex-row items-center cursor-pointer">
+                                <Phone class="size-4 h-4" :fillColor="'fill-text-gray'" />
+                                <span class="text-text-gray">
+                                    +998 71 <span class="text-violet font-bold">200 96-36</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="hidden xs:max-md:block">
+                            <ul class="flex flex-row items-center gap-x-2">
+                                <li class="cursor-pointer group transition-colors">
+                                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <Instagram :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
+                                    </a>
+                                </li>
+                                <li class="cursor-pointer group">
+                                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <Telegram :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
+                                    </a>
+                                </li>
+                                <li class="cursor-pointer group">
+                                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <Facebook :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
