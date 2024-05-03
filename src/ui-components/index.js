@@ -81,6 +81,9 @@ import Container from './icons/Container.vue';
 import ButtonVioletLogin from './ButtonVioletLogin.vue';
 import Modal from './Modal.vue';
 import YoutubeModal from './YoutubeModal.vue';
+import CircleFlagsUz from './icons/CircleFlagsUz.vue';
+import CircleFlagsRu from './icons/CircleFlagsRu.vue';
+import CircleFlagsUk from './icons/CircleFlagsUk.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -91,7 +94,7 @@ export default [
     Question, Docs, Plus, Minus, CloseX, Home, Ranking,
     Pdf, Edit, UserOctagon, SendRequest, ReceiveSquery,
     BoxTime, Barcode, Weight, BoxTick, WhereHouse, UserGroup,
-    Marker3, Map, Global, Truck, Container,
+    Marker3, Map, Global, Truck, Container, CircleFlagsUz, CircleFlagsRu, CircleFlagsUk,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,

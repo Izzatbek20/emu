@@ -1,0 +1,41 @@
+{
+    "tilInfo": "Ру",
+    "menu": {
+        "home": "Главная",
+        "bizHaqimizda": "О нас",
+        "mijozlarga": "Клиентам",
+        "xizmatlar": "Услуги",
+        "vakansiya": "Вакансии",
+        "bizBilanBoglanish": "Свяжитесь с нами",
+        "shaxsiyKabinet": "Личный кабинет"
+    },
+    "sub": {
+        "kompaniyaHaqida": "О компании",
+        "raxbariyat": "Руководство",
+        "hududiyMenedjerlar": "Региональные менеджеры",
+        "kompaniyaYangiliklari": "Новости компании",
+        "fikirlar": "Отзывы о нас",
+        "xizmatXisoblash": "Рассчитать стоимость услуги",
+        "ofislarimiz": "Офисы",
+        "kuryerChaqirish": "Вызвать курьера",
+        "savollar": "Часто задаваемые вопросы",
+        "umumiyShartlar": "Договор и общие условия",
+        "kuryerXizmati": "Внутренние курьерские услуги",
+        "xalqaroKuryerlikXizmati": "Международные курьерские услуги",
+        "ustamaTolovli": "Доставка по тарифу",
+        "fullfilmentView": "Услуга полного сопровождения",
+        "individual": "Услуги перевозки",
+        "kargo": "Курьерская служба EMU"
+    },
+    "profil": {
+        "profil": "Профиль",
+        "qabul": "Принятые письма",
+        "jonatilgan": "Отправленные письма",
+        "login": "Вход / Выход"
+    },
+    "til": {
+        "uz": "O'zbekcha",
+        "ru": "Русский",
+        "en": "English"
+    }
+}

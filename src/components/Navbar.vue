@@ -26,7 +26,7 @@
                 <li v-for="(menu, index) in menus" :key="index" :id="'nab-link-' + index" class="relative z-50">
                     <router-link :to="{ name: menu.name }" @click="select('nab-link-' + index, menu.sub)"
                         :class="{ 'active-nav': isActive(index, menu.name) }" class="nav-menu nav-menu-animation">
-                        {{ menu.title }}
+                        {{ $t(menu.title) }}
                     </router-link>
                 </li>
             </ul>
@@ -49,13 +49,13 @@
                             <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
                                 <User class="size-3 h-4" :fillColor="'fill-white'" />
                             </div>
-                            Shaxsiy kabinet
+                            {{ $t('menu.shaxsiyKabinet') }}
                         </div>
                     </li>
                     <li id="til" class="relative">
                         <div class="flex items-center flex-row h-7 gap-x-2 text-violet cursor-pointer w-full h-full"
                             @click="select('til', til)">
-                            O'z
+                            {{ $t('tilInfo') }}
                             <ChevorDown class="size-4" :fillColor="'fill-line-gray'" />
                         </div>
                     </li>
@@ -79,14 +79,14 @@
                                 <router-link :to="{ name: menu.name }" @click="select('nab-link-' + index, menu.sub)"
                                     :class="{ 'active-nav': isActive(index, menu.name) }"
                                     class="nav-menu nav-menu-animation">
-                                    {{ menu.title }}
+                                    {{ $t(menu.title) }}
                                 </router-link>
                             </template>
                             <template v-else>
                                 <router-link :to="{ name: menu.sub[0].name }" @click="navDataChange([])"
                                     :class="{ 'active-nav': isActive(index, menu.name) }"
                                     class="nav-menu nav-menu-animation">
-                                    {{ menu.title }}
+                                    {{ $t(menu.title) }}
                                 </router-link>
                             </template>
                         </li>
@@ -101,10 +101,21 @@
                 <div class="absolute top-0 left-0 bg-white rounded-xl shadow-xl z-50 translate-y-20"
                     :class="[((navTo == 'nab-link-3' || navTo == 'nab-link-2') ? 'w-[26rem]' : 'w-56'), (navTo == 'profil' || navTo == 'til') ? 'left-auto right-0' : null]">
                     <ul class="w-full h-full py-2 flex flex-col">
-                        <router-link @click="navDataChange([])" :to="{ name: item.name }" v-for="(item, i) in navData"
-                            :key="i + 'sub'" class="mx-4 my-2 text-small nav-menu nav-menu-animation"
+                        <!-- Tildan tashqari barcha uchun sub menu -->
+                        <router-link v-if="navTo != 'til'" @click="navDataChange([])" :to="{ name: item.name }"
+                            v-for="(item, i) in navData" :key="i + 'sub'"
+                            class="mx-4 my-2 text-small nav-menu nav-menu-animation"
                             :class="{ 'active-sub': isActive(0, item.name) }">
-                            {{ item.title }}
+                            {{ $t(item.title) }}
+                        </router-link>
+
+                        <!-- Til menuda bu routerlink ko'rinadi -->
+                        <router-link v-else @click="lang = item.name, navDataChange([])" :to="''"
+                            v-for="(item, i) in navData" :key="i + 'subTil'"
+                            class="mx-4 my-2 text-small nav-menu nav-menu-animation flex items-center gap-2"
+                            :class="{ 'active-sub': isActive(0, item.name) }">
+                            <component :is="item.icon"></component>
+                            {{ $t(item.title) }}
                         </router-link>
                     </ul>
                 </div>
@@ -116,6 +127,7 @@
 import { ref } from 'vue';
 import { mapState } from 'vuex';
 import { menus, profil, til } from '@/constants/navbar.js';
+import { setItem } from '@/helpers/rwLocalStorage';
 
 
 export default {
@@ -135,9 +147,10 @@ export default {
     setup() {
         const navTo = ref(null)
         const navData = ref(null)
+        const lang = ref('uz')
 
         return {
-            navTo, navData
+            navTo, navData, lang
         }
     },
     methods: {
@@ -172,18 +185,6 @@ export default {
             }
             return res;
         },
-
-
-        // miniMenuClose() {
-        //     if ((this.navData && this.navTo)) {
-        //         this.$store.commit('miniMenuToggle', false)
-        //     }
-        // }
-        handleClickOutside(event) {
-            // if (!this.$refs.targetElement.contains(event.target)) {
-            //     this.$store.commit('miniMenuToggle', (this.navData && this.navTo) ? true : false)
-            // }
-        }
     },
     mounted() {
         document.addEventListener('click', this.handleClickOutside);
@@ -191,6 +192,12 @@ export default {
     beforeDestroy() {
         document.removeEventListener('click', this.handleClickOutside);
     },
+    watch: {
+        lang(newLang, oldLang) {
+            setItem('lang', newLang);
+            this.$i18n.locale = newLang;
+        }
+    }
 }
 </script>
 <style scoped>

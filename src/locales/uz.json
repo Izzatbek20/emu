@@ -1,5 +1,41 @@
 {
-    "message": {
-        "imm": "Salom"
+    "tilInfo": "O'z",
+    "menu": {
+        "home": "Asosiy",
+        "bizHaqimizda": "Biz haqimizda",
+        "mijozlarga": "Mijozlarga",
+        "xizmatlar": "Xizmatlar",
+        "vakansiya": "Vakansiya",
+        "bizBilanBoglanish": "Biz bilan bog'lanish",
+        "shaxsiyKabinet": "Shaxsiy kabinet"
+    },
+    "sub": {
+        "kompaniyaHaqida": "Kompaniya haqida",
+        "raxbariyat": "Raxbariyat",
+        "hududiyMenedjerlar": "Hududiy menedjerlar",
+        "kompaniyaYangiliklari": "Kompaniya yangiliklari",
+        "fikirlar": "Biz haqimizda fikrlar",
+        "xizmatXisoblash": "Xizmat narxini hisoblash",
+        "ofislarimiz": "Ofislar",
+        "kuryerChaqirish": "Kuryer chaqirish",
+        "savollar": "Ko’p beriladigan savollar",
+        "umumiyShartlar": "Shartnoma va umumiy shartlar",
+        "kuryerXizmati": "Ichki kuryerlik xizmatlari",
+        "xalqaroKuryerlikXizmati": "Xalqaro kuryerlik xizmatlari",
+        "ustamaTolovli": "Ustama to’lovli pochta jo’natmalarini yetkazib berish",
+        "fullfilmentView": "Fullfilment xizmati",
+        "individual": "Yuk tashish xizmati",
+        "kargo": "EMU kargo xizmati"
+    },
+    "profil": {
+        "profil": "Profil",
+        "qabul": "Qabul qilingan pochtalar",
+        "jonatilgan": "Jo’natilgan pochtalar",
+        "login": "Kirish / Chiqish"
+    },
+    "til": {
+        "uz": "O'zbekcha",
+        "ru": "Русский",
+        "en": "English"
     }
 }

@@ -1,5 +1,41 @@
 {
-    "message": {
-        "imm": "Hi"
+    "tilInfo": "En",
+    "menu": {
+        "home": "Home",
+        "bizHaqimizda": "About us",
+        "mijozlarga": "For customers",
+        "xizmatlar": "Services",
+        "vakansiya": "Vacancies",
+        "bizBilanBoglanish": "Contact us",
+        "shaxsiyKabinet": "Personal account"
+    },
+    "sub": {
+        "kompaniyaHaqida": "About the company",
+        "raxbariyat": "Leadership",
+        "hududiyMenedjerlar": "Regional managers",
+        "kompaniyaYangiliklari": "Company news",
+        "fikirlar": "Feedback about us",
+        "xizmatXisoblash": "Calculate service cost",
+        "ofislarimiz": "Offices",
+        "kuryerChaqirish": "Call a courier",
+        "savollar": "Frequently asked questions",
+        "umumiyShartlar": "Agreement and general terms",
+        "kuryerXizmati": "Internal courier services",
+        "xalqaroKuryerlikXizmati": "International courier services",
+        "ustamaTolovli": "Extra charge mail delivery",
+        "fullfilmentView": "Fulfillment service",
+        "individual": "Freight transportation service",
+        "kargo": "EMU cargo service"
+    },
+    "profil": {
+        "profil": "Profile",
+        "qabul": "Received mail",
+        "jonatilgan": "Sent mail",
+        "login": "Login / Logout"
+    },
+    "til": {
+        "uz": "O'zbekcha",
+        "ru": "Русский",
+        "en": "English"
     }
 }

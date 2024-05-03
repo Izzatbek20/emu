@@ -3,18 +3,23 @@ import {
 } from 'vue-i18n'
 
 import en from '@/locales/en.json'
+import ru from '@/locales/ru.json'
 import uz from '@/locales/uz.json'
+import {
+    getItem
+} from './helpers/rwLocalStorage'
 
-const localeDefault = 'uz'
+const localeDefault = getItem('lang') ? getItem('lang') : 'uz'
 
 const messages = {
-    en: en,
-    uz: uz
+    uz: uz,
+    ru: ru,
+    en: en
 }
 
 const i18n = createI18n({
     locale: localeDefault,
-    fallbackLocale: 'en',
+    fallbackLocale: 'ru',
     messages
 })
 

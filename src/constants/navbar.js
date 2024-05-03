@@ -1,131 +1,126 @@
  export const menus = [{
-         title: 'Asosiy',
+         title: 'menu.home',
          name: 'home',
          sub: []
      },
      {
-         title: 'Biz haqimizda',
+         title: 'menu.bizHaqimizda',
          name: null,
          sub: [{
-                 title: 'Kompaniya haqida',
-                 name: 'bizHaqimizda',
+                 title: 'sub.kompaniyaHaqida',
+                 name: 'bizHaqimizda'
              },
              {
-                 title: 'Raxbariyat',
-                 name: 'raxbariyat',
+                 title: 'sub.raxbariyat',
+                 name: 'raxbariyat'
              },
              {
-                 title: 'Hududiy menedjerlar',
-                 name: 'hududiy',
+                 title: 'sub.hududiyMenedjerlar',
+                 name: 'hududiy'
              },
              {
-                 title: 'Kompaniya yangiliklari',
-                 name: 'yangiliklar',
+                 title: 'sub.kompaniyaYangiliklari',
+                 name: 'yangiliklar'
              },
              {
-                 title: 'Biz haqimizda fikrlar',
-                 name: 'fikirlar',
-             },
+                 title: 'sub.fikirlar',
+                 name: 'fikirlar'
+             }
          ]
-     },
-     {
-         title: 'Mijozlarga',
+     }, {
+         title: 'menu.mijozlarga',
          name: null,
-         sub: [
-
-             {
-                 title: 'Xizmat narxini xisoblash',
-                 name: 'xizmatXisoblash',
+         sub: [{
+                 title: 'sub.xizmatXisoblash',
+                 name: 'xizmatXisoblash'
              },
              {
-                 title: 'Ofislar',
-                 name: 'ofislarimiz',
+                 title: 'sub.ofislarimiz',
+                 name: 'ofislarimiz'
              },
              {
-                 title: 'Kuryer chaqirish',
-                 name: 'kuryerChaqirish',
+                 title: 'sub.kuryerChaqirish',
+                 name: 'kuryerChaqirish'
              },
              {
-                 title: 'Ko’p beriladigan savollar',
-                 name: 'savollar',
+                 title: 'sub.savollar',
+                 name: 'savollar'
              },
              {
-                 title: 'Shartnoma va umumiy shartlar',
-                 name: 'umumiyShartlar',
-             },
-
+                 title: 'sub.umumiyShartlar',
+                 name: 'umumiyShartlar'
+             }
          ]
-     },
-     {
-         title: 'Xizmatlar',
+     }, {
+         title: 'menu.xizmatlar',
          name: null,
-         sub: [
-
-             {
-                 title: 'Ichki kuryerlik xizmatlar',
-                 name: 'kuryerXizmati',
+         sub: [{
+                 title: 'sub.kuryerXizmati',
+                 name: 'kuryerXizmati'
              },
              {
-                 title: 'Xalqaro kuryerlik xizmatlar',
-                 name: 'xalqaroKuryerlikXizmati',
+                 title: 'sub.xalqaroKuryerlikXizmati',
+                 name: 'xalqaroKuryerlikXizmati'
              },
              {
-                 title: 'Ustama to’lovli pochta jo’natmalarini yetkazib berish',
-                 name: 'ustamaTolovli',
+                 title: 'sub.ustamaTolovli',
+                 name: 'ustamaTolovli'
              },
              {
-                 title: 'Fullfilment xizmati',
-                 name: 'fullfilmentView',
+                 title: 'sub.fullfilmentView',
+                 name: 'fullfilmentView'
              },
              {
-                 title: 'Yuk tashish xizmati',
-                 name: 'individual',
+                 title: 'sub.individual',
+                 name: 'individual'
              },
              {
-                 title: 'EMU kargo xizmati',
-                 name: 'kargo',
-             },
-
+                 title: 'sub.kargo',
+                 name: 'kargo'
+             }
          ]
      },
      {
-         title: 'Vakansiya',
+         title: 'menu.vakansiya',
          name: 'vakansiya',
          sub: []
      },
      {
-         title: 'Biz bilan bog\'lanish',
+         title: 'menu.bizBilanBoglanish',
          name: 'aloqa',
          sub: []
      },
  ];
  export const profil = [{
-         title: 'Profil',
-         name: 'profil',
+         title: 'profil.profil',
+         name: 'profil'
      },
      {
-         title: 'Qabul qilingan pochtalar',
-         name: 'qabul',
+         title: 'profil.qabul',
+         name: 'qabul'
      },
      {
-         title: 'Jo’natilgan pochtalar',
-         name: 'jonatilgan',
+         title: 'profil.jonatilgan',
+         name: 'jonatilgan'
      },
      {
-         title: 'Kirish / Chiqish',
-         name: 'login',
+         title: 'profil.login',
+         name: 'login'
      }
  ]
  export const til = [{
-         title: 'O\'zbekcha',
-         name: 'hududiy',
+         title: 'til.uz',
+         name: 'uz',
+         icon: 'CircleFlagsUz'
      },
      {
-         title: 'Русский',
-         name: 'yangiliklar',
+         title: 'til.ru',
+         name: 'ru',
+         icon: 'CircleFlagsRu'
      },
      {
-         title: 'English',
-         name: 'fikirlar',
+         title: 'til.en',
+         name: 'en',
+         icon: 'CircleFlagsUk'
      }
  ]
