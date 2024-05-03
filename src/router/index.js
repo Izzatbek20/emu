@@ -166,6 +166,11 @@ const router = createRouter({
       component: VakansiyaView
     },
     {
+      path: '/vakansiya/:id',
+      name: 'vakansiyaId',
+      component: VakansiyaView
+    },
+    {
       path: '/aloqa',
       name: 'aloqa',
       component: AloqaView

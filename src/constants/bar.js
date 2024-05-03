@@ -114,7 +114,7 @@ export const vakansiya = [{
         icon: null,
         count: 7,
         description: 'bo’sh ish o’rni mavjud',
-        link: 'vakansiya'
+        link: 'vakansiyaId'
     },
     {
         id: 2,
@@ -122,7 +122,7 @@ export const vakansiya = [{
         icon: null,
         count: 2,
         description: 'bo’sh ish o’rni mavjud',
-        link: 'vakansiya'
+        link: 'vakansiyaId'
     },
     {
         id: 3,
@@ -130,7 +130,7 @@ export const vakansiya = [{
         icon: null,
         count: 5,
         description: 'bo’sh ish o’rni mavjud',
-        link: 'vakansiya'
+        link: 'vakansiyaId'
     },
     {
         id: 4,
@@ -138,7 +138,7 @@ export const vakansiya = [{
         icon: null,
         count: 1,
         description: 'bo’sh ish o’rni mavjud',
-        link: 'vakansiya'
+        link: 'vakansiyaId'
     },
     {
         id: 5,
@@ -146,7 +146,7 @@ export const vakansiya = [{
         icon: null,
         count: 0,
         description: 'bo’sh ish o’rni mavjud',
-        link: 'vakansiya'
+        link: 'vakansiyaId'
     },
 ]
 export const profil = [{
