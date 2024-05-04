@@ -176,7 +176,7 @@ export default {
 
         ScrollTrigger.create({
             trigger: pin,
-            start: "top 35%",
+            start: "top 20%",
             end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
             invalidateOnRefresh: true,
             pin: pin,
