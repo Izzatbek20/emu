@@ -50,7 +50,7 @@ export default {
             const newFiles = Array.from(event.target.files);
             if (newFiles.length) {
                 this.files.push(...newFiles);
-                console.log('as');
+                
                 this.$emit('update:modelValue', this.files)
             }
             // Fayl tanlash oynasini tozalash

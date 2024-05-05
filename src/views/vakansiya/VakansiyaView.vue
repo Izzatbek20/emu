@@ -25,7 +25,7 @@
                     <DropZone v-model="files" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet @click="sendFile" title="Yuborish" class="max-md:w-full" />
                     </div>
                 </div>
 
@@ -81,12 +81,15 @@ import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DropZone from '@/ui-components/DropZone.vue';
+import axios from 'axios';
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
         return {
+            chatId: import.meta.env.VITE_BOT_CHAT_ID, // Chat ID ni kiriting
+            token: import.meta.env.VITE_BOT_TOKEN, // Bot tokenini kiriting
             fullname: null,
             phone: null,
             vakansiya: null,
@@ -97,6 +100,50 @@ export default {
         BarGorizontal, Bar, Navigation, DropZone
     },
     methods: {
+        async sendFile() {
+            if (this.files) {
+                // Fayllarni jo'natish uchun FormData yaratamiz
+                const formData = new FormData();
+                // Media massivini yaratamiz
+                const media = this.files.map((file, index) => {
+                    const formName = `document${index}`;
+                    formData.append(formName, file);
+
+                    // Media obyektini qaytaramiz
+                    const rest = {
+                        type: 'document',
+                        media: `attach://${formName}`,
+                    }
+
+                    if (this.files.length == (index + 1)) {
+                        Object.assign(rest, {
+                            caption: 'wev'
+                        });
+                    }
+
+                    return rest
+                });
+
+                try {
+                    const url = `https://api.telegram.org/bot${this.token}/sendMediaGroup`;
+
+                    // So'rovni formData bilan yuborish
+                    const response = await axios.post(url, formData, {
+                        params: {
+                            chat_id: this.chatId,
+                            media: JSON.stringify(media), // Media massivini JSON formatida yuborish
+                        },
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    });
+
+                    console.log('Fayllar yuborildi:', response.data);
+                } catch (error) {
+                    console.error('Xato:', error);
+                }
+            }
+        },
     },
     mounted() {
         let pin = document.getElementById("pin");
