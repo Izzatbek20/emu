@@ -15,32 +15,14 @@
                     <h2 class="h4 mb-8">Ma’lumot jo’natish</h2>
                     <div class="flex flex-row max-lg:flex-col gap-7 mt-5">
 
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="ino3"
+                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="fullname"
                             class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="ino3" class="w-full" />
-                        <InputSelect label="Vakansiani tanlang" v-model="ino3" class="w-full" />
+                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone" class="w-full" />
+                        <InputSelect label="Vakansiani tanlang" v-model="vakansiya" class="w-full" />
                     </div>
 
-                    <div class="flex flex-row max-md:flex-col gap-7 mb-6">
-                        <div class="flex items-center gap-2">
-                            <Pdf class="h-10 w-10" />
-                            <div class="grid grid-cols-1">
-                                <span class="txt-small">Resyume.pdf</span>
-                                <div>
-                                    <span class="txt-micro text-violet underline cursor-pointer mr-2">O'chirish</span>
-                                    <span class="txt-micro text-gray">1.2 mb</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="mt-10 p-7 bg-[#F7F5F7] rounded-2xl cursor-pointer border border-1 border-gray border-dashed flex items-center justify-center h-32">
-                        <div class="absolute flex items-center gap-2 max-[320px]:w-[80%] flex-nowrap">
-                            <Plus :fillColor="'fill-icon-gray'" />
-                            <span class="txt-micro text-gray w-full">Rezyume va boshqa faylni ilova qiling (pdf)</span>
-                        </div>
-                    </div>
+                    <!-- Fayillarni yuklash -->
+                    <DropZone v-model="files" />
 
                     <div class="flex items-center gap-6 mt-10">
                         <ButtonViolet title="Yuborish" class="max-md:w-full" />
@@ -98,21 +80,21 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import DropZone from '@/ui-components/DropZone.vue';
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true
+            fullname: null,
+            phone: null,
+            vakansiya: null,
+            files: null
         }
     },
     components: {
-        BarGorizontal, Bar, Navigation
+        BarGorizontal, Bar, Navigation, DropZone
     },
     methods: {
     },
