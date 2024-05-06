@@ -11,7 +11,7 @@
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 ">
 
-                <div class="bg-white rounded-3xl p-7 max-md:p-4">
+                <form action="" class="bg-white rounded-3xl p-7 max-md:p-4">
                     <h2 class="h4 mb-8">Ma’lumot jo’natish</h2>
                     <div class="flex flex-row max-lg:flex-col gap-7 mt-5">
 
@@ -27,7 +27,7 @@
                     <div class="flex items-center gap-6 mt-10">
                         <ButtonViolet @click="sendFile" title="Yuborish" class="max-md:w-full" />
                     </div>
-                </div>
+                </form>
 
                 <div class="bg-white rounded-3xl p-7 max-md:p-4 mt-7">
                     <h2 class="h4 mb-8">Kuryer</h2>
