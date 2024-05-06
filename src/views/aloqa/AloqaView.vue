@@ -62,6 +62,7 @@
 
                 </div>
 
+                <AmoForm class="w-full" />
 
                 <div class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Xabaringizni qoldiring</h2>
@@ -78,7 +79,6 @@
                     <div class="flex items-center gap-6 mt-10">
                         <ButtonViolet @click="xabar" title="Yuborish" class="max-md:w-full" />
                     </div>
-                    <!-- <AmoForm class="w-full" /> -->
                 </div>
                 <div class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Shikoyat va taklifingizni kiriting</h2>

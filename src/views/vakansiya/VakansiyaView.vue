@@ -138,9 +138,9 @@ export default {
                         },
                     });
 
-                    console.log('Fayllar yuborildi:', response.data);
+                    // console.log('Fayllar yuborildi:', response.data);
                 } catch (error) {
-                    console.error('Xato:', error);
+                    // console.error('Xato:', error);
                 }
             }
         },
