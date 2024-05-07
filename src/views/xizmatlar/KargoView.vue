@@ -179,20 +179,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <Modal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal">
-
-            <div class="h5 my-10 text-center">Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring</div>
-
-            <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="ino" />
-            <InputPhone label="Telefon raqamingiz" :required="true" v-model="ino" />
-            <InputSelect label="Biznes faoliyatingiz" :required="true" v-model="ino" />
-
-            <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
-
-            <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Jo’natish" class="w-full" />
-            </div>
-        </Modal>
+        <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
     </div>
 </template>
 
