@@ -56,22 +56,18 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import XizmatModal from '@/ui-components/XizmatModal.vue';
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true,
             isOpen: false,
         }
     },
     components: {
-        BarGorizontal, Bar, Navigation
+        BarGorizontal, Bar, Navigation, XizmatModal
     },
     methods: {
         submit() {

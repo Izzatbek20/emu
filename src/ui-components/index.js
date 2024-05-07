@@ -86,7 +86,6 @@ import CircleFlagsRu from './icons/CircleFlagsRu.vue';
 import CircleFlagsUk from './icons/CircleFlagsUk.vue';
 import AmoForm from './AmoForm.vue';
 import Spinner from './Spinner.vue';
-import XizmatModal from './XizmatModal.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -103,5 +102,5 @@ export default [
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
 
     Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview,
-    Collaps, Textarea, ButtonVioletLogin, Modal, YoutubeModal, AmoForm, XizmatModal
+    Collaps, Textarea, ButtonVioletLogin, Modal, YoutubeModal, AmoForm
 ];
