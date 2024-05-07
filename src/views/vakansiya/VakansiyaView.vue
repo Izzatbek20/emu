@@ -207,7 +207,11 @@ export default {
                         this.isOpen = true
 
                         // Fo'rmani tozalash
-                        this.$refs.formVakansiya.reset()
+                        this.$refs.formVakansiya.reset();
+                        this.fullname.value = null
+                        this.phone.value = null
+                        this.vakansiya.value = null
+                        this.files.value = []
                     }
                 } catch (error) {
                     console.error('Xato:', error);
