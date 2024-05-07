@@ -41,5 +41,9 @@
     "validate": {
         "required": "Filling is required",
         "phone": "Enter a phone number"
+    },
+    "notFound": {
+        "ortgaQaytish": "Go back",
+        "sahifaTopilmadi": "Page not found"
     }
 }

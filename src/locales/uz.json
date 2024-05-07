@@ -41,5 +41,9 @@
     "validate": {
         "required": "To'ldirish shart",
         "phone": "Telefon raqam kiriting"
+    },
+    "notFound":{
+        "ortgaQaytish": "Ortga qaytish",
+        "sahifaTopilmadi": "Sahifa topilmadi"
     }
 }

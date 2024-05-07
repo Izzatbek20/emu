@@ -41,5 +41,9 @@
     "validate": {
         "required": "Требуется заполнение",
         "phone": "Введите номер телефона"
+    },
+    "notFound": {
+        "ortgaQaytish": "Вернитесь назад",
+        "sahifaTopilmadi": "Страница не найдена"
     }
 }

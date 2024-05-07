@@ -34,6 +34,7 @@ import LoginView from '@/views/auth/LoginView.vue'
 import RegisterView from '@/views/auth/RegisterView.vue'
 import SmsView from '@/views/auth/SmsView.vue'
 import Register2View from '@/views/auth/Register2View.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -218,6 +219,16 @@ const router = createRouter({
           component: Register2View
         },
       ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFoundView
+    },
+    {
+      path: '/:pathMatch(.*)',
+      name: 'bad-not-found',
+      component: NotFoundView
     },
   ],
   scrollBehavior(to, from, savedPosition) {
