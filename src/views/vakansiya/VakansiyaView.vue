@@ -94,6 +94,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DropZone from '@/ui-components/DropZone.vue';
 import axios from 'axios';
+import { vakansiya } from '@/constants/bar';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -180,8 +181,9 @@ export default {
                         media: `attach://${formName}`,
                     }
                     if (this.files.value.length == (index + 1)) {
+                        const vakansiyaName = vakansiya.find((item) => item.id == this.$route.params.id);
                         Object.assign(rest, {
-                            caption: `<b>Ism:</b> ${this.fullname.value}\n<b>Telefon:</b> +998 ${this.phone.value}\n<b>Vakansiya:</b> ${this.vakansiya.value}`,
+                            caption: `<b>Ism:</b> ${this.fullname.value}\n<b>Telefon:</b> +998 ${this.phone.value}\n<b>Vakansiya:</b> ${this.vakansiya.value}\n<b>Viloyat:</b> ${vakansiyaName.title}`,
                             parse_mode: 'html',
                         });
                     }
@@ -226,7 +228,9 @@ export default {
         }
     },
     beforeMount() {
-        this.$router.push({ name: 'vakansiyaId', params: { id: 1 } })
+        if (this.$route.name === 'vakansiya') {
+            this.$router.push({ name: 'vakansiyaId', params: { id: 1 } })
+        }
     },
     mounted() {
         let pin = document.getElementById("pin");
