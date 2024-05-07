@@ -55,7 +55,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <!-- <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" /> -->
+    <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
     </div>
 </template>
 
@@ -115,5 +115,8 @@ export default {
 .slide-fade-enter-from,
 .slide-fade-leave-to {
     opacity: 0;
+}
+iframe {
+    height: 619px !important;
 }
 </style>
