@@ -41,7 +41,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
+        <!-- <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" /> -->
     </div>
 </template>
 

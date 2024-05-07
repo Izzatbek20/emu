@@ -49,9 +49,6 @@ export default {
         document.getElementById('formAmo').appendChild(script2);
     },
     methods: {
-        confirm() {
-            this.$emit('confirm');
-        },
         closeModal() {
             this.$emit('close');
         },
