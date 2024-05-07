@@ -80,31 +80,32 @@
                         <ButtonViolet @click="xabar" title="Yuborish" class="max-md:w-full" />
                     </div>
                 </div> -->
-                <div class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
+                <form @submit.prevent="shikoyatSubmit" ref="formShikoyat"
+                    class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Shikoyat va taklifingizni kiriting</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
                         Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="name.value"
-                            :error="this.name.error" class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone.value" class="w-full"
-                            :error="this.phone.error" />
+                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
+                            v-model="name.value" :error="this.name.error" class="w-full" />
+                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
+                            v-model="phone.value" class="w-full" :error="this.phone.error" />
                     </div>
-                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" v-model="body.value"
-                        class="w-full mt-6" :error="this.body.error" />
+                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loading"
+                        v-model="body.value" class="w-full mt-6" :error="this.body.error" />
                     <div class="flex flex-row gap-6 gap-y-3">
-                        <Radio label="Jismoniy shaxsman" :value="'yuridik'" v-model="shaxs.value"
+                        <Radio label="Jismoniy shaxsman" :value="'jismoni'" :disabled="loading" v-model="shaxs.value"
                             :error="this.shaxs.error" />
-                        <Radio label="Yuridik shaxsman" :value="'jismoni'" v-model="shaxs.value"
+                        <Radio label="Yuridik shaxsman" :value="'yuridik'" :disabled="loading" v-model="shaxs.value"
                             :error="this.shaxs.error" />
                     </div>
                     <p class="text-red text-xs italic mt-2" v-if="this.shaxs.error">{{ this.shaxs.error }}</p>
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet @click="shikoyatSubmit" title="Jo’natish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loading" title="Jo’natish" class="max-md:w-full" />
                     </div>
-                </div>
+                </form>
 
 
             </div>
@@ -149,6 +150,7 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import axios from 'axios';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -173,7 +175,8 @@ export default {
                 value: null,
                 error: null
             },
-            isOpen: false
+            isOpen: false,
+            loading: false // Loading flag
         }
     },
     components: {
@@ -195,7 +198,12 @@ export default {
                 this.phone.error = this.$t('validate.required');
                 error = true
             } else {
-                this.phone.error = null;
+                if (this.phone.value && this.phone.value.length != 12) {
+                    this.phone.error = this.$t('validate.phone');
+                    error = true
+                } else {
+                    this.phone.error = null;
+                }
             }
             if (!this.body.value) {
                 this.body.error = this.$t('validate.required');
@@ -214,26 +222,37 @@ export default {
                 return;
             }
 
-            try {
-                const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
+            if (!error) {
+                this.loading = true;
+                try {
+                    const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
 
-                // So'rovni formData bilan yuborish
-                const response = await axios.get(url, {
-                    params: {
-                        chat_id: this.chatId,
-                        text: `<b>Ism:</b> ${this.name.value} \n
-                                <b>Telefon:</b> ${this.phone.value}\n
-                                <b>Xabar:</b> ${this.body.value}\n
-                                <b>Shaxs:</b> ${this.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'}`,
-                        parse_mode: 'html'
-                    },
-                });
+                    // So'rovni formData bilan yuborish
+                    const response = await axios.get(url, {
+                        params: {
+                            chat_id: this.chatId,
+                            text: `<b>Ism:</b> ${this.name.value}\n<b>Telefon:</b> +998 ${this.phone.value}\n<b>Xabar:</b> ${this.body.value}\n<b>Shaxs:</b> ${this.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'}`,
+                            parse_mode: 'html'
+                        },
+                    });
 
-                console.log(response)
-            } catch (error) {
-                console.error('Xato:', error);
+                    if (response.data) {
+                        this.isOpen = true
+
+                        // Fo'rmani tozalash
+                        this.$refs.formShikoyat.reset();
+                        this.name.value = null
+                        this.phone.value = null
+                        this.body.value = null
+                        this.shaxs.value = null
+                    }
+                } catch (error) {
+                    console.error('Xato:', error);
+                } finally {
+                    // Formani yuborish jarayoni tugagandan so'ng loading flagini false ga o'rnating
+                    this.loading = false;
+                }
             }
-            // this.isOpen = true
         },
         closeModal() {
             this.isOpen = false
