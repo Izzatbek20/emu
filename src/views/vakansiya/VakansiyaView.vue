@@ -11,21 +11,23 @@
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 ">
 
-                <form action="" class="bg-white rounded-3xl p-7 max-md:p-4">
+                <form @submit.prevent="sendFile" action="" class="bg-white rounded-3xl p-7 max-md:p-4">
                     <h2 class="h4 mb-8">Ma’lumot jo’natish</h2>
                     <div class="flex flex-row max-lg:flex-col gap-7 mt-5">
 
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="fullname"
-                            class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone" class="w-full" />
-                        <InputSelect label="Vakansiani tanlang" v-model="vakansiya" class="w-full" />
+                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
+                            v-model="fullname.value" :error="fullname.error" class="w-full" />
+                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
+                            v-model="phone.value" :error="phone.error" class="w-full" />
+                        <InputSelect label="Vakansiani tanlang" :disabled="loading" v-model="vakansiya.value"
+                            :error="vakansiya.error" class="w-full" />
                     </div>
 
                     <!-- Fayillarni yuklash -->
-                    <DropZone v-model="files" />
+                    <DropZone v-model="files.value" :disabled="loading" :error="files.error" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet @click="sendFile" title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loading" title="Yuborish" class="max-md:w-full" />
                     </div>
                 </form>
 
@@ -71,6 +73,16 @@
                 <Bar id="pin" :name="'vakansiya'" />
             </div>
         </div>
+
+        <!-- Modal -->
+        <Modal title="Bog‘lanish" :isOpen="isOpen" @close="closeModal">
+
+            <div class="h5 my-10 text-center">Tez orada sizga javob bilan qaytamiz.</div>
+
+            <div class="mt-2 p-3 text-center space-x-4 md:block">
+                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -90,10 +102,24 @@ export default {
         return {
             chatId: import.meta.env.VITE_BOT_CHAT_ID, // Chat ID ni kiriting
             token: import.meta.env.VITE_BOT_TOKEN, // Bot tokenini kiriting
-            fullname: null,
-            phone: null,
-            vakansiya: null,
-            files: null
+            fullname: {
+                value: null,
+                error: null
+            },
+            phone: {
+                value: null,
+                error: null
+            },
+            vakansiya: {
+                value: null,
+                error: null
+            },
+            files: {
+                value: null,
+                error: null
+            },
+            isOpen: false,
+            loading: false // Loading flag
         }
     },
     components: {
@@ -101,11 +127,50 @@ export default {
     },
     methods: {
         async sendFile() {
-            if (this.files) {
+            let error = false
+            if (!this.fullname.value) {
+                this.fullname.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.fullname.error = null;
+            }
+
+            if (!this.phone.value) {
+                this.phone.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.phone.error = null;
+            }
+
+            if (this.phone.value.length != 12) {
+                this.phone.error = this.$t('validate.phone');
+                error = true
+            } else {
+                this.phone.error = null;
+            }
+            if (!this.vakansiya.value) {
+                this.vakansiya.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.vakansiya.error = null;
+            }
+            if (!this.files.value) {
+                this.files.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.files.error = null;
+            }
+
+            if (error) {
+                return;
+            }
+
+            if (!error) {
+                this.loading = true;
                 // Fayllarni jo'natish uchun FormData yaratamiz
                 const formData = new FormData();
                 // Media massivini yaratamiz
-                const media = this.files.map((file, index) => {
+                const media = this.files.value.map((file, index) => {
                     const formName = `document${index}`;
                     formData.append(formName, file);
 
@@ -114,10 +179,10 @@ export default {
                         type: 'document',
                         media: `attach://${formName}`,
                     }
-
-                    if (this.files.length == (index + 1)) {
+                    if (this.files.value.length == (index + 1)) {
                         Object.assign(rest, {
-                            caption: 'wev'
+                            caption: `<b>Ism:</b> ${this.fullname.value}\n<b>Telefon:</b> +998 ${this.phone.value}\n<b>Vakansiya:</b> ${this.vakansiya.value}`,
+                            parse_mode: 'html',
                         });
                     }
 
@@ -138,12 +203,29 @@ export default {
                         },
                     });
 
-                    // console.log('Fayllar yuborildi:', response.data);
+                    if (response.data) {
+                        this.isOpen = true
+
+                        // Fo'rmani tozalash
+                        this.fullname.value = null;
+                        this.phone.value = null;
+                        this.vakansiya.value = null;
+                        this.files.value = null;
+                    }
                 } catch (error) {
-                    // console.error('Xato:', error);
+                    console.error('Xato:', error);
+                } finally {
+                    // Formani yuborish jarayoni tugagandan so'ng loading flagini false ga o'rnating
+                    this.loading = false;
                 }
             }
         },
+        closeModal() {
+            this.isOpen = false
+        }
+    },
+    beforeMount() {
+        this.$router.push({ name: 'vakansiyaId', params: { id: 1 } })
     },
     mounted() {
         let pin = document.getElementById("pin");

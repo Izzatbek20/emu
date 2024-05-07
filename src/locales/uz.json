@@ -37,5 +37,9 @@
         "uz": "O'zbekcha",
         "ru": "Русский",
         "en": "English"
+    },
+    "validate": {
+        "required": "To'ldirish shart",
+        "phone": "Telefon raqam kiriting"
     }
 }

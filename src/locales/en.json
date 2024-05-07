@@ -37,5 +37,9 @@
         "uz": "O'zbekcha",
         "ru": "Русский",
         "en": "English"
+    },
+    "validate": {
+        "required": "Filling is required",
+        "phone": "Enter a phone number"
     }
 }

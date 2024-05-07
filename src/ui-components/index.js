@@ -85,6 +85,7 @@ import CircleFlagsUz from './icons/CircleFlagsUz.vue';
 import CircleFlagsRu from './icons/CircleFlagsRu.vue';
 import CircleFlagsUk from './icons/CircleFlagsUk.vue';
 import AmoForm from './AmoForm.vue';
+import Spinner from './Spinner.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -95,7 +96,7 @@ export default [
     Question, Docs, Plus, Minus, CloseX, Home, Ranking,
     Pdf, Edit, UserOctagon, SendRequest, ReceiveSquery,
     BoxTime, Barcode, Weight, BoxTick, WhereHouse, UserGroup,
-    Marker3, Map, Global, Truck, Container, CircleFlagsUz, CircleFlagsRu, CircleFlagsUk,
+    Marker3, Map, Global, Truck, Container, CircleFlagsUz, CircleFlagsRu, CircleFlagsUk, Spinner,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,

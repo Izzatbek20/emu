@@ -10,8 +10,8 @@
             </div>
             <input
                 class="appearance-none border rounded-xl w-full py-3 px-3 ps-14 leading-tight focus:outline-none focus:shadow-outline transition-colors"
-                :class="error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'" :id="id"
-                :type="type" @input="updateValue" v-mask="'## ### ## ##'">
+                :class="[(error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'), (disabled ? 'border-light-gray' : null)]"
+                :id="id" :type="type" @input="updateValue" v-mask="'## ### ## ##'" :disabled="disabled">
         </div>
 
         <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>
@@ -36,6 +36,7 @@ export default {
             type: Boolean,
             default: false
         },
+        disabled: false,
         error: String,
         modelValue: [String, Number]
     },

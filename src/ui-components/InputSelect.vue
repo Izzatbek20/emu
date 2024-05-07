@@ -6,17 +6,17 @@
                 <span v-if="required" class="text-red">*</span>
             </label>
             <!-- Button -->
-            <button @click="toggleDropdown"
-                :class="['flex items-center justify-between group appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors cursor-pointer', selected ? 'text-black' : 'text-gray-500', error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet']">
+            <div @click="toggleDropdown"
+                :class="['flex items-center justify-between group appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors cursor-pointer', selected ? 'text-black' : 'text-gray-500', error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet', (disabled ? 'border-light-gray' : null)]">
                 <span class="overflow-hidden">{{ selected || (placeholder ?? label) }}</span>
                 <svg class="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
-            </button>
+            </div>
 
             <!-- Dropdown Menu -->
-            <div v-if="open"
+            <div v-if="open && !disabled"
                 class="absolute mt-2 z-10 bg-white left-0 shadow-2xl max-h-60 overflow-x-auto appearance-none rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors cursor-pointer">
                 <ul class="max-h-[140px] overflow-auto">
                     <li v-for="(option, index) in options" :key="index" @click="selectOption(option)"
@@ -25,6 +25,7 @@
                     </li>
                 </ul>
             </div>
+            <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>
         </div>
     </div>
 </template>
@@ -43,6 +44,7 @@ export default {
     props: {
         label: String,
         placeholder: String,
+        disabled: false,
         type: {
             type: String,
             default: 'text',

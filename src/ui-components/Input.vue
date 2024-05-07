@@ -6,8 +6,8 @@
         </label>
         <input
             class="appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors"
-            :class="[(error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'), classInput]"
-            :id="id" :type="type" :placeholder="placeholder ?? label" @input="updateValue">
+            :class="[(error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'), classInput, (disabled ? 'border-light-gray' : null)]"
+            :id="id" :type="type" :placeholder="placeholder ?? label" @input="updateValue" :disabled="disabled">
         <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>
     </div>
 </template>
@@ -24,6 +24,7 @@ export default {
         label: String,
         placeholder: String,
         classInput: String,
+        disabled: false,
         type: {
             type: String,
             default: 'text',

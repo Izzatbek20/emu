@@ -2,7 +2,7 @@
     <transition name="fade">
         <div v-if="isModalVisible">
 
-            <div class="fixed h-dvh w-dvw top-0 left-0 inset-0 z-[999999] flex items-center justify-center">
+            <div class="fixed h-dvh w-dvw top-0 left-0 inset-0 z-[70] flex items-center justify-center">
                 <div
                     class="absolute z-[90] w-11/12 max-w-sm md:max-w-sm lg:max-w-md p-10 max-sm:p-5 mx-auto my-auto rounded-3xl shadow-lg opacity-1 bg-white">
                     <div>
@@ -10,7 +10,7 @@
                             <h3 class="h3-2 max-md:h4">{{ title }}</h3>
                             <CloseX @click="closeModal" :fillColor="'fill-orange'" class="cursor-pointer" />
                         </div>
-                        <slot />
+                        
                     </div>
                 </div>
                 <div @click="closeModal"
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: 'Modal',
+    name: 'XizmatModal',
     props: {
         isOpen: {
             type: Boolean,

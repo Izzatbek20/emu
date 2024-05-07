@@ -86,18 +86,23 @@
                         Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="ino3"
-                            class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="ino3" class="w-full" />
+                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="name.value"
+                            :error="this.name.error" class="w-full" />
+                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone.value" class="w-full"
+                            :error="this.phone.error" />
                     </div>
-                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" v-model="ino3" class="w-full mt-6" />
+                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" v-model="body.value"
+                        class="w-full mt-6" :error="this.body.error" />
                     <div class="flex flex-row gap-6 gap-y-3">
-                        <Radio label="Jismoniy shaxsman" v-model="ino3" />
-                        <Radio label="Yuridik shaxsman" v-model="ino3" />
+                        <Radio label="Jismoniy shaxsman" :value="'yuridik'" v-model="shaxs.value"
+                            :error="this.shaxs.error" />
+                        <Radio label="Yuridik shaxsman" :value="'jismoni'" v-model="shaxs.value"
+                            :error="this.shaxs.error" />
                     </div>
+                    <p class="text-red text-xs italic mt-2" v-if="this.shaxs.error">{{ this.shaxs.error }}</p>
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet @click="shikoyat" title="Jo’natish" class="max-md:w-full" />
+                        <ButtonViolet @click="shikoyatSubmit" title="Jo’natish" class="max-md:w-full" />
                     </div>
                 </div>
 
@@ -150,11 +155,24 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true,
+            chatId: import.meta.env.VITE_BOT_CHAT_ID, // Chat ID ni kiriting
+            token: import.meta.env.VITE_BOT_TOKEN, // Bot tokenini kiriting
+            name: {
+                value: null,
+                error: null
+            },
+            phone: {
+                value: null,
+                error: null
+            },
+            body: {
+                value: null,
+                error: null
+            },
+            shaxs: {
+                value: null,
+                error: null
+            },
             isOpen: false
         }
     },
@@ -165,8 +183,57 @@ export default {
         xabar() {
             this.isOpen = true
         },
-        shikoyat() {
-            this.isOpen = true
+        async shikoyatSubmit() {
+            let error = false
+            if (!this.name.value) {
+                this.name.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.name.error = null;
+            }
+            if (!this.phone.value) {
+                this.phone.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.phone.error = null;
+            }
+            if (!this.body.value) {
+                this.body.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.body.error = null;
+            }
+            if (!this.shaxs.value) {
+                this.shaxs.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.shaxs.error = null;
+            }
+
+            if (error) {
+                return;
+            }
+
+            try {
+                const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
+
+                // So'rovni formData bilan yuborish
+                const response = await axios.get(url, {
+                    params: {
+                        chat_id: this.chatId,
+                        text: `<b>Ism:</b> ${this.name.value} \n
+                                <b>Telefon:</b> ${this.phone.value}\n
+                                <b>Xabar:</b> ${this.body.value}\n
+                                <b>Shaxs:</b> ${this.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'}`,
+                        parse_mode: 'html'
+                    },
+                });
+
+                console.log(response)
+            } catch (error) {
+                console.error('Xato:', error);
+            }
+            // this.isOpen = true
         },
         closeModal() {
             this.isOpen = false
