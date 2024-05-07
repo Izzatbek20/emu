@@ -11,7 +11,7 @@
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 ">
 
-                <form @submit.prevent="sendFile" action="" class="bg-white rounded-3xl p-7 max-md:p-4">
+                <form @submit.prevent="sendFile" ref="formVakansiya" class="bg-white rounded-3xl p-7 max-md:p-4">
                     <h2 class="h4 mb-8">Ma’lumot jo’natish</h2>
                     <div class="flex flex-row max-lg:flex-col gap-7 mt-5">
 
@@ -139,15 +139,15 @@ export default {
                 this.phone.error = this.$t('validate.required');
                 error = true
             } else {
-                this.phone.error = null;
+                if (this.phone.value && this.phone.value.length != 12) {
+                    this.phone.error = this.$t('validate.phone');
+                    error = true
+                } else {
+                    this.phone.error = null;
+                }
             }
 
-            if (this.phone.value.length != 12) {
-                this.phone.error = this.$t('validate.phone');
-                error = true
-            } else {
-                this.phone.error = null;
-            }
+
             if (!this.vakansiya.value) {
                 this.vakansiya.error = this.$t('validate.required');
                 error = true
@@ -207,10 +207,7 @@ export default {
                         this.isOpen = true
 
                         // Fo'rmani tozalash
-                        this.fullname.value = null;
-                        this.phone.value = null;
-                        this.vakansiya.value = null;
-                        this.files.value = null;
+                        this.$refs.formVakansiya.reset()
                     }
                 } catch (error) {
                     console.error('Xato:', error);

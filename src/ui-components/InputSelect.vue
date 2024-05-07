@@ -17,8 +17,11 @@
 
             <!-- Dropdown Menu -->
             <div v-if="open && !disabled"
-                class="absolute mt-2 z-10 bg-white left-0 shadow-2xl max-h-60 overflow-x-auto appearance-none rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors cursor-pointer">
+                class="absolute mt-2 z-10 bg-white left-0 shadow-2xl max-h-60 overflow-x-auto appearance-none rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors">
                 <ul class="max-h-[140px] overflow-auto">
+                    <li class="px-4 py-2 text-gray" >
+                        {{ placeholder ?? label }}
+                    </li>
                     <li v-for="(option, index) in options" :key="index" @click="selectOption(option)"
                         class="text-gray-500 px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-violet">
                         {{ option }}
