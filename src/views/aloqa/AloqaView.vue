@@ -62,9 +62,9 @@
 
                 </div>
 
-                <!-- <AmoForm class="w-full" /> -->
+                <AmoForm class="w-full" />
 
-                <form @submit.prevent="xabarSubmit" ref="formXabar" class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
+                <!-- <form @submit.prevent="xabarSubmit" ref="formXabar" class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Xabaringizni qoldiring</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
                         Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
@@ -81,7 +81,7 @@
                     <div class="flex items-center gap-6 mt-10">
                         <ButtonViolet title="Yuborish" class="max-md:w-full" />
                     </div>
-                </form>
+                </form> -->
 
                 <form @submit.prevent="shikoyatSubmit" ref="formShikoyat"
                     class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
