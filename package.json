@@ -11,12 +11,14 @@
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
     "axios": "^1.6.8",
+    "fast-xml-parser": "^4.3.6",
     "gsap": "^3.12.5",
     "vue": "^3.4.21",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.0",
     "vue-the-mask": "^0.11.1",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

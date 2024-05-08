@@ -45,5 +45,22 @@
     "notFound": {
         "ortgaQaytish": "Go back",
         "sahifaTopilmadi": "Page not found"
+    },
+    "viloyat": {
+        "UZBEKISTAN": "All",
+        "Андижанская область": "Andijan Region",
+        "Бухарская область": "Bukhara Region",
+        "Джизакская область": "Jizzakh Region",
+        "Кашкадарьинская область": "Qashqadaryo Region",
+        "Навоийская область": "Navoiy Region",
+        "Наманганская область": "Namangan Region",
+        "Республика Каракалпакстан": "Republic of Karakalpakstan",
+        "Самаркандская область": "Samarqand Region",
+        "Сурхандарьинская область": "Surxondaryo Region",
+        "Сырдарьинская область": "Sirdaryo Region",
+        "Ташкент": "Tashkent",
+        "Ташкентская область": "Tashkent Region",
+        "Ферганская область": "Fergana Region",
+        "Хорезмская область": "Xorazm Region"
     }
 }

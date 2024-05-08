@@ -3,6 +3,7 @@ import {
 } from 'vuex'
 import main from './modules/main'
 import bizBilanBoglanish from './modules/bizBilanBoglanish'
+import courier from './modules/courier'
 
 const store = createStore({
     state() {},
@@ -10,7 +11,8 @@ const store = createStore({
     actions: {},
     modules: {
         main,
-        bizBilanBoglanish
+        bizBilanBoglanish,
+        courier
     }
 })
 export default store

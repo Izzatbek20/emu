@@ -42,8 +42,25 @@
         "required": "To'ldirish shart",
         "phone": "Telefon raqam kiriting"
     },
-    "notFound":{
+    "notFound": {
         "ortgaQaytish": "Ortga qaytish",
         "sahifaTopilmadi": "Sahifa topilmadi"
+    },
+    "viloyat": {
+        "UZBEKISTAN": "Barchasi",
+        "Андижанская область": "Andijon viloyati",
+        "Бухарская область": "Buxoro viloyati",
+        "Джизакская область": "Jizzax viloyati",
+        "Кашкадарьинская область": "Qashqadaryo viloyati",
+        "Навоийская область": "Navoiy viloyati",
+        "Наманганская область": "Namangan viloyati",
+        "Республика Каракалпакстан": "Qoraqalpog’iston Respublikasi",
+        "Самаркандская область": "Samarqand viloyati",
+        "Сурхандарьинская область": "Surxondaryo viloyati",
+        "Сырдарьинская область": "Sirdaryo viloyati",
+        "Ташкент": "Toshkent shahri",
+        "Ташкентская область": "Toshkent viloyati",
+        "Ферганская область": "Farg'ona viloyati",
+        "Хорезмская область": "Xorazm viloyati"
     }
 }
