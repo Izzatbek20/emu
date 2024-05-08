@@ -154,6 +154,7 @@ import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
+import { mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
