@@ -74,7 +74,7 @@ export default {
     },
 };
 </script>
-<style>
+<style scoped>
 .fade-enter,
 .fade-leave-to {
     opacity: 0;
