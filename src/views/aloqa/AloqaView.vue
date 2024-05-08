@@ -213,7 +213,7 @@ export default {
             }
 
             if (!error) {
-                this.loading = false;
+                this.loading = true;
                 try {
                     const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
 
@@ -263,7 +263,7 @@ export default {
                 // this.body.value = null
                 // this.shaxs.value = null
                 this.loading = false;
-                console.log(this.xabar.name, this.xabar.phone, this.xabar.body);
+                // console.log(this.xabar.name, this.xabar.phone, this.xabar.body);
             }
         },
         validateXabar() {
