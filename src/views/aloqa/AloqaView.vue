@@ -340,22 +340,6 @@ export default {
         })
     },
     mounted() {
-        // this.$store.dispatch("visitor")
-        // const formData = new FormData();
-
-        // // FormData obyektiga ma'lumotlarni qo'shing
-        // formData.append('fields[name_1]', 'wwwww1');
-        // formData.append('fields[283117_1][499827]', '1234567');
-        // formData.append('fields[283119_1][499839]', '111@we.erge');
-        // formData.append('fields[note_2]', '11111111');
-        // formData.append('form_id', '1337982');
-        // formData.append('visitor_uid', this.visitor_uid);
-        // formData.append('hash', '535e35e4194087931809640026899a9a');
-
-        // this.$store.dispatch("send", formData).then(response => {
-        //     console.log('Yuborildi');
-        // })
-
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 

@@ -51,7 +51,12 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import XizmatModal from '@/ui-components/XizmatModal.vue';
+import { defineAsyncComponent } from 'vue';
+
+// Asinxron komponentni import qilish
+const XizmatModal = defineAsyncComponent(() =>
+    import('@/ui-components/XizmatModal.vue')
+);
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -102,6 +107,7 @@ export default {
 .slide-fade-leave-to {
     opacity: 0;
 }
+
 iframe {
     height: 619px !important;
 }
