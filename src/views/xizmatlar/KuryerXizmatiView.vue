@@ -107,7 +107,6 @@ export default {
 .slide-fade-leave-to {
     opacity: 0;
 }
-
 iframe {
     height: 619px !important;
 }

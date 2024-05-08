@@ -46,7 +46,7 @@
                     <li>​Universal</li>
                     <li>​Uygacha (eshigingizgacha)</li>
                 </ul>
-                <<div class="flex items-center gap-6 mt-10">
+                <div class="flex items-center gap-6 mt-10">
                     <ButtonViolet @click="submit" title="Xizmatdan foydalanish" />
             </div>
         </div>

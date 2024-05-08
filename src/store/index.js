@@ -2,6 +2,7 @@ import {
     createStore
 } from 'vuex'
 import main from './modules/main'
+import bizBilanBoglanish from './modules/bizBilanBoglanish'
 
 const store = createStore({
     state() {},
@@ -9,6 +10,7 @@ const store = createStore({
     actions: {},
     modules: {
         main,
+        bizBilanBoglanish
     }
 })
 export default store

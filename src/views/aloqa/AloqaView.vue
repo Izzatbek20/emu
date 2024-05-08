@@ -62,24 +62,27 @@
 
                 </div>
 
-                <AmoForm class="w-full" />
+                <!-- <AmoForm class="w-full" /> -->
 
-                <!-- <div class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
+                <form @submit.prevent="xabarSubmit" ref="formXabar" class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Xabaringizni qoldiring</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
                         Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" v-model="ino3"
-                            class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" v-model="ino3" class="w-full" />
+                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
+                            v-model="xabar.name.value" :error="xabar.name.error" class="w-full" />
+                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
+                            v-model="xabar.phone.value" :error="xabar.phone.error" class="w-full" />
                     </div>
-                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" v-model="ino3" class="w-full mt-6" />
+                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loading"
+                        v-model="xabar.body.value" :error="xabar.body.error" class="w-full mt-6" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet @click="xabar" title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet title="Yuborish" class="max-md:w-full" />
                     </div>
-                </div> -->
+                </form>
+
                 <form @submit.prevent="shikoyatSubmit" ref="formShikoyat"
                     class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Shikoyat va taklifingizni kiriting</h2>
@@ -88,19 +91,19 @@
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
                         <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
-                            v-model="name.value" :error="this.name.error" class="w-full" />
+                            v-model="shikoyat.name.value" :error="shikoyat.name.error" class="w-full" />
                         <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
-                            v-model="phone.value" class="w-full" :error="this.phone.error" />
+                            v-model="shikoyat.phone.value" class="w-full" :error="shikoyat.phone.error" />
                     </div>
                     <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loading"
-                        v-model="body.value" class="w-full mt-6" :error="this.body.error" />
+                        v-model="shikoyat.body.value" class="w-full mt-6" :error="shikoyat.body.error" />
                     <div class="flex flex-row gap-6 gap-y-3">
-                        <Radio label="Jismoniy shaxsman" :value="'jismoni'" :disabled="loading" v-model="shaxs.value"
-                            :error="this.shaxs.error" />
-                        <Radio label="Yuridik shaxsman" :value="'yuridik'" :disabled="loading" v-model="shaxs.value"
-                            :error="this.shaxs.error" />
+                        <Radio label="Jismoniy shaxsman" :value="'jismoni'" :disabled="loading"
+                            v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
+                        <Radio label="Yuridik shaxsman" :value="'yuridik'" :disabled="loading"
+                            v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
                     </div>
-                    <p class="text-red text-xs italic mt-2" v-if="this.shaxs.error">{{ this.shaxs.error }}</p>
+                    <p class="text-red text-xs italic mt-2" v-if="shikoyat.shaxs.error">{{ shikoyat.shaxs.error }}</p>
 
                     <div class="flex items-center gap-6 mt-10">
                         <ButtonViolet :disabled="loading" title="Jo’natish" class="max-md:w-full" />
@@ -159,21 +162,37 @@ export default {
         return {
             chatId: import.meta.env.VITE_BOT_CHAT_ID, // Chat ID ni kiriting
             token: import.meta.env.VITE_BOT_TOKEN, // Bot tokenini kiriting
-            name: {
-                value: null,
-                error: null
+            xabar: {
+                name: {
+                    value: null,
+                    error: null
+                },
+                phone: {
+                    value: null,
+                    error: null
+                },
+                body: {
+                    value: null,
+                    error: null
+                },
             },
-            phone: {
-                value: null,
-                error: null
-            },
-            body: {
-                value: null,
-                error: null
-            },
-            shaxs: {
-                value: null,
-                error: null
+            shikoyat: {
+                name: {
+                    value: null,
+                    error: null
+                },
+                phone: {
+                    value: null,
+                    error: null
+                },
+                body: {
+                    value: null,
+                    error: null
+                },
+                shaxs: {
+                    value: null,
+                    error: null
+                },
             },
             isOpen: false,
             loading: false // Loading flag
@@ -183,47 +202,17 @@ export default {
         BarGorizontal, Bar, Navigation
     },
     methods: {
-        xabar() {
+        success() {
             this.isOpen = true
         },
         async shikoyatSubmit() {
-            let error = false
-            if (!this.name.value) {
-                this.name.error = this.$t('validate.required');
-                error = true
-            } else {
-                this.name.error = null;
-            }
-            if (!this.phone.value) {
-                this.phone.error = this.$t('validate.required');
-                error = true
-            } else {
-                if (this.phone.value && this.phone.value.length != 12) {
-                    this.phone.error = this.$t('validate.phone');
-                    error = true
-                } else {
-                    this.phone.error = null;
-                }
-            }
-            if (!this.body.value) {
-                this.body.error = this.$t('validate.required');
-                error = true
-            } else {
-                this.body.error = null;
-            }
-            if (!this.shaxs.value) {
-                this.shaxs.error = this.$t('validate.required');
-                error = true
-            } else {
-                this.shaxs.error = null;
-            }
-
+            let error = this.validateShikoyat()
             if (error) {
                 return;
             }
 
             if (!error) {
-                this.loading = true;
+                this.loading = false;
                 try {
                     const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
 
@@ -231,7 +220,7 @@ export default {
                     const response = await axios.get(url, {
                         params: {
                             chat_id: this.chatId,
-                            text: `<b>Ism:</b> ${this.name.value}\n<b>Telefon:</b> +998 ${this.phone.value}\n<b>Xabar:</b> ${this.body.value}\n<b>Shaxs:</b> ${this.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'}`,
+                            text: `<b>Ism:</b> ${this.shikoyat.name.value}\n<b>Telefon:</b> +998 ${this.shikoyat.phone.value}\n<b>Xabar:</b> ${this.shikoyat.body.value}\n<b>Shaxs:</b> ${this.shikoyat.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'}`,
                             parse_mode: 'html'
                         },
                     });
@@ -241,10 +230,10 @@ export default {
 
                         // Fo'rmani tozalash
                         this.$refs.formShikoyat.reset();
-                        this.name.value = null
-                        this.phone.value = null
-                        this.body.value = null
-                        this.shaxs.value = null
+                        this.shikoyat.name.value = null
+                        this.shikoyat.phone.value = null
+                        this.shikoyat.body.value = null
+                        this.shikoyat.shaxs.value = null
                     }
                 } catch (error) {
                     console.error('Xato:', error);
@@ -254,11 +243,118 @@ export default {
                 }
             }
         },
+        async xabarSubmit() {
+            let error = this.validateXabar()
+
+            if (error) {
+                return;
+            }
+
+            if (!error) {
+                this.loading = false;
+
+                this.isOpen = true
+
+                // Fo'rmani tozalash
+                // this.$refs.formXabar.reset();
+                // this.name.value = null
+                // this.phone.value = null
+                // this.body.value = null
+                // this.shaxs.value = null
+                this.loading = false;
+                console.log(this.xabar.name, this.xabar.phone, this.xabar.body);
+            }
+        },
+        validateXabar() {
+            let error = false;
+            let xabar = this.xabar;
+            if (!xabar.name.value) {
+                xabar.name.error = this.$t('validate.required');
+                error = true
+            } else {
+                xabar.name.error = null;
+            }
+            if (!xabar.phone.value) {
+                xabar.phone.error = this.$t('validate.required');
+                error = true
+            } else {
+                if (xabar.phone.value && xabar.phone.value.length != 12) {
+                    xabar.phone.error = this.$t('validate.phone');
+                    error = true
+                } else {
+                    xabar.phone.error = null;
+                }
+            }
+            if (!xabar.body.value) {
+                xabar.body.error = this.$t('validate.required');
+                error = true
+            } else {
+                xabar.body.error = null;
+            }
+
+            return error;
+        },
+        validateShikoyat() {
+            let error = false;
+            let shikoyat = this.shikoyat
+            if (!shikoyat.name.value) {
+                shikoyat.name.error = this.$t('validate.required');
+                error = true
+            } else {
+                shikoyat.name.error = null;
+            }
+            if (!shikoyat.phone.value) {
+                shikoyat.phone.error = this.$t('validate.required');
+                error = true
+            } else {
+                if (shikoyat.phone.value && shikoyat.phone.value.length != 12) {
+                    shikoyat.phone.error = this.$t('validate.phone');
+                    error = true
+                } else {
+                    shikoyat.phone.error = null;
+                }
+            }
+            if (!shikoyat.body.value) {
+                shikoyat.body.error = this.$t('validate.required');
+                error = true
+            } else {
+                shikoyat.body.error = null;
+            }
+            if (!shikoyat.shaxs.value) {
+                shikoyat.shaxs.error = this.$t('validate.required');
+                error = true
+            } else {
+                shikoyat.shaxs.error = null;
+            }
+
+            return error;
+        },
         closeModal() {
             this.isOpen = false
         }
     },
+    computed: {
+        ...mapState({
+            visitor_uid: state => state.bizBilanBoglanish.visitor_uid,
+        })
+    },
     mounted() {
+        // this.$store.dispatch("visitor")
+        // const formData = new FormData();
+
+        // // FormData obyektiga ma'lumotlarni qo'shing
+        // formData.append('fields[name_1]', 'wwwww1');
+        // formData.append('fields[283117_1][499827]', '1234567');
+        // formData.append('fields[283119_1][499839]', '111@we.erge');
+        // formData.append('fields[note_2]', '11111111');
+        // formData.append('form_id', '1337982');
+        // formData.append('visitor_uid', this.visitor_uid);
+        // formData.append('hash', '535e35e4194087931809640026899a9a');
+
+        // this.$store.dispatch("send", formData).then(response => {
+        //     console.log('Yuborildi');
+        // })
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 
