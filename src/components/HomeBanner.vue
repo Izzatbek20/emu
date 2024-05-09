@@ -22,14 +22,23 @@
 
             <div class="h5 my-10 text-center">Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting</div>
 
-            <Input :required="true" v-model="order_id" />
+            <Input :required="true" :error="(order_id.error || order_not)" v-model="order_id.value" />
 
-            <p class="txt-small text-center"><span class="text-red">*</span> Yuk id raqamini shaxsiy kabinetingizda
-                jo’natmalar yoki
-                qabul qilingan
-                yuklar bo’limidan bilib olishimgiz mumkin</p>
+            <template v-if="orderStatus && orderStatus.order">
+                <div>
+                    <b>Status</b>: {{ orderStatus.order.status }}
+                </div>
+            </template>
+
+            <template v-else>
+                <p class="txt-small text-center"><span class="text-red">*</span> Yuk id raqamini shaxsiy kabinetingizda
+                    jo’natmalar yoki
+                    qabul qilingan
+                    yuklar bo’limidan bilib olishimgiz mumkin</p>
+            </template>
+
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Kuzatish" class="w-full" />
+                <ButtonVioletLogin @click="getOrderStatue" title="Kuzatish" class="w-full" />
             </div>
         </Modal>
 
@@ -38,9 +47,9 @@
 
             <div class="h5 my-10 text-center">Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring</div>
 
-            <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="order_id" />
-            <InputPhone label="Telefon raqamingiz" :required="true" v-model="order_id" />
-            <InputSelect label="Biznes faoliyatingiz" :required="true" v-model="order_id" />
+            <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="order_id.value" />
+            <InputPhone label="Telefon raqamingiz" :required="true" v-model="order_id.value" />
+            <InputSelect label="Biznes faoliyatingiz" :required="true" v-model="order_id.value" />
 
             <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
 
@@ -54,11 +63,16 @@
 import Bar from '@/components/Bar.vue';
 import Corusel from './Corusel.vue';
 import BarGorizontal from './BarGorizontal.vue';
+import { mapState } from 'vuex';
 
 export default {
     data() {
         return {
-            order_id: null,
+            order_id: {
+                value: null,
+                error: null
+            },
+            order_not: null,
             modalYuk: false,
             modalHamkor: false,
         }
@@ -68,6 +82,11 @@ export default {
     },
     props: {
         corusel: Array
+    },
+    computed: {
+        ...mapState({
+            orderStatus: state => state.courier.orderStatus,
+        })
     },
     methods: {
         modalOpen(val) {
@@ -82,11 +101,39 @@ export default {
                 default:
                     break;
             }
-            console.log(val);
+        },
+        async getOrderStatue() {
+            if (this.validateOrderId()) {
+                return
+            }
+
+            this.$store.dispatch("orderStatue", `<?xml version="1.0" encoding="UTF-8"?><tracking><extra>245</extra><orderno>${this.order_id.value}</orderno></tracking>`).then(response => {
+                if (!response.tracking) {
+                    this.order_not = "ID topilmadi"
+                } else {
+                    this.order_id = {
+                        value: null,
+                        error: null
+                    }
+                    this.order_not = null
+                }
+            })
+        },
+        validateOrderId() {
+            let error = false;
+            if (!this.order_id.value) {
+                this.order_id.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.order_id.error = null;
+            }
+
+            return error;
         },
         closeModal() {
             this.modalYuk = false
             this.modalHamkor = false
+            this.$store.commit('setOrderStatus', null)
         }
     }
 }

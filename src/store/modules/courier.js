@@ -6,6 +6,7 @@ import {
 const state = {
     viloyat: null,
     punkit: null,
+    orderStatus: null,
 }
 
 const getters = {}
@@ -16,6 +17,9 @@ const mutations = {
     },
     setPunkit(state, payload) {
         state.punkit = payload
+    },
+    setOrderStatus(state, payload) {
+        state.orderStatus = payload
     }
 }
 
@@ -46,6 +50,23 @@ const actions = {
                         resolve(jsonData)
                     } else {
                         console.log('Punkit bo\'sh');
+                    }
+                })
+                .catch(error => {
+                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    reject(error.response ? error.response.data : error)
+                });
+        })
+    },
+    orderStatue(context, xml) {
+        return new Promise((resolve, reject) => {
+            courierService.orderStatus(xml)
+                .then(response => {
+                    if (response.data) {
+                        const parser = new XMLParser();
+                        const jsonData = parser.parse(response.data);
+                        context.commit('setOrderStatus', jsonData.tracking)
+                        resolve(jsonData)
                     }
                 })
                 .catch(error => {

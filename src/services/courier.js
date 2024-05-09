@@ -15,6 +15,13 @@ const courierService = {
             }
         })
     },
+    orderStatus(xml) {
+        return axios.post('https://home.courierexe.ru/api', xml, {
+            headers: {
+                'Content-Type': 'application/xml'
+            }
+        })
+    },
 }
 
 export default courierService
