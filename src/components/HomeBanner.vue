@@ -29,7 +29,7 @@
                 qabul qilingan
                 yuklar bo’limidan bilib olishimgiz mumkin</p>
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
+                <ButtonVioletLogin @click="closeModal" title="Kuzatish" class="w-full" />
             </div>
         </Modal>
 
