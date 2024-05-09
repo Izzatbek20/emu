@@ -11,7 +11,7 @@ export const home = [{
     {
         title: "Yukni kuzatish",
         icon: 'BoxSearch',
-        link: ''
+        link: 'modal-yuk'
     },
     {
         title: "Ofislarimiz",
@@ -21,7 +21,7 @@ export const home = [{
     {
         title: "Hamkorlik bo'yicha",
         icon: 'Hand',
-        link: ''
+        link: 'modal-hamkor'
     },
 ]
 
