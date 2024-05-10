@@ -4,6 +4,7 @@ import {
 import main from './modules/main'
 import bizBilanBoglanish from './modules/bizBilanBoglanish'
 import courier from './modules/courier'
+import amocrm from './modules/amocrm'
 
 const store = createStore({
     state() {},
@@ -12,7 +13,8 @@ const store = createStore({
     modules: {
         main,
         bizBilanBoglanish,
-        courier
+        courier,
+        amocrm
     }
 })
 export default store

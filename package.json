@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@splidejs/vue-splide": "^0.6.12",
+    "amocrm-js": "^3.4.2",
     "axios": "^1.6.8",
     "fast-xml-parser": "^4.3.6",
     "gsap": "^3.12.5",
