@@ -9,9 +9,22 @@ const mutations = {
 }
 
 const actions = {
-    getAccessToken(context, data) {
+    // getAccessToken(context, data) {
+    //     return new Promise((resolve, reject) => {
+    //         amocrmService.getAccessToken()
+    //             .then(response => {
+    //                 // context.commit('setViloyat', jsonData.regionlist)
+    //                 resolve(response)
+    //             })
+    //             .catch(error => {
+    //                 // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+    //                 reject(error.response ? error.response.data : error)
+    //             });
+    //     })
+    // },
+    getLeads(context) {
         return new Promise((resolve, reject) => {
-            amocrmService.getAccessToken()
+            amocrmService.getLeads()
                 .then(response => {
                     // context.commit('setViloyat', jsonData.regionlist)
                     resolve(response)
