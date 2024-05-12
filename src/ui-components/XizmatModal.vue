@@ -1,23 +1,33 @@
 <template>
-    <transition name="fade">
-        <div :class="isModalVisible ? 'block' : 'hidden'">
+    <div>
+        <Modal :title="title" :isOpen="isOpen && !responseModal" @close="closeModal">
 
-            <div class="fixed h-dvh w-dvw top-0 left-0 inset-0 z-[999999] flex items-center justify-center">
-                <div
-                    class="absolute z-[90] w-11/12 max-w-sm md:max-w-sm lg:max-w-md p-10 max-sm:p-5 mx-auto my-auto rounded-3xl ">
-                    <div class="flex items-center justify-between">
-                        <h3 class="h3-2 max-md:h4"></h3>
-                        <CloseX @click="closeModal" :fillColor="'fill-orange'" class="cursor-pointer" />
-                    </div>
-                    <div :id="id" class="w-full">
-                    </div>
+            <form ref="formXizmat" @submit.prevent="send">
+                <div class="h5 my-10 text-center">Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring</div>
+
+                <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="name.value"
+                    :error="name.error" :disabled="loading" />
+                <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone.value" :error="phone.error"
+                    :disabled="loading" />
+
+                <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
+
+                <div class="mt-2 p-3 text-center space-x-4 md:block">
+                    <ButtonVioletLogin :disabled="loading" title="Jo’natish" class="w-full" />
                 </div>
-                <div @click="closeModal"
-                    class="fixed h-dvh w-dvw bg-black top-0 left-0 opacity-70 inset-0 flex items-center justify-center">
-                </div>
+            </form>
+        </Modal>
+
+        <!-- Javob modal -->
+        <Modal :title="$t(alert.title)" :isOpen="responseModal" @close="closeModal">
+
+            <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
+
+            <div class="mt-2 p-3 text-center space-x-4 md:block">
+                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
             </div>
-        </div>
-    </transition>
+        </Modal>
+    </div>
 </template>
 
 <script>
@@ -32,45 +42,107 @@ export default {
     },
     data() {
         return {
-            amoFormLoaded: false,
-            id: (new Date().getTime())
-        };
-    },
-    computed: {
-        isModalVisible() {
-            return this.isOpen;
+            name: {
+                value: null,
+                error: null
+            },
+            phone: {
+                value: null,
+                error: null
+            },
+            alert: {
+                title: 'alertSuccess.title',
+                message: 'alertSuccess.message'
+            },
+            responseModal: false,
+            loading: false // Loading flag
         }
     },
-    mounted() {
-        this.loadAmoCrmScripts();
-    },
     methods: {
-        closeModal() {
-            this.$emit('close');
-        },
-        loadAmoCrmScripts() {
-            // `formAmo` divining mavjudligini tekshiring.
-            const formAmoElement = document.getElementById(this.id);
-            // console.log(formAmoElement);
-            if (!formAmoElement) {
-                console.error('formAmo div topilmadi');
+        async send() {
+            let error = this.validate()
+
+            if (error) {
                 return;
             }
 
-            // Skriptlarni yuklash.
-            const script1 = document.createElement("script");
-            script1.innerHTML = `!function (a, m, o, c, r, m) { a[o + c] = a[o + c] || { setMeta: function (p) { this.params = (this.params || []).concat([p]) } }, a[o + r] = a[o + r] || function (f) { a[o + r].f = (a[o + r].f || []).concat([f]) }, a[o + r]({ id: "1336434", hash: "dcf887cf441ed42858832287a72c2b06", locale: "ru" }), a[o + m] = a[o + m] || function (f, k) { a[o + m].f = (a[o + m].f || []).concat([[f, k]]) } }(window, 0, "amo_forms_", "params", "load", "loaded");`;
-            formAmoElement.appendChild(script1);
+            if (!error) {
+                this.loading = true;
 
-            const script2 = document.createElement("script");
-            script2.id = "amoforms_script_1336354";
-            script2.async = true;
-            script2.charset = "utf-8";
-            script2.src = "https://forms.amocrm.ru/forms/assets/js/amoforms.js?1714817271";
-            formAmoElement.appendChild(script2);
 
-            this.amoFormLoaded = true;
-        }
+                this.$store.dispatch('createLeads', {
+                    "name": "Xizmatdan foydalanish",
+                    "created_by": 0,
+                    "custom_fields_values": [
+                        {
+                            "field_id": 532027,
+                            "values": [
+                                {
+                                    "value": this.name.value
+                                }
+                            ]
+                        },
+                        {
+                            "field_id": 535723,
+                            "values": [
+                                {
+                                    "value": "+998" + this.phone.value
+                                }
+                            ]
+                        },
+                    ],
+                    "tags_to_add": [
+                        {
+                            "name": "Xizmat"
+                        }
+                    ]
+                }).then(response => {
+
+                    if (response && response.data[1] == 200) {
+                        this.responseModal = true
+                        this.loading = false;
+
+                        // Fo'rmani tozalash
+                        this.$refs.formXizmat.reset();
+                        this.name.value = null
+                        this.phone.value = null
+                    } else {
+                        this.responseModal = true
+                        this.loading = false;
+                        this.alert = {
+                            title: 'alertError.title',
+                            message: 'alertError.message'
+                        }
+                    }
+                })
+            }
+        },
+        validate() {
+            let error = false;
+            if (!this.name.value) {
+                this.name.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.name.error = null;
+            }
+            if (!this.phone.value) {
+                this.phone.error = this.$t('validate.required');
+                error = true
+            } else {
+                if (this.phone.value && this.phone.value.length != 12) {
+                    this.phone.error = this.$t('validate.phone');
+                    error = true
+                } else {
+                    this.phone.error = null;
+                }
+            }
+
+            return error;
+        },
+        closeModal() {
+            this.responseModal = false;
+            this.$emit('close');
+        },
     },
 };
 </script>

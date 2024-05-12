@@ -32,7 +32,7 @@
                 </p>
 
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet @click="submit" title="Xizmatdan foydalanish" />
+                    <ButtonViolet @click="openModal" title="Xizmatdan foydalanish" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -70,38 +70,13 @@ export default {
         BarGorizontal, Bar, Navigation, XizmatModal
     },
     methods: {
-        submit() {
+        openModal() {
             this.isOpen = true
         },
-        // async sendData() {
-        //     const formData = new FormData();
-
-        //     // FormData obyektiga ma'lumotlarni qo'shing
-        //     formData.append('fields[name_1]', 'wwwww1');
-        //     formData.append('fields[283117_1][499827]', '1234567');
-        //     formData.append('fields[283119_1][499839]', '111@we.erge');
-        //     formData.append('fields[note_2]', '11111111');
-        //     formData.append('form_id', '1337982');
-        //     formData.append('visitor_uid', this.visitor_uid);
-        //     formData.append('hash', '535e35e4194087931809640026899a9a');
-
-        //     this.$store.dispatch("send", formData).then(response => {
-        //         console.log('Yuborildi');
-        //     })
-        // },
-        // async visitor() {
-        //     this.$store.dispatch("visitor")
-        // },
         closeModal() {
             this.isOpen = false
         }
     },
-    computed: {
-        ...mapState({
-            visitor_uid: state => state.bizBilanBoglanish.visitor_uid,
-        })
-    },
-
     mounted() {
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");

@@ -62,5 +62,13 @@
         "Ташкентская область": "Toshkent viloyati",
         "Ферганская область": "Farg'ona viloyati",
         "Хорезмская область": "Xorazm viloyati"
+    },
+    "alertError": {
+        "title": "Xatolik",
+        "message": "Iltimos qayta urinib ko‘ring"
+    },
+    "alertSuccess": {
+        "title": "Bog‘lanish",
+        "message": "Tez orada sizga javob bilan qaytamiz."
     }
 }

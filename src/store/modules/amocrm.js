@@ -22,15 +22,15 @@ const actions = {
     //             });
     //     })
     // },
-    getLeads(context) {
+    createLeads(context, data) {
         return new Promise((resolve, reject) => {
-            amocrmService.getLeads()
+            amocrmService.createLeads(data)
                 .then(response => {
                     // context.commit('setViloyat', jsonData.regionlist)
                     resolve(response)
                 })
                 .catch(error => {
-                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
                     reject(error.response ? error.response.data : error)
                 });
         })

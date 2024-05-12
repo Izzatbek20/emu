@@ -84,7 +84,6 @@ import YoutubeModal from './YoutubeModal.vue';
 import CircleFlagsUz from './icons/CircleFlagsUz.vue';
 import CircleFlagsRu from './icons/CircleFlagsRu.vue';
 import CircleFlagsUk from './icons/CircleFlagsUk.vue';
-import AmoForm from './AmoForm.vue';
 import Spinner from './Spinner.vue';
 
 export default [
@@ -102,5 +101,5 @@ export default [
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
 
     Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview,
-    Collaps, Textarea, ButtonVioletLogin, Modal, YoutubeModal, AmoForm
+    Collaps, Textarea, ButtonVioletLogin, Modal, YoutubeModal
 ];

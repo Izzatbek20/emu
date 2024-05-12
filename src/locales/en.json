@@ -62,5 +62,13 @@
         "Ташкентская область": "Tashkent Region",
         "Ферганская область": "Fergana Region",
         "Хорезмская область": "Xorazm Region"
+    },
+    "alertError": {
+        "title": "Error",
+        "message": "Please try again"
+    },
+    "alertSuccess": {
+        "title": "Connect",
+        "message": "We will get back to you with an answer soon"
     }
 }

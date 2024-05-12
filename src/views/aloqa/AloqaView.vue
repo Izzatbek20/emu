@@ -62,9 +62,7 @@
 
                 </div>
 
-                <AmoForm class="w-full" />
-
-                <!-- <form @submit.prevent="xabarSubmit" ref="formXabar" class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
+                <form @submit.prevent="xabarSubmit" ref="formXabar" class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
                     <h2 class="h4 mb-8">Xabaringizni qoldiring</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
                         Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
@@ -79,9 +77,9 @@
                         v-model="xabar.body.value" :error="xabar.body.error" class="w-full mt-6" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loading" title="Yuborish" class="max-md:w-full" />
                     </div>
-                </form> -->
+                </form>
 
                 <form @submit.prevent="shikoyatSubmit" ref="formShikoyat"
                     class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
@@ -136,9 +134,9 @@
         </div>
 
         <!-- Modal -->
-        <Modal title="Bog‘lanish" :isOpen="isOpen" @close="closeModal">
+        <Modal :title="$t(alert.title)" :isOpen="isOpen" @close="closeModal">
 
-            <div class="h5 my-10 text-center">Tez orada sizga javob bilan qaytamiz.</div>
+            <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
                 <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
@@ -194,6 +192,10 @@ export default {
                     value: null,
                     error: null
                 },
+            },
+            alert: {
+                title: 'alertSuccess.title',
+                message: 'alertSuccess.message'
             },
             isOpen: false,
             loading: false // Loading flag
@@ -252,18 +254,61 @@ export default {
             }
 
             if (!error) {
-                this.loading = false;
+                this.loading = true;
 
-                this.isOpen = true
 
-                // Fo'rmani tozalash
-                // this.$refs.formXabar.reset();
-                // this.name.value = null
-                // this.phone.value = null
-                // this.body.value = null
-                // this.shaxs.value = null
-                this.loading = false;
-                // console.log(this.xabar.name, this.xabar.phone, this.xabar.body);
+                this.$store.dispatch('createLeads', {
+                    "name": "Xabaringizni qoldiring",
+                    "created_by": 0,
+                    "custom_fields_values": [
+                        {
+                            "field_id": 532027,
+                            "values": [
+                                {
+                                    "value": this.xabar.name.value
+                                }
+                            ]
+                        },
+                        {
+                            "field_id": 535723,
+                            "values": [
+                                {
+                                    "value": "+998" + this.xabar.phone.value
+                                }
+                            ]
+                        },
+                        {
+                            "field_id": 535725,
+                            "values": [
+                                {
+                                    "value": this.xabar.body.value
+                                }
+                            ]
+                        }
+                    ],
+                    "tags_to_add": [
+                        {
+                            "name": "Xabar"
+                        }
+                    ]
+                }).then(response => {
+                    this.isOpen = true
+                    this.loading = false;
+
+                    if (response && response.data[1] == 200) {
+
+                        // Fo'rmani tozalash
+                        this.$refs.formXabar.reset();
+                        this.xabar.name.value = null
+                        this.xabar.phone.value = null
+                        this.xabar.body.value = null
+                    } else {
+                        this.alert = {
+                            title: 'alertError.title',
+                            message: 'alertError.message'
+                        }
+                    }
+                })
             }
         },
         validateXabar() {
@@ -333,11 +378,6 @@ export default {
         closeModal() {
             this.isOpen = false
         }
-    },
-    computed: {
-        ...mapState({
-            visitor_uid: state => state.bizBilanBoglanish.visitor_uid,
-        })
     },
     mounted() {
         let pin = document.getElementById("pin");
