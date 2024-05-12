@@ -7,7 +7,8 @@
         "xizmatlar": "Услуги",
         "vakansiya": "Вакансии",
         "bizBilanBoglanish": "Свяжитесь с нами",
-        "shaxsiyKabinet": "Личный кабинет"
+        "shaxsiyKabinet": "Личный кабинет",
+        "xizmatTurlari": "Типы услуг"
     },
     "sub": {
         "kompaniyaHaqida": "О компании",
@@ -25,7 +26,8 @@
         "ustamaTolovli": "Доставка по тарифу",
         "fullfilmentView": "Услуга полного сопровождения",
         "individual": "Услуги перевозки",
-        "kargo": "Курьерская служба EMU"
+        "kargo": "Курьерская служба EMU",
+        "buyurtmaStatusi": "Статус заказа"
     },
     "profil": {
         "profil": "Профиль",
@@ -70,5 +72,21 @@
     "alertSuccess": {
         "title": "Соединять",
         "message": "Мы скоро свяжемся с вами с ответом"
-    }
+    },
+    "emuExpressHaqida": "О компании EMU Express",
+    "komandaFaoliyati": "Деятельность команды",
+    "kompaniyaOliyMaqsadi": "Основная цель компании",
+    "kuryerXizmati": "Курьерская служба",
+    "xalqaroYetkazibBerish": "Международная доставка",
+    "b2bShartnomaAsosidaYetkazibBerish": "Доставка по договору B2B",
+    "individualYukTashishXizmati": "Услуга индивидуальной грузоперевозки",
+    "barchaOfislarmizManzillari": "Все наши адреса офисов",
+    "boShIshORinlari": "Вакантные должности",
+    "barchaBoShIshORinlari": "Все вакансии",
+    "shikoyatVaIzohQoldirish": "Жалобы и комментарии",
+    "boglanish": "Связь",
+    "fikrVaTaklifQoldirish": "Предложения и отзывы",
+    "ijtimoiyTarmoqlar": "Социальные сети",
+    "mijozlarimizOtzivlari": "Отзывы наших клиентов"
+
 }

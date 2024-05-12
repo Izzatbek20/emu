@@ -7,7 +7,8 @@
         "xizmatlar": "Xizmatlar",
         "vakansiya": "Vakansiya",
         "bizBilanBoglanish": "Biz bilan bog'lanish",
-        "shaxsiyKabinet": "Shaxsiy kabinet"
+        "shaxsiyKabinet": "Shaxsiy kabinet",
+        "xizmatTurlari": "Xizmat turlari"
     },
     "sub": {
         "kompaniyaHaqida": "Kompaniya haqida",
@@ -25,7 +26,8 @@
         "ustamaTolovli": "Ustama to’lovli pochta jo’natmalarini yetkazib berish",
         "fullfilmentView": "Fullfilment xizmati",
         "individual": "Yuk tashish xizmati",
-        "kargo": "EMU kargo xizmati"
+        "kargo": "EMU kargo xizmati",
+        "buyurtmaStatusi": "Buyurtma statusi"
     },
     "profil": {
         "profil": "Profil",
@@ -70,5 +72,20 @@
     "alertSuccess": {
         "title": "Bog‘lanish",
         "message": "Tez orada sizga javob bilan qaytamiz."
-    }
+    },
+    "emuExpressHaqida": "EMU Express haqida",
+    "komandaFaoliyati": "Komanda faoliyati",
+    "kompaniyaOliyMaqsadi": "Kompaniya oliy maqsadi",
+    "kuryerXizmati": "Kuryer xizmati",
+    "xalqaroYetkazibBerish": "Xalqaro yetkazib berish",
+    "b2bShartnomaAsosidaYetkazibBerish": "B2B shartnoma asosida yetkazib berish",
+    "individualYukTashishXizmati": "Individual yuk tashish xizmati",
+    "barchaOfislarmizManzillari": "Barcha ofislarmiz manzillari",
+    "boShIshORinlari": "Bo’sh ish o’rinlari",
+    "barchaBoShIshORinlari": "Barcha bo’sh ish o’rinlari",
+    "shikoyatVaIzohQoldirish": "Shikoyat va izoh qoldirish",
+    "boglanish": "Bog’lanish",
+    "fikrVaTaklifQoldirish": "Fikr va taklif qoldirish",
+    "ijtimoiyTarmoqlar": "Ijtimoiy tarmoqlar",
+    "mijozlarimizOtzivlari": "Mijozlarimiz sharhlari"
 }

@@ -4,18 +4,20 @@ import {
 } from "@/helpers/rwLocalStorage";
 import axios from "axios";
 
-// Base url
-axios.defaults.baseURL =
-    import.meta.env.VITE_AMOCRM_SUBDOMAIN
-
+const axiosAmocrm = axios.create({
+    // Base url
+    baseURL: import.meta.env.VITE_AMOCRM_SUBDOMAIN,
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
 // Xarbir so'rov uchun access token qo'yip jo'natamiz
-axios.interceptors.request.use(
+axiosAmocrm.interceptors.request.use(
     (config) => {
         const act = getItem('act')
         if (act) {
             config.headers.Authorization = `Bearer ${act}`
         }
-        config.headers["Content-Type"] = 'application/json'
         return config
     },
     (error) => {
@@ -23,7 +25,7 @@ axios.interceptors.request.use(
     }
 )
 
-axios.interceptors.response.use(
+axiosAmocrm.interceptors.response.use(
     async (res) => {
             const originConfig = res.config
             if (res.data[1] == 401 && !originConfig._retry) {
@@ -57,7 +59,7 @@ async function authorizationCodeOrRefreshToken() {
             "code": rft ? rft : import.meta.env.VITE_AMOCRM_AUTHORIZATION_CODE,
             "redirect_uri": import.meta.env.VITE_AMOCRM_REDIRECT_URL
         }
-        const rs = await axios.post('/amocrm/oauth2/access_token', data)
+        const rs = await axiosAmocrm.post('/amocrm/oauth2/access_token', data)
         const {
             access_token,
             refresh_token
@@ -75,4 +77,4 @@ async function authorizationCodeOrRefreshToken() {
     }
 }
 
-export default axios
+export default axiosAmocrm

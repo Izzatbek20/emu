@@ -7,7 +7,8 @@
         "xizmatlar": "Services",
         "vakansiya": "Vacancies",
         "bizBilanBoglanish": "Contact us",
-        "shaxsiyKabinet": "Personal account"
+        "shaxsiyKabinet": "Personal account",
+        "xizmatTurlari": "Service types"
     },
     "sub": {
         "kompaniyaHaqida": "About the company",
@@ -25,7 +26,8 @@
         "ustamaTolovli": "Extra charge mail delivery",
         "fullfilmentView": "Fulfillment service",
         "individual": "Freight transportation service",
-        "kargo": "EMU cargo service"
+        "kargo": "EMU cargo service",
+        "buyurtmaStatusi": "Order status"
     },
     "profil": {
         "profil": "Profile",
@@ -70,5 +72,21 @@
     "alertSuccess": {
         "title": "Connect",
         "message": "We will get back to you with an answer soon"
-    }
+    },
+    "emuExpressHaqida": "About EMU Express",
+    "komandaFaoliyati": "Team Activity",
+    "kompaniyaOliyMaqsadi": "Company's Main Goal",
+    "kuryerXizmati": "Courier Service",
+    "xalqaroYetkazibBerish": "International Delivery",
+    "b2bShartnomaAsosidaYetkazibBerish": "Delivery Based on B2B Contract",
+    "individualYukTashishXizmati": "Individual Cargo Delivery Service",
+    "barchaOfislarmizManzillari": "All Our Office Addresses",
+    "boShIshORinlari": "Vacant Positions",
+    "barchaBoShIshORinlari": "All vacancies",
+    "shikoyatVaIzohQoldirish": "Complaints and Comments",
+    "boglanish": "Contact",
+    "fikrVaTaklifQoldirish": "Suggestions and Feedback",
+    "ijtimoiyTarmoqlar": "Social Media",
+    "mijozlarimizOtzivlari": "Customer Reviews"
+
 }

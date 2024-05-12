@@ -6,7 +6,7 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Mijozlarimizning biz haqimizda fikrlari</Navigation>
+        <Navigation>Xizmat narxini onlayn xisoblang</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">

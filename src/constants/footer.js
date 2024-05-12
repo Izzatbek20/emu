@@ -1,124 +1,111 @@
  export const menus = [{
-         title: 'Asosiy',
+         title: 'menu.home',
          link: null,
          sub: [{
-                 title: 'Xizmat narxini xisoblash',
+                 title: 'sub.xizmatXisoblash',
+                 link: 'xizmatXisoblash'
+             },
+             {
+                 title: 'menu.shaxsiyKabinet',
+                 link: 'profil'
+             },
+             {
+                 title: 'sub.buyurtmaStatusi',
                  link: null
              },
              {
-                 title: 'Shaxsiy kabinet',
-                 link: null
+                 title: 'sub.kargo',
+                 link: "kargo"
              },
              {
-                 title: 'Buyurtma statusi',
-                 link: null
+                 title: 'sub.savollar',
+                 link: "savollar"
              },
              {
-                 title: 'EMU kargo',
-                 link: null
+                 title: 'sub.ofislarimiz',
+                 link: "ofislarimiz"
              },
              {
-                 title: 'Ko\'p so\'raladigan savollar',
-                 link: null
-             },
-             {
-                 title: 'Ofislarimiz',
-                 link: null
-             },
-             {
-                 title: 'Mijozlarimiz otzivlari',
+                 title: 'mijozlarimizOtzivlari',
                  link: null
              }
          ]
      },
      {
-         title: 'biz haqimizda',
+         title: 'menu.bizHaqimizda',
          link: null,
          sub: [{
-                 title: 'EMU Express haqida',
+                 title: 'emuExpressHaqida',
                  link: null
              },
              {
-                 title: 'Komanda faoliyati',
+                 title: 'komandaFaoliyati',
                  link: null
              },
              {
-                 title: 'Kompaniya oliy maqsadi',
-                 link: null
-             },
-             {
-                 title: '',
+                 title: 'kompaniyaOliyMaqsadi',
                  link: null
              },
          ]
      },
      {
-         title: 'xizmat tu’rlari',
+         title: 'menu.xizmatTurlari',
          link: null,
          sub: [{
-                 title: 'EMU kargo',
+                 title: 'sub.kargo',
+                 link: "kargo"
+             },
+             {
+                 title: 'kuryerXizmati',
+                 link: "kuryerXizmati"
+             },
+             {
+                 title: 'xalqaroYetkazibBerish',
+                 link: 'xalqaroKuryerlikXizmati'
+             },
+             {
+                 title: 'b2bShartnomaAsosidaYetkazibBerish',
                  link: null
              },
              {
-                 title: 'Kuryer xizmati',
-                 link: null
+                 title: 'sub.fullfilmentView',
+                 link: 'fullfilmentView'
              },
              {
-                 title: 'Xalqaro yetkazib berish',
-                 link: null
-             },
-             {
-                 title: 'B2B shartnoma asosida yetkazib berish',
-                 link: null
-             },
-             {
-                 title: 'Fullfilment xizmati',
-                 link: null
-             },
-             {
-                 title: 'Individual yuk tashish xizmati',
-                 link: null
-             },
-             {
-                 title: '',
-                 link: null
+                 title: 'individualYukTashishXizmati',
+                 link: 'individual'
              },
          ]
      },
      {
-         title: 'ofislar',
+         title: 'sub.ofislarimiz',
          link: null,
          sub: [{
-                 title: 'Barcha ofislarmiz manzillari',
-                 link: null
-             },
-             {
-                 title: '',
-                 link: null
-             },
-         ]
-     },
-     {
-         title: 'Bo’sh ish o’rinlari',
-         link: null,
-         sub: [{
-             title: 'Barcha ofislarmiz manzillari',
-             link: null
+             title: 'barchaOfislarmizManzillari',
+             link: "ofislarimiz"
          }, ]
      },
      {
-         title: 'bog’lanish',
+         title: 'boShIshORinlari',
          link: null,
          sub: [{
-                 title: 'Shikoyat va izoh qoldirish',
-                 link: null
+             title: 'barchaBoShIshORinlari',
+             link: "vakansiya"
+         }, ]
+     },
+     {
+         title: 'boglanish',
+         link: null,
+         sub: [{
+                 title: 'shikoyatVaIzohQoldirish',
+                 link: "aloqa"
              },
              {
-                 title: 'Fikr va taklif qoldirish',
-                 link: null
+                 title: 'fikrVaTaklifQoldirish',
+                 link: "aloqa"
              },
              {
-                 title: 'Ijtimoiy tarmoqlar',
+                 title: 'ijtimoiyTarmoqlar',
                  link: null
              },
          ]

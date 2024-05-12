@@ -5,12 +5,15 @@
                 <div
                     class="grid grid-cols-6 max-xl:grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 gap-8 max-xl:gap-6 max-md:gap-6 relative">
                     <ul v-for="(menu, index) in menus" :key="1 + index">
-                        <li class="uppercase h7 max-lg:txt-micro-2-600">{{ menu.title }}</li>
+                        <li class="uppercase h7 max-lg:txt-micro-2-600">{{ $t(menu.title) }}</li>
                         <li class="mt-5 max-lg:mt-4">
                             <ul>
                                 <li v-if="menu.sub" v-for="(sub, index) in menu.sub" :key="2 + index"
                                     class="txt-micro max-lg:txt-nano hover:underline mt-4 max-lg:mt-3">
-                                    <a href="#">{{ sub.title }}</a>
+                                    <router-link v-if="sub.link" :to="{ name: sub.link }">
+                                        {{ $t(sub.title) }}
+                                    </router-link>
+                                    <div v-else>{{ $t(sub.title) }}</div>
                                 </li>
                             </ul>
                         </li>
