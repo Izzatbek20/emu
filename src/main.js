@@ -12,6 +12,12 @@ import i18n from './i18n';
 import VueSplide from '@splidejs/vue-splide';
 import VueTheMask from 'vue-the-mask'
 import {
+    VueFire
+} from 'vuefire'
+import {
+    firebaseApp
+} from './initFirebase'
+import {
     VueReCaptcha,
     useReCaptcha
 } from 'vue-recaptcha-v3'; // reCAPTCHA ni import qilib oling
@@ -23,14 +29,19 @@ const app = createApp(App)
 UiComponents.map(component => app.component(component.name, component))
 
 app.use(i18n)
+
 app.use(VueSplide);
 app.use(VueTheMask);
 app.use(router)
 app.use(store)
 
+app.use(VueFire, {
+    firebaseApp,
+    modules: [],
+})
 // reCAPTCHA ni ishlatish
 app.use(VueReCaptcha, {
-    siteKey: '6LeWztkpAAAAAE-I5dnSymSNLHSFlQxs3zPhibbq'
+    siteKey: import.meta.env.VITE_reCAPTCHA_SITE_KEY
 })
 
 
