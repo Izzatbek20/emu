@@ -42,7 +42,7 @@ export async function getAccess() {
 export async function getRefresh() {
     try {
         const docSnap = await getDoc(doc(db, 'amocrm', 'tokens'));
-        return docSnap.data().access;
+        return docSnap.data().refresh;
     } catch (error) {
         console.error('Error getting tokens:', error);
         return null;

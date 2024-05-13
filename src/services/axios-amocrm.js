@@ -1,11 +1,9 @@
+import axios from "axios";
 import {
     getItem,
     setItem
 } from "@/helpers/rwLocalStorage";
-import axios from "axios";
 import {
-    getAccess,
-    getRefresh,
     saveTokens
 } from "./firebase";
 
@@ -19,7 +17,7 @@ const axiosAmocrm = axios.create({
 // Xarbir so'rov uchun access token qo'yip jo'natamiz
 axiosAmocrm.interceptors.request.use(
     async (config) => {
-            const act = await getAccess()
+            const act = getItem('act')
             if (act) {
                 config.headers.Authorization = `Bearer ${act}`
             }
@@ -56,7 +54,7 @@ axiosAmocrm.interceptors.response.use(
 
 async function authorizationCodeOrRefreshToken() {
     try {
-        const rft = await getRefresh()
+        const rft = getItem('rft')
         const data = {
             "client_id": import.meta.env.VITE_AMOCRM_CLIENT_ID,
             "client_secret": import.meta.env.VITE_AMOCRM_CLIENT_SECRET,
@@ -71,12 +69,15 @@ async function authorizationCodeOrRefreshToken() {
         } = rs.data[0]
 
         if (access_token && refresh_token) {
-            const save = await saveTokens({
+            await saveTokens({
                 access: access_token,
                 refresh: refresh_token
             })
 
-            return getRefresh()
+            setItem('act', access_token)
+            setItem('rft', refresh_token)
+
+            return getItem('rft')
         }
 
     } catch (error) {
