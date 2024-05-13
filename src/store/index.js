@@ -4,7 +4,6 @@ import {
 import main from './modules/main'
 import courier from './modules/courier'
 import amocrm from './modules/amocrm'
-import reCaptcha from './modules/reCaptcha'
 
 const store = createStore({
     state() {},
@@ -13,8 +12,7 @@ const store = createStore({
     modules: {
         main,
         courier,
-        amocrm,
-        reCaptcha
+        amocrm
     }
 })
 export default store
