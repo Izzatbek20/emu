@@ -247,6 +247,7 @@ export default {
             }
         },
         async xabarSubmit() {
+
             let error = this.validateXabar()
 
             if (error) {
@@ -256,59 +257,60 @@ export default {
             if (!error) {
                 this.loading = true;
 
+                this.$recaptcha('login').then((token) => {
+                    this.$store.dispatch('createLeads', {
+                        "name": "Xabaringizni qoldiring",
+                        "created_by": 0,
+                        "custom_fields_values": [
+                            {
+                                "field_id": 532027,
+                                "values": [
+                                    {
+                                        "value": this.xabar.name.value
+                                    }
+                                ]
+                            },
+                            {
+                                "field_id": 535723,
+                                "values": [
+                                    {
+                                        "value": "+998" + this.xabar.phone.value
+                                    }
+                                ]
+                            },
+                            {
+                                "field_id": 535725,
+                                "values": [
+                                    {
+                                        "value": this.xabar.body.value
+                                    }
+                                ]
+                            }
+                        ],
+                        "tags_to_add": [
+                            {
+                                "name": "Xabar"
+                            }
+                        ]
+                    }).then(response => {
+                        this.isOpen = true
+                        this.loading = false;
 
-                this.$store.dispatch('createLeads', {
-                    "name": "Xabaringizni qoldiring",
-                    "created_by": 0,
-                    "custom_fields_values": [
-                        {
-                            "field_id": 532027,
-                            "values": [
-                                {
-                                    "value": this.xabar.name.value
-                                }
-                            ]
-                        },
-                        {
-                            "field_id": 535723,
-                            "values": [
-                                {
-                                    "value": "+998" + this.xabar.phone.value
-                                }
-                            ]
-                        },
-                        {
-                            "field_id": 535725,
-                            "values": [
-                                {
-                                    "value": this.xabar.body.value
-                                }
-                            ]
-                        }
-                    ],
-                    "tags_to_add": [
-                        {
-                            "name": "Xabar"
-                        }
-                    ]
-                }).then(response => {
-                    this.isOpen = true
-                    this.loading = false;
+                        if (response && response.data[1] == 200) {
 
-                    if (response && response.data[1] == 200) {
-
-                        // Fo'rmani tozalash
-                        this.$refs.formXabar.reset();
-                        this.xabar.name.value = null
-                        this.xabar.phone.value = null
-                        this.xabar.body.value = null
-                    } else {
-                        this.alert = {
-                            title: 'alertError.title',
-                            message: 'alertError.message'
+                            // Fo'rmani tozalash
+                            this.$refs.formXabar.reset();
+                            this.xabar.name.value = null
+                            this.xabar.phone.value = null
+                            this.xabar.body.value = null
+                        } else {
+                            this.alert = {
+                                title: 'alertError.title',
+                                message: 'alertError.message'
+                            }
                         }
-                    }
-                })
+                    })
+                });
             }
         },
         validateXabar() {

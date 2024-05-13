@@ -69,52 +69,53 @@ export default {
             if (!error) {
                 this.loading = true;
 
+                this.$recaptcha('login').then((token) => {
+                    this.$store.dispatch('createLeads', {
+                        "name": "Xizmatdan foydalanish",
+                        "created_by": 0,
+                        "custom_fields_values": [
+                            {
+                                "field_id": 532027,
+                                "values": [
+                                    {
+                                        "value": this.name.value
+                                    }
+                                ]
+                            },
+                            {
+                                "field_id": 535723,
+                                "values": [
+                                    {
+                                        "value": "+998" + this.phone.value
+                                    }
+                                ]
+                            },
+                        ],
+                        "tags_to_add": [
+                            {
+                                "name": "Xizmat"
+                            }
+                        ]
+                    }).then(response => {
 
-                this.$store.dispatch('createLeads', {
-                    "name": "Xizmatdan foydalanish",
-                    "created_by": 0,
-                    "custom_fields_values": [
-                        {
-                            "field_id": 532027,
-                            "values": [
-                                {
-                                    "value": this.name.value
-                                }
-                            ]
-                        },
-                        {
-                            "field_id": 535723,
-                            "values": [
-                                {
-                                    "value": "+998" + this.phone.value
-                                }
-                            ]
-                        },
-                    ],
-                    "tags_to_add": [
-                        {
-                            "name": "Xizmat"
+                        if (response && response.data[1] == 200) {
+                            this.responseModal = true
+                            this.loading = false;
+
+                            // Fo'rmani tozalash
+                            this.$refs.formXizmat.reset();
+                            this.name.value = null
+                            this.phone.value = null
+                        } else {
+                            this.responseModal = true
+                            this.loading = false;
+                            this.alert = {
+                                title: 'alertError.title',
+                                message: 'alertError.message'
+                            }
                         }
-                    ]
-                }).then(response => {
-
-                    if (response && response.data[1] == 200) {
-                        this.responseModal = true
-                        this.loading = false;
-
-                        // Fo'rmani tozalash
-                        this.$refs.formXizmat.reset();
-                        this.name.value = null
-                        this.phone.value = null
-                    } else {
-                        this.responseModal = true
-                        this.loading = false;
-                        this.alert = {
-                            title: 'alertError.title',
-                            message: 'alertError.message'
-                        }
-                    }
-                })
+                    })
+                });
             }
         },
         validate() {
