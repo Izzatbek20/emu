@@ -23,16 +23,16 @@
                     Xitoydan pochta buyurtma qilishning 6ta bosqichi
                 </b>
 
-                <div class="flex flex-col mt-8 w-full">
+                <div class="flex flex-col mt-8 w-full text-wrap">
                     <div>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="size-[60px] max-sm:size-[40px] border border-icon-gray rounded-2xl max-sm:rounded-xl">
+                        <div class="flex items-center gap-4 max-sm:gap-1.5">
+                            <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
+                                <Clipboard class="size-[60px] max-sm:size-[40px] " />
                             </div>
                             <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Saytda ro’yxatdan
                                 o’ting</span>
                         </div>
-                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[30px] w-[60px] flex justify-center">
+                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
                                 class="h-full max-sm:left-1 border-l-[1px] border-r-[1px] max-smborder-l-[0.5px] max-smborder-r-[0.5px] border-gray border-dashed relative flex items-center justify-center">
                                 <div class="size-7 max-sm:size-4 border border-gray absolute rounded-full bg-white">
@@ -47,15 +47,15 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="size-[60px] max-sm:size-[40px] border border-icon-gray rounded-2xl max-sm:rounded-xl">
+                        <div class="flex items-center gap-4 max-sm:gap-1.5">
+                            <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
+                                <ShoppingBag2 class="size-[60px] max-sm:size-[40px] " />
                             </div>
                             <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Xitoy onlayn
                                 do’konlaridan sotuvni
                                 amalga o’shiring</span>
                         </div>
-                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[30px] w-[60px] flex justify-center">
+                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
                                 class="h-full max-sm:left-1 border-l-[1px] border-r-[1px] max-smborder-l-[0.5px] max-smborder-r-[0.5px] border-gray border-dashed relative flex items-center justify-center">
                                 <div class="size-7 max-sm:size-4 border border-gray absolute rounded-full bg-white">
@@ -70,15 +70,15 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="size-[60px] max-sm:size-[40px] border border-icon-gray rounded-2xl max-sm:rounded-xl">
+                        <div class="flex items-center gap-4 max-sm:gap-1.5">
+                            <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
+                                <AddToCart class="size-[60px] max-sm:size-[40px] " />
                             </div>
                             <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotni
                                 ro’yxatdan
                                 o’tkazing</span>
                         </div>
-                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[30px] w-[60px] flex justify-center">
+                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
                                 class="h-full max-sm:left-1 border-l-[1px] border-r-[1px] max-smborder-l-[0.5px] max-smborder-r-[0.5px] border-gray border-dashed relative flex items-center justify-center">
                                 <div class="size-7 max-sm:size-4 border border-gray absolute rounded-full bg-white">
@@ -93,15 +93,15 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="size-[60px] max-sm:size-[40px] border border-icon-gray rounded-2xl max-sm:rounded-xl">
+                        <div class="flex items-center gap-4 max-sm:gap-1.5">
+                            <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
+                                <Barcode2 class="size-[60px] max-sm:size-[40px] " />
                             </div>
                             <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotingiz
                                 statusini
                                 aniqlang</span>
                         </div>
-                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[30px] w-[60px] flex justify-center">
+                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
                                 class="h-full max-sm:left-1 border-l-[1px] border-r-[1px] max-smborder-l-[0.5px] max-smborder-r-[0.5px] border-gray border-dashed relative flex items-center justify-center">
                                 <div class="size-7 max-sm:size-4 border border-gray absolute rounded-full bg-white">
@@ -116,15 +116,15 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="size-[60px] max-sm:size-[40px] border border-icon-gray rounded-2xl max-sm:rounded-xl">
+                        <div class="flex items-center gap-4 max-sm:gap-1.5">
+                            <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
+                                <DeilverBox class="size-[60px] max-sm:size-[40px] " />
                             </div>
                             <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotlaringizni
                                 bitta jo’natma
                                 qilib jo’nating</span>
                         </div>
-                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[30px] w-[60px] flex justify-center">
+                        <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
                                 class="h-full max-sm:left-1 border-l-[1px] border-r-[1px] max-smborder-l-[0.5px] max-smborder-r-[0.5px] border-gray border-dashed relative flex items-center justify-center">
                                 <div class="size-7 max-sm:size-4 border border-gray absolute rounded-full bg-white">
@@ -139,9 +139,9 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="size-[60px] max-sm:size-[40px] border border-icon-gray rounded-2xl max-sm:rounded-xl">
+                        <div class="flex items-center gap-4 max-sm:gap-1.5">
+                            <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
+                                <DeilverBox2 class="size-[60px] max-sm:size-[40px] " />
                             </div>
                             <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotingiz sizga
                                 10 -15 kun
@@ -241,6 +241,7 @@ export default {
 .slide-fade-leave-to {
     opacity: 0;
 }
+
 iframe {
     height: 619px !important;
 }

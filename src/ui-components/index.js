@@ -85,6 +85,16 @@ import CircleFlagsUz from './icons/CircleFlagsUz.vue';
 import CircleFlagsRu from './icons/CircleFlagsRu.vue';
 import CircleFlagsUk from './icons/CircleFlagsUk.vue';
 import Spinner from './Spinner.vue';
+import ShoppingBag from './icons/ShoppingBag.vue';
+import Marker4 from './icons/Marker4.vue';
+import Book from './icons/Book.vue';
+import Testimonial from './icons/Testimonial.vue';
+import Clipboard from './icons/Clipboard.vue';
+import ShoppingBag2 from './icons/ShoppingBag2.vue';
+import AddToCart from './icons/AddToCart.vue';
+import Barcode2 from './icons/Barcode2.vue';
+import DeilverBox from './icons/DeilverBox.vue';
+import DeilverBox2 from './icons/DeilverBox2.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -95,7 +105,10 @@ export default [
     Question, Docs, Plus, Minus, CloseX, Home, Ranking,
     Pdf, Edit, UserOctagon, SendRequest, ReceiveSquery,
     BoxTime, Barcode, Weight, BoxTick, WhereHouse, UserGroup,
-    Marker3, Map, Global, Truck, Container, CircleFlagsUz, CircleFlagsRu, CircleFlagsUk, Spinner,
+    Marker3, Map, Global, Truck, Container, CircleFlagsUz, 
+    CircleFlagsRu, CircleFlagsUk, Spinner, ShoppingBag, 
+    Marker4, Book, Testimonial, Clipboard, ShoppingBag2,
+    AddToCart, Barcode2, DeilverBox, DeilverBox2,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,

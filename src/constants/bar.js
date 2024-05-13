@@ -37,17 +37,17 @@ export const bizHaqimizda = [{
     },
     {
         title: "Hududiy menedjerlar",
-        icon: '',
+        icon: 'Marker4',
         link: 'hududiy'
     },
     {
         title: "Kompaniya yangiliklari",
-        icon: '',
+        icon: 'Book',
         link: 'yangiliklar'
     },
     {
         title: "Biz haqimizda fikrlar",
-        icon: '',
+        icon: 'Testimonial',
         link: 'fikirlar'
     },
 ]
@@ -89,7 +89,7 @@ export const xizmlatlar = [{
     },
     {
         title: "Ustama to’lovli pochta jo’natmalarini yetkazib berish",
-        icon: '',
+        icon: 'ShoppingBag',
         link: 'ustamaTolovli'
     },
     {
