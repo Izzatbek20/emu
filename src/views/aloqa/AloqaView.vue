@@ -263,7 +263,7 @@ export default {
                         "created_by": 0,
                         "custom_fields_values": [
                             {
-                                "field_id": 532027,
+                                "field_id": 2008581,
                                 "values": [
                                     {
                                         "value": this.xabar.name.value
@@ -271,7 +271,7 @@ export default {
                                 ]
                             },
                             {
-                                "field_id": 535723,
+                                "field_id": 2008583,
                                 "values": [
                                     {
                                         "value": "+998" + this.xabar.phone.value
@@ -279,7 +279,7 @@ export default {
                                 ]
                             },
                             {
-                                "field_id": 535725,
+                                "field_id": 2008585,
                                 "values": [
                                     {
                                         "value": this.xabar.body.value

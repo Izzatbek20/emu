@@ -75,7 +75,7 @@ export default {
                         "created_by": 0,
                         "custom_fields_values": [
                             {
-                                "field_id": 532027,
+                                "field_id": 2008581,
                                 "values": [
                                     {
                                         "value": this.name.value
@@ -83,7 +83,7 @@ export default {
                                 ]
                             },
                             {
-                                "field_id": 535723,
+                                "field_id": 2008583,
                                 "values": [
                                     {
                                         "value": "+998" + this.phone.value
