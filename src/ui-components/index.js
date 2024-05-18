@@ -95,6 +95,7 @@ import AddToCart from './icons/AddToCart.vue';
 import Barcode2 from './icons/Barcode2.vue';
 import DeilverBox from './icons/DeilverBox.vue';
 import DeilverBox2 from './icons/DeilverBox2.vue';
+import InputSelectFilter from './InputSelectFilter.vue';
 
 export default [
     Telegram, Facebook, Instagram, Kafolat, Onlayn,
@@ -108,7 +109,7 @@ export default [
     Marker3, Map, Global, Truck, Container, CircleFlagsUz, 
     CircleFlagsRu, CircleFlagsUk, Spinner, ShoppingBag, 
     Marker4, Book, Testimonial, Clipboard, ShoppingBag2,
-    AddToCart, Barcode2, DeilverBox, DeilverBox2,
+    AddToCart, Barcode2, DeilverBox, DeilverBox2, InputSelectFilter,
 
     Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
