@@ -15,9 +15,9 @@
                     <div class="flex-1">
                         <h2 class="h4 mb-8">Jo’natuvchi</h2>
 
-                        <InputPreview label="Viloyat" value="Farg'ona" class="mb-6" />
-                        <InputPreview label="Tuman" value="Tioshloqa tumani" class="mb-6" />
-                        <InputPreview label="Kuryer chaqirish" value="Yo'q" class="mb-6" />
+                        <InputPreview label="Viloyat" :value="calculator.from.viloyat" class="mb-6" />
+                        <InputPreview label="Tuman" :value="calculator.from.city" class="mb-6" />
+                        <InputPreview label="Kuryer chaqirish" :value="calculator.from.kuryerChaqirish" class="mb-6" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -28,15 +28,18 @@
                     </div>
                     <div class="flex-1">
                         <h2 class="h4 mb-8">Qabul qiluvchi</h2>
-                        <InputPreview label="Viloyat" value="Farg'ona" class="mb-6" />
-                        <InputPreview label="Tuman" value="Tioshloqa tumani" class="mb-6" />
-                        <InputPreview label="Kuryer chaqirish" value="Yo'q" class="mb-6" />
+                        <InputPreview label="Viloyat" :value="calculator.to.viloyat" class="mb-6" />
+                        <InputPreview label="Tuman" :value="calculator.to.city" class="mb-6" />
+                        <InputPreview label="Kuryer chaqirish" :value="calculator.to.kuryerChaqirish" class="mb-6" />
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <InputPreview label="Korobka" value="Kenglik 10sm, Uzunlik 15 sm, Balandlik 20sm"
+                    <InputPreview v-if="calculator.korobka.w || calculator.korobka.h || calculator.korobka.l"
+                        label="Korobka"
+                        :value="`Kenglik ${calculator.korobka.w}${$t('olchovBirligi.sm')}, Uzunlik ${calculator.korobka.l}${$t('olchovBirligi.sm')}, Balandlik ${calculator.korobka.h}${$t('olchovBirligi.sm')}`"
                         class="mt-10 mb-6" />
-                    <InputPreview label="Og’irlik" value="1 kg" class="mb-8" />
+                    <InputPreview v-if="calculator.weight" label="Og’irlik"
+                        :value="calculator.weight + ' ' + $t('olchovBirligi.kg')" class="mb-8" />
                 </div>
                 <hr class="text-color_active">
 
@@ -44,10 +47,10 @@
                     Natija:
                 </div>
                 <div class="h3-2 text-violet">
-                    17 000 so’m
+                    {{ Intl.NumberFormat('uz-UZ', { maximumSignificantDigits: 3 }).format(calculator.price) }} so’m
                 </div>
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonOranger title="Qayta xisoblash" />
+                    <ButtonOranger @click="$router.go(-1)" title="Qayta xisoblash" />
                 </div>
 
             </div>
@@ -64,25 +67,34 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true
+
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
+    computed: {
+        ...mapState({
+            calculator: state => state.courier.calculator,
+        })
+    },
     methods: {
+        checkCalculator() {
+            if (!this.calculator.from.viloyat || !this.calculator.from.viloyat) {
+                this.$router.go(-1)
+            }
+        }
     },
     mounted() {
+        this.checkCalculator()
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 
@@ -95,7 +107,7 @@ export default {
             pinSpacing: true,
 
         });
-    }
+    },
 }
 </script>
 

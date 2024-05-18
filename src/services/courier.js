@@ -1,22 +1,8 @@
 import axios from "axios"
 
 const courierService = {
-    getViloyat(xml) {
-        return axios.post('https://home.courierexe.ru/api', xml, {
-            headers: {
-                'Content-Type': 'application/xml'
-            }
-        })
-    },
-    getPunkit(xml) {
-        return axios.post('https://home.courierexe.ru/api', xml, {
-            headers: {
-                'Content-Type': 'application/xml'
-            }
-        })
-    },
-    orderStatus(xml) {
-        return axios.post('https://home.courierexe.ru/api', xml, {
+    apiPost(actions, xml) {
+        return axios.post(`${import.meta.env.VITE_EMU_API_ORIGIN}/courierexe/api?actions=${actions}`, xml, {
             headers: {
                 'Content-Type': 'application/xml'
             }

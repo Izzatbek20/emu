@@ -9,7 +9,7 @@ import {
 
 const axiosAmocrm = axios.create({
     // Base url
-    baseURL: import.meta.env.VITE_AMOCRM_SUBDOMAIN,
+    baseURL: import.meta.env.VITE_EMU_API_ORIGIN,
     headers: {
         "Content-Type": "application/json",
     },

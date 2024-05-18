@@ -42,6 +42,8 @@
     },
     "validate": {
         "required": "To'ldirish shart",
+        "hasNot": "Bunda shahar yoki tuman mavjud emas",
+        "limitWeight": "Ruxsat etilgan chegaradan ko'p kiritildi",
         "phone": "Telefon raqam kiriting"
     },
     "notFound": {
@@ -72,6 +74,10 @@
     "alertSuccess": {
         "title": "Bog‘lanish",
         "message": "Tez orada sizga javob bilan qaytamiz."
+    },
+    "olchovBirligi": {
+        "kg": "kg",
+        "sm": "sm"
     },
     "emuExpressHaqida": "EMU Express haqida",
     "komandaFaoliyati": "Komanda faoliyati",

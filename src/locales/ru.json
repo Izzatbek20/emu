@@ -42,6 +42,8 @@
     },
     "validate": {
         "required": "Требуется заполнение",
+        "hasNot": "Не включает город или район",
+        "limitWeight": "Введено больше разрешенного лимита",
         "phone": "Введите номер телефона"
     },
     "notFound": {
@@ -72,6 +74,10 @@
     "alertSuccess": {
         "title": "Соединять",
         "message": "Мы скоро свяжемся с вами с ответом"
+    },
+    "olchovBirligi": {
+        "kg": "kg",
+        "sm": "cm"
     },
     "emuExpressHaqida": "О компании EMU Express",
     "komandaFaoliyati": "Деятельность команды",
