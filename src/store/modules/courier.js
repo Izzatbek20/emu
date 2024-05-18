@@ -83,7 +83,7 @@ const actions = {
     },
     getPunkit(context, xml) {
         return new Promise((resolve, reject) => {
-            courierService.apiPost(notAuth, xml)
+            courierService.apiPost(auth, xml)
                 .then(response => {
                     if (response.data) {
                         const parser = new XMLParser();
@@ -102,7 +102,7 @@ const actions = {
     },
     orderStatue(context, xml) {
         return new Promise((resolve, reject) => {
-            courierService.apiPost(notAuth, xml)
+            courierService.apiPost(extra, xml)
                 .then(response => {
                     if (response.data) {
                         const parser = new XMLParser();

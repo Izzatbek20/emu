@@ -64,6 +64,12 @@ import Bar from '@/components/Bar.vue';
 import Corusel from './Corusel.vue';
 import BarGorizontal from './BarGorizontal.vue';
 import { mapState } from 'vuex';
+import { XMLBuilder } from 'fast-xml-parser';
+const build = new XMLBuilder({
+    attributeNamePrefix: '@', // Atributlarni belgilash
+    textNodeName: '#text', // Matn elementlari nomini belgilash
+    ignoreAttributes: false // Atributlarni o'xtirmashtirish
+});
 
 export default {
     data() {
@@ -107,7 +113,11 @@ export default {
                 return
             }
 
-            this.$store.dispatch("orderStatue", `<?xml version="1.0" encoding="UTF-8"?><tracking><extra>245</extra><orderno>${this.order_id.value}</orderno></tracking>`).then(response => {
+            this.$store.dispatch("orderStatue", build.build({
+                "tracking": {
+                    "orderno": this.order_id.value
+                }
+            })).then(response => {
                 if (!response.tracking) {
                     this.order_not = "ID topilmadi"
                 } else {

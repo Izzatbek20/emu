@@ -47,7 +47,7 @@
                                         v-for="(pvz, i) in punkit.pvz">
                                         <div
                                             class=" flex  bg-white flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
-                                            <div class="h6">{{ pvz.name }}</div>
+                                            <!-- <div class="h6">{{ pvz.name }}</div> -->
                                             <div class="flex items-start gap-2">
                                                 <Marker class="size-5" />
                                                 <div class="flex flex-col items-start">
@@ -76,7 +76,7 @@
                                     <SplideSlide v-else-if="punkit">
                                         <div
                                             class=" flex  bg-white flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
-                                            <div class="h6">{{ punkit.pvz.name }}</div>
+                                            <!-- <div class="h6">{{ punkit.pvz.name }}</div> -->
                                             <div class="flex items-start gap-2">
                                                 <Marker class="size-5" />
                                                 <div class="flex flex-col items-start">
@@ -165,6 +165,12 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
+import { XMLBuilder } from 'fast-xml-parser';
+const build = new XMLBuilder({
+    attributeNamePrefix: '@', // Atributlarni belgilash
+    textNodeName: '#text', // Matn elementlari nomini belgilash
+    ignoreAttributes: false // Atributlarni o'xtirmashtirish
+});
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -265,29 +271,26 @@ export default {
             this.current_region_name = val;
         },
         getViloyat() {
-            this.$store.dispatch('getViloyat', `
-            <?xml version="1.0" encoding="UTF-8"?>
-            <regionlist>
-            <conditions>
-                <country>UZ</country>
-            </conditions>
-            </regionlist>
-            `)
+            this.$store.dispatch('getViloyat', build.build({
+                "regionlist": {
+                    "conditions": {
+                        "country": "UZ"
+                    }
+                }
+            }))
         },
         getPunkit() {
-            this.$store.dispatch('getPunkit', `
-            <?xml version="1.0" encoding="UTF-8" ?>
-            <pvzlist>
-            <auth extra="245"></auth>
-            <city>${this.current_region}</city>
-            <with_coords>YES</with_coords>
-            <limit>
-                <limitfrom>0</limitfrom>
-                <limitcount>500</limitcount>
-                <countall>YES</countall>
-            </limit>
-            </pvzlist>
-            `)
+            this.$store.dispatch('getPunkit', build.build({
+                "pvzlist": {
+                    "city": this.current_region,
+                    "with_coords": "YES",
+                    "limit": {
+                        "limitfrom": 0,
+                        "limitcount": 500,
+                        "countall": "YES",
+                    }
+                }
+            }))
         },
         // Oynaning o'lchamlarini yangilash
         updateWindowSize() {
