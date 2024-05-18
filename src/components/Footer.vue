@@ -108,14 +108,14 @@
                     <!-- <span class="txt-micro">
                         <a href="http://" target="_blank" rel="noopener noreferrer">Crud Group</a>
                     </span> -->
-                    <div class="flex items-center gap-1">
+                    <a href="https://perfectmedia.uz" target="_blank" class="flex items-center gap-1">
                         <img :src="perfectMedia" alt="" class="size-8">
                         <div class="leading-none txt-micro">
                             <span class="font-bold text-[13px]">Perfect Media</span><br><span
                                 class=" tracking-wide">разработка
                                 сайтов</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
