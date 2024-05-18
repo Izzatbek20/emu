@@ -56,15 +56,8 @@ import image3 from '@/assets/images/slide/3.png';
 import image4 from '@/assets/images/slide/4.png';
 import image5 from '@/assets/images/slide/5.png';
 
-
-// Xizmatlar
-import kuryer_xizmati from '@/assets/images/kuryer-xizmati.png'
-import xalqaro_yetkazish from '@/assets/images/xalqaro-yetkazish.png'
-import usltaman_tolov from '@/assets/images/usltaman-tolov.png'
-import fullfilment from '@/assets/images/fullfilment.png'
-import individual from '@/assets/images/individual.png'
-import kargo from '@/assets/images/kargo.png'
 import Title from '@/components/Title.vue';
+import { xizmlatlar } from '@/constants/xizmatlar';
 
 
 export default {
@@ -95,32 +88,7 @@ export default {
                     image: image5
                 },
             ],
-            xizmatlar: [
-                {
-                    title: 'Kuryer xizmati',
-                    image: kuryer_xizmati
-                },
-                {
-                    title: 'Xalqaro yetkazib berish',
-                    image: xalqaro_yetkazish
-                },
-                {
-                    title: 'Ustama to’lovli pochta jo’natmalarini yetkazib berish',
-                    image: usltaman_tolov
-                },
-                {
-                    title: 'Fullfilment xizmati',
-                    image: fullfilment
-                },
-                {
-                    title: 'Individual yuk tashish xizmati',
-                    image: individual
-                },
-                {
-                    title: 'EMU kargo',
-                    image: kargo
-                }
-            ]
+            xizmatlar: xizmlatlar
         }
     }
 }

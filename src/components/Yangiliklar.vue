@@ -1,25 +1,25 @@
 <template>
     <Splide :has-track="false" :options="options" aria-label="Hududlar" class="mt-10">
-        <SplideTrack class="flex flex-row gap-7 flex-wrap">
-
-            <template v-for="(data, index) in datas" :key="index">
-                <SplideSlide class="w-[32.5%] ">
-                    <div
-                        class="p-6 max-xl:p-5 max-md:p-4 bg-white flex flex-col items-start rounded-[2rem] cursor-pointer">
-                        <div class="w-full h-[15rem] max-lg:h-[10rem] rounded-xl bg-no-repeat bg-center bg-cover"
-                            :style="{ backgroundImage: `url(${data.image})` }">
-                        </div>
-                        <div class="flex items-center gap-1 mt-1 mb-1.5">
-                            <Calendar class="size-4 max-md:size-3.5" />
-                            <span class="txt-micro text-gray">{{ data.date }}</span>
-                        </div>
-                        <h2 class="h4 max-lg:h5 text-orange mb-0.5">{{ data.title }}</h2>
-                        <div class="txt-small max-md:txt-micro max-md:font-normal line-clamp-3">{{ data.body }}
-                        </div>
+        <SplideTrack class="flex flex-row gap-7 mt-10 flex-wrap">
+            <SplideSlide v-for="(data, index) in datas" :key="index" class="w-[32.5%] max-sm:w-[26.5%]">
+                <div
+                    class="p-6 max-xl:p-5 max-md:p-4 h-full w-full bg-white flex flex-col items-start gap-3 max-xl:gap-2 rounded-[2rem]">
+                    <router-link :to="{ name: 'yangilik', params: { id: data.id } }"
+                        class="relative w-full h-[17rem] max-lg:h-[10rem] rounded-xl bg-no-repeat bg-center bg-cover"
+                        :style="{ backgroundImage: `url(${data.image})` }">
+                    </router-link>
+                    <div class="flex items-center gap-1 mt-1 mb-1.5">
+                        <Calendar class="size-4 max-md:size-3.5" />
+                        <span class="txt-micro text-gray"> 02.02.2024</span>
                     </div>
-                </SplideSlide>
-            </template>
-
+                    <router-link :to="{ name: 'yangilik', params: { id: data.id } }">
+                        <h2 class="h4 max-xl:h5 max-md:h6 text-orange text-wrap" v-html="data.title"></h2>
+                    </router-link>
+                    <span class="text-base max-xl:txt-micro max-md:txt-micro-2 font-normal">{{ data.short }}</span>
+                    <div class="txt-small max-md:txt-micro max-md:font-normal space line-clamp-3" v-html="data.body">
+                    </div>
+                </div>
+            </SplideSlide>
         </SplideTrack>
         <div class="splide__arrows">
             <div class="splide__arrow_in">
@@ -38,10 +38,6 @@
 <script>
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
 
-import image1 from '@/assets/images/news_1.png';
-import image2 from '@/assets/images/news_2.png';
-import image3 from '@/assets/images/news_3.png';
-
 // Default theme
 import '@splidejs/vue-splide/css';
 
@@ -51,6 +47,7 @@ import '@splidejs/vue-splide/css/sea-green';
 
 // or only core styles
 import '@splidejs/vue-splide/css/core';
+import { data } from '@/constants/news';
 
 
 export default {
@@ -61,33 +58,7 @@ export default {
     },
     data() {
         return {
-            datas: [
-                {
-                    'title': 'Yangilik nomi',
-                    'body': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptas dolor natus eaque illum mollitia molestiae. Odio minus nisi ipsam aliquid at in vitae corrupti iste repellat cumque, esse debitis.',
-                    'date': '02.02.2024',
-                    'image': image1
-                },
-                {
-                    'title': 'Yangilik nomi',
-                    'body': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptas dolor natus eaque illum mollitia molestiae. Odio minus nisi ipsam aliquid at in vitae corrupti iste repellat cumque, esse debitis.',
-                    'date': '02.02.2024',
-                    'image': image2
-                },
-                {
-                    'title': 'Yangilik nomi',
-                    'body': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptas dolor natus eaque illum mollitia molestiae. Odio minus nisi ipsam aliquid at in vitae corrupti iste repellat cumque, esse debitis.',
-                    'date': '02.02.2024',
-                    'image': image3
-                },
-                {
-                    'title': 'Yangilik nomi',
-                    'body': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptas dolor natus eaque illum mollitia molestiae. Odio minus nisi ipsam aliquid at in vitae corrupti iste repellat cumque, esse debitis.',
-                    'date': '02.02.2024',
-                    'image': image2
-                },
-
-            ]
+            datas: data['uz']
         }
     },
     setup() {
@@ -95,7 +66,7 @@ export default {
             focus: 'left',
             autoWidth: true,
             // rewind: true,
-            gap: '2rem',
+            gap: '1rem',
             classes: {
                 // Add classes for arrows.
                 arrows: 'splide__arrows your-class-arrows',

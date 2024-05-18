@@ -96,7 +96,8 @@
                                 <div class="h7 max-lg:txt-micro-2-600">
                                     Savol yoki takliflar bo’yicha
                                 </div>
-                                <ButtonWhiteViolety title="Biz bilan bog’lanish" titleClass="h7 max-lg:txt-micro-2-600"
+                                <ButtonWhiteViolety @click="$router.push({ name: 'aloqa' })"
+                                    title="Biz bilan bog’lanish" titleClass="h7 max-lg:txt-micro-2-600"
                                     class="mt-4 p-0" />
                             </div>
                         </div>
@@ -104,9 +105,17 @@
                 </div>
                 <div class="flex justify-between items-ceneter mt-10">
                     <span class="txt-micro">2024 EMU</span>
-                    <span class="txt-micro">
+                    <!-- <span class="txt-micro">
                         <a href="http://" target="_blank" rel="noopener noreferrer">Crud Group</a>
-                    </span>
+                    </span> -->
+                    <div class="flex items-center gap-1">
+                        <img :src="perfectMedia" alt="" class="size-8">
+                        <div class="leading-none txt-micro">
+                            <span class="font-bold text-[13px]">Perfect Media</span><br><span
+                                class=" tracking-wide">разработка
+                                сайтов</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,13 +123,15 @@
 </template>
 <script>
 import { menus } from '@/constants/footer';
+import perfectMedia from '@/assets/images/logo/perfectMedia.png'
 
 
 export default {
     data() {
         return {
             show: true,
-            menus: menus
+            menus: menus,
+            perfectMedia: perfectMedia
         }
     },
     mounted() {

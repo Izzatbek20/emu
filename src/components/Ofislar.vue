@@ -2,7 +2,7 @@
 
     <div class="mt-10 p-10 max-xl:p-5 bg-white flex flex-row max-lg:flex-col gap-7 rounded-3xl">
         <div class="flex-1 py-3">
-            <MapUzb class="w-full  max-md:h-56" />
+            <MapUzb @mapSelect="mapSelect" :active="current_region_name" class="w-full  max-md:h-56" />
         </div>
         <div class="flex-1 w-[50%] max-lg:w-[100%] z-0 flex flex-col gap-8 ">
             <Title class="pt-0 text-start">
@@ -10,26 +10,26 @@
             </Title>
             <Splide :has-track="false" :options="optionsRegion" aria-label="Ofislar">
                 <SplideTrack class="overflow-hidden cursor-ew-resize">
-                    <SplideSlide v-for="(region, index) in regions">
-                        <span class="font-bold mr-5 text-nowrap cursor-pointer h-full"
-                            :class="index == 0 ? 'text-violet text-3xl max-xl:h5' : 'text-icon-gray max-xl:h7 h4'">
-                            {{ region }}
+                    <SplideSlide v-if="viloyat" v-for="(item, index) in viloyat.city">
+                        <span @click="selectRegion(item)" v-if="index != 0"
+                            class="font-bold mr-5 text-nowrap cursor-pointer h-full flex items-end"
+                            :class="item.name == current_region_name ? 'text-violet text-3xl max-xl:h5' : 'text-icon-gray max-xl:h7 h4'">
+                            {{ $t('viloyat.' + item.name) }}
                         </span>
                     </SplideSlide>
                 </SplideTrack>
             </Splide>
 
-            <Splide :has-track="false" :options="options" aria-label="Hududlar">
+            <Splide :has-track="false" ref="splide" :options="options" aria-label="Hududlar">
                 <SplideTrack class="overflow-hidden cursor-ew-resize">
-                    <SplideSlide>
+                    <SplideSlide v-if="punkit && typeof punkit.pvz[0] == 'object'" v-for="(pvz, i) in punkit.pvz">
                         <div
                             class=" flex  bg-white flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
                             <div class="flex items-start gap-2">
                                 <Marker class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Manzil</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
-                                        35
+                                    <div class="txt-small">{{ pvz.address }}
                                     </div>
                                 </div>
                             </div>
@@ -37,8 +37,7 @@
                                 <Marker2 class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Moljal</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
-                                        35
+                                    <div class="txt-small">{{ pvz.traveldescription }}
                                     </div>
                                 </div>
                             </div>
@@ -46,20 +45,19 @@
                                 <Phone class="h-4" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Tel.raqam</div>
-                                    <div class="txt-small">+998 71 200 96-69</div>
+                                    <div class="txt-small">+{{ pvz.phone }}</div>
                                 </div>
                             </div>
                         </div>
                     </SplideSlide>
-                    <SplideSlide>
+                    <SplideSlide v-else-if="punkit">
                         <div
                             class="flex  bg-white flex-col w-80 p-5 items-start gap-3 border border-line-gray rounded-2xl">
                             <div class="flex items-start gap-2">
                                 <Marker class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Manzil</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
-                                        35
+                                    <div class="txt-small">{{ punkit.pvz.address }}
                                     </div>
                                 </div>
                             </div>
@@ -67,8 +65,7 @@
                                 <Marker2 class="size-5" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Moljal</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
-                                        35
+                                    <div class="txt-small">{{ punkit.pvz.traveldescription }}
                                     </div>
                                 </div>
                             </div>
@@ -76,36 +73,7 @@
                                 <Phone class="h-4" />
                                 <div class="flex flex-col items-start">
                                     <div class="h6">Tel.raqam</div>
-                                    <div class="txt-small">+998 71 200 96-69</div>
-                                </div>
-                            </div>
-                        </div>
-                    </SplideSlide>
-                    <SplideSlide>
-                        <div class="flex flex-col w-80 p-5 items-start gap-3 border border-line-gray rounded-2xl">
-                            <div class="flex items-start gap-2">
-                                <Marker class="size-5" />
-                                <div class="flex flex-col items-start">
-                                    <div class="h6">Manzil</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
-                                        35
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <Marker2 class="size-5" />
-                                <div class="flex flex-col items-start">
-                                    <div class="h6">Moljal</div>
-                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi,
-                                        35
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <Phone class="h-4" />
-                                <div class="flex flex-col items-start">
-                                    <div class="h6">Tel.raqam</div>
-                                    <div class="txt-small">+998 71 200 96-69</div>
+                                    <div class="txt-small">+{{ punkit.pvz.phone }}</div>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +97,12 @@
 <script>
 import Title from './Title.vue';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
+import { XMLBuilder } from 'fast-xml-parser';
+const build = new XMLBuilder({
+    attributeNamePrefix: '@', // Atributlarni belgilash
+    textNodeName: '#text', // Matn elementlari nomini belgilash
+    ignoreAttributes: false // Atributlarni o'xtirmashtirish
+});
 
 // Default theme
 import '@splidejs/vue-splide/css';
@@ -139,6 +113,8 @@ import '@splidejs/vue-splide/css/sea-green';
 
 // or only core styles
 import '@splidejs/vue-splide/css/core';
+import { mapState } from 'vuex';
+import { ref } from 'vue';
 
 export default {
     components: {
@@ -149,6 +125,8 @@ export default {
     },
     data() {
         return {
+            current_region: 1458,
+            current_region_name: "Андижанская область",
             regions: [
                 'Toshkent viloyati',
                 'Andijon viloyati',
@@ -166,6 +144,8 @@ export default {
         }
     },
     setup() {
+        const splide = ref();
+        const splideActiveIndex = ref(0);
         const options = {
             focus: 'left',
             autoWidth: true,
@@ -192,8 +172,71 @@ export default {
             gap: '1rem'
         };
 
-        return { options, optionsRegion };
+        return { options, optionsRegion, splide, splideActiveIndex };
     },
+    computed: {
+        ...mapState({
+            viloyat: state => state.courier.viloyat,
+            punkit: state => state.courier.punkit,
+        }),
+    },
+    watch: {
+        current_region_name(newVal, oldVal) {
+            this.getPunkit()
+        },
+    },
+    methods: {
+        selectRegion(region) {
+            this.current_region = region.code;
+            this.current_region_name = region.name;
+            this.element()
+        },
+        mapSelect(val) {
+            this.current_region = this.viloyat.city.find(item => item.name == val).code;
+            this.current_region_name = val;
+        },
+        getViloyat() {
+            this.$store.dispatch('getViloyat', build.build({
+                "regionlist": {
+                    "conditions": {
+                        "country": "UZ"
+                    }
+                }
+            }))
+        },
+        getPunkit() {
+            this.$store.dispatch('getPunkit', build.build({
+                "pvzlist": {
+                    "city": this.current_region,
+                    "with_coords": "YES",
+                    "limit": {
+                        "limitfrom": 0,
+                        "limitcount": 500,
+                        "countall": "YES",
+                    }
+                }
+            }))
+        },
+        // Oynaning o'lchamlarini yangilash
+        updateWindowSize() {
+            this.windowWidth = window.innerWidth;
+        },
+        element() {
+            if (this.viloyat.city) {
+                this.viloyat.city.forEach((element, index) => {
+                    if (this.$route.name == element.link) {
+                        this.splideActiveIndex = index
+                    }
+                });
+            }
+        }
+    },
+    mounted() {
+        this.getViloyat()
+        this.getPunkit()
+
+        this.$refs.splide.splide.go(this.splideActiveIndex);
+    }
 }
 
 

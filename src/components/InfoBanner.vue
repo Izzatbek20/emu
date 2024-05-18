@@ -1,16 +1,20 @@
 <template>
     <div class="rounded-3xl mt-20 relative h-64 max-md:h-[30rem] p-10 overflow-hidden" :class="bgColor">
-        <div class="w-3/4 max-md:w-full grid grid-row-2 gap-8">
+        <div class="w-3/4 max-md:w-full grid grid-row-2 gap-8" @click="click">
             <h2 class="h2 max-xl:h3 max-lg:h4 text-white z-50 tracking-normal">{{ title }}</h2>
             <component :is="button" :title="bgTitle" class="z-50"></component>
         </div>
         <img :src="image" alt="image-1" srcset="" class="absolute right-0 bottom-0">
+
+        <!-- Modal -->
+        <XizmatModal v-if="type == 1" title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
     </div>
 </template>
 <script>
 import image1 from '@/assets/images/img_1.png'
 import image2 from '@/assets/images/img_2.png'
 import image3 from '@/assets/images/img_3.png'
+import XizmatModal from '@/ui-components/XizmatModal.vue';
 
 export default {
     props: {
@@ -33,8 +37,25 @@ export default {
     },
     data() {
         return {
+            isOpen: false,
             image: image1,
             button: 'ButtonWhiteOrange'
+        }
+    },
+    components: {
+        XizmatModal
+    },
+    methods: {
+        click() {
+            if (this.type == 1) {
+                this.isOpen = true
+            }
+            if (this.type == 2) {
+                window.open('https://t.me/emuadmin_bot', '_blank')
+            }
+        },
+        closeModal() {
+            this.isOpen = false
         }
     },
     mounted() {
