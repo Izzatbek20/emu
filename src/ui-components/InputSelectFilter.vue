@@ -24,12 +24,13 @@
             <!-- Dropdown Menu -->
             <div v-if="open && !disabled"
                 class="absolute mt-2 z-10 bg-white left-0 shadow-2xl max-h-60 overflow-x-auto appearance-none rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors">
-                <ul class="max-h-[200px] overflow-auto pr-2.5 divide-y-[1.5px] divide-icon-gray">
-                    <li class="px-4 py-2 text-gray">
-                        {{ placeholder ?? label }}
+                <ul class="dropdown-menu max-h-[200px] overflow-auto divide-y-[2px] divide-line-gray px-4 pr-4">
+                    <li v-if="optionsData.length == 0" class="py-3 text-gray  flex justify-center">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2" />
                     </li>
-                    <li v-for="(option, index) in optionsData" :key="index" @click="selectOption(option[valueAttr])"
-                        class="text-gray-500 px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-violet">
+                    <li v-if="optionsData" v-for="(option, index) in optionsData" :key="index"
+                        @click="selectOption(option[valueAttr])"
+                        class="py-3 text-gray-500 hover:bg-gray-100 cursor-pointer hover:text-violet">
                         {{ option.name }}
                     </li>
                 </ul>
@@ -60,7 +61,7 @@ export default {
         },
         optionsData: {
             type: Array,
-            default: []
+            default: null
         },
         type: {
             type: String,
@@ -75,8 +76,10 @@ export default {
     },
     computed: {
         selectedOptionName() {
-            const selectedOption = this.optionsData.find(option => option[this.valueAttr] === this.modelValue);
-            return selectedOption ? selectedOption.name : '';
+            if (this.optionsData) {
+                const selectedOption = this.optionsData.find(option => option[this.valueAttr] === this.modelValue);
+                return selectedOption ? selectedOption.name : '';
+            }
         }
     },
     methods: {

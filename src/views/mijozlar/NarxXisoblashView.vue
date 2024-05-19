@@ -19,10 +19,11 @@
                         <InputSelect label="Viloyat" v-model="from.viloyat.value" :error="from.viloyat.error"
                             :disabled="loading" :optionsData="viloyatFilter" @change="getCitysFrom" />
                         <InputSelectFilter label="Tuman" v-model="from.city.value" :error="from.city.error"
-                            :optionsData="city.from" :disabled="loading || from.viloyat.value ? false : true"
+                            :optionsData="city.from" :disabled="!loading && from.viloyat.value ? false : true"
                             @change="validateKeyupFrom" />
                         <InputSelect label="Kuryer chaqirish" class="w-[50%]" v-model="from.kuryerChaqirish.value"
-                            :error="from.kuryerChaqirish.error" :disabled="loading" :optionsData="kuryerChaqirish" />
+                            :error="from.kuryerChaqirish.error" :disabled="loading" :optionsData="kuryerChaqirish"
+                            :valueAttr="'code'" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -36,10 +37,11 @@
                         <InputSelect label="Viloyat" v-model="to.viloyat.value" :error="to.viloyat.error"
                             :disabled="loading" :optionsData="viloyatFilter" @change="getCitysTo" />
                         <InputSelectFilter label="Tuman" v-model="to.city.value" :error="to.city.error"
-                            :optionsData="city.to" :disabled="loading || to.viloyat.value ? false : true"
+                            :optionsData="city.to" :disabled="!loading && to.viloyat.value ? false : true"
                             @change="validateKeyupTo" />
                         <InputSelect label="Kuryer chaqirish" class="w-[50%]" v-model="to.kuryerChaqirish.value"
-                            :error="to.kuryerChaqirish.error" :disabled="loading" :optionsData="kuryerChaqirish" />
+                            :error="to.kuryerChaqirish.error" :disabled="loading" :optionsData="kuryerChaqirish"
+                            :valueAttr="'code'" />
                     </div>
                 </div>
                 <div class="flex felx-col">
@@ -99,10 +101,7 @@ const build = new XMLBuilder({
 export default {
     data() {
         return {
-            kuryerChaqirish: [
-                { name: "Xa", code: "Xa" },
-                { name: "Yo'q", code: "Yo'q" }
-            ],
+            kuryerChaqirish: [],
             from: {
                 viloyat: {
                     value: null,
@@ -159,6 +158,7 @@ export default {
     computed: {
         ...mapState({
             viloyat: state => state.courier.viloyat,
+            services: state => state.courier.services
         })
     },
     components: {
@@ -171,6 +171,12 @@ export default {
                     "conditions": {
                         "country": 'UZ'
                     }
+                }
+            }))
+        },
+        getService(viloyat, city = null) {
+            this.$store.dispatch('getService', build.build({
+                "services": {
                 }
             }))
         },
@@ -244,6 +250,7 @@ export default {
                                     "town": this.from.city.value
                                 },
                                 "weight": this.weight.value,
+                                "service": this.to.kuryerChaqirish.value,
                                 "packages": {
                                     "package": {
                                         "@width": this.w.value ?? 1,
@@ -418,10 +425,16 @@ export default {
                 this.getCitysTo(this.to.viloyat.value, kirillga(newVal))
             }
         },
+        'services.service': function (newVal, oldVal) {
+            if (newVal) {
+                this.kuryerChaqirish = newVal
+            }
+        },
     },
     mounted() {
         // Viloyatlar
         this.getViloyat()
+        this.getService()
 
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");

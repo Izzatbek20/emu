@@ -10,6 +10,7 @@ const extra = "extra"
 const state = {
     viloyat: null,
     punkit: null,
+    services: null,
     orderStatus: null,
     calculator: {
         to: {
@@ -46,6 +47,9 @@ const mutations = {
     setOrderStatus(state, payload) {
         state.orderStatus = payload
     },
+    setServices(state, payload) {
+        state.services = payload
+    },
     setCalculator(state, payload) {
         state.calculator = payload
     }
@@ -74,6 +78,25 @@ const actions = {
                     const parser = new XMLParser();
                     const jsonData = parser.parse(response.data);
                     resolve(jsonData.townlist)
+                })
+                .catch(error => {
+                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    reject(error.response ? error.response.data : error)
+                });
+        })
+    },
+    getService(context, xml) {
+        return new Promise((resolve, reject) => {
+            courierService.apiPost(auth, xml)
+                .then(response => {
+                    if (response.data) {
+                        const parser = new XMLParser();
+                        const jsonData = parser.parse(response.data);
+                        context.commit('setServices', jsonData.services)
+                        resolve(jsonData)
+                    } else {
+                        console.log('Services  bo\'sh');
+                    }
                 })
                 .catch(error => {
                     console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
