@@ -17,6 +17,7 @@
     "gsap": "^3.12.5",
     "lotin-kirill-uz": "^1.0.6",
     "vue": "^3.4.21",
+    "vue-click-outside-element": "^3.1.2",
     "vue-i18n": "^9.13.1",
     "vue-recaptcha-v3": "^2.0.1",
     "vue-router": "^4.3.0",

@@ -6,7 +6,8 @@
                 <span v-if="required" class="text-red">*</span>
             </label>
             <!-- Button -->
-            <div @click="toggleDropdown" class="flex items-center justify-between group relative">
+            <div v-click-outside-element="closeDropdown" @click="toggleDropdown"
+                class="flex items-center justify-between group relative">
                 <input type="text" name="" :placeholder="selectedOptionName || (placeholder ?? label)"
                     :value="selectedOptionName" @keyup="changeInput"
                     :class="['flex items-center justify-between group appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none placeholder-black focus:shadow-outline transition-colors cursor-pointer', selectedOptionName ? 'text-black' : 'text-gray-500', error ? 'border-red' : 'border-icon-gray placeholder-gray', !disabled && !error ? 'focus:border-violet hover:border-violet' : null, (disabled ? 'border-light-gray placeholder-icon-gray' : null)]"
@@ -83,6 +84,9 @@ export default {
         }
     },
     methods: {
+        closeDropdown() {
+            this.open = false;
+        },
         toggleDropdown() {
             this.open = !this.open;
         },

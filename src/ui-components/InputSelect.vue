@@ -6,7 +6,7 @@
                 <span v-if="required" class="text-red">*</span>
             </label>
             <!-- Button -->
-            <div @click="toggleDropdown"
+            <div v-click-outside-element="closeDropdown" @click="toggleDropdown"
                 :class="['flex items-center group justify-between group appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors cursor-pointer', selected ? 'text-black' : 'text-gray-500', error ? 'border-red' : 'border-icon-gray', !disabled && !error ? 'focus:border-violet hover:border-violet' : null, (disabled ? 'border-light-gray' : null)]">
                 <span class="overflow-hidden "
                     :class="[(disabled ? (!selected ? 'text-icon-gray' : 'text-black') : 'group-hover:text-black'), (selected ? 'text-black' : 'text-gray')]">
@@ -84,6 +84,9 @@ export default {
         }
     },
     methods: {
+        closeDropdown() {
+            this.open = false;
+        },
         toggleDropdown() {
             this.open = !this.open;
         },
@@ -100,6 +103,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
