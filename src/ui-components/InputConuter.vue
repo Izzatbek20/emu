@@ -7,9 +7,9 @@
         <div class="relative group">
             <input
                 class="appearance-none border rounded-xl w-full py-3 px-3 pe-14 leading-tight focus:outline-none focus:shadow-outline transition-colors"
-                :class="error ? 'border-red' : 'border-icon-gray focus:border-violet hover:border-violet'" :id="id"
-                :type="type" :value="modelValue" :placeholder="placeholder ?? label" @input="updateValue"
-                v-mask="'#########'">
+                :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, error ? 'border-red' : 'border-icon-gray', (disabled ? 'border-light-gray' : null)]"
+                :id="id" :type="type" :value="modelValue" :placeholder="placeholder ?? label" @input="updateValue"
+                v-mask="'#########'" :disabled="disabled">
             <div
                 class="absolute select-none end-0 top-0 grid grid-cols-1 py-2 place-items-stretch h-full overflow-hidden text-[#333]">
                 <span class="cursor-pointer hover:text-violet px-6 flex items-center"
@@ -34,6 +34,7 @@ export default {
     props: {
         label: String,
         placeholder: String,
+        disabled: false,
         type: {
             type: String,
             default: 'text',
@@ -51,12 +52,16 @@ export default {
             this.$emit('update:modelValue', newValue)
         },
         plus(e) {
-            const newValue = Number(this.modelValue) + 1;
-            this.$emit('update:modelValue', newValue)
+            if (!this.disabled) {
+                const newValue = Number(this.modelValue) + 1;
+                this.$emit('update:modelValue', newValue)
+            }
         },
         minus(e) {
-            const newValue = Number(this.modelValue) - 1;
-            this.$emit('update:modelValue', newValue)
+            if (!this.disabled) {
+                const newValue = Number(this.modelValue) - 1;
+                this.$emit('update:modelValue', newValue)
+            }
         }
     },
 }
