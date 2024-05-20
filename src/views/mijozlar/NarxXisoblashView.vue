@@ -39,12 +39,9 @@
                         <InputSelectFilter label="Tuman" v-model="to.city.value" :error="to.city.error"
                             :optionsData="city.to" :disabled="!loading && to.viloyat.value ? false : true"
                             @change="validateKeyupTo" />
-                        <InputSelect label="Kuryer chaqirish" class="w-[50%]" v-model="to.kuryerChaqirish.value"
-                            :error="to.kuryerChaqirish.error" :disabled="loading" :optionsData="kuryerChaqirish"
-                            :valueAttr="'code'" />
                     </div>
                 </div>
-                <div class="flex felx-col">
+                <div class="flex felx-col mt-8">
                     <div class="basis-2/3 max-sm:basis-full">
                         <div class="gap-6">
                             <CheckBox label="Korobka" v-model="koropka" class="mb-2" />
@@ -124,11 +121,7 @@ export default {
                 city: {
                     value: null,
                     error: null
-                },
-                kuryerChaqirish: {
-                    value: null,
-                    error: null
-                },
+                }
             },
             city: {
                 from: [],
@@ -250,7 +243,7 @@ export default {
                                     "town": this.from.city.value
                                 },
                                 "weight": this.weight.value,
-                                "service": this.to.kuryerChaqirish.value,
+                                "service": this.from.kuryerChaqirish.value,
                                 "packages": {
                                     "package": {
                                         "@width": this.w.value ?? 1,
@@ -267,12 +260,11 @@ export default {
                                 to: {
                                     viloyat: this.to.viloyat.value,
                                     city: this.to.city.value,
-                                    kuryerChaqirish: this.to.kuryerChaqirish.value,
                                 },
                                 from: {
                                     viloyat: this.from.viloyat.value,
                                     city: this.from.city.value,
-                                    kuryerChaqirish: this.from.kuryerChaqirish.value,
+                                    kuryerChaqirish: this.from.kuryerChaqirish.value
                                 },
                                 korobka: {
                                     w: this.w.value,
@@ -356,13 +348,6 @@ export default {
             } else {
                 from.kuryerChaqirish.error = null;
             }
-            if (!to.kuryerChaqirish.value) {
-                to.kuryerChaqirish.error = this.$t('validate.required');
-                error = true
-            } else {
-                to.kuryerChaqirish.error = null;
-            }
-
             if (this.koropka) {
                 // Kenlik
                 if (!this.w.value) {

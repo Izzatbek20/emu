@@ -30,7 +30,6 @@
                         <h2 class="h4 mb-8">Qabul qiluvchi</h2>
                         <InputPreview label="Viloyat" :value="calculator.to.viloyat" class="mb-6" />
                         <InputPreview label="Tuman" :value="calculator.to.city" class="mb-6" />
-                        <InputPreview label="Kuryer chaqirish" :value="kuryerChaqirish" class="mb-6" />
                     </div>
                 </div>
                 <div class="flex flex-col">
@@ -86,7 +85,7 @@ export default {
             services: state => state.courier.services
         }),
         kuryerChaqirish() {
-            return this.services.service.find(item => item.code == this.calculator.to.kuryerChaqirish).name
+            return this.services.service.find(item => item.code == this.calculator.from.kuryerChaqirish).name
         }
     },
     methods: {
