@@ -44,7 +44,8 @@
         "required": "Требуется заполнение",
         "hasNot": "Не включает город или район",
         "limitWeight": "Введено больше разрешенного лимита",
-        "phone": "Введите номер телефона"
+        "phone": "Введите номер телефона",
+        "tumanTopilmadi": "Район не найден"
     },
     "notFound": {
         "ortgaQaytish": "Вернитесь назад",
@@ -78,6 +79,22 @@
     "olchovBirligi": {
         "kg": "kg",
         "sm": "cm"
+    },
+    "jonatma": {
+        "reklamaMahsulotlari": "Рекламные продукты",
+        "boshqa": "Другое",
+        "aralashJonatmalar": "Смешанные отправления",
+        "hujjat": "Документ",
+        "ehtiyotQisimlar": "Запчасти",
+        "dorilar": "Лекарства",
+        "ofisJihozlari": "Офисное оборудование",
+        "kitob": "Книга",
+        "shishaMahsulotlari": "Стеклянные изделия",
+        "kiyimlarPoyabzallar": "Одежда и обувь",
+        "mobilTelefon": "Мобильный телефон",
+        "pasport": "Паспорт",
+        "parfyumeriya": "Парфюмерия",
+        "oziqOvqat": "Еда"
     },
     "emuExpressHaqida": "О компании EMU Express",
     "komandaFaoliyati": "Деятельность команды",

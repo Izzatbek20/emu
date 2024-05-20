@@ -10,7 +10,8 @@
                 :class="['flex items-center group justify-between group appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors cursor-pointer', selected ? 'text-black' : 'text-gray-500', error ? 'border-red' : 'border-icon-gray', !disabled && !error ? 'focus:border-violet hover:border-violet' : null, (disabled ? 'border-light-gray' : null)]">
                 <span class="overflow-hidden "
                     :class="[(disabled ? (!selected ? 'text-icon-gray' : 'text-black') : 'group-hover:text-black'), (selected ? 'text-black' : 'text-gray')]">
-                    {{ selectedOptionName || (placeholder ?? label) }}
+                    {{ (i18n && selectedOptionName ? $t(`${i18n}.${selectedOptionName}`) : selectedOptionName) ||
+                        (placeholder ?? label) }}
                 </span>
                 <svg class="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -28,7 +29,7 @@
                     <li v-if="optionsData" v-for="(option, index) in optionsData" :key="index"
                         @click="selectOption(option[valueAttr])"
                         class="py-3 text-gray-500 hover:bg-gray-100 cursor-pointer hover:text-violet">
-                        {{ option.name }}
+                        {{ i18n ? $t(`${i18n}.${option.name}`) : option.name }}
                     </li>
                 </ul>
             </div>
@@ -51,6 +52,7 @@ export default {
         label: String,
         placeholder: String,
         disabled: Boolean,
+        i18n: null,
         valueAttr: {
             type: String,
             default: 'name'

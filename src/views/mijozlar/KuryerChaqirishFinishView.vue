@@ -18,11 +18,11 @@
                     <div class="flex-1">
                         <h2 class="h4 mb-8">Kuryer chaqirish</h2>
 
-                        <InputPreview label="Olib ketish joy" value="Toshkent shahri, Yunusobod tumani 14 kavrtal 57 uy"
+                        <InputPreview label="Olib ketish joy" :value="calculator.from.adress" class="mb-6" />
+                        <InputPreview label="Jo’natuvchining ism familiyasi:" :value="calculator.from.fullname"
                             class="mb-6" />
-                        <InputPreview label="Jo’natuvchining ism familiyasi:" value="Tuxtaev Shavkat Shuxratovich"
+                        <InputPreview label="Jo’natuvchining telefon raqami:" :value="`+998 ${calculator.from.phone}`"
                             class="mb-6" />
-                        <InputPreview label="Jo’natuvchining telefon raqami:" value="+998 99 987-65-43" class="mb-6" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -33,15 +33,15 @@
                     </div>
                     <div class="flex-1">
                         <h2 class="h4 mb-8">Qabul qiluvchi</h2>
-                        <InputPreview label="Qabul qilish joyi:"
-                            value="Toshkent shahri, Chilonzor tumani 14 kavrtal 57 uy" class="mb-6" />
-                        <InputPreview label="Qabul qiluvchining ism familiyasi:" value="Rasulov Ravshan Oybekovich"
+                        <InputPreview label="Qabul qilish joyi:" :value="calculator.to.adress" class="mb-6" />
+                        <InputPreview label="Qabul qiluvchining ism familiyasi:" :value="calculator.to.fullname"
                             class="mb-6" />
-                        <InputPreview label="Jo’natuvchining telefon raqami:" value="+998 99 987-65-42" class="mb-6" />
+                        <InputPreview label="Jo’natuvchining telefon raqami:" :value="`+998 ${calculator.to.phone}`"
+                            class="mb-6" />
                     </div>
                 </div>
                 <div class="flex items-start gap-6 mt-10">
-                    <ButtonViolet @click="submit" title="Barcha ma’lumotlar tog’ri" />
+                    <ButtonViolet :disabled="loading" @click="submit" title="Barcha ma’lumotlar tog’ri" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -84,33 +84,105 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { XMLBuilder } from 'fast-xml-parser';
+import { mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
+const build = new XMLBuilder({
+    attributeNamePrefix: '@', // Atributlarni belgilash
+    textNodeName: '#text', // Matn elementlari nomini belgilash
+    ignoreAttributes: false // Atributlarni o'xtirmashtirish
+});
 
+// { "to": { "fullname": "Sapiente omnis quas ", "phone": "32 232 32 32", "city": "Бухара", "adress": "Бухарская область, Бухара, Qui minima ea quibus, Aliquam ipsam aute m, Obcaecati at velit e, Facilis veritatis qu, Possimus dolore vol", "yetkazibBerish": "1" }, "from": { "fullname": "Magnam odio qui laud", "phone": "23 232 32 32", "city": "Андижан", "adress": "Бухарская область, Андижан, Sit facilis quisqua, Et eum rerum similiq, Tempor debitis esse, Numquam dolor aliqua, Voluptatem aut excep" }, "jonatmaTuri": "Бошқа...", "weight": 1, "w": 0, "h": 0, "l": 0, "price": 10000, "service": 1, "xizmatXaqi": "NO" }
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
             login: null,
-            ino3: 0,
-            ino4: 'off',
-            koropka: true,
             isOpen: false,
+            loading: false // Loading flag
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
+    computed: {
+        ...mapState({
+            calculator: state => state.courier.calculator,
+            services: state => state.courier.services
+        }),
+        // kuryerChaqirish() {
+        //     return this.services.service.find(item => item.code == this.calculator.from.kuryerChaqirish).name
+        // }
+    },
     methods: {
-        submit() {
-            this.isOpen = true
+        async submit() {
+
+            this.loading = true;
+
+            this.$recaptcha('login').then((token) => {
+                this.$store.dispatch('createOrder', build.build({
+                    'neworder': {
+                        "auth": {
+                            "@extra": 8,
+                            "@login": "login",
+                            "@pass": "pass",
+                        },
+                        "order": {
+                            "sender": {
+                                "person": this.calculator.from.fullname,
+                                "phone": this.calculator.from.phone,
+                                "town": this.calculator.from.city,
+                                "address": this.calculator.from.adress,
+                            },
+                            "receiver": {
+                                "person": this.calculator.to.fullname,
+                                "phone": this.calculator.to.phone,
+                                "town": this.calculator.to.city,
+                                "address": this.calculator.to.adress,
+                            },
+                            "service": this.calculator.to.yetkazibBerish,
+                            "receiverpays": this.calculator.xizmatXaqi,
+                            "items": {
+                                "item": {
+                                    "@mass": this.calculator.weight ?? 1,
+                                    "#text": this.calculator.jonatmaTuri,
+                                }
+                            },
+                            "packages": {
+                                "package": {
+                                    "@mass": this.calculator.weight ?? 1,
+                                    "@width": this.calculator.w ?? 1,
+                                    "@height": this.calculator.h ?? 1,
+                                    "@length": this.calculator.l ?? 1,
+                                    "#text": this.calculator.jonatmaTuri,
+                                }
+                            }
+                        },
+                    }
+                })).then(response => {
+                    let redirect = false;
+                    this.isOpen = true
+                    // if (redirect) {
+                    //     this.$router.push({ name: 'xizmatXisoblashFinish' })
+                    // }
+                })
+
+
+            });
+        },
+        checkCalculator() {
+            if (!this.calculator.to.fullname || !this.calculator.from.fullname) {
+                this.$router.go(-1)
+            }
         },
         closeModal() {
             this.isOpen = false
         }
     },
     mounted() {
+        this.checkCalculator()
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 

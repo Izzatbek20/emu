@@ -44,7 +44,8 @@
         "required": "To'ldirish shart",
         "hasNot": "Bunda shahar yoki tuman mavjud emas",
         "limitWeight": "Ruxsat etilgan chegaradan ko'p kiritildi",
-        "phone": "Telefon raqam kiriting"
+        "phone": "Telefon raqam kiriting",
+        "tumanTopilmadi": "Tuman topilmadi"
     },
     "notFound": {
         "ortgaQaytish": "Ortga qaytish",
@@ -78,6 +79,22 @@
     "olchovBirligi": {
         "kg": "kg",
         "sm": "sm"
+    },
+    "jonatma": {
+        "reklamaMahsulotlari": "Reklama mahsulotlari",
+        "boshqa": "Boshqa",
+        "aralashJonatmalar": "Aralash jo‘natmalar",
+        "hujjat": "Hujjat",
+        "ehtiyotQisimlar": "Ehtiyot qisimlar",
+        "dorilar": "Dorilar",
+        "ofisJihozlari": "Ofis jihozlari",
+        "kitob": "Kitob",
+        "shishaMahsulotlari": "Shisha mahsulotlari",
+        "kiyimlarPoyabzallar": "Kiyimlar-poyabzallar",
+        "mobilTelefon": "Mobil telefon",
+        "pasport": "Pasport",
+        "parfyumeriya": "Parfyumeriya",
+        "oziqOvqat": "Oziq-ovqat"
     },
     "emuExpressHaqida": "EMU Express haqida",
     "komandaFaoliyati": "Komanda faoliyati",

@@ -2,6 +2,7 @@ import {
     XMLParser
 } from "fast-xml-parser"
 import courierService from "@/services/courier"
+import axios from "axios"
 
 const notAuth = "not_auth"
 const auth = "auth"
@@ -12,6 +13,7 @@ const state = {
     punkit: null,
     services: null,
     orderStatus: null,
+    createOrder: null,
     calculator: {
         to: {
             viloyat: null,
@@ -52,6 +54,12 @@ const mutations = {
     },
     setCalculator(state, payload) {
         state.calculator = payload
+    },
+    setCreateOrder(state, payload) {
+        state.createOrder = payload
+    },
+    addCalculatorAttribute(state, payload) {
+        state.calculator[payload.name] = payload.code
     }
 }
 
@@ -131,6 +139,39 @@ const actions = {
                         const parser = new XMLParser();
                         const jsonData = parser.parse(response.data);
                         context.commit('setOrderStatus', jsonData.tracking)
+                        resolve(jsonData)
+                    }
+                })
+                .catch(error => {
+                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    reject(error.response ? error.response.data : error)
+                });
+        })
+    },
+    createOrder(context, xml) {
+        return new Promise((resolve, reject) => {
+            // courierService.apiPost(auth, xml)
+            //     .then(response => {
+            //         if (response.data) {
+            //             const parser = new XMLParser();
+            //             const jsonData = parser.parse(response.data);
+            //             context.commit('setCreateOrder', jsonData.neworder)
+            //             resolve(jsonData)
+            //         }
+            //     })
+            //     .catch(error => {
+            //         console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+            //         reject(error.response ? error.response.data : error)
+            //     });
+            return axios.post('https://home.courierexe.ru/api', xml, {
+                    headers: {
+                        'Content-Type': 'application/xml'
+                    }
+                }).then(response => {
+                    if (response.data) {
+                        const parser = new XMLParser();
+                        const jsonData = parser.parse(response.data);
+                        context.commit('setCreateOrder', jsonData.neworder)
                         resolve(jsonData)
                     }
                 })

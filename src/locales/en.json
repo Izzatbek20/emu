@@ -44,7 +44,8 @@
         "required": "Filling is required",
         "hasNot": "It does not include a city or district",
         "limitWeight": "More than the allowed limit has been entered",
-        "phone": "Enter a phone number"
+        "phone": "Enter a phone number",
+        "tumanTopilmadi": "District not found"
     },
     "notFound": {
         "ortgaQaytish": "Go back",
@@ -78,6 +79,22 @@
     "olchovBirligi": {
         "kg": "кг",
         "sm": "см"
+    },
+    "jonatma": {
+        "reklamaMahsulotlari": "Advertising products",
+        "boshqa": "Other",
+        "aralashJonatmalar": "Mixed shipments",
+        "hujjat": "Document",
+        "ehtiyotQisimlar": "Spare parts",
+        "dorilar": "Medicines",
+        "ofisJihozlari": "Office equipment",
+        "kitob": "Book",
+        "shishaMahsulotlari": "Glass products",
+        "kiyimlarPoyabzallar": "Clothing and footwear",
+        "mobilTelefon": "Mobile phone",
+        "pasport": "Passport",
+        "parfyumeriya": "Perfume",
+        "oziqOvqat": "Food"
     },
     "emuExpressHaqida": "About EMU Express",
     "komandaFaoliyati": "Team Activity",

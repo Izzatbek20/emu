@@ -6,7 +6,7 @@
                 <input aria-labelledby="{{ label1 }}"
                     class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-violet focus:outline-none border rounded-full border-gray absolute cursor-pointer w-full h-full checked:border-2 checked:border-white checked:bg-violet"
                     :id="id" :class="[error ? 'border-red' : null, (disabled ? 'border-light-gray' : null)]"
-                    type="radio" name="radio" @change="updateValue" :disabled="disabled" />
+                    type="radio" name="radio" @change="updateValue" :checked="modelValue == value" :disabled="disabled" />
                 <div class="check-icon hidden border-4 border-violet rounded-full w-full h-full z-1"></div>
             </div>
             <label v-if="label" class="ml-2 text-gray text-sm cursor-pointer" :for="id">
