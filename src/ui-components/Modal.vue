@@ -13,7 +13,10 @@
                         <slot />
                     </div>
                 </div>
-                <div @click="closeModal"
+                <div v-if="clickOutside" @click="closeModal"
+                    class="fixed h-dvh w-dvw bg-black top-0 left-0 opacity-70 inset-0 flex items-center justify-center">
+                </div>
+                <div v-else
                     class="fixed h-dvh w-dvw bg-black top-0 left-0 opacity-70 inset-0 flex items-center justify-center">
                 </div>
             </div>
@@ -29,6 +32,7 @@ export default {
             type: Boolean,
             required: true,
         },
+        clickOutside: true,
         title: String
     },
     computed: {

@@ -4,6 +4,7 @@ import {
 import main from './modules/main'
 import courier from './modules/courier'
 import amocrm from './modules/amocrm'
+import sms from './modules/sms'
 
 const store = createStore({
     state() {},
@@ -12,7 +13,8 @@ const store = createStore({
     modules: {
         main,
         courier,
-        amocrm
+        amocrm,
+        sms
     }
 })
 export default store

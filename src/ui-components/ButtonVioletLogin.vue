@@ -1,13 +1,13 @@
 <template>
     <div class="h-14 max-md:h-12 max-sm:h-11">
         <button
-            class="group w-full hover-button inline-flex px-8 max-md:p-4 h-full items-center justify-center relative bg-violet overflow-hidden rounded-[100px]"
-            :class="disabled ? 'bg-[#c270b7]' : 'bg-violet'" :disabled="disabled">
+            class="group w-full  inline-flex px-8 max-md:p-4 h-full items-center justify-center relative bg-violet overflow-hidden rounded-[100px]"
+            :class="disabled ? 'bg-[#be8fb7]' : 'bg-violet hover-button'" :disabled="disabled">
             <span class="group-hover:text-white transition-color duration-500 text-white z-20"
                 :class="[(titleClass ?? 'text-xl max-md:text-sm font-semibold leading-normal'), classNew]">
                 {{ title }}
             </span>
-            <Spinner v-if="disabled" :fillColor="'fill-white'" class="ml-2" />
+            <Spinner v-if="disabled && icon" :fillColor="'fill-white'" class="ml-2" />
             <div v-if="!disabled" class="effect"></div>
         </button>
     </div>
@@ -29,7 +29,8 @@ export default {
             type: String,
             default: null
         },
-        disabled: false
+        disabled: false,
+        icon: true,
     },
 }
 </script>

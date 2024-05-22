@@ -169,7 +169,10 @@ const actions = {
                     }
                 }).then(response => {
                     if (response.data) {
-                        const parser = new XMLParser();
+                        const parser = new XMLParser({
+                            ignoreAttributes: false,
+                            attributeNamePrefix: "@"
+                        });
                         const jsonData = parser.parse(response.data);
                         context.commit('setCreateOrder', jsonData.neworder)
                         resolve(jsonData)

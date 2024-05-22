@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="flex items-start gap-6 mt-10">
-                    <ButtonViolet :disabled="loading" @click="submit" title="Barcha ma’lumotlar tog’ri" />
+                    <ButtonViolet :disabled="loading" @click="getSms" title="Barcha ma’lumotlar tog’ri" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -49,31 +49,59 @@
             </div>
         </div>
         <!-- Modal -->
-        <Modal title="SMS kod" :isOpen="isOpen" @close="closeModal">
+        <Modal title="SMS kod" :isOpen="isOpen" :clickOutside="false" @close="closeModal">
 
             <div class="txt-big my-10 text-center">Sizning so'rovingizni tasdiqlash maqsadida telefon raqamingizga SMS
                 orqali kod jo'natildi. Bu kod orqali shaxsingizni identifikatsiya qilishingiz mumkin.</div>
 
-            <!-- <form action="#"> -->
-            <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
-            <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
-                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-                <Input v-model="login" :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
-            </div>
+            <form ref="formSms" @submit.prevent="checkOtpCode">
+                <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
+                <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
+                    <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="1"
+                        v-model="otpCode1" :error="error" :disabled="loading"
+                        :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="2"
+                        v-model="otpCode2" :error="error" :disabled="loading"
+                        :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="3"
+                        v-model="otpCode3" :error="error" :disabled="loading"
+                        :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="4"
+                        v-model="otpCode4" :error="error" :disabled="loading"
+                        :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="5"
+                        v-model="otpCode5" :error="error" :disabled="loading"
+                        :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                    <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="6"
+                        v-model="otpCode6" :error="error" :disabled="loading"
+                        :classInput="'w-12 h-12 max-xs:w-6 max-xs:h-6'" />
+                </div>
 
-            <div
-                class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
-                <router-link :to="''" class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
-                    Yana bir marta kod jo’natish
-                </router-link>
-                <div class="text-gray txt-normal max-md:txt-small">59 soniya</div>
+                <div
+                    class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
+                    <button type="button" v-if="retrySms" @click="getSms"
+                        class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
+                        Yana bir marta kod jo’natish
+                    </button>
+                    <button v-else class="text-[#be8fb7] cursor-wait txt-normal max-md:txt-small mb-0">
+                        Yana bir marta kod jo’natish
+                    </button>
+                    <div class="text-gray txt-normal max-md:txt-small">{{ minut }} soniya</div>
+                </div>
+                <ButtonVioletLogin :icon="!submitBtnDisabled" :disabled="loading || submitBtnDisabled" title="Kirish"
+                    class="mx-auto mt-10 " />
+            </form>
+        </Modal>
+
+        <!-- Modal success -->
+        <Modal title="Muvaffaqiyat" :isOpen="isOpenSuccess" :clickOutside="false" @close="closeModalSuccess">
+
+            <div class="h5 mt-10 text-center">Buyurtma ro'yxatga olindi</div>
+            <div class="text-center"> Buyurtma id: {{ this.createOrder.createorder['@orderno'] }}</div>
+
+            <div class="mt-2 p-3 text-center space-x-4 md:block">
+                <ButtonVioletLogin @click="closeModalSuccess" title="Yopish" class="w-full" />
             </div>
-            <ButtonVioletLogin @click="closeModal" title="Kirish" class="mx-auto mt-10 " />
-            <!-- </form> -->
         </Modal>
     </div>
 </template>
@@ -86,6 +114,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { XMLBuilder } from 'fast-xml-parser';
 import { mapState } from 'vuex';
+import InputSms from '@/ui-components/InputSms.vue';
 
 gsap.registerPlugin(ScrollTrigger)
 const build = new XMLBuilder({
@@ -94,28 +123,133 @@ const build = new XMLBuilder({
     ignoreAttributes: false // Atributlarni o'xtirmashtirish
 });
 
-// { "to": { "fullname": "Sapiente omnis quas ", "phone": "32 232 32 32", "city": "Бухара", "adress": "Бухарская область, Бухара, Qui minima ea quibus, Aliquam ipsam aute m, Obcaecati at velit e, Facilis veritatis qu, Possimus dolore vol", "yetkazibBerish": "1" }, "from": { "fullname": "Magnam odio qui laud", "phone": "23 232 32 32", "city": "Андижан", "adress": "Бухарская область, Андижан, Sit facilis quisqua, Et eum rerum similiq, Tempor debitis esse, Numquam dolor aliqua, Voluptatem aut excep" }, "jonatmaTuri": "Бошқа...", "weight": 1, "w": 0, "h": 0, "l": 0, "price": 10000, "service": 1, "xizmatXaqi": "NO" }
 export default {
     data() {
         return {
-            login: null,
+            submitBtnDisabled: true,
+            retrySms: false,
+            error: null,
+            otpCode1: null,
+            otpCode2: null,
+            otpCode3: null,
+            otpCode4: null,
+            otpCode5: null,
+            otpCode6: null,
+
+            otpCodeFull: null,
+
+            leftMinut: 59,
+            timer: null,
+            focus: 1,
+
             isOpen: false,
+            isOpenSuccess: true,
             loading: false // Loading flag
         }
     },
     components: {
-        BarGorizontal, Bar, Navigation
+        BarGorizontal, Bar, Navigation, InputSms
     },
     computed: {
         ...mapState({
             calculator: state => state.courier.calculator,
-            services: state => state.courier.services
+            services: state => state.courier.services,
+            createOrder: state => state.courier.createOrder,
         }),
-        // kuryerChaqirish() {
-        //     return this.services.service.find(item => item.code == this.calculator.from.kuryerChaqirish).name
-        // }
+        otpCode() {
+            let sms = ''
+            if (this.otpCode1) {
+                sms += `${this.otpCode1}`;
+            }
+            if (this.otpCode2) {
+                sms += `${this.otpCode2}`;
+            }
+            if (this.otpCode3) {
+                sms += `${this.otpCode3}`;
+            }
+            if (this.otpCode4) {
+                sms += `${this.otpCode4}`;
+            }
+            if (this.otpCode5) {
+                sms += `${this.otpCode5}`;
+            }
+            if (this.otpCode6) {
+                sms += `${this.otpCode6}`;
+            }
+            return sms;
+        },
+        minut() {
+            return this.leftMinut;
+        }
     },
     methods: {
+        async getSms() {
+            this.loading = true;
+            this.$recaptcha('login').then((token) => {
+                this.$store.dispatch('getOptCode', {
+                    "captcha": token
+                }).then(response => {
+                    switch (response.status) {
+                        case 200:
+                            this.otpCode1 = null
+                            this.otpCode2 = null
+                            this.otpCode3 = null
+                            this.otpCode4 = null
+                            this.otpCode5 = null
+                            this.otpCode6 = null
+                            this.error = null
+
+                            this.leftMinut = 59;
+                            clearInterval(this.timer);
+
+                            this.loading = false
+                            this.isOpen = true
+                            this.setTime()
+                            break;
+                        case 422:
+                            // messagew = 'sms.notogriKod';
+                            break;
+
+                        default:
+                            this.loading = false;
+                            break;
+                    }
+                })
+            });
+        },
+        async checkOtpCode() {
+            this.loading = true;
+            this.$recaptcha('login').then((token) => {
+                this.$store.dispatch('checkOptCode', {
+                    "otpCode": this.otpCodeFull,
+                    "captcha": token
+                }).then(response => {
+                    switch (200) {
+                        case 200:
+                            this.submit()
+                            break;
+                        case 422:
+                            // this.loading = false;
+                            // message = 'sms.notogriKod';
+                            break;
+
+                        default:
+                            this.loading = false;
+                            this.retrySms = true;
+                            this.error = 'error';
+
+                            this.otpCode1 = null
+                            this.otpCode2 = null
+                            this.otpCode3 = null
+                            this.otpCode4 = null
+                            this.otpCode5 = null
+                            this.otpCode6 = null
+
+                            break;
+                    }
+                })
+            });
+        },
         async submit() {
 
             this.loading = true;
@@ -161,11 +295,11 @@ export default {
                         },
                     }
                 })).then(response => {
-                    let redirect = false;
-                    this.isOpen = true
-                    // if (redirect) {
-                    //     this.$router.push({ name: 'xizmatXisoblashFinish' })
-                    // }
+                    // console.log(this.createOrder.createorder['@errormsg'], this.createOrder.createorder['@orderno']);
+                    if (this.createOrder.createorder['@errormsg'] == 'Success') {
+                        this.isOpen = false
+                        this.isOpenSuccess = true;
+                    }
                 })
 
 
@@ -176,8 +310,63 @@ export default {
                 this.$router.go(-1)
             }
         },
+        setTime() {
+            this.leftMinut = 59;
+            this.timer = setInterval(() => {
+                if (this.leftMinut > 0) {
+                    this.leftMinut--;
+                } else {
+                    clearInterval(this.timer);
+                    this.retrySms = true;
+                }
+            }, 1000);
+        },
+        resetTime() {
+            clearInterval(this.timer)
+            this.leftMinut = 59
+        },
+        clearTime() {
+            clearInterval(this.timer)
+        },
+        nextFocus(id) {
+            if (id <= 6) {
+                this.focus = id + 1
+            }
+        },
+        preventFocus(id) {
+            if (id <= 6 && id >= 1) {
+                this.focus = id - 1
+            }
+        },
         closeModal() {
             this.isOpen = false
+        },
+        closeModalSuccess() {
+            this.isOpenSuccess = false
+            this.$router.push({ name: 'kuryerChaqirish' })
+        }
+    },
+    watch: {
+        otpCode(newVal) {
+            if (newVal.length == 6) {
+                this.otpCodeFull = newVal
+                this.submitBtnDisabled = false
+            } else {
+                this.submitBtnDisabled = true
+            }
+        },
+        leftMinut(newVal) {
+            if (newVal <= 0) {
+                this.retrySms = true
+
+                this.otpCode1 = null
+                this.otpCode2 = null
+                this.otpCode3 = null
+                this.otpCode4 = null
+                this.otpCode5 = null
+                this.otpCode6 = null
+
+            }
         }
     },
     mounted() {
