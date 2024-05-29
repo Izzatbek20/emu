@@ -30,7 +30,10 @@ export default {
             default: null
         },
         disabled: false,
-        icon: true,
+        icon: {
+            type: Boolean,
+            default: true
+        },
     },
 }
 </script>

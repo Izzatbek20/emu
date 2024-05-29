@@ -33,7 +33,8 @@
         "profil": "Profile",
         "qabul": "Received mail",
         "jonatilgan": "Sent mail",
-        "login": "Login / Logout"
+        "login": "Login",
+        "logout": "Logout"
     },
     "til": {
         "uz": "O'zbekcha",
@@ -45,7 +46,11 @@
         "hasNot": "It does not include a city or district",
         "limitWeight": "More than the allowed limit has been entered",
         "phone": "Enter a phone number",
-        "tumanTopilmadi": "District not found"
+        "phoneUnique": "This phone number is already registered.",
+        "tumanTopilmadi": "District not found",
+        "parolVaTasdiqiyParol": "Password and confirm password do not match.",
+        "loginUnique": "This username already exists.",
+        "passwordLength": "Password must be at least 6 characters long."
     },
     "notFound": {
         "ortgaQaytish": "Go back",

@@ -10,6 +10,7 @@ const smsService = {
     },
     checkOptCode(data) {
         return axios.post(`${import.meta.env.VITE_EMU_API_ORIGIN}/sms/check`, data, {
+            withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
             }

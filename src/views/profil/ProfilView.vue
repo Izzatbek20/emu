@@ -21,10 +21,13 @@
                 </div>
 
                 <div class="grid grid-cols-3 max-lg:grid-cols-1 mt-10 gap-6">
-                    <Input label="Ism" placeholder="Ism" v-model="ino3" />
-                    <Input label="Familiya" placeholder="Familiya" v-model="ino3" />
-                    <InputPhone label="Telefon raqamingiz" :required="true" placeholder="Telefon" v-model="ino3" />
-                    <Textarea class="col-span-2 max-lg:col-span-1" label="Manzil" v-model="ino3" />
+                    <Input label="Ism" placeholder="Ism" v-model="ism.value" :error="ism.error" :disabled="loading" />
+                    <Input label="Familiya" placeholder="Familiya" v-model="familya.value" :error="familya.error"
+                        :disabled="loading" />
+                    <InputPhone label="Telefon raqamingiz" :required="true" placeholder="Telefon"
+                        v-model="telefon.value" :error="telefon.error" :disabled="loading" />
+                    <Textarea class="col-span-2 max-lg:col-span-1" label="Manzil" v-model="manzil.value"
+                        :error="manzil.error" :disabled="loading" />
                 </div>
 
                 <router-link :to="'#'" class="nav-menu nav-menu-animation">Parol o‘zgartirish</router-link>
@@ -46,25 +49,58 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { mapGetters } from 'vuex';
+import { gettersTypes } from '@/store/modules/types';
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
         return {
-            ino: '',
-            ino2: '',
-            ino3: 0,
-            ino4: 'off',
-            koropka: true
+            rasim: {
+                value: null,
+                error: null
+            },
+            ism: {
+                value: null,
+                error: null
+            },
+            familya: {
+                value: null,
+                error: null
+            },
+            telefon: {
+                value: null,
+                error: null
+            },
+            manzil: {
+                value: null,
+                error: null
+            },
+
+            loading: false
         }
     },
     components: {
         BarGorizontal, Bar, Navigation
     },
+    computed: {
+        ...mapGetters({
+            user: gettersTypes.currentUser
+        })
+    },
     methods: {
+        loadForm() {
+            this.rasim.value = this.user.rasim;
+            this.ism.value = this.user.ism;
+            this.familya.value = this.user.familya;
+            this.telefon.value = this.user.telefon;
+            this.manzil.value = this.user.manzil;
+        }
     },
     mounted() {
+        // this.loadForm()
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 
@@ -77,7 +113,7 @@ export default {
             pinSpacing: true,
 
         });
-    }
+    },
 }
 </script>
 

@@ -97,7 +97,8 @@
         <Modal title="Muvaffaqiyat" :isOpen="isOpenSuccess" :clickOutside="false" @close="closeModalSuccess">
 
             <div class="h5 mt-10 text-center">Buyurtma ro'yxatga olindi</div>
-            <div class="text-center"> Buyurtma id: {{ this.createOrder.createorder['@orderno'] }}</div>
+            <div class="text-center"> Buyurtma id: {{ this.createOrder ? this.createOrder.createorder['@orderno'] : null }}
+            </div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
                 <ButtonVioletLogin @click="closeModalSuccess" title="Yopish" class="w-full" />
@@ -143,7 +144,7 @@ export default {
             focus: 1,
 
             isOpen: false,
-            isOpenSuccess: true,
+            isOpenSuccess: false,
             loading: false // Loading flag
         }
     },

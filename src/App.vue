@@ -33,13 +33,17 @@ export default {
       // Firebaseda browser localStorage-ga refersh va access tokenlari yozib olamiz
       const act = await getAccess()
       const rft = await getRefresh()
-      
+
       setItem('act', act)
       setItem('rft', rft)
+    },
+    getUser() {
+      this.$store.dispatch('me')
     }
   },
   mounted() {
     this.initFireStoreToken()
+    this.getUser()
   }
 
 }

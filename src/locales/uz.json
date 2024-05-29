@@ -33,7 +33,8 @@
         "profil": "Profil",
         "qabul": "Qabul qilingan pochtalar",
         "jonatilgan": "Jo’natilgan pochtalar",
-        "login": "Kirish / Chiqish"
+        "login": "Kirish",
+        "logout": "Chiqish"
     },
     "til": {
         "uz": "O'zbekcha",
@@ -45,7 +46,11 @@
         "hasNot": "Bunda shahar yoki tuman mavjud emas",
         "limitWeight": "Ruxsat etilgan chegaradan ko'p kiritildi",
         "phone": "Telefon raqam kiriting",
-        "tumanTopilmadi": "Tuman topilmadi"
+        "phoneUnique": "Bu telefon raqami allaqachon roʻyxatdan oʻtgan.",
+        "tumanTopilmadi": "Tuman topilmadi",
+        "parolVaTasdiqiyParol": "Parol va tasdiqiy parol bir xil emas.",
+        "loginUnique": "Bu foydalanuvchi nomi allaqachon mavjud.",
+        "passwordLength": "Parol kamida 6 belgidan iborat bo'lishi kerak."
     },
     "notFound": {
         "ortgaQaytish": "Ortga qaytish",

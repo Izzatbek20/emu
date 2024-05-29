@@ -185,7 +185,7 @@ const router = createRouter({
       }, {
         path: 'qabul',
         name: 'qabul',
-        component: QabulView
+        component: QabulView,
       }, {
         path: 'jonatilgan',
         name: 'jonatilgan',
@@ -194,7 +194,10 @@ const router = createRouter({
         path: 'traking/:id',
         name: 'traking',
         component: TrakingView
-      }, ]
+      }, ],
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/auth',
@@ -242,5 +245,26 @@ const router = createRouter({
     }
   },
 })
+
+// Middleware funksiyasi
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // Bu yerda autentifikatsiyani tekshiramiz
+    if (!localStorage.getItem('access_token')) {
+      // Agar foydalanuvchi autentifikatsiyadan o'tmagan bo'lsa, login sahifasiga yo'naltiramiz
+      next({
+        path: '/auth/login',
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      next(); // Aks holda, davom etamiz
+    }
+  } else {
+    next(); // Agar autentifikatsiya talab qilinmasa, davom etamiz
+  }
+});
+
 
 export default router

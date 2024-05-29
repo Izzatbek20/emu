@@ -4,7 +4,7 @@
             {{ label }}
             <span v-if="required" class="text-red">*</span>
         </label>
-        <input
+        <input :ref="autoFocus"
             class="appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors"
             :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, (error ? 'border-red' : 'border-icon-gray'), classInput, (disabled ? 'border-light-gray' : null)]"
             :id="id" :type="type" :placeholder="placeholder ?? label" @input="updateValue" :disabled="disabled">
@@ -25,6 +25,7 @@ export default {
         placeholder: String,
         classInput: String,
         disabled: false,
+        autoFocus: String,
         type: {
             type: String,
             default: 'text',
@@ -35,6 +36,11 @@ export default {
         },
         error: String,
         modelValue: [String, Number]
+    },
+    mounted() {
+        if (this.autoFocus) {
+            this.$refs[this.autoFocus].focus()
+        }
     },
     methods: {
         updateValue(e) {

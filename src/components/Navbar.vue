@@ -43,13 +43,21 @@
                         <Search class="size-4" :fillColor="'fill-violet'" />
                     </li>
                     <li id="profil" class="max-sm:hidden relative">
-                        <div @click="select('profil', profil)"
+                        <div v-if="isLoginIn" @click="select('profil', profil)"
                             class="flex items-center gap-x-2 cursor-pointer w-full h-full">
 
                             <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
                                 <User class="size-3 h-4" :fillColor="'fill-white'" />
                             </div>
                             {{ $t('menu.shaxsiyKabinet') }}
+                        </div>
+                        <div v-else @click="$router.push({ name: 'login' })"
+                            class="flex items-center gap-x-2 cursor-pointer w-full h-full">
+
+                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
+                                <User class="size-3 h-4" :fillColor="'fill-white'" />
+                            </div>
+                            {{ $t('profil.login') }}
                         </div>
                     </li>
                     <li id="til" class="relative">
@@ -104,8 +112,7 @@
                             </template>
                         </li>
                         <li class="hidden xs:max-md:block">
-                            <a href="tel://+998712009669"
-                                class="flex flex-row items-center cursor-pointer">
+                            <a href="tel://+998712009669" class="flex flex-row items-center cursor-pointer">
                                 <Phone class="size-4 h-4" :fillColor="'fill-text-gray'" />
                                 <span class="text-text-gray">
                                     +998 71 <span class="text-violet font-bold">200 96-36</span>
@@ -166,9 +173,10 @@
 </template>
 <script>
 import { ref } from 'vue';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import { menus, profil, til } from '@/constants/navbar.js';
 import { setItem } from '@/helpers/rwLocalStorage';
+import { gettersTypes } from '@/store/modules/types';
 
 
 export default {
@@ -183,6 +191,10 @@ export default {
         ...mapState({
             menuMini: state => state.main.menuMini,
             menuMobile: state => state.main.menuMobile
+        }),
+        ...mapGetters({
+            currentUser: gettersTypes.currentUser,
+            isLoginIn: gettersTypes.isLoginIn,
         })
     },
     setup() {
