@@ -32,7 +32,10 @@ export default {
             type: Boolean,
             required: true,
         },
-        clickOutside: true,
+        clickOutside: {
+            type: Boolean,
+            default: true,
+        },
         title: String
     },
     computed: {

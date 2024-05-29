@@ -46,16 +46,20 @@
                         <div v-if="isLoginIn" @click="select('profil', profil)"
                             class="flex items-center gap-x-2 cursor-pointer w-full h-full">
 
-                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
-                                <User class="size-3 h-4" :fillColor="'fill-white'" />
+                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A] overflow-hidden">
+                                <img v-if="currentUser && currentUser.user_photos && currentUser.user_photos.url"
+                                    :src="origin + '/' + currentUser.user_photos.url" alt="" srcset="" class="">
+                                <User v-else class="size-3 h-4" :fillColor="'fill-white'" />
                             </div>
                             {{ $t('menu.shaxsiyKabinet') }}
                         </div>
                         <div v-else @click="$router.push({ name: 'login' })"
                             class="flex items-center gap-x-2 cursor-pointer w-full h-full">
 
-                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A]">
-                                <User class="size-3 h-4" :fillColor="'fill-white'" />
+                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A] overflow-hidden">
+                                <img v-if="currentUser && currentUser.user_photos && currentUser.user_photos.url"
+                                    :src="origin + '/' + currentUser.user_photos.url" alt="" srcset="" class="">
+                                <User v-else class="size-3 h-4" :fillColor="'fill-white'" />
                             </div>
                             {{ $t('profil.login') }}
                         </div>
@@ -185,6 +189,7 @@ export default {
             menus: menus,
             profil: profil,
             til: til,
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
         }
     },
     computed: {
@@ -194,7 +199,7 @@ export default {
         }),
         ...mapGetters({
             currentUser: gettersTypes.currentUser,
-            isLoginIn: gettersTypes.isLoginIn,
+            isLoginIn: gettersTypes.isLoginIn
         })
     },
     setup() {

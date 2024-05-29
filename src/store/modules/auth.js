@@ -73,13 +73,34 @@ const actions = {
             return new Promise((resolve, reject) => {
                 authService.me()
                     .then(response => {
-                         context.commit('setUser', response.data)
+                        context.commit('setUser', response.data)
                         resolve(response.data)
                     }).catch(error => {
                         reject(error)
                     });
             })
         }
+    },
+    userUpdate(context, data) {
+        return new Promise((resolve, reject) => {
+            authService.userUpdate(data)
+                .then(response => {
+                    context.commit('setUser', response.data)
+                    resolve(response.data)
+                }).catch(error => {
+                    reject(error)
+                });
+        })
+    },
+    userPhoto(context, data) {
+        return new Promise((resolve, reject) => {
+            authService.userPhoto(data.user_id, data.data)
+                .then(response => {
+                    resolve(response.data)
+                }).catch(error => {
+                    reject(error)
+                });
+        })
     },
     register(context, data) {
         return new Promise((resolve, reject) => {

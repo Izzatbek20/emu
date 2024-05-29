@@ -11,7 +11,8 @@
             <input
                 class="appearance-none border rounded-xl w-full py-3 px-3 ps-14 leading-tight focus:outline-none focus:shadow-outline transition-colors"
                 :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, (error ? 'border-red' : 'border-icon-gray'), (disabled ? 'border-light-gray' : null)]"
-                :id="id" :type="type" @input="updateValue" v-mask="'## ### ## ##'" :disabled="disabled">
+                :id="id" :type="type" @input="updateValue" v-mask="'## ### ## ##'" :disabled="disabled"
+                :value="modelValue">
         </div>
 
         <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>

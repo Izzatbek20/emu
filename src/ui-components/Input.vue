@@ -7,7 +7,8 @@
         <input :ref="autoFocus"
             class="appearance-none border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors"
             :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, (error ? 'border-red' : 'border-icon-gray'), classInput, (disabled ? 'border-light-gray' : null)]"
-            :id="id" :type="type" :placeholder="placeholder ?? label" @input="updateValue" :disabled="disabled">
+            :id="id" :type="type" :placeholder="placeholder ?? label" @input="updateValue" :disabled="disabled"
+            :value="modelValue">
         <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>
     </div>
 </template>

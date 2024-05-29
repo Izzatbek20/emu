@@ -34,6 +34,7 @@ import LoginView from '@/views/auth/LoginView.vue'
 import RegisterView from '@/views/auth/RegisterView.vue'
 import SmsView from '@/views/auth/SmsView.vue'
 import Register2View from '@/views/auth/Register2View.vue'
+import ParolChangeView from '@/views/auth/ParolChangeView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
@@ -194,7 +195,7 @@ const router = createRouter({
         path: 'traking/:id',
         name: 'traking',
         component: TrakingView
-      }, ],
+      }],
       meta: {
         requiresAuth: true
       }
@@ -220,6 +221,11 @@ const router = createRouter({
           path: 'register-2',
           name: 'register2',
           component: Register2View
+        },
+        {
+          path: 'parol',
+          name: 'parolChange',
+          component: ParolChangeView
         },
       ]
     },

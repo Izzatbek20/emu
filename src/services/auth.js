@@ -82,6 +82,16 @@ const authService = {
     me() {
         return authAxsios.get('/me')
     },
+    userUpdate(data) {
+        return authAxsios.put('/user/update', data)
+    },
+    userPhoto(user_id, formData) {
+        return authAxsios.post('/upload-image?user_id=' + user_id, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
     validateTelefonVaLogin(data) {
         return guestAxsios.post('/user/validate/login_va_telefon', data)
     },
