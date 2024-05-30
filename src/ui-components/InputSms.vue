@@ -2,7 +2,7 @@
     <input :ref="`ref${id}`" v-mask="'#'"
         class="mb-6 max-md:mb-3 appearance-none text-center border rounded-xl w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline transition-colors"
         :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, (error ? 'border-red' : 'border-icon-gray'), classInput, (disabled ? 'border-light-gray' : null)]"
-        :id="id" :type="type" @input="updateValue" :disabled="disabled" @keyup="handleKeydown">
+        :id="id" :type="type" @input="updateValue" :disabled="disabled" @keyup="handleKeydown" :value="modelValue">
 </template>
 
 <script>

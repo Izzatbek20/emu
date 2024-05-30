@@ -113,11 +113,7 @@ export default {
                 return
             }
 
-            this.$store.dispatch("orderStatue", build.build({
-                "tracking": {
-                    "orderno": this.order_id.value
-                }
-            })).then(response => {
+            this.$store.dispatch("orderStatue", this.order_id.value).then(response => {
                 if (!response.tracking) {
                     this.order_not = "ID topilmadi"
                 } else {

@@ -54,7 +54,7 @@
             <div class="txt-big my-10 text-center">Sizning so'rovingizni tasdiqlash maqsadida telefon raqamingizga SMS
                 orqali kod jo'natildi. Bu kod orqali shaxsingizni identifikatsiya qilishingiz mumkin.</div>
 
-            <form ref="formSms" @submit.prevent="checkOtpCode">
+            <form ref="formSms" @submit.prevent="submit">
                 <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
                 <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
                     <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="1"
@@ -97,7 +97,8 @@
         <Modal title="Muvaffaqiyat" :isOpen="isOpenSuccess" :clickOutside="false" @close="closeModalSuccess">
 
             <div class="h5 mt-10 text-center">Buyurtma ro'yxatga olindi</div>
-            <div class="text-center"> Buyurtma id: {{ this.createOrder ? this.createOrder.createorder['@orderno'] : null }}
+            <div class="text-center"> Buyurtma id: {{ this.createOrder ? this.createOrder.createorder['@orderno'] : null
+                }}
             </div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
@@ -187,8 +188,9 @@ export default {
         async getSms() {
             this.loading = true;
             this.$recaptcha('login').then((token) => {
-                this.$store.dispatch('getOptCode', {
-                    "captcha": token
+                this.$store.dispatch('smsGenerate', {
+                    "captcha": token,
+                    "telefon": this.calculator.from && this.calculator.from.phone ? "998" + this.calculator.from.phone.replaceAll(' ', '') : null,
                 }).then(response => {
                     switch (response.status) {
                         case 200:
@@ -218,92 +220,58 @@ export default {
                 })
             });
         },
-        async checkOtpCode() {
-            this.loading = true;
-            this.$recaptcha('login').then((token) => {
-                this.$store.dispatch('checkOptCode', {
-                    "otpCode": this.otpCodeFull,
-                    "captcha": token
-                }).then(response => {
-                    switch (200) {
-                        case 200:
-                            this.submit()
-                            break;
-                        case 422:
-                            // this.loading = false;
-                            // message = 'sms.notogriKod';
-                            break;
-
-                        default:
-                            this.loading = false;
-                            this.retrySms = true;
-                            this.error = 'error';
-
-                            this.otpCode1 = null
-                            this.otpCode2 = null
-                            this.otpCode3 = null
-                            this.otpCode4 = null
-                            this.otpCode5 = null
-                            this.otpCode6 = null
-
-                            break;
-                    }
-                })
-            });
-        },
         async submit() {
 
             this.loading = true;
 
             this.$recaptcha('login').then((token) => {
-                this.$store.dispatch('createOrder', build.build({
-                    'neworder': {
-                        "auth": {
-                            "@extra": 8,
-                            "@login": "login",
-                            "@pass": "pass",
-                        },
-                        "order": {
-                            "sender": {
-                                "person": this.calculator.from.fullname,
-                                "phone": this.calculator.from.phone,
-                                "town": this.calculator.from.city,
-                                "address": this.calculator.from.adress,
-                            },
-                            "receiver": {
-                                "person": this.calculator.to.fullname,
-                                "phone": this.calculator.to.phone,
-                                "town": this.calculator.to.city,
-                                "address": this.calculator.to.adress,
-                            },
-                            "service": this.calculator.to.yetkazibBerish,
-                            "receiverpays": this.calculator.xizmatXaqi,
-                            "items": {
-                                "item": {
-                                    "@mass": this.calculator.weight ?? 1,
-                                    "#text": this.calculator.jonatmaTuri,
-                                }
-                            },
-                            "packages": {
-                                "package": {
-                                    "@mass": this.calculator.weight ?? 1,
-                                    "@width": this.calculator.w ?? 1,
-                                    "@height": this.calculator.h ?? 1,
-                                    "@length": this.calculator.l ?? 1,
-                                    "#text": this.calculator.jonatmaTuri,
-                                }
-                            }
-                        },
-                    }
-                })).then(response => {
+                this.$store.dispatch('createOrder', {
+                    "sender": {
+                        "person": this.calculator.from.fullname,
+                        "phone": this.calculator.from.phone,
+                        "town": this.calculator.from.city,
+                        "address": this.calculator.from.adress,
+                    },
+                    "receiver": {
+                        "person": this.calculator.to.fullname,
+                        "phone": this.calculator.to.phone,
+                        "town": this.calculator.to.city,
+                        "address": this.calculator.to.adress,
+                    },
+                    "service": this.calculator.to.yetkazibBerish,
+                    "receiverpays": this.calculator.xizmatXaqi,
+                    "items": {
+                        "mass": this.calculator.weight ?? 1,
+                        "text": this.calculator.jonatmaTuri,
+                    },
+                    "packages": {
+                        "mass": this.calculator.weight ?? 1,
+                        "width": this.calculator.w ?? 1,
+                        "height": this.calculator.h ?? 1,
+                        "length": this.calculator.l ?? 1,
+                        "text": this.calculator.jonatmaTuri,
+                    },
+                    "otpCode": this.otpCodeFull,
+                }).then(response => {
                     // console.log(this.createOrder.createorder['@errormsg'], this.createOrder.createorder['@orderno']);
                     if (this.createOrder.createorder['@errormsg'] == 'Success') {
                         this.isOpen = false
                         this.isOpenSuccess = true;
                     }
+                }).catch(err => {
+                    if (err.status = 400) {
+                        this.loading = false;
+                        this.retrySms = true;
+                        this.error = 'error';
+
+                        this.otpCode1 = null
+                        this.otpCode2 = null
+                        this.otpCode3 = null
+                        this.otpCode4 = null
+                        this.otpCode5 = null
+                        this.otpCode6 = null
+                    }
                 })
-
-
             });
         },
         checkCalculator() {

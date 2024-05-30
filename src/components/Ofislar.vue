@@ -196,26 +196,12 @@ export default {
             this.current_region_name = val;
         },
         getViloyat() {
-            this.$store.dispatch('getViloyat', build.build({
-                "regionlist": {
-                    "conditions": {
-                        "country": "UZ"
-                    }
-                }
-            }))
+            this.$store.dispatch('getViloyat')
         },
         getPunkit() {
-            this.$store.dispatch('getPunkit', build.build({
-                "pvzlist": {
-                    "city": this.current_region,
-                    "with_coords": "YES",
-                    "limit": {
-                        "limitfrom": 0,
-                        "limitcount": 500,
-                        "countall": "YES",
-                    }
-                }
-            }))
+            this.$store.dispatch('getPunkit', {
+                "city": this.current_region
+            })
         },
         // Oynaning o'lchamlarini yangilash
         updateWindowSize() {

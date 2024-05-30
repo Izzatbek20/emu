@@ -79,7 +79,7 @@ export default {
         selectedOptionName() {
             if (this.optionsData) {
                 const selectedOption = this.optionsData.find(option => option[this.valueAttr] === this.modelValue);
-                return selectedOption ? selectedOption.name : '';
+                return selectedOption ? selectedOption.name : this.modelValue;
             }
         }
     },

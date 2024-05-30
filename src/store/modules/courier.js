@@ -64,9 +64,9 @@ const mutations = {
 }
 
 const actions = {
-    getViloyat(context, xml) {
+    getViloyat(context) {
         return new Promise((resolve, reject) => {
-            courierService.apiPost(notAuth, xml)
+            courierService.getViloyat()
                 .then(response => {
                     const parser = new XMLParser();
                     const jsonData = parser.parse(response.data);
@@ -74,47 +74,28 @@ const actions = {
                     resolve(jsonData)
                 })
                 .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
                     reject(error.response ? error.response.data : error)
                 });
         })
     },
-    getCitys(context, xml) {
+    getCitys(context, data) {
         return new Promise((resolve, reject) => {
-            courierService.apiPost(notAuth, xml)
+            courierService.getCitys(data.city, data.namestarts ? data.namestarts : '')
                 .then(response => {
                     const parser = new XMLParser();
                     const jsonData = parser.parse(response.data);
                     resolve(jsonData.townlist)
                 })
                 .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
                     reject(error.response ? error.response.data : error)
                 });
         })
     },
-    getService(context, xml) {
+    getPunkit(context, data) {
         return new Promise((resolve, reject) => {
-            courierService.apiPost(auth, xml)
-                .then(response => {
-                    if (response.data) {
-                        const parser = new XMLParser();
-                        const jsonData = parser.parse(response.data);
-                        context.commit('setServices', jsonData.services)
-                        resolve(jsonData)
-                    } else {
-                        console.log('Services  bo\'sh');
-                    }
-                })
-                .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
-                    reject(error.response ? error.response.data : error)
-                });
-        })
-    },
-    getPunkit(context, xml) {
-        return new Promise((resolve, reject) => {
-            courierService.apiPost(auth, xml)
+            courierService.getPunkit(data.city)
                 .then(response => {
                     if (response.data) {
                         const parser = new XMLParser();
@@ -126,14 +107,33 @@ const actions = {
                     }
                 })
                 .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
                     reject(error.response ? error.response.data : error)
                 });
         })
     },
-    orderStatue(context, xml) {
+    getService(context) {
         return new Promise((resolve, reject) => {
-            courierService.apiPost(extra, xml)
+            courierService.getService()
+                .then(response => {
+                    if (response.data) {
+                        const parser = new XMLParser();
+                        const jsonData = parser.parse(response.data);
+                        context.commit('setServices', jsonData.services)
+                        resolve(jsonData)
+                    } else {
+                        console.log('Services  bo\'sh');
+                    }
+                })
+                .catch(error => {
+                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    reject(error.response ? error.response.data : error)
+                });
+        })
+    },
+    orderStatue(context, orderno) {
+        return new Promise((resolve, reject) => {
+            courierService.orderStatue(orderno)
                 .then(response => {
                     if (response.data) {
                         const parser = new XMLParser();
@@ -143,50 +143,14 @@ const actions = {
                     }
                 })
                 .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
                     reject(error.response ? error.response.data : error)
                 });
         })
     },
-    createOrder(context, xml) {
+    calculator(context, data) {
         return new Promise((resolve, reject) => {
-            // courierService.apiPost(auth, xml)
-            //     .then(response => {
-            //         if (response.data) {
-            //             const parser = new XMLParser();
-            //             const jsonData = parser.parse(response.data);
-            //             context.commit('setCreateOrder', jsonData.neworder)
-            //             resolve(jsonData)
-            //         }
-            //     })
-            //     .catch(error => {
-            //         console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
-            //         reject(error.response ? error.response.data : error)
-            //     });
-            return axios.post('https://home.courierexe.ru/api', xml, {
-                    headers: {
-                        'Content-Type': 'application/xml'
-                    }
-                }).then(response => {
-                    if (response.data) {
-                        const parser = new XMLParser({
-                            ignoreAttributes: false,
-                            attributeNamePrefix: "@"
-                        });
-                        const jsonData = parser.parse(response.data);
-                        context.commit('setCreateOrder', jsonData.neworder)
-                        resolve(jsonData)
-                    }
-                })
-                .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
-                    reject(error.response ? error.response.data : error)
-                });
-        })
-    },
-    calculator(context, xml) {
-        return new Promise((resolve, reject) => {
-            courierService.apiPost(auth, xml)
+            courierService.calculator(data)
                 .then(response => {
                     if (response.data) {
                         const parser = new XMLParser();
@@ -195,7 +159,23 @@ const actions = {
                     }
                 })
                 .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
+                    reject(error.response ? error.response.data : error)
+                });
+        })
+    },
+    createOrder(context, data) {
+        return new Promise((resolve, reject) => {
+            courierService.createOrder(data)
+                .then(response => {
+                    if (response.data) {
+                        const parser = new XMLParser();
+                        const jsonData = parser.parse(response.data);
+                        context.commit('setCreateOrder', jsonData.neworder)
+                        resolve(jsonData)
+                    }
+                })
+                .catch(error => {
                     reject(error.response ? error.response.data : error)
                 });
         })

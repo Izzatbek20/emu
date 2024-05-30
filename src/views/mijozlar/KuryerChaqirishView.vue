@@ -256,24 +256,13 @@ export default {
     },
     methods: {
         getViloyat() {
-            this.$store.dispatch('getViloyat', build.build({
-                "regionlist": {
-                    "conditions": {
-                        "country": 'UZ'
-                    }
-                }
-            }))
+            this.$store.dispatch('getViloyat')
         },
         getCitysFrom(viloyat, city = null) {
-            this.$store.dispatch('getCitys', build.build({
-                "townlist": {
-                    "conditions": {
-                        "city": viloyat,
-                        "namestarts": city,
-                        "country": 'UZ'
-                    }
-                }
-            })).then(response => {
+            this.$store.dispatch('getCitys', {
+                "city": viloyat,
+                "namestarts": city
+            }).then(response => {
                 // Responseda ko'p ma'lumot kelsa array bo'ladi. 1 ta natiha qaytsa u object bo'ladi.
                 if (response.town) {
 
@@ -289,15 +278,10 @@ export default {
 
         },
         getCitysTo(viloyat, city = null) {
-            this.$store.dispatch('getCitys', build.build({
-                "townlist": {
-                    "conditions": {
-                        "city": viloyat,
-                        "namestarts": city,
-                        "country": 'UZ'
-                    }
-                }
-            })).then(response => {
+            this.$store.dispatch('getCitys', {
+                "city": viloyat,
+                "namestarts": city
+            }).then(response => {
                 // Responseda ko'p ma'lumot kelsa array bo'ladi. 1 ta natiha qaytsa u object bo'ladi.
                 if (response.town) {
 
@@ -323,28 +307,17 @@ export default {
                 this.loading = true;
 
                 this.$recaptcha('login').then((token) => {
-                    this.$store.dispatch('calculator', build.build({
-                        'calculator': {
-                            "order": {
-                                "pricetype": "CUSTOMER",
-                                "sender": {
-                                    "town": this.from.city.value
-                                },
-                                "receiver": {
-                                    "town": this.from.city.value
-                                },
-                                "service": this.to.yetkazibBerish.value,
-                                "packages": {
-                                    "package": {
-                                        "@mass": this.weight.value ?? 1,
-                                        "@width": this.w.value ?? 1,
-                                        "@height": this.h.value ?? 1,
-                                        "@length": this.l.value ?? 1,
-                                    }
-                                }
-                            }
+                    this.$store.dispatch('calculator', {
+                        "senderTown": this.from.city.value,
+                        "receiverTown": this.to.city.value,
+                        "service": this.to.yetkazibBerish.value,
+                        "packages": {
+                            "mass": this.weight.value ?? 1,
+                            "width": this.w.value ?? 1,
+                            "height": this.h.value ?? 1,
+                            "length": this.l.value ?? 1,
                         }
-                    })).then(response => {
+                    }).then(response => {
                         let redirect = false;
                         if (response.calculator && response.calculator.calc) {
                             this.$store.commit('setCalculator', {
@@ -352,14 +325,14 @@ export default {
                                     fullname: this.to.fullname.value,
                                     phone: this.to.phone.value,
                                     city: this.to.city.value,
-                                    adress: `${this.to.viloyat.value}, ${this.to.city.value}, ${this.to.mahalla.value}, ${this.to.kocha.value}, ${this.to.uy.value}, ${this.to.xona.value}, ${this.to.moljal.value}`,
+                                    adress: `${this.to.viloyat.value ? this.to.viloyat.value + ',' : ''} ${this.to.city.value ? this.to.city.value + ',' : ''} ${this.to.mahalla.value ? this.to.mahalla.value + ',' : ''} ${this.to.kocha.value ? this.to.kocha.value + ',' : ''} ${this.to.uy.value ? this.to.uy.value + ',' : ''} ${this.to.xona.value ? this.to.xona.value + ',' : ''} ${this.to.moljal.value ? this.to.moljal.value : ''}`,
                                     yetkazibBerish: this.to.yetkazibBerish.value,
                                 },
                                 from: {
                                     fullname: this.from.fullname.value,
                                     phone: this.from.phone.value,
                                     city: this.from.city.value,
-                                    adress: `${this.from.viloyat.value}, ${this.from.city.value}, ${this.from.mahalla.value}, ${this.from.kocha.value}, ${this.from.uy.value}, ${this.from.xona.value}, ${this.from.moljal.value}`,
+                                    adress: `${this.from.viloyat.value ? this.from.viloyat.value + ',' : ''} ${this.from.city.value ? this.from.city.value + ',' : ''} ${this.from.mahalla.value ? this.from.mahalla.value + ',' : ''} ${this.from.kocha.value ? this.from.kocha.value + ',' : ''} ${this.from.uy.value ? this.from.uy.value + ',' : ''} ${this.from.xona.value ? this.from.xona.value + ',' : ''} ${this.from.moljal.value ? this.from.moljal.value + ',' : ''}`,
                                 },
                                 jonatmaTuri: this.jonatmaTuri.value ?? this.jonatmalar[0].code,
                                 weight: this.weight.value,

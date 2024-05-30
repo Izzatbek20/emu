@@ -159,30 +159,16 @@ export default {
     },
     methods: {
         getViloyat() {
-            this.$store.dispatch('getViloyat', build.build({
-                "regionlist": {
-                    "conditions": {
-                        "country": 'UZ'
-                    }
-                }
-            }))
+            this.$store.dispatch('getViloyat')
         },
-        getService(viloyat, city = null) {
-            this.$store.dispatch('getService', build.build({
-                "services": {
-                }
-            }))
+        getService() {
+            this.$store.dispatch('getService')
         },
         getCitysFrom(viloyat, city = null) {
-            this.$store.dispatch('getCitys', build.build({
-                "townlist": {
-                    "conditions": {
-                        "city": viloyat,
-                        "namestarts": city,
-                        "country": 'UZ'
-                    }
-                }
-            })).then(response => {
+            this.$store.dispatch('getCitys', {
+                "city": viloyat,
+                "namestarts": city
+            }).then(response => {
                 // Responseda ko'p ma'lumot kelsa array bo'ladi. 1 ta natiha qaytsa u object bo'ladi.
                 if (response.town) {
 
@@ -198,15 +184,10 @@ export default {
 
         },
         getCitysTo(viloyat, city = null) {
-            this.$store.dispatch('getCitys', build.build({
-                "townlist": {
-                    "conditions": {
-                        "city": viloyat,
-                        "namestarts": city,
-                        "country": 'UZ'
-                    }
-                }
-            })).then(response => {
+            this.$store.dispatch('getCitys', {
+                "city": viloyat,
+                "namestarts": city
+            }).then(response => {
                 // Responseda ko'p ma'lumot kelsa array bo'ladi. 1 ta natiha qaytsa u object bo'ladi.
                 if (response.town) {
 
@@ -232,28 +213,17 @@ export default {
                 this.loading = true;
 
                 this.$recaptcha('login').then((token) => {
-                    this.$store.dispatch('calculator', build.build({
-                        'calculator': {
-                            "order": {
-                                "pricetype": "CUSTOMER",
-                                "sender": {
-                                    "town": this.from.city.value
-                                },
-                                "receiver": {
-                                    "town": this.from.city.value
-                                },
-                                "weight": this.weight.value,
-                                "service": this.from.kuryerChaqirish.value,
-                                "packages": {
-                                    "package": {
-                                        "@width": this.w.value ?? 1,
-                                        "@height": this.h.value ?? 1,
-                                        "@length": this.l.value ?? 1,
-                                    }
-                                }
-                            }
+                    this.$store.dispatch('calculator', {
+                        "senderTown": this.from.city.value,
+                        "receiverTown": this.to.city.value,
+                        "service": this.from.kuryerChaqirish.value,
+                        "packages": {
+                            "mass": this.weight.value ?? 1,
+                            "width": this.w.value ?? 1,
+                            "height": this.h.value ?? 1,
+                            "length": this.l.value ?? 1,
                         }
-                    })).then(response => {
+                    }).then(response => {
                         let redirect = false;
                         if (response.calculator && response.calculator.calc) {
                             this.$store.commit('setCalculator', {
