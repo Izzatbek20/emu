@@ -12,27 +12,23 @@ const getters = {}
 const mutations = {}
 
 const actions = {
-    getOptCode(context, data) {
+    smsGenerate(context, data) {
         return new Promise((resolve, reject) => {
-            smsService.getOptCode(data)
+            smsService.smsGenerate(data)
                 .then(response => {
                     resolve(response)
-                })
-                .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
-                    reject(error.response ? error.response.data : error)
+                }).catch(error => {
+                    reject(error)
                 });
         })
     },
-    checkOptCode(context, data) {
+    smsCheck(context, data) {
         return new Promise((resolve, reject) => {
-            smsService.checkOptCode(data)
+            smsService.smsCheck(data)
                 .then(response => {
                     resolve(response)
-                })
-                .catch(error => {
-                    console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
-                    reject(error.response ? error.response : error)
+                }).catch(error => {
+                    reject(error)
                 });
         })
     },

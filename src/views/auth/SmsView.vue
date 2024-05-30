@@ -187,7 +187,6 @@ export default {
         },
         hasRegisterForm() {
             const form = this.registerForm
-            console.log(form);
 
             if (form.ism && form.familya && form.telefon) {
                 return true

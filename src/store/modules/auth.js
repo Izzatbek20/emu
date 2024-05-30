@@ -112,26 +112,6 @@ const actions = {
                 });
         })
     },
-    smsGenerate(context, data) {
-        return new Promise((resolve, reject) => {
-            authService.smsGenerate(data)
-                .then(response => {
-                    resolve(response)
-                }).catch(error => {
-                    reject(error)
-                });
-        })
-    },
-    smsCheck(context, data) {
-        return new Promise((resolve, reject) => {
-            authService.smsCheck(data)
-                .then(response => {
-                    resolve(response)
-                }).catch(error => {
-                    reject(error)
-                });
-        })
-    },
     validateTelefonVaLogin(context, data) {
         return new Promise((resolve, reject) => {
             authService.validateTelefonVaLogin(data)

@@ -1,20 +1,20 @@
 import axios from "axios"
 
-const smsService = {
-    getOptCode(data) {
-        return axios.post(`${import.meta.env.VITE_EMU_API_ORIGIN}/sms/`, data, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+const Axsios = axios.create({
+    withCredentials: true,
+    exposedHeaders: ["set-cookie"],
+    baseURL: import.meta.env.VITE_EMU_API_ORIGIN,
+    headers: {
+        "Content-Type": "application/json",
     },
-    checkOptCode(data) {
-        return axios.post(`${import.meta.env.VITE_EMU_API_ORIGIN}/sms/check`, data, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+});
+
+const smsService = {
+    smsGenerate(data) {
+        return Axsios.post('/generate', data)
+    },
+    smsCheck(data) {
+        return Axsios.post('/check', data)
     },
 }
 

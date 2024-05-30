@@ -14,7 +14,6 @@ const authAxsios = axios.create({
 
 const guestAxsios = axios.create({
     withCredentials: true,
-    exposedHeaders: ["set-cookie"],
     baseURL: import.meta.env.VITE_EMU_API_ORIGIN,
     headers: {
         "Content-Type": "application/json",
@@ -33,7 +32,6 @@ authAxsios.interceptors.response.use(
         return response
     },
     async (error) => {
-        console.log(error);
         const originalRequest = error.config;
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
@@ -94,12 +92,6 @@ const authService = {
     },
     validateTelefonVaLogin(data) {
         return guestAxsios.post('/user/validate/login_va_telefon', data)
-    },
-    smsGenerate(data) {
-        return guestAxsios.post('/generate', data)
-    },
-    smsCheck(data) {
-        return guestAxsios.post('/check', data)
     },
     register(data) {
         return guestAxsios.post('/user/register', data)
