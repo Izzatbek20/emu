@@ -295,8 +295,7 @@ export default {
                     }).then(response => {
                         this.isOpen = true
                         this.loading = false;
-
-                        if (response && response.data[1] == 200) {
+                        if (response && response.data['_embedded']) {
 
                             // Fo'rmani tozalash
                             this.$refs.formXabar.reset();

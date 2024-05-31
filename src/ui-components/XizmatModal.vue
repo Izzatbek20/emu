@@ -98,7 +98,7 @@ export default {
                         ]
                     }).then(response => {
 
-                        if (response && response.data[1] == 200) {
+                        if (response && response.data['_embedded']) {
                             this.responseModal = true
                             this.loading = false;
 

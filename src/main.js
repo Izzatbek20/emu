@@ -12,12 +12,7 @@ import i18n from './i18n';
 import VueSplide from '@splidejs/vue-splide';
 import VueTheMask from 'vue-the-mask'
 import vueClickOutsideElement from 'vue-click-outside-element'
-import {
-    VueFire
-} from 'vuefire'
-import {
-    firebaseApp
-} from './initFirebase'
+
 import {
     VueReCaptcha,
     useReCaptcha
@@ -37,10 +32,6 @@ app.use(VueTheMask);
 app.use(router)
 app.use(store)
 
-app.use(VueFire, {
-    firebaseApp,
-    modules: [],
-})
 // reCAPTCHA ni ishlatish
 app.use(VueReCaptcha, {
     siteKey: import.meta.env.VITE_reCAPTCHA_SITE_KEY

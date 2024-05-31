@@ -1,11 +1,14 @@
-import axios from "@/services/axios-amocrm.js"
+import axios from "axios"
 
-const amocrmService = {
-    getAccessToken(data) {
-        return axios.post('/amocrm/oauth2/access_token', data)
+const amocrmAxsios = axios.create({
+    baseURL: import.meta.env.VITE_EMU_API_ORIGIN,
+    headers: {
+        'Content-Type': 'application/json',
     },
+});
+const amocrmService = {
     createLeads(data) {
-        return axios.post('/amocrm/api/v4/leads', data)
+        return amocrmAxsios.post('/amocrm/api/v4/leads', data)
     },
 }
 
