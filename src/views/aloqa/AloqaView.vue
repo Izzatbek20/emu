@@ -88,23 +88,23 @@
                         Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
+                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loadingShikoyat"
                             v-model="shikoyat.name.value" :error="shikoyat.name.error" class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
+                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loadingShikoyat"
                             v-model="shikoyat.phone.value" class="w-full" :error="shikoyat.phone.error" />
                     </div>
-                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loading"
+                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loadingShikoyat"
                         v-model="shikoyat.body.value" class="w-full mt-6" :error="shikoyat.body.error" />
                     <div class="flex flex-row gap-6 gap-y-3">
-                        <Radio label="Jismoniy shaxsman" :value="'jismoni'" :disabled="loading"
+                        <Radio label="Jismoniy shaxsman" :value="'jismoni'" :disabled="loadingShikoyat"
                             v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
-                        <Radio label="Yuridik shaxsman" :value="'yuridik'" :disabled="loading"
+                        <Radio label="Yuridik shaxsman" :value="'yuridik'" :disabled="loadingShikoyat"
                             v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
                     </div>
                     <p class="text-red text-xs italic mt-2" v-if="shikoyat.shaxs.error">{{ shikoyat.shaxs.error }}</p>
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet :disabled="loading" title="Jo’natish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loadingShikoyat" title="Jo’natish" class="max-md:w-full" />
                     </div>
                 </form>
 
@@ -151,8 +151,6 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import axios from 'axios';
-import { mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -198,7 +196,8 @@ export default {
                 message: 'alertSuccess.message'
             },
             isOpen: false,
-            loading: false // Loading flag
+            loading: false, // Loading flag
+            loadingShikoyat: false // Loading flag
         }
     },
     components: {
@@ -215,23 +214,34 @@ export default {
             }
 
             if (!error) {
-                this.loading = true;
-                this.$store.dispatch('aloqa', {
-                    "ism": this.shikoyat.name.value,
-                    "telefon": `+998 ${this.shikoyat.phone.value}`,
-                    "xabar": this.shikoyat.body.value,
-                    "shaxs": this.shikoyat.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'
-                }).then(response => {
-                    this.isOpen = true
+                this.loadingShikoyat = true;
+                this.$recaptcha('login').then((token) => {
+                    this.$store.dispatch('aloqa', {
+                        "recaptcha": token,
+                        "ism": this.shikoyat.name.value,
+                        "telefon": `+998 ${this.shikoyat.phone.value}`,
+                        "xabar": this.shikoyat.body.value,
+                        "shaxs": this.shikoyat.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'
+                    }).then(response => {
+                        this.isOpen = true
 
-                    // Fo'rmani tozalash
-                    this.$refs.formShikoyat.reset();
-                    this.shikoyat.name.value = null
-                    this.shikoyat.phone.value = null
-                    this.shikoyat.body.value = null
-                    this.shikoyat.shaxs.value = null
-                }).finally(as => {
-                    this.loading = false;
+                        // Fo'rmani tozalash
+                        this.$refs.formShikoyat.reset();
+                        this.shikoyat.name.value = null
+                        this.shikoyat.phone.value = null
+                        this.shikoyat.body.value = null
+                        this.shikoyat.shaxs.value = null
+                    }).catch(err => {
+                        if (err.response.status == 419) {
+                            this.alert = {
+                                title: 'alertError.title',
+                                message: 'alertError.message'
+                            }
+                            this.isOpen = true
+                        }
+                    }).finally(as => {
+                        this.loadingShikoyat = false;
+                    })
                 })
             }
         },
@@ -248,6 +258,7 @@ export default {
 
                 this.$recaptcha('login').then((token) => {
                     this.$store.dispatch('createLeads', {
+                        "recaptcha": token,
                         "name": "Xabaringizni qoldiring",
                         "created_by": 0,
                         "custom_fields_values": [
@@ -283,7 +294,6 @@ export default {
                         ]
                     }).then(response => {
                         this.isOpen = true
-                        this.loading = false;
                         if (response && response.data['_embedded']) {
 
                             // Fo'rmani tozalash
@@ -297,6 +307,16 @@ export default {
                                 message: 'alertError.message'
                             }
                         }
+                    }).catch(err => {
+                        if (err.status == 419) {
+                            this.alert = {
+                                title: 'alertError.title',
+                                message: 'alertError.message'
+                            }
+                            this.isOpen = true
+                        }
+                    }).finally(as => {
+                        this.loading = false;
                     })
                 });
             }

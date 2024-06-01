@@ -19,8 +19,8 @@
                             v-model="fullname.value" :error="fullname.error" class="w-full" />
                         <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
                             v-model="phone.value" :error="phone.error" class="w-full" />
-                        <InputSelect label="Vakansiani tanlang" :optionsData="[{ name: 'Test' }]"
-                            :disabled="loading" v-model="vakansiya.value" :error="vakansiya.error" class="w-full" />
+                        <InputSelect label="Vakansiani tanlang" :optionsData="[{ name: 'Test' }]" :disabled="loading"
+                            v-model="vakansiya.value" :error="vakansiya.error" class="w-full" />
                     </div>
 
                     <!-- Fayillarni yuklash -->
@@ -75,9 +75,9 @@
         </div>
 
         <!-- Modal -->
-        <Modal title="Bog‘lanish" :isOpen="isOpen" @close="closeModal">
+        <Modal :title="$t(alert.title)" :isOpen="isOpen" @close="closeModal">
 
-            <div class="h5 my-10 text-center">Tez orada sizga javob bilan qaytamiz.</div>
+            <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
                 <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
@@ -93,7 +93,6 @@ import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DropZone from '@/ui-components/DropZone.vue';
-import axios from 'axios';
 import { vakansiya } from '@/constants/bar';
 
 gsap.registerPlugin(ScrollTrigger)
@@ -118,6 +117,10 @@ export default {
             files: {
                 value: null,
                 error: null
+            },
+            alert: {
+                title: 'alertSuccess.title',
+                message: 'alertSuccess.message'
             },
             isOpen: false,
             loading: false // Loading flag
@@ -180,19 +183,29 @@ export default {
                 for (let i = 0; i < this.files.value.length; i++) {
                     formData.append('files', this.files.value[i]);
                 }
-                
-                this.$store.dispatch('sendMedia', formData).then(response => {
-                    this.isOpen = true
 
-                    // Fo'rmani tozalash
-                    this.$refs.formVakansiya.reset();
-                    this.fullname.value = null
-                    this.phone.value = null
-                    this.vakansiya.value = null
-                    this.files.value = []
-                }).finally(response => {
-                    // Formani yuborish jarayoni tugagandan so'ng loading flagini false ga o'rnating
-                    this.loading = false;
+                this.$recaptcha('login').then((token) => {
+                    formData.append('recaptcha', "token");
+                    this.$store.dispatch('sendMedia', formData).then(response => {
+                        this.isOpen = true
+
+                        // Fo'rmani tozalash
+                        this.$refs.formVakansiya.reset();
+                        this.fullname.value = null
+                        this.phone.value = null
+                        this.vakansiya.value = null
+                        this.files.value = []
+                    }).catch(err => {
+                        if (err.response.status == 419) {
+                            this.alert = {
+                                title: 'alertError.title',
+                                message: 'alertError.message'
+                            }
+                            this.isOpen = true
+                        }
+                    }).finally(as => {
+                        this.loading = false;
+                    })
                 })
             }
         },

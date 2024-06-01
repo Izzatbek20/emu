@@ -71,6 +71,7 @@ export default {
 
                 this.$recaptcha('login').then((token) => {
                     this.$store.dispatch('createLeads', {
+                        "recaptcha": token,
                         "name": "Xizmatdan foydalanish",
                         "created_by": 0,
                         "custom_fields_values": [
@@ -114,6 +115,16 @@ export default {
                                 message: 'alertError.message'
                             }
                         }
+                    }).catch(err => {
+                        if (err.status == 419) {
+                            this.alert = {
+                                title: 'alertError.title',
+                                message: 'alertError.message'
+                            }
+                            this.responseModal = true
+                        }
+                    }).finally(as => {
+                        this.loading = false;
                     })
                 });
             }

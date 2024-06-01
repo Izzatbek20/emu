@@ -2,11 +2,6 @@ import {
     XMLParser
 } from "fast-xml-parser"
 import courierService from "@/services/courier"
-import axios from "axios"
-
-const notAuth = "not_auth"
-const auth = "auth"
-const extra = "extra"
 
 const state = {
     viloyat: null,
@@ -169,14 +164,17 @@ const actions = {
             courierService.createOrder(data)
                 .then(response => {
                     if (response.data) {
-                        const parser = new XMLParser();
+                        const parser = new XMLParser({
+                            ignoreAttributes: false,
+                            attributeNamePrefix: '@'
+                        });
                         const jsonData = parser.parse(response.data);
                         context.commit('setCreateOrder', jsonData.neworder)
                         resolve(jsonData)
                     }
                 })
                 .catch(error => {
-                    reject(error.response ? error.response.data : error)
+                    reject(error.response ? error.response : error)
                 });
         })
     },

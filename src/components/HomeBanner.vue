@@ -47,14 +47,27 @@
 
             <div class="h5 my-10 text-center">Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring</div>
 
-            <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="order_id.value" />
-            <InputPhone label="Telefon raqamingiz" :required="true" v-model="order_id.value" />
-            <InputSelect label="Biznes faoliyatingiz" :required="true" v-model="order_id.value" />
+            <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="name.value" :error="name.error"
+                :disabled="loading" />
+            <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone.value" :error="phone.error"
+                :disabled="loading" />
+            <Input label="Biznes faoliyatingiz" :required="true" v-model="biznes.value" :error="biznes.error"
+                :disabled="loading" />
 
             <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Jo’natish" class="w-full" />
+                <ButtonVioletLogin @click="sendAorcrm" :disabled="loading" title="Jo’natish" class="w-full" />
+            </div>
+        </Modal>
+
+        <!-- Javob modal -->
+        <Modal :title="$t(alert.title)" :isOpen="responseModal" @close="responseModal=false">
+
+            <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
+
+            <div class="mt-2 p-3 text-center space-x-4 md:block">
+                <ButtonVioletLogin @click="responseModal=false" title="Saqlash" class="w-full" />
             </div>
         </Modal>
     </div>
@@ -78,9 +91,27 @@ export default {
                 value: null,
                 error: null
             },
+            name: {
+                value: null,
+                error: null
+            },
+            phone: {
+                value: null,
+                error: null
+            },
+            biznes: {
+                value: null,
+                error: null
+            },
+            alert: {
+                title: 'alertError.title',
+                message: 'alertError.message'
+            },
+            loading: false,
             order_not: null,
             modalYuk: false,
             modalHamkor: false,
+            responseModal: false,
         }
     },
     components: {
@@ -108,6 +139,64 @@ export default {
                     break;
             }
         },
+        async sendAorcrm() {
+            let error = this.validate()
+
+            if (error) {
+                return;
+            }
+
+            if (!error) {
+                this.loading = true;
+
+                this.$recaptcha('login').then((token) => {
+                    this.$store.dispatch('createLeads', {
+                        "recaptcha": token,
+                        "name": "Hamkorlik bo’yicha",
+                        "created_by": 0,
+                        "custom_fields_values": [
+                            {
+                                "field_id": 261449,
+                                "values": [
+                                    {
+                                        "value": this.name.value
+                                    }
+                                ]
+                            },
+                            {
+                                "field_id": 261451,
+                                "values": [
+                                    {
+                                        "value": "+998" + this.phone.value
+                                    }
+                                ]
+                            },
+                            {
+                                "field_id": 261453,
+                                "values": [
+                                    {
+                                        "value": this.biznes.value
+                                    }
+                                ]
+                            },
+                        ],
+                        "tags_to_add": [
+                            {
+                                "name": "Hamkorlik"
+                            }
+                        ]
+                    }).then(response => {
+                        this.modalHamkor = false
+                    }).catch(err => {
+                        if (err.status == 419) {
+                            this.responseModal = true
+                        }
+                    }).finally(as => {
+                        this.loading = false;
+                    })
+                });
+            }
+        },
         async getOrderStatue() {
             if (this.validateOrderId()) {
                 return
@@ -132,6 +221,36 @@ export default {
                 error = true
             } else {
                 this.order_id.error = null;
+            }
+
+            return error;
+        },
+        validate() {
+            let error = false;
+            if (!this.name.value) {
+                this.name.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.name.error = null;
+            }
+
+            if (!this.biznes.value) {
+                this.biznes.error = this.$t('validate.required');
+                error = true
+            } else {
+                this.biznes.error = null;
+            }
+
+            if (!this.phone.value) {
+                this.phone.error = this.$t('validate.required');
+                error = true
+            } else {
+                if (this.phone.value && this.phone.value.length != 12) {
+                    this.phone.error = this.$t('validate.phone');
+                    error = true
+                } else {
+                    this.phone.error = null;
+                }
             }
 
             return error;

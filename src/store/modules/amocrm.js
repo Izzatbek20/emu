@@ -18,7 +18,7 @@ const actions = {
                 })
                 .catch(error => {
                     // console.error('Xatolik yuz berdi:', error.response ? error.response.data : error);
-                    reject(error.response ? error.response.data : error)
+                    reject(error.response)
                 });
         })
     },

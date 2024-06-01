@@ -18,7 +18,7 @@ const actions = {
                 .then(response => {
                     resolve(response)
                 }).catch(error => {
-                    reject(error)
+                    reject(error.response ? error.response : error)
                 });
         })
     },

@@ -96,13 +96,22 @@
         <!-- Modal success -->
         <Modal title="Muvaffaqiyat" :isOpen="isOpenSuccess" :clickOutside="false" @close="closeModalSuccess">
 
-            <div class="h5 mt-10 text-center">Buyurtma ro'yxatga olindi</div>
-            <div class="text-center"> Buyurtma id: {{ this.createOrder ? this.createOrder.createorder['@orderno'] : null
-                }}
-            </div>
+            <div class="txt-big text-center mt-8 mb-2">Tez orada</div>
+            <div class="text-center h5 text-violet mb-2">{{ calculator.from.adress }}</div>
+            <div class="txt-big text-center">manziliga kuryerimiz yetib boradi. Iltimos aloqada bo’ling.</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModalSuccess" title="Yopish" class="w-full" />
+                <ButtonVioletLogin @click="closeModalSuccess" title="Asosiy menyuga qaytish" class="w-full" />
+            </div>
+        </Modal>
+
+        <!-- Javob modal -->
+        <Modal :title="$t(alert.title)" :isOpen="errorModal" @close="errorModal = false">
+
+            <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
+
+            <div class="mt-2 p-3 text-center space-x-4 md:block">
+                <ButtonVioletLogin @click="errorModal = false" title="Yopish" class="w-full" />
             </div>
         </Modal>
     </div>
@@ -138,6 +147,10 @@ export default {
             otpCode5: null,
             otpCode6: null,
 
+            alert: {
+                title: 'alertError.title',
+                message: 'alertError.message'
+            },
             otpCodeFull: null,
 
             leftMinut: 59,
@@ -146,6 +159,7 @@ export default {
 
             isOpen: false,
             isOpenSuccess: false,
+            errorModal: false,
             loading: false // Loading flag
         }
     },
@@ -189,7 +203,7 @@ export default {
             this.loading = true;
             this.$recaptcha('login').then((token) => {
                 this.$store.dispatch('smsGenerate', {
-                    "captcha": token,
+                    "recaptcha": token,
                     "telefon": this.calculator.from && this.calculator.from.phone ? "998" + this.calculator.from.phone.replaceAll(' ', '') : null,
                 }).then(response => {
                     switch (response.status) {
@@ -217,6 +231,11 @@ export default {
                             this.loading = false;
                             break;
                     }
+                }).catch(err => {
+                    if (err.status == 419) {
+                        this.errorModal = true
+                    }
+                    this.loading = false
                 })
             });
         },
@@ -226,6 +245,7 @@ export default {
 
             this.$recaptcha('login').then((token) => {
                 this.$store.dispatch('createOrder', {
+                    "recaptcha": token,
                     "sender": {
                         "person": this.calculator.from.fullname,
                         "phone": this.calculator.from.phone,
@@ -253,7 +273,7 @@ export default {
                     },
                     "otpCode": this.otpCodeFull,
                 }).then(response => {
-                    // console.log(this.createOrder.createorder['@errormsg'], this.createOrder.createorder['@orderno']);
+                    console.log(response);
                     if (this.createOrder.createorder['@errormsg'] == 'Success') {
                         this.isOpen = false
                         this.isOpenSuccess = true;
@@ -271,6 +291,11 @@ export default {
                         this.otpCode5 = null
                         this.otpCode6 = null
                     }
+
+                    if (err.status == 419) {
+                        this.errorModal = true
+                    }
+                    this.loading = false
                 })
             });
         },

@@ -325,14 +325,14 @@ export default {
                                     fullname: this.to.fullname.value,
                                     phone: this.to.phone.value,
                                     city: this.to.city.value,
-                                    adress: `${this.to.viloyat.value ? this.to.viloyat.value + ',' : ''} ${this.to.city.value ? this.to.city.value + ',' : ''} ${this.to.mahalla.value ? this.to.mahalla.value + ',' : ''} ${this.to.kocha.value ? this.to.kocha.value + ',' : ''} ${this.to.uy.value ? this.to.uy.value + ',' : ''} ${this.to.xona.value ? this.to.xona.value + ',' : ''} ${this.to.moljal.value ? this.to.moljal.value : ''}`,
+                                    adress: `${this.to.viloyat.value ? this.to.viloyat.value + ',' : ''} ${this.to.city.value ? this.to.city.value + ',' : ''} ${this.to.mahalla.value ? this.to.mahalla.value + ',' : ''} ${this.to.kocha.value ? this.to.kocha.value + ',' : ''} ${this.to.uy.value ? this.to.uy.value + ' ' : ''} ${this.to.xona.value ? this.to.xona.value + ' ' : ''} ${this.to.moljal.value ? this.to.moljal.value : ''}`,
                                     yetkazibBerish: this.to.yetkazibBerish.value,
                                 },
                                 from: {
                                     fullname: this.from.fullname.value,
                                     phone: this.from.phone.value,
                                     city: this.from.city.value,
-                                    adress: `${this.from.viloyat.value ? this.from.viloyat.value + ',' : ''} ${this.from.city.value ? this.from.city.value + ',' : ''} ${this.from.mahalla.value ? this.from.mahalla.value + ',' : ''} ${this.from.kocha.value ? this.from.kocha.value + ',' : ''} ${this.from.uy.value ? this.from.uy.value + ',' : ''} ${this.from.xona.value ? this.from.xona.value + ',' : ''} ${this.from.moljal.value ? this.from.moljal.value + ',' : ''}`,
+                                    adress: `${this.from.viloyat.value ? this.from.viloyat.value + ',' : ''} ${this.from.city.value ? this.from.city.value + ',' : ''} ${this.from.mahalla.value ? this.from.mahalla.value + ',' : ''} ${this.from.kocha.value ? this.from.kocha.value + ',' : ''} ${this.from.uy.value ? this.from.uy.value + ' ' : ''} ${this.from.xona.value ? this.from.xona.value + ' ' : ''} ${this.from.moljal.value ? this.from.moljal.value : ''}`,
                                 },
                                 jonatmaTuri: this.jonatmaTuri.value ?? this.jonatmalar[0].code,
                                 weight: this.weight.value,
@@ -348,7 +348,7 @@ export default {
                             this.loading = false;
                             this.weight.error = this.$t('validate.limitWeight');
                             redirect = false
-                        } else if (response.calc == "town to not found") {
+                        } else if (response.calc == "town to not found" || response.calc == "subtown not found") {
                             // yuboruvchi va qabul qiluvchi shaxarlar birxil bo'lsa xatolig beradi
                             this.loading = false;
                             this.to.city.error = this.$t('validate.tumanTopilmadi');
