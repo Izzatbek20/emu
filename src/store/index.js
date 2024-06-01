@@ -6,6 +6,7 @@ import courier from './modules/courier'
 import amocrm from './modules/amocrm'
 import sms from './modules/sms'
 import auth from './modules/auth'
+import telegram from './modules/telegram'
 
 const store = createStore({
     state() {},
@@ -16,7 +17,8 @@ const store = createStore({
         courier,
         amocrm,
         sms,
-        auth
+        auth,
+        telegram
     }
 })
 export default store

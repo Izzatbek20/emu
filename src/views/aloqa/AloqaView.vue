@@ -216,34 +216,23 @@ export default {
 
             if (!error) {
                 this.loading = true;
-                try {
-                    const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
+                this.$store.dispatch('aloqa', {
+                    "ism": this.shikoyat.name.value,
+                    "telefon": `+998 ${this.shikoyat.phone.value}`,
+                    "xabar": this.shikoyat.body.value,
+                    "shaxs": this.shikoyat.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'
+                }).then(response => {
+                    this.isOpen = true
 
-                    // So'rovni formData bilan yuborish
-                    const response = await axios.get(url, {
-                        params: {
-                            chat_id: this.chatId,
-                            text: `<b>Ism:</b> ${this.shikoyat.name.value}\n<b>Telefon:</b> +998 ${this.shikoyat.phone.value}\n<b>Xabar:</b> ${this.shikoyat.body.value}\n<b>Shaxs:</b> ${this.shikoyat.shaxs.value == 'yuridik' ? 'Yuridik shaxs' : 'Jismoniy shaxs'}`,
-                            parse_mode: 'html'
-                        },
-                    });
-
-                    if (response.data) {
-                        this.isOpen = true
-
-                        // Fo'rmani tozalash
-                        this.$refs.formShikoyat.reset();
-                        this.shikoyat.name.value = null
-                        this.shikoyat.phone.value = null
-                        this.shikoyat.body.value = null
-                        this.shikoyat.shaxs.value = null
-                    }
-                } catch (error) {
-                    console.error('Xato:', error);
-                } finally {
-                    // Formani yuborish jarayoni tugagandan so'ng loading flagini false ga o'rnating
+                    // Fo'rmani tozalash
+                    this.$refs.formShikoyat.reset();
+                    this.shikoyat.name.value = null
+                    this.shikoyat.phone.value = null
+                    this.shikoyat.body.value = null
+                    this.shikoyat.shaxs.value = null
+                }).finally(as => {
                     this.loading = false;
-                }
+                })
             }
         },
         async xabarSubmit() {

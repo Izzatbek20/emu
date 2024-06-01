@@ -19,8 +19,8 @@
                             v-model="fullname.value" :error="fullname.error" class="w-full" />
                         <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
                             v-model="phone.value" :error="phone.error" class="w-full" />
-                        <InputSelect label="Vakansiani tanlang" :disabled="loading" v-model="vakansiya.value"
-                            :error="vakansiya.error" class="w-full" />
+                        <InputSelect label="Vakansiani tanlang" :optionsData="[{ name: 'Test' }]"
+                            :disabled="loading" v-model="vakansiya.value" :error="vakansiya.error" class="w-full" />
                     </div>
 
                     <!-- Fayillarni yuklash -->
@@ -168,59 +168,32 @@ export default {
 
             if (!error) {
                 this.loading = true;
-                // Fayllarni jo'natish uchun FormData yaratamiz
+
+                const vakansiyaName = vakansiya.find((item) => item.id == this.$route.params.id);
+
                 const formData = new FormData();
-                // Media massivini yaratamiz
-                const media = this.files.value.map((file, index) => {
-                    const formName = `document${index}`;
-                    formData.append(formName, file);
+                formData.append('fullname', this.fullname.value);
+                formData.append('phone', `+998 ${this.phone.value}`);
+                formData.append('vakansiya', this.vakansiya.value);
+                formData.append('viloyat', vakansiyaName.title);
 
-                    // Media obyektini qaytaramiz
-                    const rest = {
-                        type: 'document',
-                        media: `attach://${formName}`,
-                    }
-                    if (this.files.value.length == (index + 1)) {
-                        const vakansiyaName = vakansiya.find((item) => item.id == this.$route.params.id);
-                        Object.assign(rest, {
-                            caption: `<b>Ism:</b> ${this.fullname.value}\n<b>Telefon:</b> +998 ${this.phone.value}\n<b>Vakansiya:</b> ${this.vakansiya.value}\n<b>Viloyat:</b> ${vakansiyaName.title}`,
-                            parse_mode: 'html',
-                        });
-                    }
+                for (let i = 0; i < this.files.value.length; i++) {
+                    formData.append('files', this.files.value[i]);
+                }
+                console.log(formData);
+                this.$store.dispatch('sendMedia', formData).then(response => {
+                    this.isOpen = true
 
-                    return rest
-                });
-
-                try {
-                    const url = `https://api.telegram.org/bot${this.token}/sendMediaGroup`;
-
-                    // So'rovni formData bilan yuborish
-                    const response = await axios.post(url, formData, {
-                        params: {
-                            chat_id: this.chatId,
-                            media: JSON.stringify(media), // Media massivini JSON formatida yuborish
-                        },
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                        },
-                    });
-
-                    if (response.data) {
-                        this.isOpen = true
-
-                        // Fo'rmani tozalash
-                        this.$refs.formVakansiya.reset();
-                        this.fullname.value = null
-                        this.phone.value = null
-                        this.vakansiya.value = null
-                        this.files.value = []
-                    }
-                } catch (error) {
-                    console.error('Xato:', error);
-                } finally {
+                    // Fo'rmani tozalash
+                    this.$refs.formVakansiya.reset();
+                    this.fullname.value = null
+                    this.phone.value = null
+                    this.vakansiya.value = null
+                    this.files.value = []
+                }).finally(response => {
                     // Formani yuborish jarayoni tugagandan so'ng loading flagini false ga o'rnating
                     this.loading = false;
-                }
+                })
             }
         },
         closeModal() {
