@@ -180,7 +180,7 @@ export default {
                 for (let i = 0; i < this.files.value.length; i++) {
                     formData.append('files', this.files.value[i]);
                 }
-                console.log(formData);
+                
                 this.$store.dispatch('sendMedia', formData).then(response => {
                     this.isOpen = true
 
