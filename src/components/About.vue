@@ -1,8 +1,11 @@
 <template>
     <div class="flex flex-row justify-between max-md:flex-col gap-4">
         <div class="flex-1">
-            <h2 class="h1 max-xl:h2 max-lg:h3 mb-6">
+            <!-- <h2 class="h1 max-xl:h2 max-lg:h3 mb-6">
                 Oliy maqsadimiz
+            </h2> -->
+            <h2 class="h1 max-xl:h2 max-lg:h3 mb-6">
+                Aholiga tez va ishonchli xizmat ko'rsatish
             </h2>
             <h2 class="h2 max-xl:h3 max-lg:h4 mb-6">
                 Kompaniya haqida

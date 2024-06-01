@@ -5,7 +5,7 @@
                 <div class="relative">
                     <img v-if="!video" :src="url" alt="image"
                         class="rounded-lg rounded-bl-[3rem] object-cover object-center" srcset="">
-                    <div :id="id" class="rounded-lg rounded-bl-[3rem] object-cover object-center w-full">
+                    <div :id="id" class="rounded-lg object-cover object-center w-full">
                     </div>
                     <Play v-if="!video"
                         class="size-20 absolute cursor-pointer bottom-2 left-2 max-lg:bottom-3 max-lg:left-3 max-lg:size-14"

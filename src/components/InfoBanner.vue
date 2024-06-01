@@ -7,7 +7,7 @@
         <img :src="image" alt="image-1" srcset="" class="absolute right-0 bottom-0">
 
         <!-- Modal -->
-        <XizmatModal v-if="type == 1" title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
+        <XizmatModal v-if="type == 1 || type == 3" title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
     </div>
 </template>
 <script>
@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         click() {
-            if (this.type == 1) {
+            if (this.type == 1 || this.type == 3) {
                 this.isOpen = true
             }
             if (this.type == 2) {

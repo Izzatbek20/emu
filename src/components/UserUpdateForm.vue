@@ -2,8 +2,8 @@
     <form @submit.prevent="submit" class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
 
         <div class="relative w-36 h-36 max-lg:mx-auto">
-            <div
-                class="overflow-hidden w-36 h-36 max-lg:mx-auto bg-[#F7F5F7] border border-gray border-dashed rounded-full flex items-center justify-center">
+            <div class="overflow-hidden w-36 h-36 max-lg:mx-auto bg-[#F7F5F7] rounded-full flex items-center justify-center"
+                :class="{ 'border border-gray border-dashed': user && user.user_photos && !user.user_photos.url }">
                 <div v-if="user && user.user_photos && user.user_photos.url">
                     <img :src="origin + '/' + user.user_photos.url" alt="" srcset="">
                 </div>
@@ -19,13 +19,14 @@
         </div>
 
         <div class="grid grid-cols-3 max-lg:grid-cols-1 mt-10 gap-6">
-            <Input label="Ism" placeholder="Ism" v-model="form.ism.value" :error="form.ism.error" :disabled="loading" />
+            <Input label="Ism" placeholder="Ism" v-model="form.ism.value" :error="form.ism.error" :disabled="loading"
+                :editIcon="true" />
             <Input label="Familiya" placeholder="Familiya" v-model="form.familya.value" :error="form.familya.error"
-                :disabled="loading" />
+                :disabled="loading" :editIcon="true" />
             <InputPhone label="Telefon raqamingiz" :required="true" placeholder="Telefon" v-model="form.telefon.value"
-                :error="form.telefon.error" :disabled="loading" />
+                :error="form.telefon.error" :disabled="loading" :editIcon="true" />
             <Textarea class="col-span-2 max-lg:col-span-1" label="Manzil" v-model="form.manzil.value"
-                :error="form.manzil.error" :disabled="loading" />
+                :error="form.manzil.error" :disabled="loading" :editIcon="true" />
         </div>
         <!-- <UserUpdateForm /> -->
         <router-link :to="{ name: 'parolChange' }" class="nav-menu nav-menu-animation">Parol

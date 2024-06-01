@@ -10,9 +10,13 @@
             </div>
             <input
                 class="appearance-none border rounded-xl w-full py-3 px-3 ps-14 leading-tight focus:outline-none focus:shadow-outline transition-colors"
-                :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, (error ? 'border-red' : 'border-icon-gray'), (disabled ? 'border-light-gray' : null)]"
+                :class="[!disabled && !error ? 'focus:border-violet hover:border-violet' : null, (error ? 'border-red' : 'border-icon-gray'), (disabled ? 'border-light-gray' : null), { 'pe-14': editIcon }]"
                 :id="id" :type="type" @input="updateValue" v-mask="'## ### ## ##'" :disabled="disabled"
                 :value="modelValue">
+            <div v-if="editIcon"
+                class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none text-[#333]">
+                <Edit :fillColor="'fill-icon-gray group-hover:fill-violet'" />
+            </div>
         </div>
 
         <p class="text-red text-xs italic mt-2" v-if="error">{{ error }}</p>
@@ -34,6 +38,10 @@ export default {
             default: 'text',
         },
         required: {
+            type: Boolean,
+            default: false
+        },
+        editIcon: {
             type: Boolean,
             default: false
         },

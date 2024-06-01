@@ -76,17 +76,19 @@
                                 </div>
                                 <ul class="flex flex-row items-center gap-x-2 mt-4">
                                     <li class="cursor-pointer group transition-colors">
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <a href="https://www.instagram.com/emu_tashkent" target="_blank"
+                                            rel="noopener noreferrer">
                                             <Instagram :fillColor="'fill-white group-hover:fill-orange'" />
                                         </a>
                                     </li>
                                     <li class="cursor-pointer group">
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <a href="https://t.me/emuadmin" target="_blank" rel="noopener noreferrer">
                                             <Telegram :fillColor="'fill-white group-hover:fill-orange'" />
                                         </a>
                                     </li>
                                     <li class="cursor-pointer group">
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <a href="https://www.facebook.com/emucargo?mibextid=LQQJ4d" target="_blank"
+                                            rel="noopener noreferrer">
                                             <Facebook :fillColor="'fill-white group-hover:fill-orange'" />
                                         </a>
                                     </li>
@@ -104,11 +106,11 @@
                     </div>
                 </div>
                 <div class="flex justify-between items-ceneter mt-10">
-                    <span class="txt-micro">2024 EMU</span>
+                    <span class="txt-micro">OOO ”Express Mail Universal” Copyright © 2016 – {{ currentYear }}</span>
                     <!-- <span class="txt-micro">
                         <a href="http://" target="_blank" rel="noopener noreferrer">Crud Group</a>
                     </span> -->
-                    <a href="https://perfectmedia.uz" target="_blank" class="flex items-center gap-1">
+                    <a href="https://perfectmedia.uz" target="_blank" class="flex items-center gap-x-1">
                         <img :src="perfectMedia" alt="" class="size-8">
                         <div class="leading-none txt-micro">
                             <span class="font-bold text-[13px]">Perfect Media</span><br><span
@@ -131,7 +133,8 @@ export default {
         return {
             show: true,
             menus: menus,
-            perfectMedia: perfectMedia
+            perfectMedia: perfectMedia,
+            currentYear: new Date().getFullYear()
         }
     },
     mounted() {

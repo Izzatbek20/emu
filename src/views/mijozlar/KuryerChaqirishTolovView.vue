@@ -62,7 +62,7 @@
                 </div>
                 <div class="flex items-start gap-6 mt-10">
                     <ButtonViolet title="Xa, jo’natish" :disabled="loading" />
-                    <ButtonOranger title="Yoq, qayta xisoblash" @click="$router.go(-1)" />
+                    <ButtonOranger title="Yoq, qayta xisoblash" @click="$router.push({ name: 'kuryerChaqirish' })" />
                 </div>
 
             </form>

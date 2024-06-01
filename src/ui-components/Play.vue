@@ -22,37 +22,67 @@ export default {
 }
 </script>
 <style scoped>
-.item-3 {
-    /* animation-name: tiem3; */
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+svg {
+    display: block;
+    margin: auto;
 }
 
-.item-2 {
-    animation-name: tiem2;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+.item-0,
+.item-1,
+.item-2,
+.item-3 {
+    transform-origin: center;
 }
 
 .item-1 {
-    animation-name: tiem1;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+    animation: scale1 2s infinite;
+    animation-delay: 50ms;
 }
 
+.item-2,
 .item-0 {
-    animation-name: tiem0;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+    animation: scale2 2s infinite;
+    animation-delay: 200ms;
 }
 
-@keyframes tiem3 {
-    50% {
-        transform: scale(1.2);
-    }
+.item-3 {
+    animation: scale3 2s infinite;
+    animation-delay: 200ms;
+}
 
+@keyframes scale1 {
+
+    0%,
     100% {
         transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+@keyframes scale2 {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes scale3 {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.8);
     }
 }
 </style>

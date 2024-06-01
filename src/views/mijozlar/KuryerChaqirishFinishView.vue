@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
-                <Bar id="pin" :name="'xizmlatlar'" />
+                <Bar id="pin" :name="'mijoz'" />
             </div>
         </div>
         <!-- Modal -->

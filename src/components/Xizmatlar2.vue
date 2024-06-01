@@ -12,13 +12,20 @@
     </div>
 </template>
 <script>
+import Sertificat from '@/ui-components/icons/Sertificat.vue';
+import GlobalShipping from '@/ui-components/icons/GlobalShipping.vue';
+import DeliverUser from '@/ui-components/icons/DeliverUser.vue';
+import DeliverHome from '@/ui-components/icons/DeliverHome.vue';
 export default {
     props: {
         items: {
             type: Array,
             required: true
         }
-    }
+    },
+    components: {
+        Sertificat, GlobalShipping, DeliverUser, DeliverHome
+    },
 }
 </script>
 <style></style>

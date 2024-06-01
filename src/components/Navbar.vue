@@ -6,17 +6,17 @@
                     @click="$router.push('/')">
                 <ul class="flex flex-row items-center gap-x-2 xs:max-md:hidden">
                     <li class="cursor-pointer group transition-colors">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/emu_tashkent" target="_blank" rel="noopener noreferrer">
                             <Instagram :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
                         </a>
                     </li>
                     <li class="cursor-pointer group">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="https://t.me/emuadmin" target="_blank" rel="noopener noreferrer">
                             <Telegram :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
                         </a>
                     </li>
                     <li class="cursor-pointer group">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/emucargo?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
                             <Facebook :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
                         </a>
                     </li>

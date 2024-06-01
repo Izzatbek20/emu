@@ -10,9 +10,9 @@
 
         <div class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4  flex flex-row">
-                <div
-                    class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden rounded-bl-[6rem] h-96 max-xl:h-[46rem] max-lg:h-[42rem] max-md:h-[38rem] max-sm:h-[35rem]">
-                    <AboutBanner />
+                <div class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden h-96 max-xl:h-[46rem] max-lg:h-[42rem] max-md:h-[38rem] max-sm:h-[35rem]"
+                    :class="{ 'rounded-bl-[6rem]': !playing }">
+                    <AboutBanner @playing="playing = !playing" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -56,7 +56,7 @@ export default {
             xizmatlar: [
                 {
                     title: 'O’zbekiston bo’ylab 75ta ofisimiz mavjud',
-                    icon: 'Aloqa'
+                    icon: 'Marker3'
                 },
                 {
                     title: '24/7 aloqadamiz',
@@ -64,21 +64,22 @@ export default {
                 },
                 {
                     title: '+8 yillik tajribali kuryer va boshqa xodimlarimiz sizga xizmat ko’rsatadi',
-                    icon: 'Aloqa'
+                    icon: 'DeliverUser'
                 },
                 {
                     title: '200ta yuk tashish avtomobillarmiz O’zbekistonning har bir burchagiga yetib boradi',
-                    icon: 'Aloqa'
+                    icon: 'DeliverHome'
                 },
                 {
                     title: 'MDH mamlakatlari bo’ylab ham xizmat ko’rsatamiz',
-                    icon: 'Aloqa'
+                    icon: 'GlobalShipping'
                 },
                 {
                     title: 'ISO 9001-2015 standarti bo’yicha yuqori sifatta xizmat ko’rsatamiz',
-                    icon: 'Aloqa'
+                    icon: 'Sertificat'
                 }
-            ]
+            ],
+            playing: false
         }
     }
 }
