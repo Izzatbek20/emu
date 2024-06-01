@@ -100,8 +100,6 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
     data() {
         return {
-            chatId: import.meta.env.VITE_BOT_CHAT_ID, // Chat ID ni kiriting
-            token: import.meta.env.VITE_BOT_TOKEN, // Bot tokenini kiriting
             fullname: {
                 value: null,
                 error: null
@@ -185,7 +183,7 @@ export default {
                 }
 
                 this.$recaptcha('login').then((token) => {
-                    formData.append('recaptcha', "token");
+                    formData.append('recaptcha', token);
                     this.$store.dispatch('sendMedia', formData).then(response => {
                         this.isOpen = true
 
