@@ -6,10 +6,10 @@
                 :disabled="loading" />
             <Input label="Parol" v-model="password.value" :error="password.error ? password.error : responseError"
                 :disabled="loading" :type="'password'" />
-            <div class="w-full flex justify-center">
+            <!-- <div class="w-full flex justify-center">
                 <router-link :to="{ name: 'register' }" class="nav-menu nav-menu-animation">Roʻyxatdan
                     oʻtish</router-link>
-            </div>
+            </div> -->
             <ButtonVioletLogin :disabled="loading" title="Kirish" class="mx-auto mt-10 w-2/3" />
         </form>
     </div>
