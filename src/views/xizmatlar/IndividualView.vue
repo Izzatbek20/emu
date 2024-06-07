@@ -12,28 +12,25 @@
                     <div class="flex p-10 items-center max-md:items-start max-md:py-8">
                         <div
                             class="w-2/5 max-lg:w-3/5 max-md:w-4/6 max-sm:w-4/5 text-white h1 max-2xl:h2 max-sm:h3 z-20">
-                            Individual yuk tashish xizmati
+                            {{ data ? data.title : null }}
                         </div>
-                        <img src="@/assets/images/individual.png" alt="image" class="absolute bottom-0 right-0 w-96"
+                        <img :src="data ? data.image : null"  class="absolute bottom-0 right-0 w-96"
                             srcset="">
                     </div>
                 </div>
 
                 <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7">
-                    Yuk tashish xizmati orqali Siz barcha turdagi yuklaringizni Respublika bo‘ylab yetkazib berishingiz
-                    mumkin. Bugunda EMU kompaniyasida jami 40 dan ortiq yuk tashish uchun mo‘ljallangan Damas VAN, Damas
-                    Labo, Forza, Mersedezbenz Sprinter, Ford, Isuzi, Man markali avtomashinalar bilan taʼminlangan. Biz
-                    Sizga yuklaringizni Respublika bo‘ylab tez va ishonchli yetkazib berishni kafolatlaymiz. Bizda
-                    profisional xaydovchilar va yuklovchi xodimlar bulib, yuklaringiz tezda sifatli yuklanib
-                    beligilangan manzil buyicha yetkazib beriladi.
-                    <br>
-                    <br>
-                    ​​Yuk tashish xizmati narxlari yetkazib berish masofasi, atomabil turi, yuk hajmiga qarab indiduval
-                    hisoblanadi.  ​
+                    {{ data ? data.content : null }}
                 </p>
 
+                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                    <div class="absolute ">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                    </div>
+                </div>
+                
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet @click="submit" title="Xizmatdan foydalanish" />
+                    <ButtonViolet @click="openModal" title="Xizmatdan foydalanish" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -51,6 +48,7 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { mapGetters, mapState } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 
 // Asinxron komponentni import qilish
@@ -63,21 +61,54 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
     data() {
         return {
-            isOpen: false,
+            data: null,
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            isOpen: false
         }
     },
     components: {
         BarGorizontal, Bar, Navigation, XizmatModal
     },
     methods: {
-        submit() {
+        async fetchData(newVal, locale) {
+            if (newVal.langs) {
+                const item = newVal.langs.find(item => item.lang == locale)
+                if (item) {
+                    this.data = {
+                        id: newVal.id,
+                        image: `${this.origin}/${newVal.image}`,
+                        title: item.title,
+                        content: item.content,
+                    }
+                }
+            }
+        },
+        openModal() {
             this.isOpen = true
         },
         closeModal() {
             this.isOpen = false
         }
     },
+    computed: {
+        ...mapState({
+            service: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        service(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.service, newVal)
+        }
+    },
     mounted() {
+        this.$store.dispatch('service', 5)
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 

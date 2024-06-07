@@ -12,7 +12,13 @@
             <div class="basis-3/4 max-xl:flex-1">
 
                 <div class="grid grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-5 mt-5">
-                    <FikirlarItem v-for="(item, i) in data" :key="i" :v="item.v" />
+                    <FikirlarItem v-for="(item, i) in data" :key="i" :v="item.v" :title="item.title" :text="item.text" :content="item.content" />
+                </div>
+
+                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                    <div class="absolute ">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                    </div>
                 </div>
             </div>
             <div class=" basis-1/4 max-xl:hidden">
@@ -42,6 +48,7 @@ import BizniMijozlar from '@/components/BizniMijozlar.vue';
 import { data } from '@/constants/youtube';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { mapGetters, mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -51,10 +58,51 @@ export default {
     },
     data() {
         return {
-            data: data
+            data: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN
         };
     },
+    computed: {
+        ...mapState({
+            feedback: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        feedback(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.feedback, newVal)
+        }
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                if (element.langs) {
+                    const item = element.langs.find(item => item.lang == locale)
+                    if (item) {
+                        const formatingData = {
+                            id: element.id,
+                            v: element.video,
+                            title: item.title,
+                            text: item.text,
+                            content: item.content,
+                        }
+                        totalData.push(formatingData)
+                    }
+                }
+            });
+
+            this.data = totalData
+        }
+    },
     mounted() {
+        this.$store.dispatch('feedback')
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 

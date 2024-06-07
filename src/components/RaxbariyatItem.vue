@@ -9,25 +9,43 @@
                 <span class="text-gray text-lg max-xl:text-base font-normal">{{ user.lovozim }}</span>
             </div>
             <div class="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-6 max-lg:gap-4 max-md:gap-2">
-                <div class="flex flex-row gap-2">
+                <div v-if="user.region" class="flex flex-row gap-2">
+                    <Marker :fillColor="'fill-violet'" />
+                    <div>
+                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Hudud:</div>
+                        <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.region }}</div>
+                    </div>
+                </div>
+                <div v-if="user.phone" class="flex flex-row gap-2">
+                    <Phone :fillColor="'fill-violet'" />
+                    <div>
+                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Telefon:</div>
+                        <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.phone }}</div>
+                    </div>
+                </div>
+                <div v-if="user.email" class="flex flex-row gap-2">
                     <Email :fillColor="'fill-violet'" />
                     <div>
                         <div class="text-gray text-lg max-xl:text-base font-normal leading-none">E-mail:</div>
                         <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.email }}</div>
                     </div>
                 </div>
-                <div class="flex flex-row gap-2">
+                <div v-if="user.work_day" class="flex flex-row gap-2">
                     <Clock :fillColor="'fill-violet'" />
                     <div>
                         <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Qabul kunlari:</div>
                         <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.work_day }}</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </template>
 <script>
+import Marker4 from '@/ui-components/icons/Marker4.vue';
+import Phone from '@/ui-components/icons/Phone.vue';
+
 export default {
     props: {
         user: Object

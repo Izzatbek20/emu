@@ -11,7 +11,12 @@
         <div class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1">
                 <Card class="bg-white p-5">
-                    <div class="flex flex-col justify-between gap-5">
+                    <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                        <div class="absolute ">
+                            <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                        </div>
+                    </div>
+                    <div v-else class="flex flex-col justify-between gap-5">
                         <div class="flex-1">
                             <img :src="current_item.image" alt="image"
                                 class="rounded-lg object-cover object-center w-full" srcset="">
@@ -20,7 +25,7 @@
                             <div class="flex gap-2 mb-4">
                                 <Calendar class="size-4" />
                                 <span class="text-gray text-sm">
-                                    02.02.2024
+                                    {{ current_item.date }}
                                 </span>
                             </div>
                             <div class="txt-big max-xl:txt-normal max-md:txt-small max-sm:txt-micro whitespace-pre-line"
@@ -44,7 +49,7 @@ import Bar from '@/components/Bar.vue';
 import Card from '@/components/Card.vue';
 import Navigation from '@/components/Navigation.vue';
 import YangiliklarItem from '@/components/YangiliklarItem.vue';
-import { data } from '@/constants/news';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
     components: {
@@ -52,15 +57,46 @@ export default {
     },
     data() {
         return {
-            data: data,
-            current_item: []
+            current_item: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN
+        }
+    },
+    computed: {
+        ...mapState({
+            news: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        news(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.news, newVal)
+        }
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            if (newVal.langs) {
+                const item = newVal.langs.find(item => item.lang == locale)
+                if (item) {
+                    const newDate = new Date(newVal.created_at)
+                    this.current_item = {
+                        id: newVal.id,
+                        image: `${this.origin}/${item.photo}`,
+                        title: item.title,
+                        body: item.content,
+                        date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+                    }
+                }
+            }
         }
     },
     mounted() {
-        const current_item = this.data['uz'].find((item) => item.id == this.$route.params.id)
-        if (this.$route.params.id && current_item) {
-            this.current_item = current_item
-        }
+        this.isLoading = false
+        this.$store.dispatch('one', this.$route.params.id).then()
     }
 }
 </script>

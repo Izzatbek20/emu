@@ -6,16 +6,15 @@
                     class="p-6 max-xl:p-5 max-md:p-4 h-full w-full bg-white flex flex-col items-start gap-3 max-xl:gap-2 rounded-[2rem]">
                     <router-link :to="{ name: 'yangilik', params: { id: data.id } }"
                         class="relative w-full h-[17rem] max-lg:h-[10rem] rounded-xl bg-no-repeat bg-center bg-cover"
-                        :style="{ backgroundImage: `url(${data.image})` }">
+                        :style="{ backgroundImage: data.image }">
                     </router-link>
                     <div class="flex items-center gap-1 mt-1 mb-1.5">
                         <Calendar class="size-4 max-md:size-3.5" />
-                        <span class="txt-micro text-gray"> 02.02.2024</span>
+                        <span class="txt-micro text-gray"> {{ data.date }}</span>
                     </div>
                     <router-link :to="{ name: 'yangilik', params: { id: data.id } }">
                         <h2 class="h4 max-xl:h5 max-md:h6 text-orange text-wrap" v-html="data.title"></h2>
                     </router-link>
-                    <span class="text-base max-xl:txt-micro max-md:txt-micro-2 font-normal">{{ data.short }}</span>
                     <div class="txt-small max-md:txt-micro max-md:font-normal space line-clamp-3" v-html="data.body">
                     </div>
                 </div>
@@ -48,6 +47,7 @@ import '@splidejs/vue-splide/css/sea-green';
 // or only core styles
 import '@splidejs/vue-splide/css/core';
 import { data } from '@/constants/news';
+import { mapGetters, mapState } from 'vuex';
 
 
 export default {
@@ -58,8 +58,53 @@ export default {
     },
     data() {
         return {
-            datas: data['uz']
+            datas: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN
         }
+    },
+    computed: {
+        ...mapState({
+            news: state => state.emuAdmin.news,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoadingNews'
+        })
+    },
+    watch: {
+        news(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.news, newVal)
+        }
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                if (element.langs) {
+                    const item = element.langs.find(item => item.lang == locale)
+                    if (item) {
+                        const newDate = new Date(element.created_at)
+                        const img = `${this.origin}/${item.photo.replace(/\\/g, '/')}`
+                        const formatingData = {
+                            id: element.id,
+                            image: `url(${img})`,
+                            title: item.title,
+                            body: item.content,
+                            date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+                        }
+
+                        totalData.push(formatingData)
+                    }
+                }
+            });
+
+            this.datas = totalData
+        }
+    },
+    mounted() {
+        this.$store.dispatch('news')
     },
     setup() {
         const options = {

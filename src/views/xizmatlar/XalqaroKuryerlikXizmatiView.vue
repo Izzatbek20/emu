@@ -12,38 +12,24 @@
                     <div class="flex p-10 items-center max-md:items-start max-md:py-8">
                         <div
                             class="w-2/5 max-lg:w-3/5 max-md:w-4/6 max-sm:w-4/5 text-white h1 max-2xl:h2 max-sm:h3 z-20">
-                            Xalqaro yetkazib berish
+                            {{ data ? data.title : null }}
                         </div>
-                        <img src="@/assets/images/xalqaro-yetkazish.png" alt="image"
-                            class="absolute bottom-0 right-0 w-96" srcset="">
+                        <img :src="data ? data.image : null" class="absolute bottom-0 right-0 w-96" srcset="">
                     </div>
                 </div>
 
                 <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7">
-                    EMU ning halqaro kuryerlik xizmati orqali Siz dunyoning 165 ta davlatiga pochta va kuryerlik
-                    jo‘natmalaringizni tez va hamyonbop narxlarda jo‘natish imkoniyatiga egasiz. Bundan tashqari Rossiya
-                    Fedaratsiyasi, Qozoqston, Qirg‘iziston va Tojikiston Respublikalari uchun maxsus arzonlashtirilgan
-                    tarif ishlab chiqilgan.
-                    <br>
-                    <br>
-                    ​Halqaro kuryerlik jo‘natmalar EMU ning barcha ofislaridan qabul qilinadi va oluvchining
-                    manziligacha yetkazib beriladi. Tariflar va yetkazib berish muddatlariToshkent shahridan
-                    hisoblangan. 
-                    ​Xujjatlar 5 kg gacha qabul qilinadi 5 kg dan keyin Posilka tarifiga o‘tkailadi.
-                </p>
-                <b class="h5 max-md:h6 max-sm:h7 block mt-5">
-                    ​Halqaro kuryerlik jo‘natmalarida tariflar 2 ga bo‘lingan:
-                </b>
-                <ul class="list-disc list-inside ml-3 mt-4 txt-big max-md:txt-normal max-sm:txt-small">
-                    <li>Xujjatlar</li>
-                    <li>​Posilkalar</li>
-                </ul>
-                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7">
-                    ​Xujjatlar 5 kg gacha qabul qilinadi 5 kg dan keyin Posilka tarifiga o‘tkailadi.
+                    {{ data ? data.content : null }}
                 </p>
 
+                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                    <div class="absolute ">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                    </div>
+                </div>
+
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet @click="submit" title="Xizmatdan foydalanish" />
+                    <ButtonViolet @click="openModal" title="Xizmatdan foydalanish" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -61,28 +47,67 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import XizmatModal from '@/ui-components/XizmatModal.vue';
+import { mapGetters, mapState } from 'vuex';
+import { defineAsyncComponent } from 'vue';
+
+// Asinxron komponentni import qilish
+const XizmatModal = defineAsyncComponent(() =>
+    import('@/ui-components/XizmatModal.vue')
+);
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     data() {
         return {
-            isOpen: false,
+            data: null,
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            isOpen: false
         }
     },
     components: {
         BarGorizontal, Bar, Navigation, XizmatModal
     },
     methods: {
-        submit() {
+        async fetchData(newVal, locale) {
+            if (newVal.langs) {
+                const item = newVal.langs.find(item => item.lang == locale)
+                if (item) {
+                    this.data = {
+                        id: newVal.id,
+                        image: `${this.origin}/${newVal.image}`,
+                        title: item.title,
+                        content: item.content,
+                    }
+                }
+            }
+        },
+        openModal() {
             this.isOpen = true
         },
         closeModal() {
             this.isOpen = false
         }
     },
+    computed: {
+        ...mapState({
+            service: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        service(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.service, newVal)
+        }
+    },
     mounted() {
+        this.$store.dispatch('service', 2)
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 
@@ -111,5 +136,9 @@ export default {
 .slide-fade-enter-from,
 .slide-fade-leave-to {
     opacity: 0;
+}
+
+iframe {
+    height: 619px !important;
 }
 </style>

@@ -31,41 +31,17 @@
                     </div>
                 </form>
 
-                <div class="bg-white rounded-3xl p-7 max-md:p-4 mt-7">
+                <div v-for="item in data" class="bg-white rounded-3xl p-7 max-md:p-4 mt-7">
                     <h2 class="h4 mb-8">Kuryer</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of
-                        Lorem Ipsum.
+                        {{ item.text }}
                     </p>
                 </div>
-                <div class="bg-white rounded-3xl p-7 max-md:p-4 mt-7">
-                    <h2 class="h4 mb-8">Kuryer</h2>
-                    <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of
-                        Lorem Ipsum.
-                    </p>
-                </div>
-                <div class="bg-white rounded-3xl p-7 max-md:p-4 mt-7">
-                    <h2 class="h4 mb-8">Kuryer</h2>
-                    <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of
-                        Lorem Ipsum.
-                    </p>
+
+                <div v-if="isLoading" class="relative w-full flex items-center justify-center mt-10">
+                    <div class="absolute ">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                    </div>
                 </div>
 
             </div>
@@ -94,6 +70,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DropZone from '@/ui-components/DropZone.vue';
 import { vakansiya } from '@/constants/bar';
+import { mapGetters, mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -120,6 +97,7 @@ export default {
                 title: 'alertSuccess.title',
                 message: 'alertSuccess.message'
             },
+            data: [],
             isOpen: false,
             loading: false // Loading flag
         }
@@ -207,8 +185,42 @@ export default {
                 })
             }
         },
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                if (element.langs) {
+                    const item = element.langs.find(item => item.lang == locale)
+                    if (item) {
+                        const formatingData = {
+                            id: element.id,
+                            // title: item.title,
+                            text: item.text,
+                        }
+                        totalData.push(formatingData)
+                    }
+                }
+            });
+
+            this.data = totalData
+        },
         closeModal() {
             this.isOpen = false
+        }
+    },
+    computed: {
+        ...mapState({
+            vacancy: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        vacancy(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.vacancy, newVal)
         }
     },
     beforeMount() {
@@ -217,6 +229,8 @@ export default {
         }
     },
     mounted() {
+        this.$store.dispatch('vacancy')
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 

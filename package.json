@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gomarky/vue-shimmer": "^1.0.7",
     "@splidejs/vue-splide": "^0.6.12",
     "amocrm-js": "^3.4.2",
     "axios": "^1.6.8",

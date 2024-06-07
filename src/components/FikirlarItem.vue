@@ -14,12 +14,11 @@
             </div>
             <div class="flex-1">
                 <h3 class="h5 max-xl:h6 max-md:h7 mb-1 text-violet">
-                    Alisher, 32 yosh
+                    {{ title }}
                 </h3>
-                <div class="txt-small max-lg:txt-micro max-sm:txt-micro-2  mb-4">Internet magazin asoschisi</div>
+                <div class="txt-small max-lg:txt-micro max-sm:txt-micro-2  mb-4">{{ text }}</div>
                 <div class="h6 max-lg:h7 text-wrap line-clamp-3 whitespace-nowrap">
-                    “Ajoyib xizmat! Tez yetkazib berish orqali biznesimda buyurtma hajmini sezilarli darajada oshirdim.
-                    Rahmat!”
+                    “{{ content }}”
                 </div>
             </div>
         </div>
@@ -35,7 +34,10 @@ export default {
         Card
     },
     props: {
-        v: String
+        v: String,
+        title: String,
+        text: String,
+        content: String,
     },
     data() {
         return {

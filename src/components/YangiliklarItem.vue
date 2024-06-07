@@ -10,7 +10,7 @@
                 <div class="flex gap-2 mb-2">
                     <Calendar class="size-4" />
                     <span class="text-gray text-sm">
-                        02.02.2024
+                        {{ date }}
                     </span>
                 </div>
                 <h3 class="h5 mb-1">
@@ -36,6 +36,7 @@ export default {
         title: String,
         image: String,
         body: String,
+        date: String,
     }
 }
 </script>

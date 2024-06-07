@@ -6,6 +6,11 @@
                 class="w-[32.5%] max-[479px]:w-[80.5%] max-md:w-[52.5%] max-lg:w-[40.5%] max-xl:w-[45.5%]">
                 <MijozItem :item="data" />
             </SplideSlide>
+            <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                <div class="absolute ">
+                    <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                </div>
+            </div>
         </SplideTrack>
         <div class="splide__arrows hidden">
             <div class="splide__arrow_in">
@@ -31,8 +36,8 @@ import '@splidejs/vue-splide/css/sea-green';
 
 // or only core styles
 import '@splidejs/vue-splide/css/core';
-import { data } from '@/constants/youtube';
 import MijozItem from './MijozItem.vue';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
     components: {
@@ -43,8 +48,50 @@ export default {
     },
     data() {
         return {
-            datas: data
+            datas: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN
         }
+    },
+    computed: {
+        ...mapState({
+            feedback: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        feedback(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.feedback, newVal)
+        }
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                if (element.langs) {
+                    const item = element.langs.find(item => item.lang == locale)
+                    if (item) {
+                        const formatingData = {
+                            id: element.id,
+                            v: element.video,
+                            title: item.title,
+                            short: item.text,
+                            body: item.content,
+                        }
+                        totalData.push(formatingData)
+                    }
+                }
+            });
+
+            this.datas = totalData
+        }
+    },
+    mounted() {
+        this.$store.dispatch('feedback')
     },
     setup() {
         const options = {

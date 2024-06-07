@@ -7,6 +7,7 @@ import amocrm from './modules/amocrm'
 import sms from './modules/sms'
 import auth from './modules/auth'
 import telegram from './modules/telegram'
+import emuAdmin from './modules/emu-admin'
 
 const store = createStore({
     state() {},
@@ -18,7 +19,8 @@ const store = createStore({
         amocrm,
         sms,
         auth,
-        telegram
+        telegram,
+        emuAdmin
     }
 })
 export default store

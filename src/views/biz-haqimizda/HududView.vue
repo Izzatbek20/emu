@@ -9,15 +9,15 @@
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4">
-                <div class="mb-4 w-full">
-                    <h3 class="h3 max-xl:h4-2 mb-4">Toshkent viloyati</h3>
-                    <RaxbariyatItem v-for="(item, i) in data" :key="i" :user="item" />
+                <div v-for="items in data" class="mb-4 w-full">
+                    <h3 class="h3 max-xl:h4-2 mb-4">{{ items.title }}</h3>
+                    <RaxbariyatItem v-if="items.items" v-for="(item, i) in items.items" :key="i" :user="item" />
                 </div>
-                <div class="mb-4 w-full">
-                    <h3 class="h3 max-xl:h4-2 mb-4">Andijon viloyati</h3>
-                </div>
-                <div class="mb-4 w-full">
-                    <h3 class="h3 max-xl:h4-2 mb-4">Buxoro viloyati</h3>
+
+                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                    <div class="absolute ">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
+                    </div>
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -35,6 +35,7 @@ import RaxbariyatItem from '@/components/RaxbariyatItem.vue';
 import { data } from '@/constants/raxbariyat';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { mapGetters, mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -45,10 +46,62 @@ export default {
     },
     data() {
         return {
-            data: data
+            data: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN
+        }
+    },
+    computed: {
+        ...mapState({
+            users: state => state.emuAdmin.data,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        users(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.users, newVal)
+        }
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            if (newVal) {
+                newVal.forEach(element => {
+
+                    const user_lang = []
+                    if (element.users) {
+                        element.users.forEach(elementIn => {
+                            const itemIn = elementIn.langs.find(item => item.lang == locale)
+                            if (itemIn) {
+                                const formatingData = {
+                                    id: elementIn.id,
+                                    image: `${this.origin}/${elementIn.image}`,
+                                    fullname: itemIn.fullname,
+                                    lovozim: itemIn.role,
+                                    email: itemIn.email,
+                                    region: itemIn.region,
+                                    phone: itemIn.phone,
+                                }
+                                user_lang.push(formatingData)
+                            }
+                        })
+                    }
+
+                    const item = element.langs.find(item => item.lang == locale)
+                    this.data.push({
+                        title: item.title,
+                        items: user_lang
+                    })
+                });
+            }
         }
     },
     mounted() {
+        this.$store.dispatch('raxbariyat')
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 

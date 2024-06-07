@@ -12,7 +12,7 @@
             <div id="pin-conatiner" class="basis-3/4 max-xl:flex-1 max-md:p-4">
 
                 <div class="w-full">
-                    <Card class="bg-white p-5 w-full">
+                    <Card v-if="topNew" class="bg-white p-5 w-full">
                         <div class="flex flex-row max-md:flex-col justify-between gap-5">
                             <div class="basis-1/3 max-md:flex-1">
                                 <router-link :to="{ name: 'yangilik', params: { id: topNew.id } }">
@@ -24,7 +24,7 @@
                                 <div class="flex gap-2 mb-4">
                                     <Calendar class="size-4" />
                                     <span class="text-gray text-sm">
-                                        02.02.2024
+                                        {{ topNew.date }}
                                     </span>
                                 </div>
                                 <h3 class="h3 max-xl:h3-2 max-md:h4 mb-4">
@@ -40,7 +40,14 @@
 
                     <div class="grid grid-cols-3 max-md:grid-cols-2 max-[360px]:grid-cols-1 gap-5 mt-5">
                         <YangiliklarItem v-for="(item, i) in data" :key="i" :id="item.id" :image="item.image"
-                            :title="item.title" :body="item.body" />
+                            :title="item.title" :body="item.body" :date="item.date" />
+                    </div>
+
+                </div>
+
+                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
+                    <div class="absolute ">
+                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
                     </div>
                 </div>
 
@@ -49,7 +56,6 @@
                 <Bar id="pin" :name="'bizHaqimizda'" />
             </div>
         </div>
-
         <!-- <Pagination class="mt-20" /> -->
     </div>
 </template>
@@ -65,6 +71,8 @@ import YangiliklarItem from '@/components/YangiliklarItem.vue';
 import { data } from '@/constants/news';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { vModelText } from 'vue';
+import { mapGetters, mapState } from 'vuex';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -74,11 +82,57 @@ export default {
     },
     data() {
         return {
-            data: data['uz'].filter((item) => item.top == false),
-            topNew: data['uz'].find((item) => item.top == true)
+            data: [],
+            topNew: null,
+            origin: import.meta.env.VITE_EMU_API_ORIGIN
+        }
+    },
+    computed: {
+        ...mapState({
+            news: state => state.emuAdmin.news,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoadingNews'
+        })
+    },
+    watch: {
+        news(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.news, newVal)
+        }
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                if (element.langs) {
+                    const item = element.langs.find(item => item.lang == locale)
+                    if (item) {
+                        const newDate = new Date(element.created_at)
+                        const formatingData = {
+                            id: element.id,
+                            image: `${this.origin}/${item.photo}`,
+                            title: item.title,
+                            body: item.content,
+                            date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+                        }
+                        if (index == 0) {
+                            this.topNew = formatingData
+                        } else {
+                            totalData.push(formatingData)
+                        }
+                    }
+                }
+            });
+
+            this.data = totalData
         }
     },
     mounted() {
+        this.$store.dispatch('news')
+
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
 
