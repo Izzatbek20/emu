@@ -84,7 +84,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('raxbariyat', 6)
+        this.$store.dispatch('raxbariyat', 1)
 
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");
