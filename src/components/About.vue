@@ -7,8 +7,7 @@
             <h2 class="h2 max-xl:h3 max-lg:h4 mb-6">
                 {{ infoData.subTitle }}
             </h2>
-            <div class="txt-big max-xl:txt-normal max-lg:txt-small">
-                {{ infoData.text }}
+            <div class="txt-big max-xl:txt-normal max-lg:txt-small" v-html="infoData.text">
             </div>
         </div>
         <div class="flex-1">
