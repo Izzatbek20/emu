@@ -37,6 +37,12 @@ const emuAdminService = {
     bannerGet() {
         return Axsios.get('banner')
     },
+    banner2Get() {
+        return Axsios.get('banner2')
+    },
+    info() {
+        return Axsios.get('info')
+    },
     raxbariyat(id) {
         return Axsios.get('raxbariyat/with-breanch', {
             params: {

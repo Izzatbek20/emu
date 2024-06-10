@@ -2,15 +2,13 @@
     <div class="h-full w-full">
         <div v-if="!video" class="h-full w-full">
             <div class="p-7 flex h-full relative">
-                <div class="w-3/5 max-lg:w-4/5 h2 z-20 text-white">
-                    <span class="text-orange-light">EMU express</span>
-                    Biz bilan masofa yaqin!
+                <div class="w-3/5 max-lg:w-4/5 h2 z-20 text-white" v-html="title">
+
                 </div>
                 <Play v-if="!video" @click="playVideo(v)"
                     class="absolute left-7 bottom-7 w-24 h-24 z-20 cursor-pointer" />
             </div>
-            <img src="@/assets/images/slide/6.png" alt="image" class="absolute bottom-0 right-0 max-md:bottom-32 w-4/5"
-                srcset="">
+            <img :src="image" alt="image" class="absolute bottom-0 right-0 max-md:bottom-32 w-4/5" srcset="">
         </div>
         <div :id="id" class="object-cover object-center w-full h-full">
         </div>
@@ -23,8 +21,12 @@ export default {
             id: "emu_video" + (new Date().getTime()),
             video: false,
             player: null,
-            v: "zrvMu3j0b8E"
         }
+    },
+    props: {
+        v: String,
+        title: String,
+        image: String
     },
     methods: {
         playVideo() {
@@ -60,6 +62,11 @@ export default {
             this.player.stopVideo();
             this.player.destroy();
         },
+    },
+    mounted() {
+        if (this.dataInfo) {
+            this.v = this.dataInfo.video
+        }
     }
 }
 

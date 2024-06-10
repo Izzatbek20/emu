@@ -36,27 +36,29 @@ export default {
                 const slides = document.querySelectorAll(".carousel-slide");
                 const pagination = document.querySelector(".pagination");
 
-                // Clear existing pagination buttons
-                pagination.innerHTML = '';
+                if (slides && pagination) {
+                    // Clear existing pagination buttons
+                    pagination.innerHTML = '';
 
-                if (slides.length === 0) return;
+                    if (slides.length === 0) return;
 
-                // Show the first slide initially
-                slides[this.currentSlide].classList.add("active");
+                    // Show the first slide initially
+                    slides[this.currentSlide].classList.add("active");
 
-                // Create pagination buttons
-                slides.forEach((slide, index) => {
-                    const button = document.createElement("button");
-                    button.classList.add("corusel-pagination");
-                    button.addEventListener("click", () => {
-                        this.goToSlide(index);
+                    // Create pagination buttons
+                    slides.forEach((slide, index) => {
+                        const button = document.createElement("button");
+                        button.classList.add("corusel-pagination");
+                        button.addEventListener("click", () => {
+                            this.goToSlide(index);
+                        });
+                        pagination.appendChild(button);
                     });
-                    pagination.appendChild(button);
-                });
 
-                // Add active class to the current pagination button
-                if (pagination.children.length > 0) {
-                    pagination.children[this.currentSlide].classList.add("corusel-pagination-active");
+                    // Add active class to the current pagination button
+                    if (pagination.children.length > 0) {
+                        pagination.children[this.currentSlide].classList.add("corusel-pagination-active");
+                    }
                 }
 
                 // Start autoplay
@@ -67,15 +69,17 @@ export default {
             const slides = document.querySelectorAll(".carousel-slide");
             const pagination = document.querySelector(".pagination");
 
-            slides[this.currentSlide].classList.remove("active");
-            if (pagination.children.length > 0) {
-                pagination.children[this.currentSlide].classList.remove("corusel-pagination-active");
-            }
+            if (slides && pagination) {
+                slides[this.currentSlide].classList.remove("active");
+                if (pagination.children.length > 0) {
+                    pagination.children[this.currentSlide].classList.remove("corusel-pagination-active");
+                }
 
-            this.currentSlide = slideIndex;
-            slides[this.currentSlide].classList.add("active");
-            if (pagination.children.length > 0) {
-                pagination.children[this.currentSlide].classList.add("corusel-pagination-active");
+                this.currentSlide = slideIndex;
+                slides[this.currentSlide].classList.add("active");
+                if (pagination.children.length > 0) {
+                    pagination.children[this.currentSlide].classList.add("corusel-pagination-active");
+                }
             }
         },
         startAutoplay() {

@@ -12,7 +12,8 @@
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4  flex flex-row">
                 <div class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden h-96 max-xl:h-[46rem] max-lg:h-[42rem] max-md:h-[38rem] max-sm:h-[35rem]"
                     :class="{ 'rounded-bl-[6rem]': !playing }">
-                    <AboutBanner @playing="playing = !playing" />
+                    <AboutBanner :v="coruselData.video" :title="coruselData.title" :image="coruselData.image"
+                        @playing="playing = !playing" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -47,6 +48,7 @@ import AboutBanner from '@/components/AboutBanner.vue';
 import Bar from '@/components/Bar.vue';
 import Title from '@/components/Title.vue';
 import BarGorizontal from '@/components/BarGorizontal.vue';
+import { mapState } from 'vuex';
 
 export default {
     components: {
@@ -80,8 +82,41 @@ export default {
                     icon: 'Sertificat'
                 }
             ],
-            playing: false
+            playing: false,
+            coruselData: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
         }
+    },
+    computed: {
+        // ...mapGetters({
+        //     isLoading: 'isLoading'
+        // }),
+        ...mapState({
+            banner2Data: state => state.emuAdmin.banner2Data,
+        })
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            if (newVal) {
+                const item = newVal.langs.find(item => item.lang == locale)
+                this.coruselData = {
+                    image: `${this.origin}/${newVal.image.replaceAll(/\\/g, '/')}`,
+                    video: newVal.video,
+                    title: item.text,
+                }
+            }
+        }
+    },
+    watch: {
+        banner2Data(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.banner2Data, newVal)
+        }
+    },
+    mounted() {
+        this.$store.dispatch('getBanner2')
     }
 }
 </script>

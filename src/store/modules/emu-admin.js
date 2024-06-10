@@ -3,6 +3,8 @@ import emuAdminService from "@/services/emu-admin"
 const state = {
     data: null,
     bannerData: null,
+    banner2Data: null,
+    info: null,
     news: null
 }
 
@@ -27,6 +29,12 @@ const mutations = {
     },
     setBanner(state, data) {
         state.bannerData = data
+    },
+    setBanner2(state, data) {
+        state.banner2Data = data
+    },
+    setInfo(state, data) {
+        state.info = data
     }
 }
 
@@ -36,6 +44,28 @@ const actions = {
             emuAdminService.bannerGet()
                 .then(response => {
                     context.commit('setBanner', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
+    getBanner2(context) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.banner2Get()
+                .then(response => {
+                    context.commit('setBanner2', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
+    info(context) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.info()
+                .then(response => {
+                    context.commit('setInfo', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
