@@ -1,116 +1,117 @@
 export const home = [{
-        title: "Yuk narxini xisoblash",
+        title: "yukNarxiniXisoblash",
         icon: 'Calculator',
         link: 'xizmatXisoblash'
     },
     {
-        title: "Kuryer chaqirish",
+        title: "kuryerChaqirish",
         icon: 'Curier',
         link: 'kuryerChaqirish'
     },
     {
-        title: "Yukni kuzatish",
+        title: "yukniKuzatish",
         icon: 'BoxSearch',
         link: 'modal-yuk'
     },
     {
-        title: "Ofislarimiz",
+        title: "ofislarimiz",
         icon: 'Marker',
         link: 'ofislarimiz'
     },
     {
-        title: "Hamkorlik bo'yicha",
+        title: "hamkorlikBoyicha",
         icon: 'Hand',
         link: 'modal-hamkor'
     },
 ]
 
+
 export const bizHaqimizda = [{
-        title: "Kompaniya haqida",
+        title: 'Kompaniya haqida',
         icon: 'Home',
         link: 'bizHaqimizda'
     },
     {
-        title: "Raxbariyat",
+        title: 'sub.raxbariyat',
         icon: 'UserGroup',
         link: 'raxbariyat'
     },
     {
-        title: "Hududiy menedjerlar",
+        title: 'sub.hududiyMenedjerlar',
         icon: 'Marker4',
         link: 'hududiy'
     },
     {
-        title: "Kompaniya yangiliklari",
+        title: 'sub.kompaniyaYangiliklari',
         icon: 'Book',
         link: 'yangiliklar'
     },
     {
-        title: "Biz haqimizda fikrlar",
+        title: 'bizHaqimizdaFikrlar',
         icon: 'Testimonial',
         link: 'fikirlar'
     },
-]
+];
 export const mijoz = [{
-        title: "Xizmat narxini xisoblash",
+        title: "sub.xizmatXisoblash",
         icon: 'Calculator',
         link: 'xizmatXisoblash'
     },
     {
-        title: "Ofislar",
+        title: "sub.ofislarimiz",
         icon: 'Marker',
         link: 'ofislarimiz'
     },
     {
-        title: "Kuryer chaqirish",
+        title: "sub.kuryerChaqirish",
         icon: 'Curier',
         link: 'kuryerChaqirish'
     },
     {
-        title: "Ko’p beriladigan savollar",
+        title: "sub.savollar",
         icon: 'Question',
         link: 'savollar'
     },
     {
-        title: "Shartnoma va umumiy shartlar",
+        title: "sub.umumiyShartlar",
         icon: 'Docs',
         link: 'umumiyShartlar'
     },
 ]
 export const xizmlatlar = [{
-        title: "Ichki kuryerlik xizmatlar",
+        title: "sub.kuryerXizmati",
         icon: 'Map',
         link: 'kuryerXizmati'
     },
     {
-        title: "Xalqaro kuryerlik xizmatlar",
+        title: "sub.xalqaroKuryerlikXizmati",
         icon: 'Global',
         link: 'xalqaroKuryerlikXizmati'
     },
     {
-        title: "Ustama to’lovli pochta jo’natmalarini yetkazib berish",
+        title: "sub.ustamaTolovli",
         icon: 'ShoppingBag',
         link: 'ustamaTolovli'
     },
     {
-        title: "Fullfilment xizmati",
+        title: "sub.fullfilmentView",
         icon: 'WhereHouse',
         link: 'fullfilmentView'
     },
     {
-        title: "Yuk tashish xizmati",
+        title: "sub.individual",
         icon: 'Truck',
         link: 'individual'
     },
     {
-        title: "EMU kargo xizmati",
+        title: "sub.kargo",
         icon: 'Container',
         link: 'kargo'
     },
 ]
 export const vakansiya = [{
         id: 1,
-        title: "Toshkent shahri",
+        title: "viloyat.Ташкент",
         icon: null,
         count: 7,
         description: 'bo’sh ish o’rni mavjud',
@@ -118,7 +119,7 @@ export const vakansiya = [{
     },
     {
         id: 2,
-        title: "Andijon viloyati",
+        title: "viloyat.Андижанская область",
         icon: null,
         count: 2,
         description: 'bo’sh ish o’rni mavjud',
@@ -126,7 +127,7 @@ export const vakansiya = [{
     },
     {
         id: 3,
-        title: "Buxoro viloyati",
+        title: "viloyat.Бухарская область",
         icon: null,
         count: 5,
         description: 'bo’sh ish o’rni mavjud',
@@ -134,7 +135,7 @@ export const vakansiya = [{
     },
     {
         id: 4,
-        title: "Jizzax viloyati",
+        title: "viloyat.Джизакская область",
         icon: null,
         count: 1,
         description: 'bo’sh ish o’rni mavjud',
@@ -142,7 +143,7 @@ export const vakansiya = [{
     },
     {
         id: 5,
-        title: "Qashqadaryo viloyati",
+        title: "viloyat.Кашкадарьинская область",
         icon: null,
         count: 0,
         description: 'bo’sh ish o’rni mavjud',

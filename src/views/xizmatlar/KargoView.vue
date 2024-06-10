@@ -12,7 +12,7 @@
                     <div class="flex p-10 items-center max-md:items-start max-md:py-8">
                         <div
                             class="w-2/5 max-lg:w-3/5 max-md:w-4/6 max-sm:w-4/5 text-white h1 max-2xl:h2 max-sm:h3 z-20">
-                            EMU kargo xizmati
+                            {{ $t('sub.kargo') }}
                         </div>
                         <img src="@/assets/images/kargo.png" alt="image" class="absolute bottom-0 right-0 w-96"
                             srcset="">
@@ -20,7 +20,7 @@
                 </div>
 
                 <b class="h3-2 max-md:h6 max-sm:h7 block mt-5">
-                    Xitoydan pochta buyurtma qilishning 6ta bosqichi
+                    {{ $t('Xitoydan pochta buyurtma qilishning 6ta bosqichi') }}
                 </b>
 
                 <div class="flex flex-col mt-8 w-full text-wrap">
@@ -29,8 +29,9 @@
                             <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
                                 <Clipboard class="size-[60px] max-sm:size-[40px] " />
                             </div>
-                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Saytda ro’yxatdan
-                                o’ting</span>
+                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">
+                                {{ $t('Saytda ro’yxatdan o’ting') }}
+                            </span>
                         </div>
                         <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
@@ -51,9 +52,9 @@
                             <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
                                 <ShoppingBag2 class="size-[60px] max-sm:size-[40px] " />
                             </div>
-                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Xitoy onlayn
-                                do’konlaridan sotuvni
-                                amalga o’shiring</span>
+                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">
+                                {{ $t('Xitoy onlayn do’konlaridan sotuvni amalga o’shiring') }}
+                            </span>
                         </div>
                         <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
@@ -74,9 +75,9 @@
                             <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
                                 <AddToCart class="size-[60px] max-sm:size-[40px] " />
                             </div>
-                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotni
-                                ro’yxatdan
-                                o’tkazing</span>
+                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">
+                                {{ $t('Mahsulotni ro’yxatdan o’tkazing') }}
+                            </span>
                         </div>
                         <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
@@ -97,9 +98,9 @@
                             <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
                                 <Barcode2 class="size-[60px] max-sm:size-[40px] " />
                             </div>
-                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotingiz
-                                statusini
-                                aniqlang</span>
+                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">
+                                {{ $t('Mahsulotingiz statusini aniqlang') }}
+                            </span>
                         </div>
                         <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
@@ -120,9 +121,9 @@
                             <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
                                 <DeilverBox class="size-[60px] max-sm:size-[40px] " />
                             </div>
-                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotlaringizni
-                                bitta jo’natma
-                                qilib jo’nating</span>
+                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">
+                                {{ $t('Mahsulotlaringizni bitta jo’natma qilib jo’nating') }}
+                            </span>
                         </div>
                         <div class="h-[60px] max-sm:h-[30px] max-sm:w-[60px] w-[92px] flex justify-center">
                             <div
@@ -143,9 +144,9 @@
                             <div class="border border-icon-gray rounded-2xl max-sm:rounded-xl p-4">
                                 <DeilverBox2 class="size-[60px] max-sm:size-[40px] " />
                             </div>
-                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">Mahsulotingiz sizga
-                                10 -15 kun
-                                ichida yetib keladi</span>
+                            <span class="txt-big max-md:txt-small max-sm:txt-micro max-sm:w-[230px]">
+                                {{ $t('Mahsulotingiz sizga 10 -15 kun ichida yetib keladi') }}
+                            </span>
                         </div>
                     </div>
 
@@ -153,7 +154,7 @@
 
                 <div class="mt-10 p-7 bg-[#F7F5F7] rounded-2xl">
                     <b class="h3-2 max-md:h6 max-sm:h7 block">
-                        Xitoydan pochta buyurtma qilishning 6ta bosqichi
+                        {{ $t('Xitoydan pochta buyurtma qilishning 6ta bosqichi') }}
                     </b>
 
                     <div class="flex items-center gap-2 mt-6">
@@ -162,8 +163,9 @@
                             <span class="txt-small">Manual.pdf</span>
                             <div>
                                 <span class="txt-micro text-violet underline cursor-pointer mr-2"
-                                    @click="$router.push({ name: 'umumiyShartlarKorish' })">Yuklab olish</span>
-                                <span class="txt-micro text-gray">1.2 mb</span>
+                                    @click="$router.push({ name: 'umumiyShartlarKorish' })">
+                                    {{ $t('Yuklab olish') }}</span>
+                                <span class="txt-micro text-gray">1.2 {{ $t('olchovBirligi.mb') }}</span>
                             </div>
                         </div>
                     </div>
@@ -171,7 +173,7 @@
                 </div>
 
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet @click="submit" title="Xizmatdan foydalanish" />
+                    <ButtonViolet @click="submit" :title="$t('xizmatdanFoydalanish')" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -179,7 +181,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
+        <XizmatModal :title="$t('xizmatdanFoydalanish')" :isOpen="isOpen" @close="closeModal" />
     </div>
 </template>
 

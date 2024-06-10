@@ -4,18 +4,16 @@
             <!-- <h2 class="h1 max-xl:h2 max-lg:h3 mb-6">
                 Oliy maqsadimiz
             </h2> -->
+
             <h2 class="h1 max-xl:h2 max-lg:h3 mb-6">
-                Aholiga tez va ishonchli xizmat ko'rsatish
+                {{ $t('kompaniyaMaqsadi.title') }}
             </h2>
             <h2 class="h2 max-xl:h3 max-lg:h4 mb-6">
-                Kompaniya haqida
+                {{ $t('kompaniyaMaqsadi.subTitle') }}
             </h2>
-            <div class="txt-big max-xl:txt-normal max-lg:txt-small">2016-yilda tashkil etilgan kompaniyamiz O‘zbekiston
-                Respublikasi
-                bo‘ylab
-                va undan tashqarida tez yetkazib berish xizmatlarining keng spektrini taklif etadi. EMU Express
-                mijozlarimizning talab va istaklarini inobatga olgan holda har bir posilka yoki yukni tez va xavfsiz
-                yetkazib berishni kafolatlaydi.</div>
+            <div class="txt-big max-xl:txt-normal max-lg:txt-small">
+                {{ $t('kompaniyaMaqsadi.text') }}
+            </div>
         </div>
         <div class="flex-1">
             <Corusel3 :data="corusel" />

@@ -19,10 +19,10 @@
                             {{ item.count }}
                         </div>
                         <span class="group-hover:text-white">
-                            {{ item.title }}
+                            {{ $t(item.title) }}
                             <br>
-                            <span v-if="item.description" class="txt-micro text-gray group-hover:text-white">{{
-                                item.description }}</span>
+                            <span v-if="item.description" class="txt-micro text-gray group-hover:text-white">
+                                {{ $t(item.description) }}</span>
                         </span>
                     </div>
                 </div>
@@ -46,11 +46,11 @@
                             {{ item.count }}
                         </div>
                         <span class="group-hover:text-white">
-                            {{ item.title }}
+                            {{ $t(item.title) }}
                             <br>
                             <span v-if="item.description" class="txt-micro text-gray group-hover:text-white"
-                                :class="{ active: isActive(item.link, item.id) }">{{
-                                    item.description }}</span>
+                                :class="{ active: isActive(item.link, item.id) }">
+                                {{ $t(item.description) }}</span>
                         </span>
                     </div>
                 </div>
@@ -71,11 +71,11 @@
                         {{ item.count }}
                     </div>
                     <span class="group-hover:text-white">
-                        {{ item.title }}
+                        {{ $t(item.title) }}
                         <br>
                         <span v-if="item.description" class="txt-micro text-gray group-hover:text-white"
-                            :class="{ active: isActive(item.link, item.id) }">{{
-                                item.description }}</span>
+                            :class="{ active: isActive(item.link, item.id) }">
+                            {{ $t(item.description) }}</span>
                     </span>
                 </div>
             </router-link>

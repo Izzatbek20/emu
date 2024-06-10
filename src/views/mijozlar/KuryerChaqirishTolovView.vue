@@ -6,20 +6,21 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Kuryer chaqirish</Navigation>
+        <Navigation>{{ $t('Kuryer chaqirish') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <form @submit.prevent="check" class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
 
                 <div class="flex flex-row max-md:flex-col gap-7 mt-5">
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Kuryer chaqirish</h2>
+                        <h2 class="h4 mb-8">{{ $t('Kuryer chaqirish') }}</h2>
 
-                        <InputPreview label="Olib ketish joy" :value="calculator.from.adress" class="mb-6" />
-                        <InputPreview label="Jo’natuvchining ism familiyasi:" :value="calculator.from.fullname"
+                        <InputPreview :label="`${$t('Olib ketish joy')}:`" :value="calculator.from.adress"
                             class="mb-6" />
-                        <InputPreview label="Jo’natuvchining telefon raqami:" :value="`+998 ${calculator.from.phone}`"
-                            class="mb-6" />
+                        <InputPreview :label="`${$t('Jo’natuvchining ism familiyasi')}:`"
+                            :value="calculator.from.fullname" class="mb-6" />
+                        <InputPreview :label="`${$t('Jo’natuvchining telefon raqami')}:`"
+                            :value="`+998 ${calculator.from.phone}`" class="mb-6" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -29,12 +30,13 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Qabul qiluvchi</h2>
-                        <InputPreview label="Qabul qilish joyi:" :value="calculator.to.adress" class="mb-6" />
-                        <InputPreview label="Qabul qiluvchining ism familiyasi:" :value="calculator.to.fullname"
+                        <h2 class="h4 mb-8">{{ $t('Qabul qiluvchi') }}</h2>
+                        <InputPreview :label="`${$t('Qabul qilish joyi')}:`" :value="calculator.to.adress"
                             class="mb-6" />
-                        <InputPreview label="Jo’natuvchining telefon raqami:" :value="`+998 ${calculator.to.phone}`"
-                            class="mb-6" />
+                        <InputPreview :label="`${$t('Qabul qiluvchining ism familiyasi')}:`"
+                            :value="calculator.to.fullname" class="mb-6" />
+                        <InputPreview :label="`${$t('Jo’natuvchining telefon raqami')}:`"
+                            :value="`+998 ${calculator.to.phone}`" class="mb-6" />
                     </div>
                 </div>
                 <div class="h5 mt-10">

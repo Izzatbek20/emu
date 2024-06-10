@@ -6,7 +6,7 @@
         </div>
         <div class="flex-1 w-[50%] max-lg:w-[100%] z-0 flex flex-col gap-8 ">
             <Title class="pt-0 text-start">
-                O’zbekiston bo’ylab 75ta ofislarimiz mavjud
+                {{ $t('O’zbekiston bo’ylab 75ta ofislarimiz mavjud') }}
             </Title>
             <Splide :has-track="false" :options="optionsRegion" aria-label="Ofislar">
                 <SplideTrack class="overflow-hidden cursor-ew-resize">

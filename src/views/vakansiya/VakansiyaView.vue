@@ -6,20 +6,20 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Vakansiya</Navigation>
+        <Navigation>{{ $t('Vakansiya') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 ">
 
                 <form @submit.prevent="sendFile" ref="formVakansiya" class="bg-white rounded-3xl p-7 max-md:p-4">
-                    <h2 class="h4 mb-8">Ma’lumot jo’natish</h2>
+                    <h2 class="h4 mb-8">{{ $t('Ma’lumot jo’natish') }}</h2>
                     <div class="flex flex-row max-lg:flex-col gap-7 mt-5">
 
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
+                        <Input :label="$t('Sizning ismingiz')" :required="true" placeholder="Ism" :disabled="loading"
                             v-model="fullname.value" :error="fullname.error" class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
+                        <InputPhone :label="$t('Telefon raqamingiz')" :required="true" :disabled="loading"
                             v-model="phone.value" :error="phone.error" class="w-full" />
-                        <InputSelect label="Vakansiani tanlang" :optionsData="[{ name: 'Test' }]" :disabled="loading"
+                        <InputSelect :label="$t('Vakansiani tanlang')" :optionsData="[{ name: 'Test' }]" :disabled="loading"
                             v-model="vakansiya.value" :error="vakansiya.error" class="w-full" />
                     </div>
 
@@ -27,7 +27,7 @@
                     <DropZone v-model="files.value" :disabled="loading" :error="files.error" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet :disabled="loading" title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loading" :title="$t('Yuborish')" class="max-md:w-full" />
                     </div>
                 </form>
 

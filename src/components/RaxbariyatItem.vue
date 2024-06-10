@@ -19,21 +19,24 @@
                 <div v-if="user.phone" class="flex flex-row gap-2">
                     <Phone :fillColor="'fill-violet'" />
                     <div>
-                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Telefon:</div>
+                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{ $t('Telefon') }}:
+                        </div>
                         <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.phone }}</div>
                     </div>
                 </div>
                 <div v-if="user.email" class="flex flex-row gap-2">
                     <Email :fillColor="'fill-violet'" />
                     <div>
-                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">E-mail:</div>
+                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{ $t('E-mail') }}:
+                        </div>
                         <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.email }}</div>
                     </div>
                 </div>
                 <div v-if="user.work_day" class="flex flex-row gap-2">
                     <Clock :fillColor="'fill-violet'" />
                     <div>
-                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Qabul kunlari:</div>
+                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">
+                            {{ $t('Qabul kunlari') }}:</div>
                         <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.work_day }}</div>
                     </div>
                 </div>

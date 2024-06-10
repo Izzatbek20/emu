@@ -6,18 +6,18 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Xizmat narxini onlayn xisoblang</Navigation>
+        <Navigation>{{ $t('Xizmat narxini onlayn xisoblang') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
 
                 <div class="flex flex-row max-md:flex-col gap-7 mt-5">
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Jo’natuvchi</h2>
+                        <h2 class="h4 mb-8">{{ $t('Jo’natuvchi') }}</h2>
 
-                        <InputPreview label="Viloyat" :value="calculator.from.viloyat" class="mb-6" />
-                        <InputPreview label="Tuman" :value="calculator.from.city" class="mb-6" />
-                        <InputPreview label="Kuryer chaqirish" :value="kuryerChaqirish" class="mb-6" />
+                        <InputPreview :label="$t('Viloyat')" :value="calculator.from.viloyat" class="mb-6" />
+                        <InputPreview :label="$t('Tuman')" :value="calculator.from.city" class="mb-6" />
+                        <InputPreview :label="$t('Kuryer chaqirish')" :value="kuryerChaqirish" class="mb-6" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -27,29 +27,29 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Qabul qiluvchi</h2>
-                        <InputPreview label="Viloyat" :value="calculator.to.viloyat" class="mb-6" />
-                        <InputPreview label="Tuman" :value="calculator.to.city" class="mb-6" />
+                        <h2 class="h4 mb-8">{{ $t('Qabul qiluvchi') }}</h2>
+                        <InputPreview :label="$t('Viloyat')" :value="calculator.to.viloyat" class="mb-6" />
+                        <InputPreview :label="$t('Tuman')" :value="calculator.to.city" class="mb-6" />
                     </div>
                 </div>
                 <div class="flex flex-col">
                     <InputPreview v-if="calculator.korobka.w || calculator.korobka.h || calculator.korobka.l"
-                        label="Korobka"
-                        :value="`Kenglik ${calculator.korobka.w}${$t('olchovBirligi.sm')}, Uzunlik ${calculator.korobka.l}${$t('olchovBirligi.sm')}, Balandlik ${calculator.korobka.h}${$t('olchovBirligi.sm')}`"
+                        :label="$t('Korobka')"
+                        :value="`${$t('Kenglik')} ${calculator.korobka.w} ${$t('olchovBirligi.sm')}, ${$t('Uzunlik')} ${calculator.korobka.l} ${$t('olchovBirligi.sm')}, ${$t('Balandlik')} ${calculator.korobka.h} ${$t('olchovBirligi.sm')}`"
                         class="mt-10 mb-6" />
-                    <InputPreview v-if="calculator.weight" label="Og’irlik"
+                    <InputPreview v-if="calculator.weight" :label="$t('Og’irlik')"
                         :value="calculator.weight + ' ' + $t('olchovBirligi.kg')" class="mb-8" />
                 </div>
                 <hr class="text-color_active">
 
                 <div class="h5 mt-8">
-                    Natija:
+                    {{ $t('Natija') }}:
                 </div>
                 <div class="h3-2 text-violet">
                     {{ Intl.NumberFormat('uz-UZ', { maximumSignificantDigits: 3 }).format(calculator.price) }} so’m
                 </div>
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonOranger @click="$router.go(-1)" title="Qayta xisoblash" />
+                    <ButtonOranger @click="$router.go(-1)" :title="$t('Qayta xisoblash')" />
                 </div>
 
             </div>
@@ -85,7 +85,9 @@ export default {
             services: state => state.courier.services
         }),
         kuryerChaqirish() {
-            return this.services.service.find(item => item.code == this.calculator.from.kuryerChaqirish).name
+            if (this.services){
+                return this.services.service.find(item => item.code == this.calculator.from.kuryerChaqirish).name
+            }
         }
     },
     methods: {

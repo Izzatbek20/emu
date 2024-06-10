@@ -6,7 +6,7 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Eng ko’p beriladigan savollar</Navigation>
+        <Navigation>{{ $t('Eng ko’p beriladigan savollar') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4">

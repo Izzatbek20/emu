@@ -28,7 +28,7 @@
                                     {{ current_item.date }}
                                 </span>
                             </div>
-                            <div class="txt-big max-xl:txt-normal max-md:txt-small max-sm:txt-micro whitespace-pre-line"
+                            <div class="body-container txt-big max-xl:txt-normal max-md:txt-small max-sm:txt-micro whitespace-pre-line"
                                 v-html="current_item.body"></div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <ButtonOranger @click="$router.go(-1)" :title="'Orqaga qaytish'" class="rounded-[100px] mt-20" />
+        <ButtonOranger @click="$router.go(-1)" :title="$t('Orqaga qaytish')" class="rounded-[100px] mt-20" />
     </div>
 </template>
 

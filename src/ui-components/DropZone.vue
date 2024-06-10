@@ -8,7 +8,7 @@
                     <span class="txt-small">{{ file.name }}</span>
                     <div>
                         <span class="txt-micro text-violet underline cursor-pointer mr-2" @click="removeFile(index)">
-                            O'chirish
+                            {{ $t('O\'chirish') }}
                         </span>
                         <span class="txt-micro text-gray">{{ (file.size / 1024).toFixed(2) }} mb</span>
                     </div>
@@ -25,7 +25,7 @@
                 @change="handleFileChange" ref="fileInput" />
             <div class="absolute flex items-center gap-2 max-[320px]:w-[80%] flex-nowrap">
                 <Plus :fillColor="'fill-icon-gray'" />
-                <span class="txt-micro text-gray w-full">Rezyume va boshqa faylni ilova qiling (pdf)</span>
+                <span class="txt-micro text-gray w-full">{{ $t('Rezyume va boshqa faylni ilova qiling (pdf)') }}</span>
             </div>
         </div>
 

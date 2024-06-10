@@ -6,7 +6,7 @@
             <div>
                 <component :is="item.icon"></component>
             </div>
-            <div class="txt-small">{{ item.title }}</div>
+            <div class="txt-small">{{ $t(item.title) }}</div>
         </div>
 
     </div>

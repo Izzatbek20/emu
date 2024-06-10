@@ -9,7 +9,7 @@
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4  flex flex-row">
                 <div
                     class="w-full flex items-center bg-violet rounded-3xl relative overflow-hidden h-96 max-xl:h-[46rem] max-lg:h-[42rem] max-md:h-[38rem] max-sm:h-[35rem]">
-                    <Corusel :data="corusel" />
+                    <Corusel :data="coruselData" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -62,12 +62,12 @@
         </Modal>
 
         <!-- Javob modal -->
-        <Modal :title="$t(alert.title)" :isOpen="responseModal" @close="responseModal=false">
+        <Modal :title="$t(alert.title)" :isOpen="responseModal" @close="responseModal = false">
 
             <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="responseModal=false" title="Saqlash" class="w-full" />
+                <ButtonVioletLogin @click="responseModal = false" title="Saqlash" class="w-full" />
             </div>
         </Modal>
     </div>
@@ -77,12 +77,6 @@ import Bar from '@/components/Bar.vue';
 import Corusel from './Corusel.vue';
 import BarGorizontal from './BarGorizontal.vue';
 import { mapState } from 'vuex';
-import { XMLBuilder } from 'fast-xml-parser';
-const build = new XMLBuilder({
-    attributeNamePrefix: '@', // Atributlarni belgilash
-    textNodeName: '#text', // Matn elementlari nomini belgilash
-    ignoreAttributes: false // Atributlarni o'xtirmashtirish
-});
 
 export default {
     data() {
@@ -107,6 +101,8 @@ export default {
                 title: 'alertError.title',
                 message: 'alertError.message'
             },
+            coruselData: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
             loading: false,
             order_not: null,
             modalYuk: false,
@@ -117,12 +113,13 @@ export default {
     components: {
         Corusel, Bar, BarGorizontal
     },
-    props: {
-        corusel: Array
-    },
     computed: {
+        // ...mapGetters({
+        //     isLoading: 'isLoading'
+        // }),
         ...mapState({
             orderStatus: state => state.courier.orderStatus,
+            bannerData: state => state.emuAdmin.bannerData,
         })
     },
     methods: {
@@ -259,7 +256,29 @@ export default {
             this.modalYuk = false
             this.modalHamkor = false
             this.$store.commit('setOrderStatus', null)
+        },
+        async fetchData(newVal, locale) {
+            if (newVal) {
+                newVal.forEach(element => {
+                    const item = element.langs.find(item => item.lang == locale)
+                    this.coruselData.push({
+                        image: `${this.origin}/${element.image.replaceAll(/\\/g, '/')}`,
+                        title: item.text,
+                    })
+                });
+            }
         }
+    },
+    watch: {
+        bannerData(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.bannerData, newVal)
+        }
+    },
+    mounted() {
+        this.$store.dispatch('getBanner')
     }
 }
 </script>

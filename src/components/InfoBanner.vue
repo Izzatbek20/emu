@@ -7,7 +7,8 @@
         <img :src="image" alt="image-1" srcset="" class="absolute right-0 bottom-0">
 
         <!-- Modal -->
-        <XizmatModal v-if="type == 1 || type == 3" title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
+        <XizmatModal v-if="type == 1 || type == 3" :title="$t('xizmatdanFoydalanish')" :isOpen="isOpen"
+            @close="closeModal" />
     </div>
 </template>
 <script>

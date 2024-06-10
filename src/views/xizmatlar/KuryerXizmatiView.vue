@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet @click="openModal" title="Xizmatdan foydalanish" />
+                    <ButtonViolet @click="openModal" :title="$t('xizmatdanFoydalanish')" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <XizmatModal title="Xizmatdan foydalanish" :isOpen="isOpen" @close="closeModal" />
+        <XizmatModal :title="$t('xizmatdanFoydalanish')" :isOpen="isOpen" @close="closeModal" />
     </div>
 </template>
 

@@ -6,13 +6,12 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Shartnoma va umumiy shartlar</Navigation>
+        <Navigation>{{ $t('Shartnoma va umumiy shartlar') }}</Navigation>
 
         <div class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
                 <div class="h4 mb-10">
-                    Ushbu bo'limda siz xizmatlarni ko'rsatish uchun mijozlar shartnomalarini va ularga qo'shimchalarni
-                    yuklab olishingiz mumkin
+                    {{ $t('questionText') }}
                 </div>
 
                 <div class="flex flex-row max-md:flex-col gap-7 mb-6">
@@ -22,8 +21,8 @@
                             <span class="txt-small">Sertifikat.pdf</span>
                             <div>
                                 <span class="txt-micro text-violet underline cursor-pointer mr-2"
-                                    @click="$router.push({ name: 'umumiyShartlarKorish' })">Ko'rish</span>
-                                <span class="txt-micro text-gray">1.2 mb</span>
+                                    @click="$router.push({ name: 'umumiyShartlarKorish' })">{{ $t('Ko\'rish') }}</span>
+                                <span class="txt-micro text-gray">1.2 {{ $t('olchovBirligi.mb') }}</span>
                             </div>
                         </div>
                     </div>
@@ -35,9 +34,10 @@
                             <span class="txt-small">EMU umumiy oferta shartlari.pdf</span>
                             <div>
                                 <span class="txt-micro text-violet underline cursor-pointer mr-2"
-                                    @click="downloadPdf(omaviy_oferta_shartlari, 'OMMAVIY OFERTA SHARTNOMASI EMU.pdf')">Yuklab
-                                    olish</span>
-                                <span class="txt-micro text-gray">1.2 mb</span>
+                                    @click="downloadPdf(omaviy_oferta_shartlari, 'OMMAVIY OFERTA SHARTNOMASI EMU.pdf')">
+                                    {{ $t('Yuklab olish') }}
+                                </span>
+                                <span class="txt-micro text-gray">1.2 {{ $t('olchovBirligi.mb') }}</span>
                             </div>
                         </div>
                     </div>
@@ -49,9 +49,10 @@
                             <span class="txt-small">EMU umumiy shartlar.pdf</span>
                             <div>
                                 <span class="txt-micro text-violet underline cursor-pointer mr-2"
-                                    @click="downloadPdf(jismoni_shaxslar, 'Жисмоний_шахслар_томонидан_почта_ва_курьерлик_жўнатмалари_орқали.pdf')">Yuklab
-                                    olish</span>
-                                <span class="txt-micro text-gray">1.2 mb</span>
+                                    @click="downloadPdf(jismoni_shaxslar, 'Жисмоний_шахслар_томонидан_почта_ва_курьерлик_жўнатмалари_орқали.pdf')">
+                                    {{ $t('Yuklab olish') }}
+                                </span>
+                                <span class="txt-micro text-gray">1.2 {{ $t('olchovBirligi.mb') }}</span>
                             </div>
                         </div>
                     </div>

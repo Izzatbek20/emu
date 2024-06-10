@@ -34,6 +34,9 @@ const emuAdminService = {
             }
         })
     },
+    bannerGet() {
+        return Axsios.get('banner')
+    },
     raxbariyat(id) {
         return Axsios.get('raxbariyat/with-breanch', {
             params: {

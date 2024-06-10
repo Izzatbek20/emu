@@ -12,7 +12,8 @@
             <div class="basis-3/4 max-xl:flex-1">
 
                 <div class="grid grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-5 mt-5">
-                    <FikirlarItem v-for="(item, i) in data" :key="i" :v="item.v" :title="item.title" :text="item.text" :content="item.content" />
+                    <FikirlarItem v-for="(item, i) in data" :key="i" :v="item.v" :title="item.title" :text="item.text"
+                        :content="item.content" />
                 </div>
 
                 <div v-if="isLoading" class="relative w-full flex items-center justify-center">
@@ -28,7 +29,7 @@
         <!-- <Pagination class="mt-20" /> -->
 
         <Title>
-            Bizning mijozlarimiz
+            {{ $t('Bizning mijozlarimiz') }}
         </Title>
         <BizniMijozlar :bgItems="'bg-white'" :iconColor="'fill-violet'" />
 

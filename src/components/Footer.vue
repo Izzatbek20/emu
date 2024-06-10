@@ -33,17 +33,16 @@
                             <div class="flex items-start gap-2">
                                 <Clock :classNew="'fill-white'" class="size-5" />
                                 <div class="flex flex-col items-start">
-                                    <div class="h7 max-lg:txt-micro-2-600">Ish vaqti</div>
+                                    <div class="h7 max-lg:txt-micro-2-600">{{ $t('Ish vaqti') }}</div>
                                     <div class="txt-micro max-lg:txt-nano ">
-                                        24 soat
-                                        (Bayram kunlaridan tashqari)
+                                        {{ $t('24 soat (Bayram kunlaridan tashqari)') }}
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <Phone :fillColor="'fill-white'" class="size-5" />
                                 <div class="flex flex-col items-start ">
-                                    <div class="h7 max-lg:txt-micro-2-600">Telefon</div>
+                                    <div class="h7 max-lg:txt-micro-2-600">{{ $t('Telefon') }}</div>
                                     <div class="txt-micro max-lg:txt-nano ">
                                         +998712009669
                                     </div>
@@ -52,16 +51,16 @@
                             <div class="flex items-start gap-2">
                                 <Marker :fillColor="'fill-white'" class="size-5" />
                                 <div class="flex flex-col items-start ">
-                                    <div class="h7 max-lg:txt-micro-2-600">Manzil</div>
+                                    <div class="h7 max-lg:txt-micro-2-600">{{ $t('Manzil') }}</div>
                                     <div class="txt-micro max-lg:txt-nano ">
-                                        O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35
+                                        {{ $t('O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35') }}
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <Email :fillColor="'fill-white'" class="size-5" />
                                 <div class="flex flex-col items-start ">
-                                    <div class="h7 max-lg:txt-micro-2-600">E-mail</div>
+                                    <div class="h7 max-lg:txt-micro-2-600">{{ $t('E-mail') }}</div>
                                     <div class="txt-micro max-lg:txt-nano ">
                                         info@emu.uz
                                     </div>
@@ -70,9 +69,9 @@
                         </div>
                         <div class="flex-1 grid grid-cols-2 max-lg:grid-cols-1 gap-10 max-xl:gap-6">
                             <div>
-                                <div class="uppercase h7 max-lg:txt-micro-2-600">Ijtimoiy tarmoqlar</div>
+                                <div class="uppercase h7 max-lg:txt-micro-2-600">{{ $t('Ijtimoiy tarmoqlar') }}</div>
                                 <div class="mt-6 txt-micro max-lg:txt-nano">
-                                    Bizga a’zo boling va kuzatib boring!
+                                    {{ $t('Bizga a’zo boling va kuzatib boring!') }}
                                 </div>
                                 <ul class="flex flex-row items-center gap-x-2 mt-4">
                                     <li class="cursor-pointer group transition-colors">
@@ -96,10 +95,10 @@
                             </div>
                             <div>
                                 <div class="h7 max-lg:txt-micro-2-600">
-                                    Savol yoki takliflar bo’yicha
+                                    {{ $t('Savol yoki takliflar bo’yicha') }}
                                 </div>
                                 <ButtonWhiteViolety @click="$router.push({ name: 'aloqa' })"
-                                    title="Biz bilan bog’lanish" titleClass="h7 max-lg:txt-micro-2-600"
+                                    :title="$t('Biz bilan bog’lanish')" titleClass="h7 max-lg:txt-micro-2-600"
                                     class="mt-4 p-0" />
                             </div>
                         </div>

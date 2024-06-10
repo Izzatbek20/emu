@@ -1,32 +1,32 @@
 {
     "tilInfo": "Ру",
     "menu": {
-        "home": "Главная",
+        "home": "Главное",
         "bizHaqimizda": "О нас",
         "mijozlarga": "Клиентам",
         "xizmatlar": "Услуги",
         "vakansiya": "Вакансии",
         "bizBilanBoglanish": "Свяжитесь с нами",
         "shaxsiyKabinet": "Личный кабинет",
-        "xizmatTurlari": "Типы услуг"
+        "xizmatTurlari": "ВИДЫ УСЛУГ"
     },
     "sub": {
         "kompaniyaHaqida": "О компании",
-        "raxbariyat": "Руководство",
-        "hududiyMenedjerlar": "Региональные менеджеры",
+        "raxbariyat": "Управление",
+        "hududiyMenedjerlar": "Местные менеджеры",
         "kompaniyaYangiliklari": "Новости компании",
         "fikirlar": "Отзывы о нас",
         "xizmatXisoblash": "Рассчитать стоимость услуги",
         "ofislarimiz": "Офисы",
         "kuryerChaqirish": "Вызвать курьера",
         "savollar": "Часто задаваемые вопросы",
-        "umumiyShartlar": "Договор и общие условия",
-        "kuryerXizmati": "Внутренние курьерские услуги",
+        "umumiyShartlar": "Контракт и общие условия ",
+        "kuryerXizmati": "Внутренняя курьерская служба",
         "xalqaroKuryerlikXizmati": "Международные курьерские услуги",
-        "ustamaTolovli": "Доставка по тарифу",
-        "fullfilmentView": "Услуга полного сопровождения",
-        "individual": "Услуги перевозки",
-        "kargo": "Курьерская служба EMU",
+        "ustamaTolovli": "Доставка предоплаченной почты",
+        "fullfilmentView": "Услуга FULLFILMENT",
+        "individual": "Индивидуальная служба доставки",
+        "kargo": "Грузовые перевозки ЭMU",
         "buyurtmaStatusi": "Статус заказа"
     },
     "profil": {
@@ -61,7 +61,7 @@
         "UZBEKISTAN": "Все",
         "Андижанская область": "Андижанская область",
         "Бухарская область": "Бухарская область",
-        "Джизакская область": "Джизакская область",
+        "Джизакская область": "Джиззахская область",
         "Кашкадарьинская область": "Кашкадарьинская область",
         "Навоийская область": "Навоийская область",
         "Наманганская область": "Наманганская область",
@@ -69,7 +69,7 @@
         "Самаркандская область": "Самаркандская область",
         "Сурхандарьинская область": "Сурхандарьинская область",
         "Сырдарьинская область": "Сырдарьинская область",
-        "Ташкент": "Ташкент",
+        "Ташкент": "Город Ташкент",
         "Ташкентская область": "Ташкентская область",
         "Ферганская область": "Ферганская область",
         "Хорезмская область": "Хорезмская область"
@@ -83,8 +83,9 @@
         "message": "Мы скоро свяжемся с вами с ответом"
     },
     "olchovBirligi": {
-        "kg": "kg",
-        "sm": "cm"
+        "kg": "кг",
+        "sm": "см",
+        "mb": "мб"
     },
     "jonatma": {
         "reklamaMahsulotlari": "Рекламные продукты",
@@ -105,20 +106,201 @@
     "sms": {
         "notogriKod": "Неверный код"
     },
-    "emuExpressHaqida": "О компании EMU Express",
-    "komandaFaoliyati": "Деятельность команды",
+    "emuExpressHaqida": "Об EMU EXPRESS",
+    "komandaFaoliyati": "Командная деятельность",
     "kompaniyaOliyMaqsadi": "Основная цель компании",
     "kuryerXizmati": "Курьерская служба",
     "xalqaroYetkazibBerish": "Международная доставка",
-    "b2bShartnomaAsosidaYetkazibBerish": "Доставка по договору B2B",
-    "individualYukTashishXizmati": "Услуга индивидуальной грузоперевозки",
-    "barchaOfislarmizManzillari": "Все наши адреса офисов",
-    "boShIshORinlari": "Вакантные должности",
+    "b2bShartnomaAsosidaYetkazibBerish": "Доставка по контракту B2B",
+    "individualYukTashishXizmati": "Индивидуальная служба доставки",
+    "barchaOfislarmizManzillari": "Адреса всех наших офисов",
+    "boShIshORinlari": "ВАКАНСИИ",
     "barchaBoShIshORinlari": "Все вакансии",
-    "shikoyatVaIzohQoldirish": "Жалобы и комментарии",
-    "boglanish": "Связь",
-    "fikrVaTaklifQoldirish": "Предложения и отзывы",
+    "shikoyatVaIzohQoldirish": "Оставить жалобу и комментарий",
+    "boglanish": "КОНТАКТ",
+    "fikrVaTaklifQoldirish": "Оставляйте комментарии и предложения",
     "ijtimoiyTarmoqlar": "Социальные сети",
-    "mijozlarimizOtzivlari": "Отзывы наших клиентов"
+    "mijozlarimizOtzivlari": "Отзывы наших клиентов",
 
+    "yukNarxiniXisoblash": "Калькулятор",
+    "kuryerChaqirish": "Вызов курьера",
+    "yukniKuzatish": "Трекинг",
+    "ofislarimiz": "Наши офисы",
+    "hamkorlikBoyicha": "По поводу сотрудничества",
+
+
+    "nimaUchunEMUexpress?": "ПОЧЕМУ EMU EXPRESS?",
+    "kafolat": {
+        "title": "100% гарантии",
+        "body": "Мы покроем ущерб, если ваш багаж будет утерян или поврежден."
+    },
+    "bepulQaytarish": {
+        "title": "Бесплатный возврат",
+        "body": "Если клиент не примет посылку, мы вернем ее БЕСПЛАТНО."
+    },
+    "treking": {
+        "title": "Отслеживать",
+        "body": "Вы можете отслеживать свой груз из точки А в точку Б."
+    },
+    "bepulQaytaJonatish": {
+        "title": "БЕСПЛАТНО 3 повторных отправки",
+        "body": "Если вы не можете получить товар с первой попытки, мы отправим его повторно 3 раза."
+    },
+    "onlayn": {
+        "title": "24/7 онлайн",
+        "body": "Вы можете воспользоваться нашими услугами в любое время через наш сайт"
+    },
+    "apiIntegratsiya": {
+        "title": "API-интеграция",
+        "body": "Системы взаимосвязаны для облегчения и ускорения процесса."
+    },
+    "bepulQadoqlash": {
+        "title": "БЕСПЛАТНАЯ упаковка",
+        "body": "Упакуется , чтобы предотвратить повреждение вашего багажа."
+    },
+    "bepulSaqlash": {
+        "title": "Бесплатное хранилище",
+        "body": "Мы бесплатно сохраним ваш груз на нашем складе до 10 дней."
+    },
+
+
+    "harKuni15000DanOrtiqOdamXizmatimizdanFoydalanadi": "Ежедневно нашим сервисом пользуются более 15 000 клиент.",
+    "xizmatdanFoydalanish": "Воспользоваться Сервисом",
+    "xizmatdanFoydalanishUchunMa’lumotlaringizniQoldiring": "Оставьте свои данные, чтобы воспользоваться услугой",
+    "Menedjerlarimiz siz bilan tez orada bog’lanishadi": "Наши менеджеры свяжутся с вами в ближайшее время",
+    "Sizning ismingiz": "Ваше имя",
+    "Telefon raqamingiz": "Ваш номер телефона",
+    "Jo’natish": "Отправить",
+    "Ism": "Имя",
+    "Saqlash": "Сохранять",
+
+
+    "Xizmatlarimiz": "НАШИ УСЛУГИ",
+    "O’zbekiston bo’ylab 75ta ofislarimiz mavjud": "У нас 75 офисов по всему Узбекистану.",
+
+    "Bizning mijozlarimiz": "Наши клиенты",
+    "Mijozlarimizning biz haqimizda fikrlari": "Отзывы наших клиентов о нас",
+    "Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling": "Легко отправляйте и получайте свои посылки",
+    "Telegram bot": "Телеграм-бот",
+    "Yangiliklar": "Новости",
+
+    "Ish vaqti": "Рабочее время",
+    "24 soat (Bayram kunlaridan tashqari)": "24 часа(кроме праздников)",
+
+    "Telefon": "Телефон",
+
+    "Manzil": "Адрес",
+    "O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35": "Узбекистан, город Ташкент, улица Шота Руставели, 35",
+
+    "E-mail": "Электронная почта",
+    "info@emu.uz": "info@emu.uz",
+
+    "Ijtimoiy tarmoqlar": "СОЦИАЛЬНЫЕ СЕТИ",
+    "Bizga a’zo boling va kuzatib boring!": "Подпишитесь и следите за нами!",
+
+
+    "Savol yoki takliflar bo’yicha": "По вопросам и предложениям",
+    "Biz bilan bog’lanish": "Связаться с нами",
+
+    "Kompaniya haqida": "О компании",
+
+    "bizHaqimizdaFikrlar": "Мнения о нас",
+
+    "kompaniyaMaqsadi": {
+        "title": "Быстрое и надежное обслуживание населению",
+        "subTitle": "О компании",
+        "text": "Наша компания, основанная в 2016 году, предлагает широкий спектр услуг быстрой доставки по всей территории Республики Узбекистан и за ее пределами. EMU Express гарантирует быструю и безопасную доставку каждой посылки или отправления с учетом потребностей и пожеланий наших клиентов."
+    },
+
+    "Nega aynan EMU express pochtasini tanlashingiz kerak?": "Почему вам стоит выбрать экспресс-почту EMU?",
+    "uzbekistonBoylabOfislar": "У нас есть 75 офисов по всему Узбекистану.",
+    "aloqa": "Мы доступны 24/7",
+    "tajribaliXodimlar": "Курьеры со стажем +8 лет и другие сотрудники будут обслуживать вас",
+    "yukAvtomobillari": "Наши 200 грузовых автомобилей добираются до любого уголка Узбекистана.",
+    "mdhXizmatlar": "Также предоставляем услуги по всей территории стран СНГ",
+    "isoStandartlari": "Мы предоставляем высококачественный сервис по стандарту ISO 9001-2015.",
+
+    "Tezkor yetkazib berish xizmatimiz bilan vaqtingizni optimallashtiring": "Оптимизируйте свое время с нашей службой быстрой доставки.",
+
+    "Raxbariyat": "УПРАВЛЕНИЕ",
+    "Kompaniya yangiliklari": "Новости компании",
+    "Qabul kunlari": "Электронная почта",
+    "Orqaga qaytish": "Назад",
+
+    "Xizmat narxini onlayn xisoblang": "Рассчитать стоимость услуги онлайн",
+    "Jo’natuvchi": "Отправитель",
+    "Viloyat": "Область",
+    "Tuman": "Район",
+    "Kuryer chaqirish": "Вызвать курьера ",
+    "Qabul qiluvchi": "Получатель",
+    "Korobka": "Коробка",
+    "Kenglik (sm)": "Ширина (см)",
+    "Uzunlik (sm)": "Длина (см)",
+    "Balandlik (sm)": "Высота (см)",
+    "Og’irlik (kg)": "Вес (кг)",
+
+    "Kenglik": "Ширина",
+    "Uzunlik": "Длина",
+    "Balandlik": "Высота",
+    "Og’irlik": "Вес",
+    "Hisoblash": "Расчет",
+    "Hisoblash uchun barcha qatorlar to’ldirilishishart": "Для расчета необходимо заполнить все строки",
+
+    "Natija": "Результат",
+    "Qayta xisoblash": "Перерасчет",
+
+    "Qaerdan": "Откуда",
+    "Qaerga": "Куда",
+    "Jo’natuvchining ismi": "Имя отправителя",
+    "Jo’natuvchining telefon raqami": "Телефон отправителя",
+    "Mahalla": "Mahalla",
+    "Ko’cha": "Улица",
+    "Uy": "Дом",
+    "Xonadon": "Квартира",
+    "Mo’ljal": "Ориентир",
+    "Qabul qiluvchining ismi": "Имя получателя",
+    "Qabul qiluvchining telefon raqami": "Телефон получателя",
+    "Yetkazib berish": "Доставка",
+    "EMU ofisidan olish": "Самовывоз из офиса EMU.",
+    "Jo’natma": "Отгрузка",
+    "Jo’natma turi": "Тип отгрузки",
+    "Yuk og’irligi (taxminan)": "Вес груза (приблизительно)",
+    "Jo’natish uchun barcha qatorlar to’ldirilishi shart": "Для отправки необходимо заполнить все строки",
+    "Eng ko’p beriladigan savollar": "Наиболее часто задаваемые вопросы",
+    "Shartnoma va umumiy shartlar": "Соглашение и общие условия",
+    "questionText": "В данном разделе вы можете скачать договоры с клиентами на оказание услуг и дополнения к ним.",
+
+    "Ko'rish": "Вид",
+    "Yuklab olish": "Скачать",
+
+    "Xitoydan pochta buyurtma qilishning 6ta bosqichi": "6 шагов для заказа по почте из Китая",
+    "Saytda ro’yxatdan o’ting": "Зарегистрируйтесь на сайте",
+    "Xitoy onlayn do’konlaridan sotuvni amalga o’shiring": "Совершайте продажи из китайских интернет-магазинов",
+    "Mahsulotni ro’yxatdan o’tkazing": "Зарегистрируйте продукт",
+    "Mahsulotingiz statusini aniqlang": "Определите статус вашего продукта",
+    "Mahsulotlaringizni bitta jo’natma qilib jo’nating": "Отправляйте товары одной отправкой",
+    "Mahsulotingiz sizga 10 -15 kun ichida yetib keladi": "Ваш товар будет доставлен вам в течение 10-15 дней",
+    "Xitoydan pochta buyurtma qilishning 6ta bosqichi ": "6 шагов для заказа по почте из Китая",
+
+    "Vakansiya": "Вакансия",
+    "Ma’lumot jo’natish": "Отправить информацию",
+    "Vakansiani tanlang": "Выберите вакансию",
+    "Rezyume va boshqa faylni ilova qiling (pdf)": "Прикрепить резюме и другой файл (pdf)",
+    "Yuborish": "Отправка",
+    "bo’sh ish o’rni mavjud": "Есть вакансия",
+    "O'chirish": "удалить",
+
+    "Bog’lanish ma’lumotlari": "Контактная информация",
+    "Xabaringizni qoldiring": "Оставьте свое сообщение",
+    "Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi": "Запишите ваши вопросы и предложения, наши менеджеры свяжутся с вами",
+    "Xabar matnini kiriting": "Введите текст сообщения",
+    "Shikoyat va taklifingizni kiriting": "Введите вашу жалобу и предложение",
+    "Jismoniy shaxsman": "Я физическое лицо",
+    "Yuridik shaxsman": "Я юридическое лицо",
+
+    "30 soniyada sizga qong’ iroq qilishadi": "Перезвонят вам в течении 30 минут",
+    "Qong’ iroqga buyurtma": "Заказ вызова",
+    "Matn": "Текст",
+
+    "": ""
 }

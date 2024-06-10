@@ -6,7 +6,7 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Xizmat narxini onlayn xisoblang</Navigation>
+        <Navigation>{{ $t('Xizmat narxini onlayn xisoblang') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <form @submit.prevent="calculate" ref="formCal"
@@ -14,16 +14,16 @@
 
                 <div class="flex flex-row max-md:flex-col gap-7 mt-5">
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Jo’natuvchi</h2>
+                        <h2 class="h4 mb-8">{{ $t('Jo’natuvchi') }}</h2>
 
-                        <InputSelect label="Viloyat" v-model="from.viloyat.value" :error="from.viloyat.error"
+                        <InputSelect :label="$t('Viloyat')" v-model="from.viloyat.value" :error="from.viloyat.error"
                             :disabled="loading" :optionsData="viloyatFilter" @change="getCitysFrom" />
-                        <InputSelectFilter label="Tuman" v-model="from.city.value" :error="from.city.error"
+                        <InputSelectFilter :label="$t('Tuman')" v-model="from.city.value" :error="from.city.error"
                             :optionsData="city.from" :disabled="!loading && from.viloyat.value ? false : true"
                             @change="validateKeyupFrom" />
-                        <InputSelect label="Kuryer chaqirish" class="w-[50%]" v-model="from.kuryerChaqirish.value"
-                            :error="from.kuryerChaqirish.error" :disabled="loading" :optionsData="kuryerChaqirish"
-                            :valueAttr="'code'" />
+                        <InputSelect :label="$t('Kuryer chaqirish')" class="w-[50%]"
+                            v-model="from.kuryerChaqirish.value" :error="from.kuryerChaqirish.error" :disabled="loading"
+                            :optionsData="kuryerChaqirish" :valueAttr="'code'" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -33,10 +33,10 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Qabul qiluvchi</h2>
-                        <InputSelect label="Viloyat" v-model="to.viloyat.value" :error="to.viloyat.error"
+                        <h2 class="h4 mb-8">{{ $t('Qabul qiluvchi') }}</h2>
+                        <InputSelect :label="$t('Viloyat')" v-model="to.viloyat.value" :error="to.viloyat.error"
                             :disabled="loading" :optionsData="viloyatFilter" @change="getCitysTo" />
-                        <InputSelectFilter label="Tuman" v-model="to.city.value" :error="to.city.error"
+                        <InputSelectFilter :label="$t('Tuman')" v-model="to.city.value" :error="to.city.error"
                             :optionsData="city.to" :disabled="!loading && to.viloyat.value ? false : true"
                             @change="validateKeyupTo" />
                     </div>
@@ -44,20 +44,20 @@
                 <div class="flex felx-col mt-8">
                     <div class="basis-2/3 max-sm:basis-full">
                         <div class="gap-6">
-                            <CheckBox label="Korobka" v-model="koropka" class="mb-2" />
+                            <CheckBox :label="$t('Korobka')" v-model="koropka" class="mb-2" />
                             <Transition name="slide-fade">
                                 <div v-if="koropka"
                                     class="grid grid-cols-3 max-sm:grid-cols-2 max-[360px]:grid-cols-1 gap-4">
-                                    <InputConuter label="Kenglik (sm):" v-model="w.value" :error="w.error"
+                                    <InputConuter :label="$t('Kenglik (sm)')" v-model="w.value" :error="w.error"
                                         :disabled="loading" />
-                                    <InputConuter label="Uzunlik (sm):" v-model="l.value" :error="l.error"
+                                    <InputConuter :label="$t('Uzunlik (sm)')" v-model="l.value" :error="l.error"
                                         :disabled="loading" />
-                                    <InputConuter label="Balandlik (sm):" v-model="h.value" :error="h.error"
+                                    <InputConuter :label="$t('Balandlik (sm)')" v-model="h.value" :error="h.error"
                                         :disabled="loading" />
                                 </div>
                             </Transition>
                             <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-4">
-                                <InputConuter label="Og’irlik (kg):" v-model="weight.value" :error="weight.error"
+                                <InputConuter :label="$t('Og’irlik (kg)')" v-model="weight.value" :error="weight.error"
                                     :disabled="loading" />
                             </div>
                         </div>
@@ -65,9 +65,11 @@
                 </div>
 
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet :disabled="loading" title="Hisoblash" />
-                    <span class="txt-small"><span class="text-red">*</span>Hisoblash uchun barcha qatorlar to’ldirilishi
-                        shart</span>
+                    <ButtonViolet :disabled="loading" :title="$t('Hisoblash')" />
+                    <span class="txt-small">
+                        <span class="text-red">*</span>
+                        {{ $t('Hisoblash uchun barcha qatorlar to’ldirilishishart') }}
+                    </span>
                 </div>
             </form>
             <div class="basis-1/4 max-xl:hidden">
@@ -250,6 +252,12 @@ export default {
                             // Og'rilik
                             this.loading = false;
                             this.weight.error = this.$t('validate.limitWeight');
+                            redirect = false
+                        } else if (response.calc == "town to not found" || response.calc == "subtown not found") {
+                            // yuboruvchi va qabul qiluvchi shaxarlar birxil bo'lsa xatolig beradi
+                            this.loading = false;
+                            this.to.city.error = this.$t('validate.tumanTopilmadi');
+                            this.from.city.error = this.$t('validate.tumanTopilmadi');
                             redirect = false
                         }
                         if (redirect) {

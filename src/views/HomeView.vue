@@ -1,39 +1,39 @@
 <template>
     <div>
-        <HomeBanner :corusel="corusel" />
+        <HomeBanner />
 
         <!-- Information -->
         <Title>
-            Nima uchun EMU express?
+            {{ $t('nimaUchunEMUexpress?') }}
         </Title>
         <Info />
 
-        <InfoBanner :type="1" :bg-color="'bg-orange'" :title="'Har kuni 15 000dan ortiq odam xizmatimizdan foydalanadi'"
-            :bg-title="'Xizmatdan foydalanish'" />
+        <InfoBanner :type="1" :bg-color="'bg-orange'" :title="$t('harKuni15000DanOrtiqOdamXizmatimizdanFoydalanadi')"
+            :bg-title="$t('xizmatdanFoydalanish')" />
 
         <Title>
-            Xizmatlarimiz
+            {{ $t('Xizmatlarimiz') }}
         </Title>
         <Xizmatlar :items="xizmatlar" />
 
         <Ofislar />
 
         <Title>
-            Bizning mijozlarimiz
+            {{ $t('Bizning mijozlarimiz') }}
         </Title>
         <BizniMijozlar />
 
         <Title>
-            Mijozlarimizning biz haqimizda fikrlari
+            {{ $t('Mijozlarimizning biz haqimizda fikrlari') }}
         </Title>
         <Mijoz />
 
         <InfoBanner :type="2" :bg-color="'bg-violet'"
-            :title="'Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling'"
-            :bg-title="'Telegram Bot'" />
+            :title="$t('Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling')"
+            :bg-title="$t('Telegram bot')" />
 
         <Title>
-            Yangiliklar
+            {{ $t('Yangiliklar') }}
         </Title>
         <Yangiliklar />
     </div>
@@ -58,6 +58,7 @@ import image5 from '@/assets/images/slide/5.png';
 
 import Title from '@/components/Title.vue';
 import { xizmlatlar } from '@/constants/xizmatlar';
+import { mapGetters, mapState } from 'vuex';
 
 
 export default {
@@ -66,6 +67,8 @@ export default {
     },
     data() {
         return {
+            // corusel: [],
+            // origin: import.meta.env.VITE_EMU_API_ORIGIN,
             corusel: [
                 {
                     title: '<span class="text-orange-light">EMU express</span> Biz bilan masofa yaqin!',
@@ -90,6 +93,6 @@ export default {
             ],
             xizmatlar: xizmlatlar
         }
-    }
+    },
 }
 </script>

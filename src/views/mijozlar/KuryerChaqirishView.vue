@@ -6,34 +6,34 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Kuryer chaqirish</Navigation>
+        <Navigation>{{ $t('Kuryer chaqirish') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <form @submit.prevent="calculate" class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
 
                 <div class="flex flex-row max-md:flex-col gap-7 mt-5">
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Qaerdan</h2>
+                        <h2 class="h4 mb-8">{{ $t('Qaerdan') }}</h2>
 
-                        <Input label="Jo’natuvchining ismi" :required="true" placeholder="Ism"
+                        <Input :label="$t('Jo’natuvchining ismi')" :required="true" :placeholder="$t('Ism')"
                             v-model="from.fullname.value" :error="from.fullname.error" :disabled="loading" />
-                        <InputPhone label="Jo’natuvchining telefon raqami" :required="true" v-model="from.phone.value"
-                            :error="from.phone.error" :disabled="loading" />
-                        <InputSelect label="Viloyat" v-model="from.viloyat.value" :error="from.viloyat.error"
+                        <InputPhone :label="$t('Jo’natuvchining telefon raqami')" :required="true"
+                            v-model="from.phone.value" :error="from.phone.error" :disabled="loading" />
+                        <InputSelect :label="$t('Viloyat')" v-model="from.viloyat.value" :error="from.viloyat.error"
                             :optionsData="viloyatFilter" @change="getCitysFrom" :disabled="loading" />
-                        <InputSelectFilter label="Tuman" v-model="from.city.value" :error="from.city.error"
+                        <InputSelectFilter :label="$t('Tuman')" v-model="from.city.value" :error="from.city.error"
                             :optionsData="city.from" :disabled="!loading && from.viloyat.value ? false : true"
                             @change="validateKeyupFrom" />
-                        <Input label="Mahalla" v-model="from.mahalla.value" :error="from.mahalla.error"
+                        <Input :label="$t('Mahalla')" v-model="from.mahalla.value" :error="from.mahalla.error"
                             :disabled="loading" />
-                        <Input label="Ko’cha" v-model="from.kocha.value" :error="from.kocha.error"
+                        <Input :label="$t('Ko’cha')" v-model="from.kocha.value" :error="from.kocha.error"
                             :disabled="loading" />
                         <div class="grid grid-cols-3 max-sm:grid-cols-2 max-[360px]:grid-cols-1 gap-4">
-                            <Input label="Uy" :required="true" placeholder="Uy" v-model="from.uy.value"
+                            <Input :label="$t('Uy')" :required="true" :placeholder="$t('Uy')" v-model="from.uy.value"
                                 :error="from.uy.error" :disabled="loading" />
-                            <Input label="Xonadon" placeholder="Xonadon" v-model="from.xona.value"
+                            <Input :label="$t('Xonadon')" :placeholder="$t('Xonadon')" v-model="from.xona.value"
                                 :error="from.xona.error" :disabled="loading" />
-                            <Input label="Mo’ljal" placeholder="Mo’ljal" class="max-sm:col-span-2"
+                            <Input :label="$t('Mo’ljal')" :placeholder="$t('Mo’ljal')" class="max-sm:col-span-2"
                                 v-model="from.moljal.value" :error="from.moljal.error" :disabled="loading" />
                         </div>
                     </div>
@@ -45,31 +45,32 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Qaerga</h2>
-                        <Input label="Qabul qiluvchining ismi" :required="true" placeholder="Ism"
+                        <h2 class="h4 mb-8">{{ $t('Qaerga') }}</h2>
+                        <Input :label="$t('Qabul qiluvchining ismi')" :required="true" :placeholder="$t('Ism')"
                             v-model="to.fullname.value" :error="to.fullname.error" :disabled="loading" />
-                        <InputPhone label="Qabul qiluvchining telefon raqami" :required="true" v-model="to.phone.value"
-                            :error="to.phone.error" :disabled="loading" />
-                        <InputSelect label="Viloyat" v-model="to.viloyat.value" :error="to.viloyat.error"
+                        <InputPhone :label="$t('Qabul qiluvchining telefon raqami')" :required="true"
+                            v-model="to.phone.value" :error="to.phone.error" :disabled="loading" />
+                        <InputSelect :label="$t('Viloyat')" v-model="to.viloyat.value" :error="to.viloyat.error"
                             :optionsData="viloyatFilter" @change="getCitysTo" :disabled="loading" />
-                        <InputSelectFilter label="Tuman" v-model="to.city.value" :error="to.city.error"
+                        <InputSelectFilter :label="$t('Tuman')" v-model="to.city.value" :error="to.city.error"
                             :optionsData="city.to" :disabled="!loading && to.viloyat.value ? false : true"
                             @change="validateKeyupFrom" />
-                        <Input label="Mahalla" v-model="to.mahalla.value" :error="to.mahalla.error"
+                        <Input :label="$t('Mahalla')" v-model="to.mahalla.value" :error="to.mahalla.error"
                             :disabled="loading" />
-                        <Input label="Ko’cha" v-model="to.kocha.value" :error="to.kocha.error" :disabled="loading" />
+                        <Input :label="$t('Ko’cha')" v-model="to.kocha.value" :error="to.kocha.error"
+                            :disabled="loading" />
                         <div class="grid grid-cols-3 max-sm:grid-cols-2 max-[360px]:grid-cols-1 gap-4">
-                            <Input label="Uy" :required="true" placeholder="Uy" v-model="to.uy.value"
+                            <Input :label="$t('Uy')" :required="true" :placeholder="$t('Uy')" v-model="to.uy.value"
                                 :error="to.uy.error" :disabled="loading" />
-                            <Input label="Xonadon" placeholder="Xonadon" v-model="to.xona.value" :error="to.xona.error"
-                                :disabled="loading" />
-                            <Input label="Mo’ljal" placeholder="Mo’ljal" class="max-sm:col-span-2"
+                            <Input :label="$t('Xonadon')" :placeholder="$t('Xonadon')" v-model="to.xona.value"
+                                :error="to.xona.error" :disabled="loading" />
+                            <Input :label="$t('Mo’ljal')" :placeholder="$t('Mo’ljal')" class="max-sm:col-span-2"
                                 v-model="to.moljal.value" :error="to.moljal.error" :disabled="loading" />
                         </div>
                         <div class="grid grid-cols-2 gap-x-4">
-                            <Radio label="Yetkazib berish" :value="xizmat.naDom" :disabled="loading"
+                            <Radio :label="$t('Yetkazib berish')" :value="xizmat.naDom" :disabled="loading"
                                 v-model="to.yetkazibBerish.value" :error="to.yetkazibBerish.error" />
-                            <Radio label="EMU ofisidan olish" :value="xizmat.unversal" :disabled="loading"
+                            <Radio :label="$t('EMU ofisidan olish')" :value="xizmat.unversal" :disabled="loading"
                                 v-model="to.yetkazibBerish.value" :error="to.yetkazibBerish.error" />
                             <p class="text-red text-xs italic" v-if="to.yetkazibBerish.error">
                                 {{ to.yetkazibBerish.error }}
@@ -79,30 +80,30 @@
                 </div>
                 <hr class="text-color_active my-10">
                 <div class="h5">
-                    Jo’natma
+                    {{ $t('Jo’natma') }}
                 </div>
                 <div class="flex felx-col mt-3">
                     <div class="basis-2/3 max-lg:basis-full">
                         <div class="gap-6">
                             <div v-if="koropka"
                                 class="grid grid-cols-3 max-sm:grid-cols-2 max-[360px]:grid-cols-1 gap-4">
-                                <InputSelect class="col-span-2 max-[360px]:col-span-1" label="Jo’natma turi"
+                                <InputSelect class="col-span-2 max-[360px]:col-span-1" :label="$t('Jo’natma turi')"
                                     :optionsData="jonatmalar" v-model="jonatmaTuri.value" :i18n="'jonatma'"
                                     :valueAttr="'code'" />
-                                <InputConuter label="Yuk og’irligi (taxminan)" :required="true" v-model="weight.value"
-                                    :error="weight.error" :disabled="loading" />
-                                <InputConuter label="Kenglik (sm):" v-model="w.value" :disabled="loading" />
-                                <InputConuter label="Uzunlik (sm):" v-model="l.value" :disabled="loading" />
-                                <InputConuter label="Balandlik (sm):" v-model="h.value" :disabled="loading" />
+                                <InputConuter :label="$t('Yuk og’irligi (taxminan)')" :required="true"
+                                    v-model="weight.value" :error="weight.error" :disabled="loading" />
+                                <InputConuter :label="$t('Kenglik (sm)')" v-model="w.value" :disabled="loading" />
+                                <InputConuter :label="$t('Uzunlik (sm)')" v-model="l.value" :disabled="loading" />
+                                <InputConuter :label="$t('Balandlik (sm)')" v-model="h.value" :disabled="loading" />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet :disabled="loading" title="Jo'natish" />
-                    <span class="txt-small"><span class="text-red">*</span>Jo’natish uchun barcha qatorlar
-                        to’ldirilishi shart</span>
+                    <ButtonViolet :disabled="loading" :title="$t('Jo\'natish')" />
+                    <span class="txt-small"><span class="text-red">*</span>
+                        {{ $t('Jo’natish uchun barcha qatorlar to’ldirilishi shart') }}</span>
                 </div>
 
             </form>

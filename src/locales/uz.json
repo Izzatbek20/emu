@@ -83,7 +83,8 @@
     },
     "olchovBirligi": {
         "kg": "kg",
-        "sm": "sm"
+        "sm": "sm",
+        "mb": "mb"
     },
     "jonatma": {
         "reklamaMahsulotlari": "Reklama mahsulotlari",
@@ -118,5 +119,187 @@
     "boglanish": "Bog’lanish",
     "fikrVaTaklifQoldirish": "Fikr va taklif qoldirish",
     "ijtimoiyTarmoqlar": "Ijtimoiy tarmoqlar",
-    "mijozlarimizOtzivlari": "Mijozlarimiz sharhlari"
+    "mijozlarimizOtzivlari": "Mijozlarimiz sharhlari",
+
+
+    "yukNarxiniXisoblash": "Yuk narxini xisoblash",
+    "kuryerChaqirish": "Kuryer chaqirish",
+    "yukniKuzatish": "Yukni kuzatish",
+    "ofislarimiz": "Ofislarimiz",
+    "hamkorlikBoyicha": "Hamkorlik bo'yicha",
+
+
+    "nimaUchunEMUexpress?": "Nima uchun EMU express?",
+    "kafolat": {
+        "title": "100% kafolat",
+        "body": "Yukingiz yo’qolsa yoki zarar yetsa qoplab beramiz."
+    },
+    "bepulQaytarish": {
+        "title": "Bepul qaytarish",
+        "body": "Mijoz jo’natmani qabul qilmasa BEPUL qaytarib olib kelamiz."
+    },
+    "treking": {
+        "title": "Treking",
+        "body": "A nuqtadan B nuqtagacha yukingizni kuzatib tura olasiz"
+    },
+    "bepulQaytaJonatish": {
+        "title": "BEPUL 3 marta qayta jo’natish",
+        "body": "Agar 1chi urinishda qabul qila olmasangiz, 3 marta qayta jo'natamiz."
+    },
+    "onlayn": {
+        "title": "24/7 onlayn",
+        "body": "Saytimiz orqali xohlagan paytingizda xizmatlarimizdan foydalana olasiz"
+    },
+    "apiIntegratsiya": {
+        "title": "API integratsiya",
+        "body": "Jarayonni yengillashtirish va tezlashtirish maqsadida tizimlar bir biri bilan bog’langan."
+    },
+    "bepulQadoqlash": {
+        "title": "BEPUL qadoqlash",
+        "body": "Yukingizga shikast yetmasligi uchun qadoqlanadi"
+    },
+    "bepulSaqlash": {
+        "title": "Bepul saqlash",
+        "body": "Yukingizni 10 kungacha skladimizda bepul saqlab turamiz"
+    },
+
+    "harKuni15000DanOrtiqOdamXizmatimizdanFoydalanadi": "Har kuni 15 000dan ortiq odam xizmatimizdan foydalanadi",
+    "xizmatdanFoydalanish": "Xizmatdan foydalanish",
+    "xizmatdanFoydalanishUchunMa’lumotlaringizniQoldiring": "Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring",
+    "Menedjerlarimiz siz bilan tez orada bog’lanishadi": "Menedjerlarimiz siz bilan tez orada bog’lanishadi",
+    "Sizning ismingiz": "Sizning ismingiz",
+    "Telefon raqamingiz": "Telefon raqamingiz",
+    "Jo’natish": "Jo’natish",
+    "Ism": "Ism",
+    "Saqlash": "Saqlash",
+
+
+    "Xizmatlarimiz": "Xizmatlarimiz",
+    "O’zbekiston bo’ylab 75ta ofislarimiz mavjud": "O’zbekiston bo’ylab 75ta ofislarimiz mavjud",
+
+    "Bizning mijozlarimiz": "Bizning mijozlarimiz",
+    "Mijozlarimizning biz haqimizda fikrlari": "Bizning mijozlarimiz",
+    "Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling": "Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling",
+    "Telegram bot": "Telegram bot",
+    "Yangiliklar": "Yangiliklar",
+
+    "Ish vaqti": "Ish vaqti",
+    "24 soat (Bayram kunlaridan tashqari)": "24 soat(Bayram kunlaridan tashqari)",
+
+    "Telefon": "Telefon",
+
+    "Manzil": "Manzil",
+    "O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35": "O’zbekiston, Toshkent shahri, Shota Rustaveli ko’ chasi, 35",
+
+    "E-mail": "E-mail",
+    "info@emu.uz": "info@emu.uz",
+
+    "Ijtimoiy tarmoqlar": "Ijtimoiy tarmoqlar",
+    "Bizga a’zo boling va kuzatib boring!": "Bizga a’zo boling va kuzatib boring!",
+
+    "Savol yoki takliflar bo’yicha": "Savol yoki takliflar bo’yicha",
+    "Biz bilan bog’lanish": "Biz bilan bog’lanish",
+
+    "Kompaniya haqida": "Kompaniya haqida",
+
+    "bizHaqimizdaFikrlar": "Biz haqimizda fikrlar",
+
+
+    "kompaniyaMaqsadi": {
+        "title": "Aholiga tez va ishonchli xizmat ko'rsatish",
+        "subTitle": "Kompaniya haqida",
+        "text": "2016-yilda tashkil etilgan kompaniyamiz O‘zbekiston Respublikasi bo‘ylab va undan tashqarida tez yetkazib berish xizmatlarining keng spektrini taklif etadi. EMU Express mijozlarimizning talab va istaklarini inobatga olgan holda har bir posilka yoki yukni tez va xavfsiz yetkazib berishni kafolatlaydi."
+    },
+
+    "Nega aynan EMU express pochtasini tanlashingiz kerak?": "Nega aynan EMU express pochtasini tanlashingiz kerak?",
+    "uzbekistonBoylabOfislar": "O’zbekiston bo’ylab 75ta ofisimiz mavjud",
+    "aloqa": "24/7 aloqadamiz",
+    "tajribaliXodimlar": "+8 yillik tajribali kuryer va boshqa xodimlarimiz sizga xizmat ko’rsatadi",
+    "yukAvtomobillari": "200ta yuk tashish avtomobillarmiz O’zbekistonning har bir burchagiga yetib boradi",
+    "mdhXizmatlar": "MDH mamlakatlari bo’ylab ham xizmat ko’rsatamiz",
+    "isoStandartlari": "ISO 9001-2015 standarti bo’yicha yuqori sifatta xizmat ko’rsatamiz",
+
+    "Tezkor yetkazib berish xizmatimiz bilan vaqtingizni optimallashtiring": "Tezkor yetkazib berish xizmatimiz bilan vaqtingizni optimallashtiring",
+
+    "Raxbariyat": "Raxbariyat",
+    "Kompaniya yangiliklari": "Kompaniya yangiliklari",
+
+    "Qabul kunlari": "Qabul kunlari",
+    "Orqaga qaytish": "Orqaga qaytish",
+
+    "Xizmat narxini onlayn xisoblang": "Xizmat narxini onlayn xisoblang",
+    "Jo’natuvchi": "Jo’natuvchi",
+    "Viloyat": "Viloyat",
+    "Tuman": "Tuman",
+    "Kuryer chaqirish": "Kuryer chaqirish",
+    "Qabul qiluvchi": "Qabul qiluvchi",
+    "Korobka": "Korobka",
+    "Kenglik (sm)": "Kenglik (sm)",
+    "Uzunlik (sm)": "Uzunlik (sm)",
+    "Balandlik (sm)": "Balandlik (sm)",
+    "Og’irlik (kg)": "Og’irlik (kg)",
+    "Hisoblash": "Hisoblash",
+    "Hisoblash uchun barcha qatorlar to’ldirilishishart": "Hisoblash uchun barcha qatorlar to’ldirilishishart",
+
+    "Natija": "Natija",
+    "Qayta xisoblash": "Qayta xisoblash",
+
+
+    "Qaerdan": "Qaerdan",
+    "Qaerga": "Qaerga",
+    "Jo’natuvchining ismi": "Jo’natuvchining ismi",
+    "Jo’natuvchining telefon raqami": "Jo’natuvchining telefon raqami",
+    "Mahalla": "Mahalla",
+    "Ko’cha": "Ko’cha",
+    "Uy": "Uy",
+    "Xonadon": "Xonadon",
+    "Mo’ljal": "Mo’ljal",
+    "Qabul qiluvchining ismi": "Qabul qiluvchining ismi",
+    "Qabul qiluvchining telefon raqami": "Qabul qiluvchining telefon raqami",
+    "Yetkazib berish": "Yetkazib berish",
+    "EMU ofisidan olish": "EMU ofisidan olish",
+    "Jo’natma": "Jo’natma",
+    "Jo’natma turi": "Jo’natma turi",
+    "Yuk og’irligi (taxminan)": "Yuk og’irligi (taxminan)",
+    "Jo’natish uchun barcha qatorlar to’ldirilishi shart": "Jo’natish uchun barcha qatorlarto’ ldirilishi shart",
+    "Eng ko’p beriladigan savollar": "Eng ko’p beriladigan savollar",
+    "Shartnoma va umumiy shartlar": "Shartnoma va umumiy shartlar",
+    "questionText": "Ushbu bo'limda siz xizmatlarni ko'rsatish uchun mijozlar shartnomalarini va ularga qo'shimchalarni yuklab olishingiz mumkin ",
+
+    "Ko'rish": "Ko'rish",
+    "Yuklab olish": "Yuklab olish",
+
+    "Xitoydan pochta buyurtma qilishning 6ta bosqichi": "Xitoydan pochta buyurtma qilishning 6ta bosqichi",
+    "Saytda ro’yxatdan o’ting": "Saytda ro’yxatdan o’ting",
+    "Xitoy onlayn do’konlaridan sotuvni amalga o’shiring": "Xitoy onlayn do’konlaridan sotuvni amalga o’shiring",
+    "Mahsulotni ro’yxatdan o’tkazing": "Mahsulotni ro’yxatdan o’tkazing",
+    "Mahsulotingiz statusini aniqlang": "Mahsulotingiz statusini aniqlang",
+    "Mahsulotlaringizni bitta jo’natma qilib jo’nating": "Mahsulotlaringizni bitta jo’natma qilib jo’nating",
+    "Mahsulotingiz sizga 10 -15 kun ichida yetib keladi": "Mahsulotingiz sizga 10 -15 kun ichida yetib keladi",
+    "Xitoydan pochta buyurtma qilishning 6ta bosqichi ": "Xitoydan pochta buyurtma qilishning 6ta bosqichi ",
+
+    "Vakansiya": "Vakansiya",
+    "Ma’lumot jo’natish": "Vakansiya",
+    "Vakansiani tanlang": "Vakansiya",
+    "Rezyume va boshqa faylni ilova qiling (pdf)": "Rezyume va boshqa faylni ilova qiling (pdf)",
+    "Yuborish": "Yuborish",
+    "bo’sh ish o’rni mavjud": "Yuborish",
+    "O'chirish": "O'chirish",
+
+
+    "Bog’lanish ma’lumotlari": "Bog’lanish ma’lumotlari",
+    "Xabaringizni qoldiring": "Xabaringizni qoldiring",
+    "Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi": "Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi",
+    "Xabar matnini kiriting": "Xabar matnini kiriting",
+    "Shikoyat va taklifingizni kiriting": "Shikoyat va taklifingizni kiriting",
+    "Jismoniy shaxsman": "Jismoniy shaxsman",
+    "Yuridik shaxsman": "Yuridik shaxsman",
+
+    "30 soniyada sizga qong’ iroq qilishadi": "30 soniyada sizga qong’ iroq qilishadi",
+    "Qong’ iroqga buyurtma": "Qong’ iroqga buyurtma",
+    "Matn": "Matn",
+
+
+
+    "": ""
 }

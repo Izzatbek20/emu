@@ -6,7 +6,7 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Kompaniya yangiliklari</Navigation>
+        <Navigation>{{ $t('Kompaniya yangiliklari') }}</Navigation>
 
         <div class="flex flex-row items-start gap-8 mt-10">
             <div id="pin-conatiner" class="basis-3/4 max-xl:flex-1 max-md:p-4">
@@ -32,7 +32,7 @@
                                         {{ topNew.title }}
                                     </router-link>
                                 </h3>
-                                <div class="txt-big max-xl:txt-small max-md:txt-micro line-clamp-3 whitespace-pre-line"
+                                <div class="txt-big max-xl:txt-small max-md:txt-micro line-clamp-6 whitespace-pre-line"
                                     v-html="topNew.body"></div>
                             </div>
                         </div>

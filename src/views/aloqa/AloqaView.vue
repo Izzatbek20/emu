@@ -1,31 +1,34 @@
 <template>
     <div>
         <!-- Navigation -->
-        <Navigation>Biz bilan bog’lanish</Navigation>
+        <Navigation>{{ $t('Biz bilan bog’lanish') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 ">
 
                 <div class="bg-white rounded-3xl p-7 max-md:p-4">
-                    <h2 class="h4 mb-8">Bog’lanish ma’lumotlari</h2>
+                    <h2 class="h4 mb-8">{{ $t('Bog’lanish ma’lumotlari') }}</h2>
                     <div class="grid grid-cols-4 max-lg:grid-cols-2 gap-7">
                         <div class="flex flex-row gap-2">
                             <Marker :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-violet text-lg max-xl:text-base font-normal leading-none mb-1">Manzil
+                                <div class="text-violet text-lg max-xl:text-base font-normal leading-none mb-1">{{
+                                    $t('Manzil') }}
                                 </div>
-                                <div class="text-base max-xl:text-sm font-normal leading-none">O’zbekiston, Toshkent
-                                    shahri,
-                                    Shota Rustaveli ko’chasi, 35</div>
+                                <div class="text-base max-xl:text-sm font-normal leading-none">
+                                    {{ $t('O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35') }}
+                                </div>
                             </div>
                         </div>
 
                         <div class="flex flex-row gap-2">
                             <Clock :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Ish vaqti</div>
-                                <div class="text-lg max-xl:text-base font-normal leading-none">24 soat
-                                    (Bayram kunlaridan tashqari)
+                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">
+                                    {{ $t('Ish vaqti') }}
+                                </div>
+                                <div class="text-lg max-xl:text-base font-normal leading-none">
+                                    {{ $t('24 soat (Bayram kunlaridan tashqari)') }}
                                 </div>
                             </div>
                         </div>
@@ -33,7 +36,8 @@
                         <div class="flex flex-row gap-2">
                             <Phone :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Telefon</div>
+                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{
+                                    $t('Telefon') }}</div>
                                 <div class="text-lg max-xl:text-base font-normal leading-none">+998712009669
                                 </div>
                             </div>
@@ -42,7 +46,8 @@
                         <div class="flex flex-row gap-2">
                             <Email :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">E-mail:</div>
+                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{ $t('E-mail')
+                                    }}:</div>
                                 <div class="text-lg max-xl:text-base font-normal leading-none">info@emu.uz
                                 </div>
                             </div>
@@ -63,48 +68,50 @@
                 </div>
 
                 <form @submit.prevent="xabarSubmit" ref="formXabar" class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
-                    <h2 class="h4 mb-8">Xabaringizni qoldiring</h2>
+                    <h2 class="h4 mb-8">{{ $t('Xabaringizni qoldiring') }}</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
-                        Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
+                        {{ $t('Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi') }}
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loading"
-                            v-model="xabar.name.value" :error="xabar.name.error" class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loading"
+                        <Input :label="$t('Sizning ismingiz')" :required="true" :placeholder="$t('Ism')"
+                            :disabled="loading" v-model="xabar.name.value" :error="xabar.name.error" class="w-full" />
+                        <InputPhone :label="$t('Telefon raqamingiz')" :required="true" :disabled="loading"
                             v-model="xabar.phone.value" :error="xabar.phone.error" class="w-full" />
                     </div>
-                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loading"
+                    <Textarea :label="$t('Xabar matnini kiriting')" :placeholder="$t('Matn')" :disabled="loading"
                         v-model="xabar.body.value" :error="xabar.body.error" class="w-full mt-6" />
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet :disabled="loading" title="Yuborish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loading" :title="$t('Yuborish')" class="max-md:w-full" />
                     </div>
                 </form>
 
                 <form @submit.prevent="shikoyatSubmit" ref="formShikoyat"
                     class="bg-white rounded-3xl p-7 max-md:p-4  mt-7">
-                    <h2 class="h4 mb-8">Shikoyat va taklifingizni kiriting</h2>
+                    <h2 class="h4 mb-8">{{ $t('Shikoyat va taklifingizni kiriting') }}</h2>
                     <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
-                        Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi
+                        {{ $t('Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi') }}
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input label="Sizning ismingiz" :required="true" placeholder="Ism" :disabled="loadingShikoyat"
-                            v-model="shikoyat.name.value" :error="shikoyat.name.error" class="w-full" />
-                        <InputPhone label="Telefon raqamingiz" :required="true" :disabled="loadingShikoyat"
+                        <Input :label="$t('Sizning ismingiz')" :required="true" :placeholder="$t('Ism')"
+                            :disabled="loadingShikoyat" v-model="shikoyat.name.value" :error="shikoyat.name.error"
+                            class="w-full" />
+                        <InputPhone :label="$t('Telefon raqamingiz')" :required="true" :disabled="loadingShikoyat"
                             v-model="shikoyat.phone.value" class="w-full" :error="shikoyat.phone.error" />
                     </div>
-                    <Textarea label="Xabar matnini kiriting" :placeholder="'Matn'" :disabled="loadingShikoyat"
-                        v-model="shikoyat.body.value" class="w-full mt-6" :error="shikoyat.body.error" />
+                    <Textarea :label="$t('Xabar matnini kiriting')" :placeholder="$t('Matn')"
+                        :disabled="loadingShikoyat" v-model="shikoyat.body.value" class="w-full mt-6"
+                        :error="shikoyat.body.error" />
                     <div class="flex flex-row gap-6 gap-y-3">
-                        <Radio label="Jismoniy shaxsman" :value="'jismoni'" :disabled="loadingShikoyat"
+                        <Radio :label="$t('Jismoniy shaxsman')" :value="'jismoni'" :disabled="loadingShikoyat"
                             v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
-                        <Radio label="Yuridik shaxsman" :value="'yuridik'" :disabled="loadingShikoyat"
+                        <Radio :label="$t('Yuridik shaxsman')" :value="'yuridik'" :disabled="loadingShikoyat"
                             v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
                     </div>
                     <p class="text-red text-xs italic mt-2" v-if="shikoyat.shaxs.error">{{ shikoyat.shaxs.error }}</p>
 
                     <div class="flex items-center gap-6 mt-10">
-                        <ButtonViolet :disabled="loadingShikoyat" title="Jo’natish" class="max-md:w-full" />
+                        <ButtonViolet :disabled="loadingShikoyat" :title="$t('Jo’natish')" class="max-md:w-full" />
                     </div>
                 </form>
 
@@ -120,11 +127,11 @@
                             <div>
                                 <div
                                     class="text-white  text-start text-lg max-xl:text-base font-normal leading-none mb-1">
-                                    Qong’iroqga buyurtma
+                                    {{ $t('Qong’iroqga buyurtma') }}
                                 </div>
-                                <div class="txt-micro text-start max-xl:txt-micro-2 font-normal leading-none">30
-                                    soniyada sizga
-                                    qong’iroq qilishadi</div>
+                                <div class="txt-micro text-start max-xl:txt-micro-2 font-normal leading-none">
+                                    {{ $t('30 soniyada sizga qong’iroq qilishadi') }}
+                                </div>
                             </div>
                         </div>
                     </span>
@@ -139,7 +146,7 @@
             <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
+                <ButtonVioletLogin @click="closeModal" :title="$t('Saqlash')" class="w-full" />
             </div>
         </Modal>
     </div>

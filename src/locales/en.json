@@ -1,34 +1,35 @@
 {
     "tilInfo": "En",
     "menu": {
-        "home": "Home",
-        "bizHaqimizda": "About us",
-        "mijozlarga": "For customers",
+        "home": "Main",
+        "bizHaqimizda": "About Us",
+        "mijozlarga": "For Customers",
         "xizmatlar": "Services",
         "vakansiya": "Vacancies",
-        "bizBilanBoglanish": "Contact us",
-        "shaxsiyKabinet": "Personal account",
-        "xizmatTurlari": "Service types"
+        "bizBilanBoglanish": "Contact Us",
+        "shaxsiyKabinet": "Personal Area",
+        "xizmatTurlari": "TYPES OF SERVICES"
     },
     "sub": {
         "kompaniyaHaqida": "About the company",
-        "raxbariyat": "Leadership",
-        "hududiyMenedjerlar": "Regional managers",
-        "kompaniyaYangiliklari": "Company news",
+        "raxbariyat": "Control",
+        "hududiyMenedjerlar": "Local managers",
+        "kompaniyaYangiliklari": "Company's news",
         "fikirlar": "Feedback about us",
-        "xizmatXisoblash": "Calculate service cost",
+        "xizmatXisoblash": "Calculate the cost of the service",
         "ofislarimiz": "Offices",
         "kuryerChaqirish": "Call a courier",
-        "savollar": "Frequently asked questions",
-        "umumiyShartlar": "Agreement and general terms",
-        "kuryerXizmati": "Internal courier services",
-        "xalqaroKuryerlikXizmati": "International courier services",
-        "ustamaTolovli": "Extra charge mail delivery",
-        "fullfilmentView": "Fulfillment service",
-        "individual": "Freight transportation service",
-        "kargo": "EMU cargo service",
+        "savollar": "FAQ",
+        "umumiyShartlar": "Contract and general conditions",
+        "kuryerXizmati": "Domestic courier service",
+        "xalqaroKuryerlikXizmati": "International Courier services",
+        "ustamaTolovli": "Prepaid post delivery",
+        "fullfilmentView": "FULFILLMENT service",
+        "individual": "Individual delivery service",
+        "kargo": "Freight transportaion EMU",
         "buyurtmaStatusi": "Order status"
     },
+
     "profil": {
         "profil": "Profile",
         "qabul": "Received mail",
@@ -43,11 +44,11 @@
     },
     "validate": {
         "required": "Filling is required",
-        "hasNot": "It does not include a city or district",
+        "hasNot": "It does not include a city or area",
         "limitWeight": "More than the allowed limit has been entered",
         "phone": "Enter a phone number",
         "phoneUnique": "This phone number is already registered.",
-        "tumanTopilmadi": "District not found",
+        "tumanTopilmadi": "Area not found",
         "parolVaTasdiqiyParol": "Password and confirm password do not match.",
         "loginUnique": "This username already exists.",
         "passwordLength": "Password must be at least 6 characters long."
@@ -58,21 +59,22 @@
     },
     "viloyat": {
         "UZBEKISTAN": "All",
-        "Андижанская область": "Andijan Region",
-        "Бухарская область": "Bukhara Region",
-        "Джизакская область": "Jizzakh Region",
-        "Кашкадарьинская область": "Qashqadaryo Region",
-        "Навоийская область": "Navoiy Region",
-        "Наманганская область": "Namangan Region",
+        "Андижанская область": "Andijan region",
+        "Бухарская область": "Bukhara region",
+        "Джизакская область": "Jizzakh region",
+        "Кашкадарьинская область": "Kashkadarya region",
+        "Навоийская область": "Navoi region",
+        "Наманганская область": "Namangan region",
         "Республика Каракалпакстан": "Republic of Karakalpakstan",
-        "Самаркандская область": "Samarqand Region",
-        "Сурхандарьинская область": "Surxondaryo Region",
-        "Сырдарьинская область": "Sirdaryo Region",
-        "Ташкент": "Tashkent",
-        "Ташкентская область": "Tashkent Region",
-        "Ферганская область": "Fergana Region",
-        "Хорезмская область": "Xorazm Region"
+        "Самаркандская область": "Samarkand region",
+        "Сурхандарьинская область": "Surkhandarya region",
+        "Сырдарьинская область": "Sirdaryo region",
+        "Ташкент": "Tashkent city",
+        "Ташкентская область": "Tashkent region",
+        "Ферганская область": "Fergana region",
+        "Хорезмская область": "Khorezm region"
     },
+
     "alertError": {
         "title": "Error",
         "message": "Please try again"
@@ -82,8 +84,9 @@
         "message": "We will get back to you with an answer soon"
     },
     "olchovBirligi": {
-        "kg": "кг",
-        "sm": "см"
+        "kg": "kg",
+        "sm": "sm",
+        "mb": "mb"
     },
     "jonatma": {
         "reklamaMahsulotlari": "Advertising products",
@@ -104,20 +107,201 @@
     "sms": {
         "notogriKod": "Invalid code"
     },
-    "emuExpressHaqida": "About EMU Express",
-    "komandaFaoliyati": "Team Activity",
+    "emuExpressHaqida": "About EMU EXPRESS",
+    "komandaFaoliyati": "Team activity",
     "kompaniyaOliyMaqsadi": "Company's Main Goal",
-    "kuryerXizmati": "Courier Service",
-    "xalqaroYetkazibBerish": "International Delivery",
-    "b2bShartnomaAsosidaYetkazibBerish": "Delivery Based on B2B Contract",
-    "individualYukTashishXizmati": "Individual Cargo Delivery Service",
-    "barchaOfislarmizManzillari": "All Our Office Addresses",
+    "kuryerXizmati": "Courier service",
+    "xalqaroYetkazibBerish": "International delivery",
+    "b2bShartnomaAsosidaYetkazibBerish": "Delivery under B2B contract",
+    "individualYukTashishXizmati": "Individual delivery service",
+    "barchaOfislarmizManzillari": "Addresses of all our offices",
     "boShIshORinlari": "Vacant Positions",
     "barchaBoShIshORinlari": "All vacancies",
-    "shikoyatVaIzohQoldirish": "Complaints and Comments",
+    "shikoyatVaIzohQoldirish": "Leave a complaint and comment",
     "boglanish": "Contact",
-    "fikrVaTaklifQoldirish": "Suggestions and Feedback",
-    "ijtimoiyTarmoqlar": "Social Media",
-    "mijozlarimizOtzivlari": "Customer Reviews"
+    "fikrVaTaklifQoldirish": "Leave comments and suggestions",
+    "ijtimoiyTarmoqlar": "Social media",
+    "mijozlarimizOtzivlari": "Reviews from our clients",
+
+    "yukNarxiniXisoblash": "Calculate the cost of cargo",
+    "kuryerChaqirish": "Call a courier",
+    "yukniKuzatish": "Cargo tracking",
+    "ofislarimiz": "Our offices",
+    "hamkorlikBoyicha": "Regarding cooperation",
+
+    "nimaUchunEMUexpress?": "WHY EMU EXPRESS?",
+    "kafolat": {
+        "title": "100% guarantee",
+        "body": "We'll cover loss if your luggage is lost or damaged."
+    },
+    "bepulQaytarish": {
+        "title": "Free return",
+        "body": "If the customer does not accept the package, we will return it FREE OF CHARGE."
+    },
+    "treking": {
+        "title": "Track",
+        "body": "You can track your cargo from point A to point B."
+    },
+    "bepulQaytaJonatish": {
+        "title": "FREE 3 resends",
+        "body": "If you can't receive the item on the first try, we will resend it 3 times."
+    },
+    "onlayn": {
+        "title": "24/7 online",
+        "body": "You can use our services at any time through our website"
+    },
+    "apiIntegratsiya": {
+        "title": "API integration",
+        "body": "The systems are interconnected to facilitate and speed up the process."
+    },
+    "bepulQadoqlash": {
+        "title": "FREE packaging",
+        "body": "Will be packaged to prevent damage to your luggage."
+    },
+    "bepulSaqlash": {
+        "title": "Free storage",
+        "body": "We will store your cargo in our warehouse for free for up to 10 days."
+    },
+
+    "harKuni15000DanOrtiqOdamXizmatimizdanFoydalanadi": "More than 15,000 people use our service every day.",
+    "xizmatdanFoydalanish": "Use the Service",
+    "xizmatdanFoydalanishUchunMa’lumotlaringizniQoldiring": "Leave your details to use the service",
+    "Menedjerlarimiz siz bilan tez orada bog’lanishadi": "Our managers will contact you shortly",
+    "Sizning ismingiz": "Your name",
+    "Telefon raqamingiz": "Your phone number",
+    "Jo’natish": "Send",
+    "Ism": "Name",
+    "Saqlash": "Save",
+
+
+    "Xizmatlarimiz": "OUR SERVICES",
+    "O’zbekiston bo’ylab 75ta ofislarimiz mavjud": "We have 75 offices throughout Uzbekistan.",
+
+
+    "Bizning mijozlarimiz": "Our clients",
+    "Mijozlarimizning biz haqimizda fikrlari": "Feedback from our clients about us",
+    "Telegram BOT orqali jo’natmalaringizni oson jo’nating va qabul qiling": "Easily send and receive your parcels via Telegram BOT",
+    "Telegram bot": "Telegram bot",
+    "Yangiliklar": "News",
+
+    "Ish vaqti": "Work time",
+    "24 soat (Bayram kunlaridan tashqari)": "24 hours(except holidays)",
+
+
+    "Telefon": "Telephone",
+
+    "Manzil": "Address",
+    "O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35": "Uzbekistan, Tashkent city, Shota Rustaveli street, 35",
+
+    "E-mail": "Email",
+    "info@emu.uz": "info@emu.uz",
+
+    "Ijtimoiy tarmoqlar": "SOCIAL MEDIA",
+    "Bizga a’zo boling va kuzatib boring!": "Subscribe and follow us!",
+
+    "Savol yoki takliflar bo’yicha": "For questions and suggestions",
+    "Biz bilan bog’lanish": "Connect with us",
+
+    "Kompaniya haqida": "About company",
+
+    "bizHaqimizdaFikrlar": "Opinions about us",
+
+    "kompaniyaMaqsadi": {
+        "title": "Fast and reliable service to the public",
+        "subTitle": "About company",
+        "text": "Our company, founded in 2016, offers a wide range of fast delivery services throughout the Republic of Uzbekistan and beyond. EMU Express guarantees fast and safe delivery of every parcel or shipment, taking into account the needs and wishes of our customers."
+    },
+
+    "Nega aynan EMU express pochtasini tanlashingiz kerak?": "Why should you choose EMU Express?",
+    "uzbekistonBoylabOfislar": "We have 75 offices throughout Uzbekistan.",
+    "aloqa": "We are available 24/7",
+    "tajribaliXodimlar": "Couriers with +8 years of experience and other employees will serve you",
+    "yukAvtomobillari": "Our 200 trucks reach any corner of Uzbekistan.",
+    "mdhXizmatlar": "We also provide services throughout the CIS countries",
+    "isoStandartlari": "We provide high quality service according to ISO 9001-2015 standard.",
+
+    "Tezkor yetkazib berish xizmatimiz bilan vaqtingizni optimallashtiring": "Optimize your time with our fast delivery service.",
+
+    "Raxbariyat": "CONTROL",
+    "Kompaniya yangiliklari": "Company's news",
+    "Qabul kunlari": "Reception days",
+    "Orqaga qaytish": "Back",
+
+    "Xizmat narxini onlayn xisoblang": "Calculate the cost of the service online",
+    "Jo’natuvchi": "Sender",
+    "Viloyat": "Region",
+    "Tuman": "Area",
+    "Kuryer chaqirish": "Call the courier",
+    "Qabul qiluvchi": "Recipient",
+    "Korobka": "Box",
+    "Kenglik (sm)": "Width, (sm)",
+    "Uzunlik (sm)": "Length, (sm)",
+    "Balandlik (sm)": "Height, (sm)",
+    "Og’irlik (kg)": "Weight, (kg)",
+
+    "Kenglik": "Width",
+    "Uzunlik": "Length",
+    "Balandlik": "Height",
+    "Og’irlik": "Weight",
+    "Hisoblash": "Calculation",
+    "Hisoblash uchun barcha qatorlar to’ldirilishishart": "For calculation it is necessary to fill in all lines",
+
+    "Natija": "The result",
+    "Qayta xisoblash": "Recalculation",
+
+    "Qaerdan": "Where from",
+    "Qaerga": "Where",
+    "Jo’natuvchining ismi": "Sender name",
+    "Jo’natuvchining telefon raqami": "Sender's phone",
+    "Mahalla": "Mahalla",
+    "Ko’cha": "Street",
+    "Uy": "House",
+    "Xonadon": "Apartment",
+    "Mo’ljal": "Landmark",
+    "Qabul qiluvchining ismi": "Receiver name",
+    "Qabul qiluvchining telefon raqami": "Recipient's phone",
+    "Yetkazib berish": "Delivery",
+    "EMU ofisidan olish": "Pickup from the EMU office",
+    "Jo’natma": "Shipment",
+    "Jo’natma turi": "Shipment type",
+    "Yuk og’irligi (taxminan)": "Shipping weight (approx.)",
+    "Jo’natish uchun barcha qatorlar to’ldirilishi shart": "Для отправки необходимо заполнить все строки",
+    "Eng ko’p beriladigan savollar": "Most Frequently Asked Questions",
+    "Shartnoma va umumiy shartlar": "Agreement and general conditions",
+    "questionText": "In this section you can download contracts with clients for the provision of services and additions to them.",
+
+    "Ko'rish": "View",
+    "Yuklab olish": "Download",
+
+    "Xitoydan pochta buyurtma qilishning 6ta bosqichi": "6 steps to order by mail from China",
+    "Saytda ro’yxatdan o’ting": "Register on the site",
+    "Xitoy onlayn do’konlaridan sotuvni amalga o’shiring": "Make sales from Chinese online stores",
+    "Mahsulotni ro’yxatdan o’tkazing": "Register your product",
+    "Mahsulotingiz statusini aniqlang": "Determine the status of your product",
+    "Mahsulotlaringizni bitta jo’natma qilib jo’nating": "Send goods in one shipment",
+    "Mahsulotingiz sizga 10 -15 kun ichida yetib keladi": "Your item will be delivered to you within 10-15 days.",
+    "Xitoydan pochta buyurtma qilishning 6ta bosqichi ": "6 steps to order by mail from China",
+
+    "Vakansiya": "Vacancy",
+    "Ma’lumot jo’natish": "Send information",
+    "Vakansiani tanlang": "Select a vacancy",
+    "Rezyume va boshqa faylni ilova qiling (pdf)": "Attach your resume and other file (pdf)",
+    "Yuborish": "Send",
+    "bo’sh ish o’rni mavjud": "There is a vacancy",
+    "O'chirish": "Delete",
+
+    "Bog’lanish ma’lumotlari": "Contact Information",
+    "Xabaringizni qoldiring": "Leave your message",
+    "Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi": "Write down your questions and suggestions, our managers will contact you",
+    "Xabar matnini kiriting": "Enter message text",
+    "Shikoyat va taklifingizni kiriting": "Enter your complaint and suggestion",
+    "Jismoniy shaxsman": "I am an individual",
+    "Yuridik shaxsman": "I am a legal entity",
+
+    "30 soniyada sizga qong’iroq qilishadi": "They will call you back within 30 minutes",
+    "Qong’iroqga buyurtma": "Order a call",
+    "Matn": "Text",
+
+    "": ""
 
 }

@@ -7,8 +7,8 @@
                 <component :is="data.icon" class=" max-xl:size-10">
                 </component>
                 <div class="text-center max-xl:text-start">
-                    <div class="h5 max-xl:h6 max-lg:h7 mb-1">{{ data.title }}</div>
-                    <div class="txt-small  max-xl:txt-micro max-lg:txt-micro-2">{{ data.body }}</div>
+                    <div class="h5 max-xl:h6 max-lg:h7 mb-1">{{ $t(data.title) }}</div>
+                    <div class="txt-small  max-xl:txt-micro max-lg:txt-micro-2">{{ $t(data.body) }}</div>
                 </div>
             </div>
 
@@ -21,45 +21,45 @@ export default {
     data() {
         return {
             datas: [{
-                title: '100% kafolat',
-                body: 'Yukingiz yo’qolsa yoki zarar yetsa qoplab beramiz.',
+                title: 'kafolat.title',
+                body: 'kafolat.body',
                 icon: 'Kafolat'
             },
             {
-                title: 'Bepul qaytarish',
-                body: 'Mijoz jo’natmani qabul qilmasa BEPUL qaytarib olib kelamiz.',
+                title: 'bepulQaytarish.title',
+                body: 'bepulQaytarish.body',
                 icon: 'Qayta'
             },
             {
-                title: 'Treking',
-                body: 'A nuqtadan B nuqtagacha yukingizni kuzatib tura olasiz',
+                title: 'treking.title',
+                body: 'treking.body',
                 icon: 'Treking'
             },
             {
-                title: 'BEPUL 3 marta qayta jo’natish',
-                body: 'Agar 1chi urinishda qabul qila olmasangiz, 3 marta qayta jo\'natamiz.',
+                title: 'bepulQaytaJonatish.title',
+                body: 'bepulQaytaJonatish.body',
                 icon: 'Qaytajonatish'
             },
             {
-                title: '24/7 onlayn',
-                body: 'Saytimiz orqali xohlagan paytingizda xizmatlarimizdan foydalana olasiz',
+                title: 'onlayn.title',
+                body: 'onlayn.body',
                 icon: 'Onlayn'
             },
             {
-                title: 'API integratsiya',
-                body: 'Jarayonni yengillashtirish va tezlashtirish maqsadida tizimlar bir biri bilan bog’langan.',
+                title: 'apiIntegratsiya.title',
+                body: 'apiIntegratsiya.body',
                 icon: 'Api'
             },
             {
-                title: 'BEPUL qadoqlash',
-                body: 'Yukingizga shikast yetmasligi uchun qadoqlanadi',
+                title: 'bepulQadoqlash.title',
+                body: 'bepulQadoqlash.body',
                 icon: 'Qadoqlash'
             },
             {
-                title: 'Bepul saqlash',
-                body: 'Yukingizni 10kungacha skladimizda bepul saqlab turamiz',
+                title: 'bepulSaqlash.title',
+                body: 'bepulSaqlash.body',
                 icon: 'Saqlash'
-            }]
+            },]
         }
     }
 }

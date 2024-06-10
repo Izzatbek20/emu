@@ -2,6 +2,7 @@ import emuAdminService from "@/services/emu-admin"
 
 const state = {
     data: null,
+    bannerData: null,
     news: null
 }
 
@@ -11,6 +12,9 @@ const getters = {
     },
     isLoadingNews(state) {
         return Boolean(!state.news)
+    },
+    isLoadingBanner(state) {
+        return Boolean(!state.banner)
     }
 }
 
@@ -20,15 +24,29 @@ const mutations = {
     },
     setNews(state, news) {
         state.news = news
+    },
+    setBanner(state, data) {
+        state.bannerData = data
     }
 }
 
 const actions = {
+    getBanner(context) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.bannerGet()
+                .then(response => {
+                    context.commit('setBanner', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
     news(context) {
         return new Promise((resolve, reject) => {
             emuAdminService.news()
                 .then(response => {
-                    this.commit('setNews', response.data)
+                    context.commit('setNews', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
@@ -39,7 +57,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             emuAdminService.feedback()
                 .then(response => {
-                    this.commit('setData', response.data)
+                    context.commit('setData', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
@@ -50,7 +68,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             emuAdminService.vacancy()
                 .then(response => {
-                    this.commit('setData', response.data)
+                    context.commit('setData', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
@@ -61,7 +79,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             emuAdminService.question()
                 .then(response => {
-                    this.commit('setData', response.data)
+                    context.commit('setData', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
@@ -72,7 +90,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             emuAdminService.service_one(id)
                 .then(response => {
-                    this.commit('setData', response.data)
+                    context.commit('setData', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
@@ -83,7 +101,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             emuAdminService.one(id)
                 .then(response => {
-                    this.commit('setData', response.data)
+                    context.commit('setData', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
@@ -94,7 +112,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             emuAdminService.raxbariyat(id)
                 .then(response => {
-                    this.commit('setData', response.data)
+                    context.commit('setData', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)

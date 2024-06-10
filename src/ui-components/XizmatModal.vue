@@ -3,17 +3,17 @@
         <Modal :title="title" :isOpen="isOpen && !responseModal" @close="closeModal">
 
             <form ref="formXizmat" @submit.prevent="send">
-                <div class="h5 my-10 text-center">Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring</div>
+                <div class="h5 my-10 text-center">{{ $t('xizmatdanFoydalanishUchunMa’lumotlaringizniQoldiring') }}</div>
 
-                <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="name.value"
+                <Input :label="$t('Sizning ismingiz')" :placeholder="$t('Ism')" :required="true" v-model="name.value"
                     :error="name.error" :disabled="loading" />
-                <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone.value" :error="phone.error"
-                    :disabled="loading" />
+                <InputPhone :label="$t('Telefon raqamingiz')" :required="true" v-model="phone.value"
+                    :error="phone.error" :disabled="loading" />
 
-                <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
+                <p class="txt-small text-center">{{ $t('Menedjerlarimiz siz bilan tez orada bog’lanishadi') }}</p>
 
                 <div class="mt-2 p-3 text-center space-x-4 md:block">
-                    <ButtonVioletLogin :disabled="loading" title="Jo’natish" class="w-full" />
+                    <ButtonVioletLogin :disabled="loading" :title="$t('Jo’natish')" class="w-full" />
                 </div>
             </form>
         </Modal>
@@ -24,7 +24,7 @@
             <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
+                <ButtonVioletLogin @click="closeModal" :title="$t('Saqlash')" class="w-full" />
             </div>
         </Modal>
     </div>

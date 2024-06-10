@@ -6,7 +6,7 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation class="max-xl:hidden">Kompaniya haqida</Navigation>
+        <Navigation class="max-xl:hidden">{{ $t('Kompaniya haqida') }}</Navigation>
 
         <div class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4  flex flex-row">
@@ -25,13 +25,14 @@
         </Card>
 
         <Card class="bg-orange mt-20">
-            <Title class="text-white" :pt="false">Nega aynan EMU express pochtasini tanlashingiz kerak?</Title>
+            <Title class="text-white" :pt="false">{{ $t('Nega aynan EMU express pochtasini tanlashingiz kerak?') }}
+            </Title>
             <Xizmatlar2 :items="xizmatlar" />
         </Card>
 
         <InfoBanner :type="3" :bg-color="'bg-violet'"
-            :title="'Tezkor yetkazib berish xizmatimiz bilan vaqtingizni optimallashtiring'"
-            :bg-title="'Xizmatdan foydalanish'" />
+            :title="$t('Tezkor yetkazib berish xizmatimiz bilan vaqtingizni optimallashtiring')"
+            :bg-title="$t('xizmatdanFoydalanish')" />
     </div>
 </template>
 
@@ -55,27 +56,27 @@ export default {
         return {
             xizmatlar: [
                 {
-                    title: 'O’zbekiston bo’ylab 75ta ofisimiz mavjud',
+                    title: 'uzbekistonBoylabOfislar',
                     icon: 'Marker3'
                 },
                 {
-                    title: '24/7 aloqadamiz',
+                    title: 'aloqa',
                     icon: 'Aloqa'
                 },
                 {
-                    title: '+8 yillik tajribali kuryer va boshqa xodimlarimiz sizga xizmat ko’rsatadi',
+                    title: 'tajribaliXodimlar',
                     icon: 'DeliverUser'
                 },
                 {
-                    title: '200ta yuk tashish avtomobillarmiz O’zbekistonning har bir burchagiga yetib boradi',
+                    title: 'yukAvtomobillari',
                     icon: 'DeliverHome'
                 },
                 {
-                    title: 'MDH mamlakatlari bo’ylab ham xizmat ko’rsatamiz',
+                    title: 'mdhXizmatlar',
                     icon: 'GlobalShipping'
                 },
                 {
-                    title: 'ISO 9001-2015 standarti bo’yicha yuqori sifatta xizmat ko’rsatamiz',
+                    title: 'isoStandartlari',
                     icon: 'Sertificat'
                 }
             ],
