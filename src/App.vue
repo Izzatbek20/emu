@@ -17,7 +17,6 @@
 import { RouterView } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue';
-import { setItem } from './helpers/rwLocalStorage';
 
 export default {
   components: {

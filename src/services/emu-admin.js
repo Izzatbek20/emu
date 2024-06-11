@@ -17,8 +17,15 @@ const emuAdminService = {
     question() {
         return Axsios.get('/question')
     },
-    vacancy() {
-        return Axsios.get('/vacancy')
+    vacancyBreanch() {
+        return Axsios.get('/vacancy/breanch')
+    },
+    vacancy(id) {
+        return Axsios.get('/vacancy', {
+            params: {
+                breanch_id: id
+            }
+        })
     },
     one(id) {
         return Axsios.get('/news/one', {

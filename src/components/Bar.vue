@@ -94,6 +94,7 @@ import {
     vakansiya,
     profil
 } from '@/constants/bar.js'
+import { mapGetters, mapState } from 'vuex';
 
 export default {
     props: {
@@ -109,7 +110,7 @@ export default {
                 bizHaqimizda: bizHaqimizda,
                 mijoz: mijoz,
                 xizmlatlar: xizmlatlar,
-                vakansiya: vakansiya,
+                vakansiya: [],
                 profil: profil,
             }
         }
@@ -121,8 +122,53 @@ export default {
             } else {
                 return this.$route.name === link;
             }
+        },
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                if (element.breanch_lang) {
+                    const item = element.breanch_lang.find(item => item.lang == locale)
+                    if (item) {
+                        const formatingData = {
+                            id: element.breanch_id,
+                            title: item.title,
+                            icon: null,
+                            count: 7,
+                            description: 'bo’sh ish o’rni mavjud',
+                            link: 'vakansiyaId'
+                        }
+                        totalData.push(formatingData)
+                    }
+                }
+            });
+            this.menu['vakansiya'] = totalData
+
+        },
+        closeModal() {
+            this.isOpen = false
         }
-    }
+    },
+    computed: {
+        ...mapState({
+            vakansiyaBreanch: state => state.emuAdmin.vakansiyaBreanch,
+        }),
+        ...mapGetters({
+            isLoading: 'isLoading'
+        })
+    },
+    watch: {
+        vakansiyaBreanch(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.vakansiyaBreanch, newVal)
+        }
+    },
+    mounted() {
+        if (this.vakansiyaBreanch) {
+            this.fetchData(this.vakansiyaBreanch, this.$i18n.locale)
+        }
+    },
 }
 </script>
 

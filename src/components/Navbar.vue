@@ -16,7 +16,8 @@
                         </a>
                     </li>
                     <li class="cursor-pointer group">
-                        <a href="https://www.facebook.com/emucargo?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/emucargo?mibextid=LQQJ4d" target="_blank"
+                            rel="noopener noreferrer">
                             <Facebook :fillColor="'nav-messanger-gray group-hover:nav-messanger-orange'" />
                         </a>
                     </li>
@@ -24,7 +25,7 @@
             </div>
             <ul class="flex flex-row items-center gap-x-5 xs:max-xl:hidden">
                 <li v-for="(menu, index) in menus" :key="index" :id="'nab-link-' + index" class="relative z-50">
-                    <router-link :to="{ name: menu.name }" @click="select('nab-link-' + index, menu.sub)"
+                    <router-link :to="getRouteLink(menu)" @click="select('nab-link-' + index, menu.sub)"
                         :class="{ 'active-nav': isActive(index, menu.name) }" class="nav-menu nav-menu-animation">
                         {{ $t(menu.title) }}
                     </router-link>
@@ -46,7 +47,8 @@
                         <div v-if="isLoginIn" @click="select('profil', profil)"
                             class="flex items-center gap-x-2 cursor-pointer w-full h-full">
 
-                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A] overflow-hidden">
+                            <div
+                                class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A] overflow-hidden">
                                 <img v-if="currentUser && currentUser.user_photos && currentUser.user_photos.url"
                                     :src="origin + '/' + currentUser.user_photos.url" alt="" srcset="" class="">
                                 <User v-else class="size-3 h-4" :fillColor="'fill-white'" />
@@ -56,7 +58,8 @@
                         <div v-else @click="$router.push({ name: 'login' })"
                             class="flex items-center gap-x-2 cursor-pointer w-full h-full">
 
-                            <div class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A] overflow-hidden">
+                            <div
+                                class="w-7 h-7 flex items-center justify-center rounded-full bg-[#EF7F1A] overflow-hidden">
                                 <img v-if="currentUser && currentUser.user_photos && currentUser.user_photos.url"
                                     :src="origin + '/' + currentUser.user_photos.url" alt="" srcset="" class="">
                                 <User v-else class="size-3 h-4" :fillColor="'fill-white'" />
@@ -101,7 +104,7 @@
                         <li v-for="(menu, index) in menus" :key="index" class="relative z-50"
                             :class="$route.name == menu.name ? 'active' : null">
                             <template v-if="menu.sub.length == 0">
-                                <router-link :to="{ name: menu.name }" @click="select('nab-link-' + index, menu.sub)"
+                                <router-link :to="getRouteLink(menu)" @click="select('nab-link-' + index, menu.sub)"
                                     :class="{ 'active-nav': isActive(index, menu.name) }"
                                     class="nav-menu nav-menu-animation">
                                     {{ $t(menu.title) }}
@@ -195,7 +198,8 @@ export default {
     computed: {
         ...mapState({
             menuMini: state => state.main.menuMini,
-            menuMobile: state => state.main.menuMobile
+            menuMobile: state => state.main.menuMobile,
+            vakansiyaBreanch: state => state.emuAdmin.vakansiyaBreanch,
         }),
         ...mapGetters({
             currentUser: gettersTypes.currentUser,
@@ -212,6 +216,10 @@ export default {
         }
     },
     methods: {
+        getRouteLink(menu) {
+            // Agar menu.id mavjud bo'lsa, uni params ga qo'shamiz
+            return menu.id ? { name: menu.name, params: { id: menu.id } } : { name: menu.name };
+        },
         select(tagId, data) {
             this.navTo = tagId;
             this.navDataChange(data)
@@ -245,6 +253,10 @@ export default {
         },
     },
     mounted() {
+
+        // Vokansiayalrni yuklab olamiz
+        this.$store.dispatch('vacancyBreanch')
+
         document.addEventListener('click', this.handleClickOutside);
     },
     beforeDestroy() {
@@ -254,6 +266,16 @@ export default {
         lang(newLang, oldLang) {
             setItem('lang', newLang);
             this.$i18n.locale = newLang;
+        },
+        vakansiyaBreanch(newVal) {
+            if (newVal) {
+                const nav = newVal.find((item, index) => index == 0);
+                if (nav) {
+                    const vakansiya = this.menus.find(item => item.title == 'menu.vakansiya')
+                    vakansiya.id = nav.breanch_id
+                    vakansiya.name = 'vakansiyaId'
+                }
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ const state = {
     data: null,
     bannerData: null,
     banner2Data: null,
+    vakansiya: null,
+    vakansiyaBreanch: null,
     info: null,
     news: null
 }
@@ -17,6 +19,9 @@ const getters = {
     },
     isLoadingBanner(state) {
         return Boolean(!state.banner)
+    },
+    isLoadingVakansiya(state) {
+        return Boolean(!state.vakansiya)
     }
 }
 
@@ -32,6 +37,12 @@ const mutations = {
     },
     setBanner2(state, data) {
         state.banner2Data = data
+    },
+    vakansiya(state, data) {
+        state.vakansiya = data
+    },
+    vakansiyaBreanch(state, data) {
+        state.vakansiyaBreanch = data
     },
     setInfo(state, data) {
         state.info = data
@@ -94,11 +105,22 @@ const actions = {
                 });
         })
     },
-    vacancy(context) {
+    vacancyBreanch(context) {
         return new Promise((resolve, reject) => {
-            emuAdminService.vacancy()
+            emuAdminService.vacancyBreanch()
                 .then(response => {
-                    context.commit('setData', response.data)
+                    context.commit('vakansiyaBreanch', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
+    vacancy(context, id) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.vacancy(id)
+                .then(response => {
+                    context.commit('vakansiya', response.data)
                     resolve(response)
                 }).catch(error => {
                     reject(error.response ? error.response : error)
