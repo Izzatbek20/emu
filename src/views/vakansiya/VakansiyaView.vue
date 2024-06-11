@@ -56,7 +56,7 @@
             <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModal" title="Saqlash" class="w-full" />
+                <ButtonVioletLogin @click="closeModal" :title="$t('Saqlash')" class="w-full" />
             </div>
         </Modal>
     </div>

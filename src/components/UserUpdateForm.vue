@@ -33,7 +33,7 @@
             o‘zgartirish</router-link>
 
         <div class="flex items-center gap-6 mt-10">
-            <ButtonViolet :disabled="loading" title="Saqlash" />
+            <ButtonViolet :disabled="loading" :title="$t('Saqlash')" />
         </div>
     </form>
 </template>
