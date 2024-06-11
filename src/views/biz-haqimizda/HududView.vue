@@ -69,8 +69,8 @@ export default {
     methods: {
         async fetchData(newVal, locale) {
             if (newVal) {
+                const data = []
                 newVal.forEach(element => {
-
                     const user_lang = []
                     if (element.users) {
                         element.users.forEach(elementIn => {
@@ -91,11 +91,12 @@ export default {
                     }
 
                     const item = element.langs.find(item => item.lang == locale)
-                    this.data.push({
+                    data.push({
                         title: item.title,
                         items: user_lang
                     })
                 });
+                this.data = data
             }
         }
     },

@@ -19,7 +19,7 @@
                             v-model="fullname.value" :error="fullname.error" class="w-full" />
                         <InputPhone :label="$t('Telefon raqamingiz')" :required="true" :disabled="loading"
                             v-model="phone.value" :error="phone.error" class="w-full" />
-                        <InputSelect :label="$t('Vakansiani tanlang')" :optionsData="[{ name: 'Test' }]" :disabled="loading"
+                        <InputSelect :label="$t('Vakansiani tanlang')" :optionsData="data" :disabled="loading"
                             v-model="vakansiya.value" :error="vakansiya.error" class="w-full" />
                     </div>
 
@@ -32,9 +32,8 @@
                 </form>
 
                 <div v-for="item in data" class="bg-white rounded-3xl p-7 max-md:p-4 mt-7">
-                    <h2 class="h4 mb-8">Kuryer</h2>
-                    <p class="txt-normal max-md:txt-small max-sm:txt-micro ">
-                        {{ item.text }}
+                    <h2 class="h4 mb-8">{{ item.name }}</h2>
+                    <p class="txt-normal max-md:txt-small max-sm:txt-micro " v-html="item.text">
                     </p>
                 </div>
 
@@ -193,7 +192,7 @@ export default {
                     if (item) {
                         const formatingData = {
                             id: element.id,
-                            // title: item.title,
+                            name: item.title,
                             text: item.text,
                         }
                         totalData.push(formatingData)
@@ -209,27 +208,25 @@ export default {
     },
     computed: {
         ...mapState({
-            vacancy: state => state.emuAdmin.data,
+            vakansiyaData: state => state.emuAdmin.vakansiya,
         }),
         ...mapGetters({
-            isLoading: 'isLoading'
+            isLoading: 'isLoadingVakansiya'
         })
     },
     watch: {
-        vacancy(newVal) {
+        vakansiyaData(newVal) {
+            console.log(newVal);
             this.fetchData(newVal, this.$i18n.locale)
         },
         '$i18n.locale'(newVal) {
-            this.fetchData(this.vacancy, newVal)
-        }
-    },
-    beforeMount() {
-        if (this.$route.name === 'vakansiya') {
-            this.$router.push({ name: 'vakansiyaId', params: { id: 1 } })
+            this.fetchData(this.vakansiyaData, newVal)
         }
     },
     mounted() {
-        this.$store.dispatch('vacancy')
+        if (this.$route.params.id) {
+            this.$store.dispatch('vacancy', this.$route.params.id)
+        }
 
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-conatiner");

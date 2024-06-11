@@ -66,6 +66,7 @@ export default {
     methods: {
         async fetchData(newVal, locale) {
             if (newVal.users) {
+                const data = []
                 newVal.users.forEach(element => {
                     const item = element.langs.find(item => item.lang == locale)
                     if (item) {
@@ -77,9 +78,10 @@ export default {
                             email: item.email,
                             work_day: item.work_day
                         }
-                        this.data.push(formatingData)
+                        data.push(formatingData)
                     }
                 });
+                this.data = data
             }
         }
     },

@@ -259,13 +259,15 @@ export default {
         },
         async fetchData(newVal, locale) {
             if (newVal) {
+                const data = []
                 newVal.forEach(element => {
                     const item = element.langs.find(item => item.lang == locale)
-                    this.coruselData.push({
+                    data.push({
                         image: `${this.origin}/${element.image.replaceAll(/\\/g, '/')}`,
                         title: item.text,
                     })
                 });
+                this.coruselData = data
             }
         }
     },
