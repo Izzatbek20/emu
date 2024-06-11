@@ -14,12 +14,11 @@
                             class="w-2/5 max-lg:w-3/5 max-md:w-4/6 max-sm:w-4/5 text-white h1 max-2xl:h2 max-sm:h3 z-20">
                             {{ data ? data.title : null }}
                         </div>
-                        <img :src="data ? data.image : null" class="absolute bottom-0 right-0 w-96"
-                            srcset="">
+                        <img :src="data ? data.image : null" class="absolute bottom-0 right-0 w-96" srcset="">
                     </div>
                 </div>
 
-                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7" v-html="data ? data.content : null"></p>
+                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7 xizmat-content" v-html="data ? data.content : null"></p>
 
                 <div v-if="isLoading" class="relative w-full flex items-center justify-center">
                     <div class="absolute ">
@@ -136,7 +135,6 @@ export default {
 .slide-fade-leave-to {
     opacity: 0;
 }
-
 iframe {
     height: 619px !important;
 }

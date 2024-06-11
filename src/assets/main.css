@@ -80,3 +80,8 @@
 .dropdown-menu ul::-webkit-scrollbar-thumb:hover {
     background-color: #EF7F1A;
 }
+
+.xizmat-content ul {
+    list-style: outside;
+    margin-left: 3rem;
+}

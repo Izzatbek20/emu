@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="flex items-center gap-6 mt-10">
-                    <ButtonViolet :disabled="loading" :title="$t('Jo\'natish')" />
+                    <ButtonViolet :disabled="loading" :title="$t('Jo’natish')" />
                     <span class="txt-small"><span class="text-red">*</span>
                         {{ $t('Jo’natish uchun barcha qatorlar to’ldirilishi shart') }}</span>
                 </div>

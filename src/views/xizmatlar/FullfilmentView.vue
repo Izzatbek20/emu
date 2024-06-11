@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7" v-html="data ? data.content : null"></p>
+                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7 xizmat-content " v-html="data ? data.content : null"></p>
 
                 <div v-if="isLoading" class="relative w-full flex items-center justify-center">
                     <div class="absolute ">
