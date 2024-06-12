@@ -55,7 +55,7 @@
                     Tarif bo’yicha yukning taxminiy narxi:
                 </div>
                 <div class="h3-2 text-violet">
-                    {{ Intl.NumberFormat('uz-UZ', { maximumSignificantDigits: 3 }).format(calculator.price) }} so’m
+                    {{ Intl.NumberFormat('uz-UZ').format(calculator.price) }} so’m
                 </div>
                 <hr class="text-color_active my-10">
 

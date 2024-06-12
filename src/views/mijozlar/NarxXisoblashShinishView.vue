@@ -46,7 +46,7 @@
                     {{ $t('Natija') }}:
                 </div>
                 <div class="h3-2 text-violet">
-                    {{ Intl.NumberFormat('uz-UZ', { maximumSignificantDigits: 3 }).format(calculator.price) }} so’m
+                    {{ Intl.NumberFormat('uz-UZ').format(calculator.price) }} so’m
                 </div>
                 <div class="flex items-center gap-6 mt-10">
                     <ButtonOranger @click="$router.go(-1)" :title="$t('Qayta xisoblash')" />
