@@ -37,11 +37,11 @@
                     </p>
                 </div>
 
-                <div v-if="isLoading" class="relative w-full flex items-center justify-center mt-10">
+                <!-- <div v-if="isLoading" class="relative w-full flex items-center justify-center mt-10">
                     <div class="absolute ">
                         <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -209,9 +209,6 @@ export default {
     computed: {
         ...mapState({
             vakansiyaData: state => state.emuAdmin.vakansiya,
-        }),
-        ...mapGetters({
-            isLoading: 'isLoadingVakansiya'
         })
     },
     watch: {
