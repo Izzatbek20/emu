@@ -273,7 +273,6 @@ export default {
                     },
                     "otpCode": this.otpCodeFull,
                 }).then(response => {
-                    console.log(response);
                     if (this.createOrder.createorder['@errormsg'] == 'Success') {
                         this.isOpen = false
                         this.isOpenSuccess = true;

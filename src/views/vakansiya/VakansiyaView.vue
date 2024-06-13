@@ -213,7 +213,6 @@ export default {
     },
     watch: {
         vakansiyaData(newVal) {
-            console.log(newVal);
             this.fetchData(newVal, this.$i18n.locale)
         },
         '$i18n.locale'(newVal) {

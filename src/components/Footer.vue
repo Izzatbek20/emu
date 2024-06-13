@@ -139,7 +139,6 @@ export default {
     mounted() {
         // Shu shartlar qanoqatlantirsa footer ko'rinmasligi kerak
         const routeName = this.$route.name;
-        // console.log(routeName);
         if (routeName == 'login' || routeName == 'register' || routeName == 'sms' || routeName == 'register-2') {
             this.show = false
         }
