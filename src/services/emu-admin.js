@@ -8,11 +8,19 @@ const Axsios = axios.create({
 });
 
 const emuAdminService = {
-    news() {
-        return Axsios.get('/news')
+    news(page) {
+        return Axsios.get('/news', {
+            params: {
+                page: page
+            }
+        })
     },
-    feedback() {
-        return Axsios.get('/feedback')
+    feedback(page) {
+        return Axsios.get('/feedback', {
+            params: {
+                page: page
+            }
+        })
     },
     question() {
         return Axsios.get('/question')

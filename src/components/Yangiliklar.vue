@@ -81,24 +81,26 @@ export default {
     methods: {
         async fetchData(newVal, locale) {
             const totalData = [];
-            newVal.forEach((element, index) => {
-                if (element.langs) {
-                    const item = element.langs.find(item => item.lang == locale)
-                    if (item) {
-                        const newDate = new Date(element.created_at)
-                        const img = `${this.origin}/${item.photo.replace(/\\/g, '/')}`
-                        const formatingData = {
-                            id: element.id,
-                            image: `url(${img})`,
-                            title: item.title,
-                            body: item.content,
-                            date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
-                        }
+            if (newVal.results) {
+                newVal.results.forEach((element, index) => {
+                    if (element.langs) {
+                        const item = element.langs.find(item => item.lang == locale)
+                        if (item) {
+                            const newDate = new Date(element.created_at)
+                            const img = `${this.origin}/${item.photo.replace(/\\/g, '/')}`
+                            const formatingData = {
+                                id: element.id,
+                                image: `url(${img})`,
+                                title: item.title,
+                                body: item.content,
+                                date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+                            }
 
-                        totalData.push(formatingData)
+                            totalData.push(formatingData)
+                        }
                     }
-                }
-            });
+                });
+            }
 
             this.datas = totalData
         }

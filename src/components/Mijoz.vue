@@ -71,21 +71,23 @@ export default {
     methods: {
         async fetchData(newVal, locale) {
             const totalData = [];
-            newVal.forEach((element, index) => {
-                if (element.langs) {
-                    const item = element.langs.find(item => item.lang == locale)
-                    if (item) {
-                        const formatingData = {
-                            id: element.id,
-                            v: element.video,
-                            title: item.title,
-                            short: item.text,
-                            body: item.content,
+            if (newVal.results) {
+                newVal.results.forEach((element, index) => {
+                    if (element.langs) {
+                        const item = element.langs.find(item => item.lang == locale)
+                        if (item) {
+                            const formatingData = {
+                                id: element.id,
+                                v: element.video,
+                                title: item.title,
+                                short: item.text,
+                                body: item.content,
+                            }
+                            totalData.push(formatingData)
                         }
-                        totalData.push(formatingData)
                     }
-                }
-            });
+                });
+            }
 
             this.datas = totalData
         }

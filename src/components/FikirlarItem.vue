@@ -49,9 +49,10 @@ export default {
         }
     },
     mounted() {
+        this.url = `https://img.youtube.com/vi/${this.v}/mqdefault.jpg`
         document.addEventListener('click', this.handleClickOutside);
     },
-    beforeMount() {
+    updated() {
         this.url = `https://img.youtube.com/vi/${this.v}/mqdefault.jpg`
     },
     methods: {

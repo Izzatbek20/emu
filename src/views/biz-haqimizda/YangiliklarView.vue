@@ -56,7 +56,8 @@
                 <Bar id="pin" :name="'bizHaqimizda'" />
             </div>
         </div>
-        <!-- <Pagination class="mt-20" /> -->
+        <Pagination v-if="pagination" :size="pagination.size" :page="pagination.page" :total="pagination.total"
+            @update:page="changePage" class="mt-20" />
     </div>
 </template>
 
@@ -83,6 +84,7 @@ export default {
     data() {
         return {
             data: [],
+            pagination: [],
             topNew: null,
             origin: import.meta.env.VITE_EMU_API_ORIGIN
         }
@@ -104,28 +106,40 @@ export default {
         }
     },
     methods: {
+        async changePage(page) {
+            this.$store.dispatch('news', page)
+        },
         async fetchData(newVal, locale) {
             const totalData = [];
-            newVal.forEach((element, index) => {
-                if (element.langs) {
-                    const item = element.langs.find(item => item.lang == locale)
-                    if (item) {
-                        const newDate = new Date(element.created_at)
-                        const formatingData = {
-                            id: element.id,
-                            image: `${this.origin}/${item.photo}`,
-                            title: item.title,
-                            body: item.content,
-                            date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
-                        }
-                        if (index == 0) {
-                            this.topNew = formatingData
-                        } else {
-                            totalData.push(formatingData)
+            if (newVal.results) {
+
+                newVal.results.forEach((element, index) => {
+                    if (element.langs) {
+                        const item = element.langs.find(item => item.lang == locale)
+                        if (item) {
+                            const newDate = new Date(element.created_at)
+                            const formatingData = {
+                                id: element.id,
+                                image: `${this.origin}/${item.photo}`,
+                                title: item.title,
+                                body: item.content,
+                                date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+                            }
+                            if (index == 0) {
+                                this.topNew = formatingData
+                            } else {
+                                totalData.push(formatingData)
+                            }
                         }
                     }
+                });
+
+                this.pagination = {
+                    'size': newVal.size,
+                    'page': newVal.page,
+                    'total': newVal.total,
                 }
-            });
+            }
 
             this.data = totalData
         }

@@ -83,9 +83,9 @@ const actions = {
                 });
         })
     },
-    news(context) {
+    news(context, page = 1) {
         return new Promise((resolve, reject) => {
-            emuAdminService.news()
+            emuAdminService.news(page)
                 .then(response => {
                     context.commit('setNews', response.data)
                     resolve(response)
@@ -94,9 +94,9 @@ const actions = {
                 });
         })
     },
-    feedback(context) {
+    feedback(context, page=1) {
         return new Promise((resolve, reject) => {
-            emuAdminService.feedback()
+            emuAdminService.feedback(page)
                 .then(response => {
                     context.commit('setData', response.data)
                     resolve(response)
