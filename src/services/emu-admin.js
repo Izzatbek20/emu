@@ -8,6 +8,9 @@ const Axsios = axios.create({
 });
 
 const emuAdminService = {
+    serviceAll() {
+        return Axsios.get('/service')
+    },
     news(page) {
         return Axsios.get('/news', {
             params: {

@@ -7,6 +7,7 @@ const state = {
     vakansiya: null,
     vakansiyaBreanch: null,
     info: null,
+    serviceAll: null,
     news: null
 }
 
@@ -41,6 +42,9 @@ const mutations = {
     vakansiya(state, data) {
         state.vakansiya = data
     },
+    serviceAll(state, data) {
+        state.serviceAll = data
+    },
     vakansiyaBreanch(state, data) {
         state.vakansiyaBreanch = data
     },
@@ -50,6 +54,17 @@ const mutations = {
 }
 
 const actions = {
+    serviceAll(context) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.serviceAll()
+                .then(response => {
+                    context.commit('serviceAll', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
     getBanner(context) {
         return new Promise((resolve, reject) => {
             emuAdminService.bannerGet()
@@ -94,7 +109,7 @@ const actions = {
                 });
         })
     },
-    feedback(context, page=1) {
+    feedback(context, page = 1) {
         return new Promise((resolve, reject) => {
             emuAdminService.feedback(page)
                 .then(response => {

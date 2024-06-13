@@ -40,8 +40,8 @@
                     </span>
                 </a>
                 <ul class="flex relative flex-row items-center gap-x-5">
-                    <li class="cursor-pointer">
-                        <Search class="size-4" :fillColor="'fill-violet'" />
+                    <li class="cursor-pointer relative">
+                        <SearchPanel />
                     </li>
                     <li id="profil" class="max-sm:hidden relative">
                         <div v-if="isLoginIn" @click="select('profil', profil)"
@@ -184,6 +184,7 @@ import { mapGetters, mapState } from 'vuex';
 import { menus, profil, til } from '@/constants/navbar.js';
 import { setItem } from '@/helpers/rwLocalStorage';
 import { gettersTypes } from '@/store/modules/types';
+import SearchPanel from '@/components/SearchPanel.vue'
 
 
 export default {
@@ -194,6 +195,9 @@ export default {
             til: til,
             origin: import.meta.env.VITE_EMU_API_ORIGIN,
         }
+    },
+    components: {
+        SearchPanel,
     },
     computed: {
         ...mapState({
