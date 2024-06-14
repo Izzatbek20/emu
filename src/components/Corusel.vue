@@ -36,7 +36,7 @@ export default {
                 const slides = document.querySelectorAll(".carousel-slide");
                 const pagination = document.querySelector(".pagination");
 
-                if (slides && pagination) {
+                if (slides && slides.length > 0 && pagination) {
                     // Clear existing pagination buttons
                     pagination.innerHTML = '';
 
@@ -69,7 +69,7 @@ export default {
             const slides = document.querySelectorAll(".carousel-slide");
             const pagination = document.querySelector(".pagination");
 
-            if (slides && pagination) {
+            if (slides && slides.length > 0 && pagination) {
                 slides[this.currentSlide].classList.remove("active");
                 if (pagination.children.length > 0) {
                     pagination.children[this.currentSlide].classList.remove("corusel-pagination-active");
