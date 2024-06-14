@@ -5,13 +5,15 @@
             <BarGorizontal :name="'bizHaqimizda'" class="max-xl:h-14 my-10" />
         </div>
         <!-- Navigation -->
-        <Navigation>O’zbekiston bo’yicha filiallarimiz ma’sullari</Navigation>
+        <Navigation>{{ $t('O’zbekiston bo’yicha filiallarimiz ma’sullari') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4">
-                <div v-for="items in data" class="mb-4 w-full">
-                    <h3 class="h3 max-xl:h4-2 mb-4">{{ items.title }}</h3>
-                    <RaxbariyatItem v-if="items.items" v-for="(item, i) in items.items" :key="i" :user="item" />
+                <div v-for="(items, i) in data" class="mb-4 w-full">
+                    <template v-if="i > 0">
+                        <h3 class="h3 max-xl:h4-2 mb-4">{{ items.title }}</h3>
+                        <RaxbariyatItem v-if="items.items" v-for="(item, i) in items.items" :key="i" :user="item" />
+                    </template>
                 </div>
 
                 <div v-if="isLoading" class="relative w-full flex items-center justify-center">

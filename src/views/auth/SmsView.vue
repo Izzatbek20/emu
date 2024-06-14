@@ -2,11 +2,10 @@
     <div class="min-h-screen flex items-start justify-center w-full rounded-3xl">
         <div class="bg-white dark:bg-gray-900 shadow rounded-3xl px-8 py-6 max-w-md">
             <div class="my-8 txt-normal max-md:txt-small text-center">
-                Sizning so'rovingizni tasdiqlash maqsadida telefon raqamingizga SMS orqali kod jo'natildi. Bu kod orqali
-                shaxsingizni identifikatsiya qilishingiz mumkin.
+                {{ $t('SmsyuborilgandaText') }}
             </div>
             <form ref="formSms" @submit.prevent="checkOtpCode">
-                <h5 class="h5">Iltimos, SMS kodni kiriting</h5>
+                <h5 class="h5">{{ $t('Iltimos, SMS kodni kiriting') }}</h5>
                 <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
                     <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="1"
                         v-model="otpCode1" :error="error" :disabled="loading"
@@ -32,14 +31,14 @@
                     class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
                     <button type="button" v-if="retrySms" @click="getSms"
                         class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
-                        Yana bir marta kod jo’natish
+                        {{ $t('Yana bir marta kod jo’natish') }}
                     </button>
                     <button v-else class="text-[#be8fb7] cursor-wait txt-normal max-md:txt-small mb-0">
-                        Yana bir marta kod jo’natish
+                        {{ $t('Yana bir marta kod jo’natish') }}
                     </button>
                     <div class="text-gray txt-normal max-md:txt-small">{{ minut }} soniya</div>
                 </div>
-                <ButtonVioletLogin title="Kirish" :disabled="loading" class="mx-auto mt-10 w-2/3" />
+                <ButtonVioletLogin :title="$t('login')" :disabled="loading" class="mx-auto mt-10 w-2/3" />
             </form>
         </div>
     </div>

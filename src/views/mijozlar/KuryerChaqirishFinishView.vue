@@ -6,23 +6,22 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>Kuryer chaqirish</Navigation>
+        <Navigation>{{ $t('Kuryer chaqirish') }}</Navigation>
 
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1 bg-white rounded-3xl p-7 max-md:p-4">
                 <div class="h4">
-                    Yukingizni olib ketish uchun kuryerimiz tez orada yo’lga chiqadi. Iltimos berilgan ma’lumotlar
-                    tog’riligini yana bir marta tasdiqlang
+                    {{ $t('YukMalumotTekshir') }}
                 </div>
                 <div class="flex flex-row max-md:flex-col gap-7 mt-10">
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Kuryer chaqirish</h2>
+                        <h2 class="h4 mb-8">{{ $t('Kuryer chaqirish') }}</h2>
 
-                        <InputPreview label="Olib ketish joy" :value="calculator.from.adress" class="mb-6" />
-                        <InputPreview label="Jo’natuvchining ism familiyasi:" :value="calculator.from.fullname"
-                            class="mb-6" />
-                        <InputPreview label="Jo’natuvchining telefon raqami:" :value="`+998 ${calculator.from.phone}`"
-                            class="mb-6" />
+                        <InputPreview :label="$t('Olib ketish joy')" :value="calculator.from.adress" class="mb-6" />
+                        <InputPreview :label="`${$t('Jo’natuvchining ism familiyasi')}:`"
+                            :value="calculator.from.fullname" class="mb-6" />
+                        <InputPreview :label="`${$t('Jo’natuvchining telefon raqami')}:`"
+                            :value="`+998 ${calculator.from.phone}`" class="mb-6" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">
@@ -32,16 +31,17 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="h4 mb-8">Qabul qiluvchi</h2>
-                        <InputPreview label="Qabul qilish joyi:" :value="calculator.to.adress" class="mb-6" />
-                        <InputPreview label="Qabul qiluvchining ism familiyasi:" :value="calculator.to.fullname"
+                        <h2 class="h4 mb-8">{{ $t('Qabul qiluvchi') }}</h2>
+                        <InputPreview :label="`${$t('Qabul qilish joyi')}:`" :value="calculator.to.adress"
                             class="mb-6" />
-                        <InputPreview label="Jo’natuvchining telefon raqami:" :value="`+998 ${calculator.to.phone}`"
-                            class="mb-6" />
+                        <InputPreview :label="`${$t('Qabul qiluvchining ism familiyasi')}:`"
+                            :value="calculator.to.fullname" class="mb-6" />
+                        <InputPreview :label="`${$t('Qabul qiluvchining telefon raqami')}:`"
+                            :value="`+998 ${calculator.to.phone}`" class="mb-6" />
                     </div>
                 </div>
                 <div class="flex items-start gap-6 mt-10">
-                    <ButtonViolet :disabled="loading" @click="getSms" title="Barcha ma’lumotlar tog’ri" />
+                    <ButtonViolet :disabled="loading" @click="getSms" :title="$t('Barcha ma\'lumotlar to\'g\'ri')" />
                 </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
@@ -49,13 +49,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <Modal title="SMS kod" :isOpen="isOpen" :clickOutside="false" @close="closeModal">
+        <Modal :title="$t('SMS kod')" :isOpen="isOpen" :clickOutside="false" @close="closeModal">
 
-            <div class="txt-big my-10 text-center">Sizning so'rovingizni tasdiqlash maqsadida telefon raqamingizga SMS
-                orqali kod jo'natildi. Bu kod orqali shaxsingizni identifikatsiya qilishingiz mumkin.</div>
+            <div class="txt-big my-10 text-center">{{ $t('SmsyuborilgandaText') }}</div>
 
             <form ref="formSms" @submit.prevent="submit">
-                <h5 class="h5 text-center">Iltimos, SMS kodni kiriting</h5>
+                <h5 class="h5 text-center">{{ $t('Iltimos, SMS kodni kiriting') }}</h5>
                 <div class="grid grid-cols-6 gap-3 max-sm:gap-1 mt-2">
                     <InputSms @next-focus="nextFocus" @prevent-focus="preventFocus" :focus="focus" :id="1"
                         v-model="otpCode1" :error="error" :disabled="loading"
@@ -81,15 +80,15 @@
                     class="flex max-[360px]:flex-row items-center justify-between gap-2 mt-8 mb-4 txt-normal max-md:txt-small">
                     <button type="button" v-if="retrySms" @click="getSms"
                         class="text-violet nav-menu nav-menu-animation txt-normal max-md:txt-small mb-0">
-                        Yana bir marta kod jo’natish
+                        {{ $t('Yana bir marta kod jo’natish') }}
                     </button>
                     <button v-else class="text-[#be8fb7] cursor-wait txt-normal max-md:txt-small mb-0">
-                        Yana bir marta kod jo’natish
+                        {{ $t('Yana bir marta kod jo’natish') }}
                     </button>
-                    <div class="text-gray txt-normal max-md:txt-small">{{ minut }} soniya</div>
+                    <div class="text-gray txt-normal max-md:txt-small">{{ minut }} {{ $t('soniya') }}</div>
                 </div>
-                <ButtonVioletLogin :icon="!submitBtnDisabled" :disabled="loading || submitBtnDisabled" title="Kirish"
-                    class="mx-auto mt-10 " />
+                <ButtonVioletLogin :icon="!submitBtnDisabled" :disabled="loading || submitBtnDisabled"
+                    :title="$t('Yuborish')" class="mx-auto mt-10 " />
             </form>
         </Modal>
 
@@ -111,7 +110,7 @@
             <div class="h5 my-10 text-center">{{ $t(alert.message) }}</div>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="errorModal = false" title="Yopish" class="w-full" />
+                <ButtonVioletLogin @click="errorModal = false" :title="$t('Yopish')" class="w-full" />
             </div>
         </Modal>
     </div>

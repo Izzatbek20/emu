@@ -253,7 +253,6 @@
     "Qaerga": "Where",
     "Jo’natuvchining ismi": "Sender name",
     "Jo’natuvchining telefon raqami": "Sender's phone",
-    "Mahalla": "Mahalla",
     "Ko’cha": "Street",
     "Uy": "House",
     "Xonadon": "Apartment",
@@ -304,6 +303,32 @@
     "Qidiruv": "Search",
     "Qidiruv natijasi": "Search result",
     "Ma'lumot topilmadi": "No information found",
+
+
+    "O’zbekiston bo’yicha filiallarimiz ma’sullari": "Responsible persons of our branches in Uzbekistan",
+    "Hudud": "Territory",
+    "Mahalla": "Area",
+    "Xizmat haqini kim to’laydi": "Who pays for the service",
+    "Tarif bo’yicha yukning taxminiy narxi": "Estimated cost of cargo according to the tariff",
+    "Tarif bo’yicha kelishilgan narxga ro’zimisiz": "Do you agree with the price agreed in the tariff",
+    "Xa, jo’natish": "Yes, delivery",
+    "Yoq, qayta xisoblash": "No, count it",
+    "Qabul qilish joyi": "Reception location",
+    "Olib ketish joy": "Choose a place",
+    "Jo’natuvchining ism familiyasi": "Sender's first and last name",
+    "Qabul qiluvchining ism familiyasi": "Recipient's first and last name",
+    
+    "YukMalumotTekshir": "Our courier will leave soon to collect your luggage. Please re-confirm that the information provided is correct.",
+    
+    "SMS kod": "SMS code",
+    "Barcha ma'lumotlar to'g'ri": "All information is correct",
+    "SmsyuborilgandaText": "A code has been sent to your phone number via SMS to confirm your request. You can identify yourself by this code.",
+    "Iltimos, SMS kodni kiriting": "Please enter SMS code",
+    "Yopish": "Close",
+    "Jo'natish": "Send",
+    "Yana bir marta kod jo’natish": "Send code again",
+    "soniya": "second",
+    
 
 
     "": ""

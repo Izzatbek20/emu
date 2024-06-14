@@ -40,19 +40,19 @@
                     </div>
                 </div>
                 <div class="h5 mt-10">
-                    Xizmat haqini kim to’laydi?
+                    {{ $t('Xizmat haqini kim to’laydi') }}?
                 </div>
                 <div class="flex flex-row gap-x-6 gap-y-3 mt-2">
-                    <Radio label="Jo’natuvchi" :value="'NO'" :disabled="loading" v-model="xizmatXaqi.value"
+                    <Radio :label="$t('Jo’natuvchi')" :value="'NO'" :disabled="loading" v-model="xizmatXaqi.value"
                         :error="xizmatXaqi.error" />
-                    <Radio label="Qabul qiluvchi" :value="'YES'" :disabled="loading" v-model="xizmatXaqi.value"
+                    <Radio :label="$t('Qabul qiluvchi')" :value="'YES'" :disabled="loading" v-model="xizmatXaqi.value"
                         :error="xizmatXaqi.error" />
                 </div>
                 <p class="text-red text-xs italic" v-if="xizmatXaqi.error">
                     {{ xizmatXaqi.error }}
                 </p>
                 <div class="h5 mt-10">
-                    Tarif bo’yicha yukning taxminiy narxi:
+                    {{ $t('Tarif bo’yicha yukning taxminiy narxi') }}:
                 </div>
                 <div class="h3-2 text-violet">
                     {{ Intl.NumberFormat('uz-UZ').format(calculator.price) }} so’m
@@ -60,11 +60,12 @@
                 <hr class="text-color_active my-10">
 
                 <div class="h4">
-                    Tarif bo’yicha kelishilgan narxga ro’zimisiz?
+                    {{ $t('Tarif bo’yicha kelishilgan narxga ro’zimisiz') }}?
                 </div>
                 <div class="flex items-start gap-6 mt-10">
-                    <ButtonViolet title="Xa, jo’natish" :disabled="loading" />
-                    <ButtonOranger title="Yoq, qayta xisoblash" @click="$router.push({ name: 'kuryerChaqirish' })" />
+                    <ButtonViolet :title="$t('Xa, jo’natish')" :disabled="loading" />
+                    <ButtonOranger :title="$t('Yoq, qayta xisoblash')"
+                        @click="$router.push({ name: 'kuryerChaqirish' })" />
                 </div>
 
             </form>
