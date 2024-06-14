@@ -188,6 +188,7 @@
     "24 soat (Bayram kunlaridan tashqari)": "24 часа(кроме праздников)",
 
     "Telefon": "Телефон",
+    "Tel.raqam": "Телефон",
 
     "Manzil": "Адрес",
     "O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35": "Узбекистан, город Ташкент, улица Шота Руставели, 35",
@@ -325,6 +326,9 @@
     "Jo'natish": "Отправить",
     "Yana bir marta kod jo’natish": "Отправить код снова",
     "soniya": "секунда",
+    
+    "O’zbekiston bo’ylab 75ta ofislarimiz mavjudi": "У нас 75 офисов по всему Узбекистану.",
+
 
     "seo_home_title": "Курьерская служба в Узбекистане и в Ташкент",
     "seo_home_description": "«Наша компания, учитывая требования и желания своих клиентов, гарантирует надежную и быструю доставку каждой посылки или груза.",

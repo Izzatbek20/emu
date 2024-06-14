@@ -12,7 +12,7 @@
                 <div v-if="user.region" class="flex flex-row gap-2">
                     <Marker :fillColor="'fill-violet'" />
                     <div>
-                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">Hudud:</div>
+                        <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{ $t('Hudud')}}:</div>
                         <div class="text-lg max-xl:text-base font-normal leading-none">{{ user.region }}</div>
                     </div>
                 </div>

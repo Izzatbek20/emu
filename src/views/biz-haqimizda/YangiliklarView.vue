@@ -72,8 +72,9 @@ import YangiliklarItem from '@/components/YangiliklarItem.vue';
 import { data } from '@/constants/news';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { vModelText } from 'vue';
 import { mapGetters, mapState } from 'vuex';
+import emulogo from '@/assets/images/logo/emulogo.png';
+import { useHead } from '@vueuse/head';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -86,7 +87,16 @@ export default {
             data: [],
             pagination: [],
             topNew: null,
-            origin: import.meta.env.VITE_EMU_API_ORIGIN
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            pageTitle: `${this.$t('Kompaniya yangiliklari')} - ${import.meta.env.VITE_EMU_APP_NAME}`,
+            pageDescription: this.pageTitle,
+            pageKeyword: this.pageTitle,
+            domain: `${window.location.origin}`,
+            canonical: `${window.location.origin}/kompaniya/yangiliklar`,
+            alternateUz: `${window.location.origin}/uz/kompaniya/yangiliklar`,
+            alternateRu: `${window.location.origin}/ru/kompaniya/yangiliklar`,
+            alternateEn: `${window.location.origin}/en/kompaniya/yangiliklar`,
+            emuLogoImage: `${window.location.origin}${emulogo}`
         }
     },
     computed: {
@@ -132,6 +142,7 @@ export default {
                             }
                         }
                     }
+
                 });
 
                 this.pagination = {
@@ -142,6 +153,61 @@ export default {
             }
 
             this.data = totalData
+            if (totalData) {
+                this.pageDescription = `${totalData[0].body.substring(0, 160).replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '')}`
+                this.pageKeyword = `${totalData[0].body.substring(0, 160).replaceAll(' ', ', ').replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '')}`
+
+                useHead({
+                    title: this.pageTitle,
+                    meta: [
+                        { name: 'title', content: this.pageTitle },
+                        { name: 'description', content: this.pageDescription },
+                        { name: 'keywords', content: this.pageKeyword },
+
+                        { property: 'og:title', content: this.pageTitle },
+                        { property: 'og:description', content: this.pageDescription },
+                        { property: 'og:image', content: totalData[0] ? totalData[0].image : this.emuLogoImage },
+                        { property: 'og:url', content: this.canonical },
+                        { property: 'og:type', content: 'article' },
+
+                        { property: 'twitter:card', content: 'summary_large_image' },
+                        { property: 'twitter:title', content: this.pageTitle },
+                        { property: 'twitter:description', content: this.pageDescription },
+                        { property: 'twitter:image', content: totalData[0] ? totalData[0].image : this.emuLogoImage },
+                    ],
+                    link: [
+                        { rel: 'canonical', href: this.canonical },
+                        { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                        { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                        { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                        { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+                    ],
+                    script: [
+                        {
+                            type: 'application/ld+json',
+                            innerHTML: `{"@context": "https://schema.org",
+                "@type": "NewsArticle",
+                "headline": ${this.pageTitle},
+                "image": [${totalData[0] ? totalData[0].image : this.emuLogoImage}],
+                "datePublished": "2024-06-14T08:00:00+00:00",
+                "dateModified": "2024-06-14T08:00:00+00:00",
+                "author": {
+                    "@type": "Person",
+                    "name": "${this.domain}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "${this.domain}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": ${totalData[0] ? totalData[0].image : this.emuLogoImage}
+                    }
+                },
+                "description": ${this.pageDescription}}`
+                        }
+                    ]
+                });
+            }
         }
     },
     mounted() {
@@ -158,6 +224,57 @@ export default {
             pin: pin,
             pinSpacing: true,
 
+        });
+
+        useHead({
+            title: this.pageTitle,
+            meta: [
+                { name: 'title', content: this.pageTitle },
+                { name: 'description', content: this.pageDescription },
+                { name: 'keywords', content: this.pageTitle },
+
+                { property: 'og:title', content: this.pageTitle },
+                { property: 'og:description', content: this.pageDescription },
+                { property: 'og:image', content: this.emuLogoImage },
+                { property: 'og:url', content: this.canonical },
+                { property: 'og:type', content: 'article' },
+
+                { property: 'twitter:card', content: 'summary_large_image' },
+                { property: 'twitter:title', content: this.pageTitle },
+                { property: 'twitter:description', content: this.pageDescription },
+                { property: 'twitter:image', content: this.emuLogoImage },
+            ],
+            link: [
+                { rel: 'canonical', href: this.canonical },
+                { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+            ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    innerHTML: `{"@context": "https://schema.org",
+                        "@type": "NewsArticle",
+                        "headline": ${this.pageTitle},
+                        "image": [${this.emuLogoImage}],
+                        "datePublished": "2024-06-14T08:00:00+00:00",
+                        "dateModified": "2024-06-14T08:00:00+00:00",
+                        "author": {
+                            "@type": "Person",
+                            "name": "${this.canonical}"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "${this.canonical}",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": ${this.emuLogoImage}
+                            }
+                        },
+                        "description": ${this.pageDescription}}`
+                }
+            ]
         });
     }
 }

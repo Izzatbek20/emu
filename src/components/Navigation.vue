@@ -1,7 +1,7 @@
 <template>
-    <h2 class="h0 my-10 max-xl:h1 max-md:h2 max-sm:h3 max-xl:my-0">
+    <h1 class="h0 my-10 max-xl:h1 max-md:h2 max-sm:h3 max-xl:my-0">
         <slot />
-    </h2>
+    </h1>
 </template>
 <script>
 

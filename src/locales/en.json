@@ -189,6 +189,7 @@
 
 
     "Telefon": "Telephone",
+    "Tel.raqam": "Telephone",
 
     "Manzil": "Address",
     "O’zbekiston, Toshkent shahri, Shota Rustaveli ko’chasi, 35": "Uzbekistan, Tashkent city, Shota Rustaveli street, 35",
@@ -328,6 +329,8 @@
     "Jo'natish": "Send",
     "Yana bir marta kod jo’natish": "Send code again",
     "soniya": "second",
+
+    "O’zbekiston bo’ylab 75ta ofislarimiz mavjudi": "We have 75 offices throughout Uzbekistan.",
 
     "seo_home_title": "O'zbekistonda va Toshkentda kurerlik xizmati",
     "seo_home_description": "“Bizning kompaniyamiz o’z mijozlarining talablari va istaklarini inobatga olgan holda yukni ishonchli va tezkor yetkazib berishni kafolatlaydi.",

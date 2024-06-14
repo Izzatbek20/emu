@@ -6,7 +6,7 @@
         </div>
 
         <!-- Navigation -->
-        <Navigation>O’zbekiston bo’ylab 75ta ofislarimiz mavjudi</Navigation>
+        <Navigation>{{ $t('O’zbekiston bo’ylab 75ta ofislarimiz mavjudi') }}</Navigation>
 
         <div class="hidden max-lg:flex mt-8">
             <Splide :has-track="false" :options="optionsMaxScreen768" aria-label="Hududlar">
@@ -51,21 +51,21 @@
                                             <div class="flex items-start gap-2">
                                                 <Marker class="size-5" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Manzil</div>
+                                                    <div class="h6">{{ $t('Manzil') }}</div>
                                                     <div class="txt-small capitalize">{{ pvz.address }}</div>
                                                 </div>
                                             </div>
                                             <div class="flex items-start gap-2">
                                                 <Marker2 class="size-5" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Moljal</div>
+                                                    <div class="h6">{{ $t('Mo’ljal') }}</div>
                                                     <div class="txt-small capitalize">{{ pvz.traveldescription }}</div>
                                                 </div>
                                             </div>
                                             <div class="flex items-start gap-2">
                                                 <Phone class="h-4" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Tel.raqam</div>
+                                                    <div class="h6">{{ $t('Tel.raqam') }}</div>
                                                     <div class="txt-small">+{{ pvz.phone }}</div>
                                                 </div>
                                             </div>
@@ -80,14 +80,14 @@
                                             <div class="flex items-start gap-2">
                                                 <Marker class="size-5" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Manzil</div>
+                                                    <div class="h6">{{ $t('Manzil') }}</div>
                                                     <div class="txt-small capitalize">{{ punkit.pvz.address }}</div>
                                                 </div>
                                             </div>
                                             <div class="flex items-start gap-2">
                                                 <Marker2 class="size-5" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Moljal</div>
+                                                    <div class="h6">{{ $t('Mo’ljal') }}</div>
                                                     <div class="txt-small capitalize">{{ punkit.pvz.traveldescription }}
                                                     </div>
                                                 </div>
@@ -95,7 +95,7 @@
                                             <div class="flex items-start gap-2">
                                                 <Phone class="h-4" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Tel.raqam</div>
+                                                    <div class="h6">{{ $t('Tel.raqam') }}</div>
                                                     <div class="txt-small">+{{ punkit.pvz.phone }}</div>
                                                 </div>
                                             </div>
@@ -108,34 +108,60 @@
                             <Splide :has-track="false" :options="optionsMaxScreen768" aria-label="Hududlar">
                                 <SplideTrack>
 
-                                    <SplideSlide v-for="i in [1, 2, 3]">
+                                    <!-- pvz ichida ko'p ma'lumot bo'lsa -->
+                                    <SplideSlide v-if="punkit && typeof punkit.pvz[0] == 'object'"
+                                        v-for="(pvz, i) in punkit.pvz">
                                         <div
                                             class=" flex  bg-white flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
                                             <div class="flex items-start gap-2">
                                                 <Marker class="size-5" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Manzil</div>
-                                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli
-                                                        ko’chasi,
-                                                        35
-                                                    </div>
+                                                    <div class="h6">{{ $t('Manzil') }}</div>
+                                                    <div class="txt-small capitalize">{{ pvz.address }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start gap-2">
+                                                <Marker2 class="size-5" />
+                                                <div class="flex flex-col items-start">
+                                                    <div class="h6">{{ $t('Mo’ljal') }}</div>
+                                                    <div class="txt-small capitalize">{{ pvz.traveldescription }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start gap-2">
+                                                <Phone class="size-5" />
+                                                <div class="flex flex-col items-start">
+                                                    <div class="h6">{{ $t('Tel.raqam') }}</div>
+                                                    <div class="txt-small">+{{ pvz.phone }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </SplideSlide>
+
+                                    <!-- pvz ichida 1 ma'lumot bo'lsa -->
+                                    <SplideSlide v-else-if="punkit">
+                                        <div
+                                            class=" flex  bg-white flex-col w-80 p-5 max-lg:p-3 items-start gap-3 border border-line-gray rounded-2xl">
+                                            <div class="flex items-start gap-2">
+                                                <Marker class="size-5" />
+                                                <div class="flex flex-col items-start">
+                                                    <div class="h6">{{ $t('Manzil') }}</div>
+                                                    <div class="txt-small capitalize">{{ punkit.pvz.address }}</div>
                                                 </div>
                                             </div>
                                             <div class="flex items-start gap-2">
                                                 <Marker2 class="size-5" />
                                                 <div class="flex flex-col items-start">
                                                     <div class="h6">Moljal</div>
-                                                    <div class="txt-small">O’zbekiston, Toshkent shahri, Shota Rustaveli
-                                                        ko’chasi,
-                                                        35
+                                                    <div class="h6">{{ $t('Mo’ljal') }}</div>
+                                                    <div class="txt-small capitalize">{{ punkit.pvz.traveldescription }}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="flex items-start gap-2">
                                                 <Phone class="size-5" />
                                                 <div class="flex flex-col items-start">
-                                                    <div class="h6">Tel.raqam</div>
-                                                    <div class="txt-small">+998 71 200 96-69</div>
+                                                    <div class="h6">{{ $t('Tel.raqam') }}</div>
+                                                    <div class="txt-small">+{{ punkit.pvz.phone }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,12 +191,9 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
 import BarGorizontal from '@/components/BarGorizontal.vue';
 import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
-import { XMLBuilder } from 'fast-xml-parser';
-const build = new XMLBuilder({
-    attributeNamePrefix: '@', // Atributlarni belgilash
-    textNodeName: '#text', // Matn elementlari nomini belgilash
-    ignoreAttributes: false // Atributlarni o'xtirmashtirish
-});
+
+import { useHead } from '@vueuse/head';
+import emulogo from '@/assets/images/logo/emulogo.png';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -219,6 +242,16 @@ export default {
             windowWidth: window.innerWidth,
             current_region: 1458,
             current_region_name: "Андижанская область",
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            pageTitle: `${this.$t('sub.ofislarimiz')} - ${import.meta.env.VITE_EMU_APP_NAME}`,
+            pageDescription: this.$t('O’zbekiston bo’ylab 75ta ofislarimiz mavjudi'),
+            pageKeyword: this.pageDescription,
+            domain: `${window.location.origin}`,
+            canonical: `${window.location.origin}/mijoz/ofislarimiz`,
+            alternateUz: `${window.location.origin}/uz/mijoz/ofislarimiz`,
+            alternateRu: `${window.location.origin}/ru/mijoz/ofislarimiz`,
+            alternateEn: `${window.location.origin}/en/mijoz/ofislarimiz`,
+            emuLogoImage: `${window.location.origin}${emulogo}`
         }
     },
     computed: {
@@ -255,6 +288,57 @@ export default {
             pin: pin,
             pinSpacing: true,
 
+        });
+
+        useHead({
+            title: this.pageTitle,
+            meta: [
+                { name: 'title', content: this.pageTitle },
+                { name: 'description', content: this.pageDescription },
+                { name: 'keywords', content: `${this.pageTitle.substring(0, 290).replaceAll(' ', ', ').replaceAll('-,', '')}, ${this.$t('Hisoblash')}, ${this.$t('Korobka')}, ${this.$t('Qabul qiluvchi')}, ${this.$t('Kuryer chaqirish')}, ${this.$t('Jo’natuvchi')}` },
+
+                { property: 'og:title', content: this.pageTitle },
+                { property: 'og:description', content: this.pageDescription },
+                { property: 'og:image', content: this.emuLogoImage },
+                { property: 'og:url', content: this.canonical },
+                { property: 'og:type', content: 'article' },
+
+                { property: 'twitter:card', content: 'summary_large_image' },
+                { property: 'twitter:title', content: this.pageTitle },
+                { property: 'twitter:description', content: this.pageDescription },
+                { property: 'twitter:image', content: this.emuLogoImage },
+            ],
+            link: [
+                { rel: 'canonical', href: this.canonical },
+                { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+            ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    innerHTML: `{"@context": "https://schema.org",
+                        "@type": "NewsArticle",
+                        "headline": ${this.pageTitle},
+                        "image": [${this.emuLogoImage}],
+                        "datePublished": "2024-06-14T08:00:00+00:00",
+                        "dateModified": "2024-06-14T08:00:00+00:00",
+                        "author": {
+                            "@type": "Person",
+                            "name": "${this.canonical}"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "${this.canonical}",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": ${this.emuLogoImage}
+                            }
+                        },
+                        "description": ${this.pageDescription}}`
+                }
+            ]
         });
     },
     beforeUnmount() {

@@ -67,9 +67,10 @@ export default {
 
             xizmatlar: xizmlatlar,
 
-            pageTitle: `${import.meta.env.VITE_EMU_APP_NAME} - ${this.$t('seo_home_title')}`,
+            pageTitle: `${this.$t('seo_home_title')} - ${import.meta.env.VITE_EMU_APP_NAME}`,
             pageDescription: this.$t('seo_home_description'),
             pageKeyword: this.$t('seo_home_keywords'),
+            domain: `${window.location.origin}`,
             canonical: `${window.location.origin}`,
             alternateUz: `${window.location.origin}/uz`,
             alternateRu: `${window.location.origin}/ru`,
@@ -114,11 +115,11 @@ export default {
                         "dateModified": "2024-06-14T08:00:00+00:00",
                         "author": {
                             "@type": "Person",
-                            "name": "Majidov Izzatbek"
+                            "name": "${this.domain}"
                         },
                         "publisher": {
                             "@type": "Organization",
-                            "name": "Emu.uz",
+                            "name": "${this.domain}",
                             "logo": {
                                 "@type": "ImageObject",
                                 "url": ${this.emuLogoImage}

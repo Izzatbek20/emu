@@ -50,6 +50,8 @@ import Card from '@/components/Card.vue';
 import Navigation from '@/components/Navigation.vue';
 import YangiliklarItem from '@/components/YangiliklarItem.vue';
 import { mapGetters, mapState } from 'vuex';
+import emulogo from '@/assets/images/logo/emulogo.png';
+import { useHead } from '@vueuse/head';
 
 export default {
     components: {
@@ -58,7 +60,17 @@ export default {
     data() {
         return {
             current_item: [],
-            origin: import.meta.env.VITE_EMU_API_ORIGIN
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            pageTitle: null,
+            pageDescription: this.pageTitle,
+            pageKeyword: this.pageTitle,
+            domain: `${window.location.origin}`,
+            canonical: `${window.location.origin}/kompaniya/yangiliklar`,
+            alternateUz: `${window.location.origin}/uz/kompaniya/yangiliklar/${this.$route.params.id}`,
+            alternateRu: `${window.location.origin}/ru/kompaniya/yangiliklar/${this.$route.params.id}`,
+            alternateEn: `${window.location.origin}/en/kompaniya/yangiliklar/${this.$route.params.id}`,
+            emuLogoImage: `${window.location.origin}${emulogo}`
+
         }
     },
     computed: {
@@ -90,6 +102,61 @@ export default {
                         body: item.content,
                         date: newDate.toLocaleDateString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
                     }
+
+                    this.pageTitle = this.current_item.title
+                    this.pageDescription = `${this.current_item.body.substring(0, 290).replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '')}`
+                    this.pageKeyword = `${this.current_item.body.substring(0, 290).replaceAll(' ', ', ').replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '').replaceAll('-,', '') }`
+
+                    useHead({
+                        title: this.pageTitle,
+                        meta: [
+                            { name: 'title', content: this.pageTitle },
+                            { name: 'description', content: this.pageDescription },
+                            { name: 'keywords', content: this.pageKeyword },
+
+                            { property: 'og:title', content: this.pageTitle },
+                            { property: 'og:description', content: this.pageDescription },
+                            { property: 'og:image', content: this.current_item.image },
+                            { property: 'og:url', content: this.canonical },
+                            { property: 'og:type', content: 'article' },
+
+                            { property: 'twitter:card', content: 'summary_large_image' },
+                            { property: 'twitter:title', content: this.pageTitle },
+                            { property: 'twitter:description', content: this.pageDescription },
+                            { property: 'twitter:image', content: this.current_item.image },
+                        ],
+                        link: [
+                            { rel: 'canonical', href: this.canonical },
+                            { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                            { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                            { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                            { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+                        ],
+                        script: [
+                            {
+                                type: 'application/ld+json',
+                                innerHTML: `{"@context": "https://schema.org",
+                                    "@type": "NewsArticle",
+                                    "headline": ${this.pageTitle},
+                                    "image": [${this.current_item.image}],
+                                    "datePublished": "2024-06-14T08:00:00+00:00",
+                                    "dateModified": "2024-06-14T08:00:00+00:00",
+                                    "author": {
+                                        "@type": "Person",
+                                        "name": "${this.domain}"
+                                    },
+                                    "publisher": {
+                                        "@type": "Organization",
+                                        "name": "${this.domain}",
+                                        "logo": {
+                                            "@type": "ImageObject",
+                                            "url": ${this.current_item.image}
+                                        }
+                                    },
+                                    "description": ${this.pageDescription}}`
+                            }
+                        ]
+                    });
                 }
             }
         }

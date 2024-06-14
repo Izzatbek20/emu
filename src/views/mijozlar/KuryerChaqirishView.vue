@@ -122,14 +122,11 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { mapState } from 'vuex';
 import { kirillga } from 'lotin-kirill-uz';
-import { XMLBuilder } from 'fast-xml-parser';
 import { jonatma, xizmat } from '@/constants/kuryerChaqirish';
 
-const build = new XMLBuilder({
-    attributeNamePrefix: '@', // Atributlarni belgilash
-    textNodeName: '#text', // Matn elementlari nomini belgilash
-    ignoreAttributes: false // Atributlarni o'xtirmashtirish
-});
+
+import { useHead } from '@vueuse/head';
+import emulogo from '@/assets/images/logo/emulogo.png';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -245,6 +242,18 @@ export default {
             jonatmalar: jonatma,
             xizmat: xizmat,
             loading: false,
+
+
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            pageTitle: `${this.$t('sub.kuryerChaqirish')} - ${import.meta.env.VITE_EMU_APP_NAME}`,
+            pageDescription: this.$t('Kuryer chaqirish'),
+            pageKeyword: `${this.$t('Kuryer chaqirish').replaceAll(' ', ', ').replaceAll('-,', '')}, ${this.$t('Jo’natish')}, ${this.$t('Jo’natma turi')}, ${this.$t('Yetkazib berish')}, ${this.$t('Xonadon')}, ${this.$t('Qaerdan')}, ${this.$t('Qaerga')} `,
+            domain: `${window.location.origin}`,
+            canonical: `${window.location.origin}/mijoz/kuryer-chaqirish`,
+            alternateUz: `${window.location.origin}/uz/mijoz/kuryer-chaqirish`,
+            alternateRu: `${window.location.origin}/ru/mijoz/kuryer-chaqirish`,
+            alternateEn: `${window.location.origin}/en/mijoz/kuryer-chaqirish`,
+            emuLogoImage: `${window.location.origin}${emulogo}`
         }
     },
     components: {
@@ -450,6 +459,57 @@ export default {
             pin: pin,
             pinSpacing: true,
 
+        });
+
+        useHead({
+            title: this.pageTitle,
+            meta: [
+                { name: 'title', content: this.pageTitle },
+                { name: 'description', content: this.pageDescription },
+                { name: 'keywords', content: this.pageKeyword },
+
+                { property: 'og:title', content: this.pageTitle },
+                { property: 'og:description', content: this.pageDescription },
+                { property: 'og:image', content: this.emuLogoImage },
+                { property: 'og:url', content: this.canonical },
+                { property: 'og:type', content: 'article' },
+
+                { property: 'twitter:card', content: 'summary_large_image' },
+                { property: 'twitter:title', content: this.pageTitle },
+                { property: 'twitter:description', content: this.pageDescription },
+                { property: 'twitter:image', content: this.emuLogoImage },
+            ],
+            link: [
+                { rel: 'canonical', href: this.canonical },
+                { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+            ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    innerHTML: `{"@context": "https://schema.org",
+                        "@type": "NewsArticle",
+                        "headline": ${this.pageTitle},
+                        "image": [${this.emuLogoImage}],
+                        "datePublished": "2024-06-14T08:00:00+00:00",
+                        "dateModified": "2024-06-14T08:00:00+00:00",
+                        "author": {
+                            "@type": "Person",
+                            "name": "${this.canonical}"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "${this.canonical}",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": ${this.emuLogoImage}
+                            }
+                        },
+                        "description": ${this.pageDescription}}`
+                }
+            ]
         });
     },
     watch: {
