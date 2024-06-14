@@ -25,4 +25,8 @@ const i18n = createI18n({
 
 document.querySelector('html').setAttribute('lang', localeDefault)
 
+export const changeLang = lang => {
+    i18n.locale = lang
+}
+
 export default i18n

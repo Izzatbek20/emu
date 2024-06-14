@@ -31,8 +31,19 @@ export default {
       this.$store.dispatch('me')
     }
   },
+  watch: {
+    '$route.params.lang'(newLang) {
+      if (newLang && newLang !== this.$i18n.locale) {
+        this.$i18n.locale = newLang
+      }
+    }
+  },
   mounted() {
     this.getUser()
+
+    // if (to.params.lang !== from.params.lang) {
+    //   i18n.global.locale.value = lang;
+    // }
   }
 
 }

@@ -270,6 +270,18 @@ export default {
         lang(newLang, oldLang) {
             setItem('lang', newLang);
             this.$i18n.locale = newLang;
+            const currentPath = this.$route.fullPath;
+            if (currentPath) {
+                let newPath = currentPath;
+
+                if (newPath.startsWith(`/${oldLang}`)) {
+                    newPath = newPath.replace(`/${oldLang}`, `/${newLang}`);
+                } else {
+                    newPath = `/${newLang}${currentPath}`;
+                }
+
+                this.$router.push(newPath);
+            }
         },
         vakansiyaBreanch(newVal) {
             if (newVal) {

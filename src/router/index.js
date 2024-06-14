@@ -41,12 +41,12 @@ const router = createRouter({
   history: createWebHistory(
     import.meta.env.BASE_URL),
   routes: [{
-      path: '/',
+      path: '/:lang?',
       name: 'home',
       component: HomeView
     },
     {
-      path: '/kompaniya',
+      path: '/:lang?/kompaniya',
       children: [{
           path: 'biz-haqimizda',
           name: 'bizHaqimizda',
@@ -80,7 +80,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/mijoz',
+      path: '/:lang?/mijoz',
       children: [{
           path: 'xizmat-narxini-xisoblang',
           name: 'xizmatXisoblash',
@@ -129,7 +129,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/xizmatlar',
+      path: '/:lang?/xizmatlar',
       children: [{
           path: 'kuryer-xizmati',
           name: 'kuryerXizmati',
@@ -163,22 +163,22 @@ const router = createRouter({
       ]
     },
     {
-      path: '/vakansiya',
+      path: '/:lang?/vakansiya',
       name: 'vakansiya',
       component: VakansiyaView
     },
     {
-      path: '/vakansiya/:id',
+      path: '/:lang?/vakansiya/:id',
       name: 'vakansiyaId',
       component: VakansiyaView
     },
     {
-      path: '/aloqa',
+      path: '/:lang?/aloqa',
       name: 'aloqa',
       component: AloqaView
     },
     {
-      path: '/profil',
+      path: '/:lang?/profil',
       children: [{
         path: 'user',
         name: 'profil',
@@ -201,7 +201,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/auth',
+      path: '/:lang?/auth',
       children: [{
           path: 'login',
           name: 'login',

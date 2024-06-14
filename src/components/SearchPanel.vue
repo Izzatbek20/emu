@@ -57,23 +57,25 @@ export default {
         },
         async fetchData(newVal, locale) {
             const data = [];
-            newVal.forEach(element => {
-                const item = element.langs.find(langItem => langItem.lang === locale);
-                if (item) {
-                    data.push({
-                        title: item.title,
-                        link: this.linkDetect(element.id)
-                    });
-                }
-            });
-            data.push({
-                title: this.$t('sub.kargo'),
-                link: "kargo"
-            });
-            data.push({
-                title: this.$t('Xizmat narxini onlayn xisoblang'),
-                link: "xizmatXisoblash"
-            });
+            if (newVal) {
+                newVal.forEach(element => {
+                    const item = element.langs.find(langItem => langItem.lang === locale);
+                    if (item) {
+                        data.push({
+                            title: item.title,
+                            link: this.linkDetect(element.id)
+                        });
+                    }
+                });
+                data.push({
+                    title: this.$t('sub.kargo'),
+                    link: "kargo"
+                });
+                data.push({
+                    title: this.$t('Xizmat narxini onlayn xisoblang'),
+                    link: "xizmatXisoblash"
+                });
+            }
             this.data = data;
             this.filterData();
         },
