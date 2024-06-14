@@ -317,9 +317,9 @@
     "Olib ketish joy": "Choose a place",
     "Jo’natuvchining ism familiyasi": "Sender's first and last name",
     "Qabul qiluvchining ism familiyasi": "Recipient's first and last name",
-    
+
     "YukMalumotTekshir": "Our courier will leave soon to collect your luggage. Please re-confirm that the information provided is correct.",
-    
+
     "SMS kod": "SMS code",
     "Barcha ma'lumotlar to'g'ri": "All information is correct",
     "SmsyuborilgandaText": "A code has been sent to your phone number via SMS to confirm your request. You can identify yourself by this code.",
@@ -328,7 +328,10 @@
     "Jo'natish": "Send",
     "Yana bir marta kod jo’natish": "Send code again",
     "soniya": "second",
-    
+
+    "seo_home_title": "O'zbekistonda va Toshkentda kurerlik xizmati",
+    "seo_home_description": "“Bizning kompaniyamiz o’z mijozlarining talablari va istaklarini inobatga olgan holda yukni ishonchli va tezkor yetkazib berishni kafolatlaydi.",
+    "seo_home_keywords": "kuryerlik hizmati, tezkor kuryer xizmati, O'zbekiston bo'ylab kuryer, kuryer xizmati Toshkent, kuryer xizmati Narxlar, Express  kuryer xizmati",
 
 
     "": ""

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://emu-imm.netlify.app/sitemap.xml
+Sitemap: https://emu-imm.netlify.app/sitemap_uz.xml
+Sitemap: https://emu-imm.netlify.app/sitemap_ru.xml
+Sitemap: https://emu-imm.netlify.app/sitemap_en.xml

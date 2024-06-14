@@ -50,16 +50,11 @@ import Mijoz from '@/components/Mijoz.vue';
 import Yangiliklar from '@/components/Yangiliklar.vue';
 import HomeBanner from '@/components/HomeBanner.vue';
 
-import image1 from '@/assets/images/slide/1.png';
-import image2 from '@/assets/images/slide/2.png';
-import image3 from '@/assets/images/slide/3.png';
-import image4 from '@/assets/images/slide/4.png';
-import image5 from '@/assets/images/slide/5.png';
+import emulogo from '@/assets/images/logo/emulogo.png';
 
 import Title from '@/components/Title.vue';
 import { xizmlatlar } from '@/constants/xizmatlar';
-import { mapGetters, mapState } from 'vuex';
-
+import { useHead } from '@vueuse/head'
 
 export default {
     components: {
@@ -69,30 +64,71 @@ export default {
         return {
             // corusel: [],
             // origin: import.meta.env.VITE_EMU_API_ORIGIN,
-            corusel: [
-                {
-                    title: '<span class="text-orange-light">EMU express</span> Biz bilan masofa yaqin!',
-                    image: image1
-                },
-                {
-                    title: '<span class="text-orange-light">EMU bosh ofisimiz</span> yangi manzilga ko\'chdi',
-                    image: image2
-                },
-                {
-                    title: '<span class="text-orange-light">Qashqadaryo viloyati,</span> yangi 81chi filialimiz ochildi',
-                    image: image3
-                },
-                {
-                    title: '<span class="text-orange-light">Kuryer chaqirish</span> BEPUL',
-                    image: image4
-                },
-                {
-                    title: '<span class="text-orange-light">Farg\'ona viloyati,</span> yangi filialimiz ochildi',
-                    image: image5
-                },
-            ],
-            xizmatlar: xizmlatlar
+
+            xizmatlar: xizmlatlar,
+
+            pageTitle: `${import.meta.env.VITE_EMU_APP_NAME} - ${this.$t('seo_home_title')}`,
+            pageDescription: this.$t('seo_home_description'),
+            pageKeyword: this.$t('seo_home_keywords'),
+            canonical: `${window.location.origin}`,
+            alternateUz: `${window.location.origin}/uz`,
+            alternateRu: `${window.location.origin}/ru`,
+            alternateEn: `${window.location.origin}/en`,
+            emuLogoImage: `${window.location.origin}${emulogo}`
         }
     },
+    mounted() {
+        useHead({
+            title: this.pageTitle,
+            meta: [
+                { name: 'title', content: this.pageTitle },
+                { name: 'description', content: this.pageDescription },
+                { name: 'keywords', content: this.pageKeyword },
+
+                { property: 'og:title', content: this.pageTitle },
+                { property: 'og:description', content: this.pageDescription },
+                { property: 'og:image', content: this.emuLogoImage },
+                { property: 'og:url', content: this.canonical },
+                { property: 'og:type', content: 'article' },
+
+                { property: 'twitter:card', content: 'summary_large_image' },
+                { property: 'twitter:title', content: this.pageTitle },
+                { property: 'twitter:description', content: this.pageDescription },
+                { property: 'twitter:image', content: this.emuLogoImage },
+            ],
+            link: [
+                { rel: 'canonical', href: this.canonical },
+                { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+            ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    innerHTML: `{"@context": "https://schema.org",
+                        "@type": "NewsArticle",
+                        "headline": ${this.pageTitle},
+                        "image": [${this.emuLogoImage}],
+                        "datePublished": "2024-06-14T08:00:00+00:00",
+                        "dateModified": "2024-06-14T08:00:00+00:00",
+                        "author": {
+                            "@type": "Person",
+                            "name": "Majidov Izzatbek"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Emu.uz",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": ${this.emuLogoImage}
+                            }
+                        },
+                        "description": ${this.pageDescription}}`
+                }
+            ]
+        });
+    }
+
 }
 </script>
