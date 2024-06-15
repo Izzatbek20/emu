@@ -18,7 +18,8 @@
                     </div>
                 </div>
 
-                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7 xizmat-content" v-html="data ? data.content : null"></p>
+                <p class="txt-big max-md:txt-normal max-sm:txt-small mt-7 xizmat-content"
+                    v-html="data ? data.content : null"></p>
 
                 <div v-if="isLoading" class="relative w-full flex items-center justify-center">
                     <div class="absolute ">
@@ -48,6 +49,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { mapGetters, mapState } from 'vuex';
 import { defineAsyncComponent } from 'vue';
 
+
+import { useHead } from '@vueuse/head';
+import emulogo from '@/assets/images/logo/emulogo.png';
+
 // Asinxron komponentni import qilish
 const XizmatModal = defineAsyncComponent(() =>
     import('@/ui-components/XizmatModal.vue')
@@ -60,7 +65,17 @@ export default {
         return {
             data: null,
             origin: import.meta.env.VITE_EMU_API_ORIGIN,
-            isOpen: false
+            isOpen: false,
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
+            pageTitle: `${this.$t('sub.kuryerXizmati')} - ${import.meta.env.VITE_EMU_APP_NAME}`,
+            pageDescription: this.$t('sub.kuryerXizmati'),
+            pageKeyword: this.$t('sub.kuryerXizmati').replaceAll(' ', ', '),
+            domain: `${window.location.origin}`,
+            canonical: `${window.location.origin}/xizmatlar/kuryer-xizmati`,
+            alternateUz: `${window.location.origin}/uz/xizmatlar/kuryer-xizmati`,
+            alternateRu: `${window.location.origin}/ru/xizmatlar/kuryer-xizmati`,
+            alternateEn: `${window.location.origin}/en/xizmatlar/kuryer-xizmati`,
+            emuLogoImage: `${window.location.origin}${emulogo}`
         }
     },
     components: {
@@ -77,7 +92,64 @@ export default {
                         title: item.title,
                         content: item.content,
                     }
+
+                    this.pageDescription = `${item.title} ${item.content.substring(0, 160).replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '')} `
+                    this.pageKeyword = `${item.title.replaceAll(' ', ', ')} ${item.content.substring(0, 100).replaceAll(' ', ', ').replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '')} `
+                    this.emuLogoImage = `${this.origin}/${newVal.image}`
+                    useHead({
+                        title: this.pageTitle,
+                        meta: [
+                            { name: 'title', content: this.pageTitle },
+                            { name: 'description', content: this.pageDescription },
+                            { name: 'keywords', content: this.pageKeyword },
+
+                            { property: 'og:title', content: this.pageTitle },
+                            { property: 'og:description', content: this.pageDescription },
+                            { property: 'og:image', content: this.emuLogoImage },
+                            { property: 'og:url', content: this.canonical },
+                            { property: 'og:type', content: 'article' },
+
+                            { property: 'twitter:card', content: 'summary_large_image' },
+                            { property: 'twitter:title', content: this.pageTitle },
+                            { property: 'twitter:description', content: this.pageDescription },
+                            { property: 'twitter:image', content: this.emuLogoImage },
+                        ],
+                        link: [
+                            { rel: 'canonical', href: this.canonical },
+                            { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                            { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                            { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                            { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+                        ],
+                        script: [
+                            {
+                                type: 'application/ld+json',
+                                innerHTML: `{
+                        "@context": "https://schema.org",
+                            "@type": "NewsArticle",
+                                "headline": ${this.pageTitle},
+                        "image": [${this.emuLogoImage}],
+                            "datePublished": "2024-06-14T08:00:00+00:00",
+                                "dateModified": "2024-06-14T08:00:00+00:00",
+                                    "author": {
+                            "@type": "Person",
+                                "name": "${this.canonical}"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                                "name": "${this.canonical}",
+                                    "logo": {
+                                "@type": "ImageObject",
+                                    "url": ${this.emuLogoImage}
+                            }
+                        },
+                        "description": ${this.pageDescription}
+                    } `
+                            }
+                        ]
+                    });
                 }
+
             }
         },
         openModal() {
@@ -112,11 +184,64 @@ export default {
         ScrollTrigger.create({
             trigger: pin,
             start: "top 20%",
-            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20%`,
+            end: () => `${notPin.offsetHeight - pin.offsetHeight}px 20 % `,
             invalidateOnRefresh: true,
             pin: pin,
             pinSpacing: true,
 
+        });
+
+        useHead({
+            title: this.pageTitle,
+            meta: [
+                { name: 'title', content: this.pageTitle },
+                { name: 'description', content: this.pageDescription },
+                { name: 'keywords', content: this.pageKeyword },
+
+                { property: 'og:title', content: this.pageTitle },
+                { property: 'og:description', content: this.pageDescription },
+                { property: 'og:image', content: this.emuLogoImage },
+                { property: 'og:url', content: this.canonical },
+                { property: 'og:type', content: 'article' },
+
+                { property: 'twitter:card', content: 'summary_large_image' },
+                { property: 'twitter:title', content: this.pageTitle },
+                { property: 'twitter:description', content: this.pageDescription },
+                { property: 'twitter:image', content: this.emuLogoImage },
+            ],
+            link: [
+                { rel: 'canonical', href: this.canonical },
+                { rel: 'alternate', hreflang: 'uz', href: this.alternateUz },
+                { rel: 'alternate', hreflang: 'ru', href: this.alternateRu },
+                { rel: 'alternate', hreflang: 'en', href: this.alternateEn },
+                { rel: 'alternate', hreflang: 'x-default', href: this.canonical }
+            ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    innerHTML: `{
+                    "@context": "https://schema.org",
+                        "@type": "NewsArticle",
+                            "headline": ${this.pageTitle},
+                    "image": [${this.emuLogoImage}],
+                        "datePublished": "2024-06-14T08:00:00+00:00",
+                            "dateModified": "2024-06-14T08:00:00+00:00",
+                                "author": {
+                        "@type": "Person",
+                            "name": "${window.location.host}"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                            "name": "${window.location.host}",
+                                "logo": {
+                            "@type": "ImageObject",
+                                "url": ${this.emuLogoImage}
+                        }
+                    },
+                    "description": ${this.pageDescription}
+                } `
+                }
+            ]
         });
     }
 }
@@ -135,6 +260,7 @@ export default {
 .slide-fade-leave-to {
     opacity: 0;
 }
+
 iframe {
     height: 619px !important;
 }

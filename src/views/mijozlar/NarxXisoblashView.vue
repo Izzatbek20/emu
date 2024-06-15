@@ -462,11 +462,11 @@ export default {
                         "dateModified": "2024-06-14T08:00:00+00:00",
                         "author": {
                             "@type": "Person",
-                            "name": "${this.canonical}"
+                            "name": "${window.location.host}"
                         },
                         "publisher": {
                             "@type": "Organization",
-                            "name": "${this.canonical}",
+                            "name": "${window.location.host}",
                             "logo": {
                                 "@type": "ImageObject",
                                 "url": ${this.emuLogoImage}

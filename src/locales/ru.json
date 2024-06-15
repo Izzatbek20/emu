@@ -298,8 +298,8 @@
     "Jismoniy shaxsman": "Я физическое лицо",
     "Yuridik shaxsman": "Я юридическое лицо",
 
-    "30 soniyada sizga qong’ iroq qilishadi": "Перезвонят вам в течении 30 минут",
-    "Qong’ iroqga buyurtma": "Заказ вызова",
+    "30 soniyada sizga qong’iroq qilishadi": "Перезвонят вам в течении 30 минут",
+    "Qong’iroqga buyurtma": "Заказ вызова",
     "Matn": "Текст",
     "Qidiruv": "Поиск",
     "Qidiruv natijasi": "Результат поиска",
@@ -329,6 +329,10 @@
     
     "O’zbekiston bo’ylab 75ta ofislarimiz mavjudi": "У нас 75 офисов по всему Узбекистану.",
 
+    "Shaxsiy kabinetiga kirish": "Вход в личный кабинет",
+    "Login": "Логин",
+    "Parol": "Пароль",
+    "Login yoki parol xato": "неверный логин или пароль",
 
     "seo_home_title": "Курьерская служба в Узбекистане и в Ташкент",
     "seo_home_description": "«Наша компания, учитывая требования и желания своих клиентов, гарантирует надежную и быструю доставку каждой посылки или груза.",
