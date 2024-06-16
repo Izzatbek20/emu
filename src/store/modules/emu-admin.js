@@ -4,6 +4,8 @@ const state = {
     data: null,
     bannerData: null,
     banner2Data: null,
+    afzalliklar: null,
+    ourClient: null,
     vakansiya: null,
     vakansiyaBreanch: null,
     info: null,
@@ -30,6 +32,12 @@ const mutations = {
     setData(state, data) {
         state.data = data
     },
+    afzalliklar(state, data) {
+        state.afzalliklar = data
+    },
+    ourClient(state, data) {
+        state.ourClient = data
+    },
     setNews(state, news) {
         state.news = news
     },
@@ -54,6 +62,28 @@ const mutations = {
 }
 
 const actions = {
+    afzalliklar(context) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.afzalliklar()
+                .then(response => {
+                    context.commit('afzalliklar', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
+    ourClient(context) {
+        return new Promise((resolve, reject) => {
+            emuAdminService.ourClient()
+                .then(response => {
+                    context.commit('ourClient', response.data)
+                    resolve(response)
+                }).catch(error => {
+                    reject(error.response ? error.response : error)
+                });
+        })
+    },
     serviceAll(context) {
         return new Promise((resolve, reject) => {
             emuAdminService.serviceAll()

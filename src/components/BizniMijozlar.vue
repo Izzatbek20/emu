@@ -5,21 +5,21 @@
         <div v-for="data in datas"
             class="py-9 px-10  max-sm:py-4 max-sm:px-5  flex flex-row items-center justify-center gap-2 rounded-lg"
             :class="bgItems">
-            <component :is="data" :fillColor="iconColor">
-            </component>
+            <img :src="data" class="icon-img" :style="iconColor == 'fill-white' ? svgColorWhite : svgColorViolet">
         </div>
 
     </div>
 </template>
 <script>
+import { mapState } from "vuex"
+
 export default {
     data() {
         return {
-            datas: [
-                'Uzum', 'Impex', 'Gross', 'Nova', 'Nur', 'ArkBuloq', 'Index',
-                'Uzum', 'Impex', 'Gross', 'Nova', 'Nur', 'ArkBuloq', 'Index',
-                'Uzum', 'Impex', 'Gross', 'Nova'
-            ]
+            svgColorWhite: "filter: brightness(0) invert(1)",
+            svgColorViolet: "filter: brightness(0) saturate(100%) invert(24%) sepia(68%) saturate(1493%) hue-rotate(275deg) brightness(87%) contrast(96%)",
+            datas: [],
+            origin: import.meta.env.VITE_EMU_API_ORIGIN,
         }
     },
     props: {
@@ -31,7 +31,41 @@ export default {
             type: String,
             default: 'fill-white'
         }
+    },
+    computed: {
+        // ...mapGetters({
+        //     isLoading: 'isLoading'
+        // }),
+        ...mapState({
+            ourClient: state => state.emuAdmin.ourClient,
+        })
+    },
+    methods: {
+        async fetchData(newVal, locale) {
+            const totalData = [];
+            newVal.forEach((element, index) => {
+                totalData.push(`${this.origin}/${element.image.replaceAll(/\\/g, '/')}`)
+            });
+            this.datas = totalData
+        }
+    },
+    watch: {
+        ourClient(newVal) {
+            this.fetchData(newVal, this.$i18n.locale)
+        },
+        '$i18n.locale'(newVal) {
+            this.fetchData(this.ourClient, newVal)
+        }
+    },
+    mounted() {
+        this.$store.dispatch('ourClient')
     }
 }
 </script>
-<style></style>
+
+<style scoped>
+.icon-img {
+    width: 116px;
+    height: 40px
+}
+</style>

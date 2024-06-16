@@ -8,6 +8,12 @@ const Axsios = axios.create({
 });
 
 const emuAdminService = {
+    afzalliklar() {
+        return Axsios.get('/afzalik')
+    },
+    ourClient() {
+        return Axsios.get('/our-client')
+    },
     serviceAll() {
         return Axsios.get('/service')
     },

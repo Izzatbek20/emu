@@ -4,14 +4,6 @@ import Facebook from './icons/Facebook.vue';
 import Instagram from './icons/Instagram.vue';
 
 // Info icons
-import Kafolat from './icons/Kafolat.vue';
-import Onlayn from './icons/Onlayn.vue';
-import Qadoqlash from './icons/Qadoqlash.vue';
-import Qayta from './icons/Qayta.vue';
-import Qaytajonatish from './icons/Qaytajonatish.vue';
-import Saqlash from './icons/Saqlash.vue';
-import Treking from './icons/Treking.vue';
-import Api from './icons/Api.vue';
 import MapUzb from './icons/MapUzb.vue';
 import Marker from './icons/Marker.vue';
 import Marker2 from './icons/Marker2.vue';
@@ -28,13 +20,6 @@ import Curier from './icons/Curier.vue';
 import BoxSearch from './icons/BoxSearch.vue';
 
 // Mijozlar
-import Uzum from './icons/Uzum.vue';
-import Impex from './icons/Impex.vue';
-import Gross from './icons/Gross.vue';
-import Nova from './icons/Nova.vue';
-import Nur from './icons/Nur.vue';
-import ArkBuloq from './icons/ArkBuloq.vue';
-import Index from './icons/Index.vue';
 import Play from './Play.vue';
 import Clock from './icons/Clock.vue';
 import Email from './icons/Email.vue';
@@ -98,20 +83,17 @@ import DeilverBox2 from './icons/DeilverBox2.vue';
 import InputSelectFilter from './InputSelectFilter.vue';
 
 export default [
-    Telegram, Facebook, Instagram, Kafolat, Onlayn,
-    Qadoqlash, Qayta, Qaytajonatish, Saqlash, Treking,
-    Api, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight,
+    Telegram, Facebook, Instagram, MapUzb, Marker, Marker2, Phone, CheverLeft, CheverRight,
     Calendar, Email, Clock, Search, User, ChevorDown,
     Calculator, Hand, Curier, BoxSearch, Aloqa, Menu,
     Question, Docs, Plus, Minus, CloseX, Home, Ranking,
     Pdf, Edit, UserOctagon, SendRequest, ReceiveSquery,
     BoxTime, Barcode, Weight, BoxTick, WhereHouse, UserGroup,
-    Marker3, Map, Global, Truck, Container, CircleFlagsUz, 
-    CircleFlagsRu, CircleFlagsUk, Spinner, ShoppingBag, 
+    Marker3, Map, Global, Truck, Container, CircleFlagsUz,
+    CircleFlagsRu, CircleFlagsUk, Spinner, ShoppingBag,
     Marker4, Book, Testimonial, Clipboard, ShoppingBag2,
     AddToCart, Barcode2, DeilverBox, DeilverBox2, InputSelectFilter,
 
-    Uzum, Impex, Gross, Nova, Nur, ArkBuloq, Index,
     ButtonWhiteOrange, ButtonWhiteViolety, ButtonOranger, Play, ButtonViolet,
 
     Input, InputPhone, InputSelect, InputConuter, Radio, CheckBox, InputPreview,
