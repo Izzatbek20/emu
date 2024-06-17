@@ -72,7 +72,7 @@ import Navigation from '@/components/Navigation.vue';
 import Bar from '@/components/Bar.vue';
 import OMMAVIY_OFERTA_SHARTNOMASI_UZ from '@/assets/files/OMMAVIY OFERTA SHARTNOMASI EMU.pdf';
 import OMMAVIY_OFERTA_SHARTNOMASI_RU from '@/assets/files/Публичная оферта компании EMU.pdf';
-import JISMONISHAXSLAR from '@/assets/files/Жисмоний_шахслар_томонидан_почта_ва_курьерлик_жўнатмалари_орқали.pdf';
+import JISMONISHAXSLAR from '@/assets/files/jsmoniyshaxslar.pdf';
 
 import { useHead } from '@vueuse/head';
 import emulogo from '@/assets/images/logo/emulogo.png';
