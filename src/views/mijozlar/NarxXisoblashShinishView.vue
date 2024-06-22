@@ -17,7 +17,7 @@
 
                         <InputPreview :label="$t('Viloyat')" :value="calculator.from.viloyat" class="mb-6" />
                         <InputPreview :label="$t('Tuman')" :value="calculator.from.city" class="mb-6" />
-                        <InputPreview :label="$t('Kuryer chaqirish')" :value="kuryerChaqirish" class="mb-6" />
+                        <InputPreview :label="$t('Ta’rifni tanglang')" :value="kuryerChaqirish" class="mb-6" />
                     </div>
                     <div
                         class="w-[1.5px] max-md:w-auto max-md:h-[1.5px] bg-gradient-to-b from-[#8c3081c7] via-[#EF7F1A] to-[#8c3081c7] relative flex items-center justify-center">

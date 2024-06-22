@@ -21,7 +21,7 @@
                         <InputSelectFilter :label="$t('Tuman')" v-model="from.city.value" :error="from.city.error"
                             :optionsData="city.from" :disabled="!loading && from.viloyat.value ? false : true"
                             @change="validateKeyupFrom" />
-                        <InputSelect :label="$t('Kuryer chaqirish')" class="w-[50%]"
+                        <InputSelect :label="$t('Ta’rifni tanglang')" class="w-[50%]"
                             v-model="from.kuryerChaqirish.value" :error="from.kuryerChaqirish.error" :disabled="loading"
                             :optionsData="kuryerChaqirish" :valueAttr="'code'" />
                     </div>
