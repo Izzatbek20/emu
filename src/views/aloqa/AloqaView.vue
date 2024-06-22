@@ -73,13 +73,15 @@
                         {{ $t('Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi') }}
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input :label="$t('Sizning ismingiz')" :required="true" :placeholder="$t('Ism')"
-                            :disabled="loading" v-model="xabar.name.value" :error="xabar.name.error" class="w-full" />
+                        <Input @input="checkToString('xabar.name', xabar.name)" :label="$t('Sizning ismingiz')"
+                            :required="true" :placeholder="$t('Ism')" :disabled="loading" v-model="xabar.name.value"
+                            :error="xabar.name.error" class="w-full" />
                         <InputPhone :label="$t('Telefon raqamingiz')" :required="true" :disabled="loading"
                             v-model="xabar.phone.value" :error="xabar.phone.error" class="w-full" />
                     </div>
-                    <Textarea :label="$t('Xabar matnini kiriting')" :placeholder="$t('Matn')" :disabled="loading"
-                        v-model="xabar.body.value" :error="xabar.body.error" class="w-full mt-6" />
+                    <Textarea @input="checkToString('xabar.body', xabar.body)" :label="$t('Xabar matnini kiriting')"
+                        :placeholder="$t('Matn')" :disabled="loading" v-model="xabar.body.value"
+                        :error="xabar.body.error" class="w-full mt-6" />
 
                     <div class="flex items-center gap-6 mt-10">
                         <ButtonViolet :disabled="loading" :title="$t('Yuborish')" class="max-md:w-full" />
@@ -93,15 +95,15 @@
                         {{ $t('Savol va takliflaringizni yozib qoldiring, menedjerlarimiz siz bilan bog’lanishadi') }}
                     </p>
                     <div class="flex max-lg:flex-col gap-5 mt-5">
-                        <Input :label="$t('Sizning ismingiz')" :required="true" :placeholder="$t('Ism')"
-                            :disabled="loadingShikoyat" v-model="shikoyat.name.value" :error="shikoyat.name.error"
-                            class="w-full" />
+                        <Input @input="checkToString('shikoyat.name', shikoyat.name)" :label="$t('Sizning ismingiz')"
+                            :required="true" :placeholder="$t('Ism')" :disabled="loadingShikoyat"
+                            v-model="shikoyat.name.value" :error="shikoyat.name.error" class="w-full" />
                         <InputPhone :label="$t('Telefon raqamingiz')" :required="true" :disabled="loadingShikoyat"
                             v-model="shikoyat.phone.value" class="w-full" :error="shikoyat.phone.error" />
                     </div>
-                    <Textarea :label="$t('Xabar matnini kiriting')" :placeholder="$t('Matn')"
-                        :disabled="loadingShikoyat" v-model="shikoyat.body.value" class="w-full mt-6"
-                        :error="shikoyat.body.error" />
+                    <Textarea @input="checkToString('shikoyat.body', shikoyat.body)"
+                        :label="$t('Xabar matnini kiriting')" :placeholder="$t('Matn')" :disabled="loadingShikoyat"
+                        v-model="shikoyat.body.value" class="w-full mt-6" :error="shikoyat.body.error" />
                     <div class="flex flex-row gap-6 gap-y-3">
                         <Radio :label="$t('Jismoniy shaxsman')" :value="'jismoni'" :disabled="loadingShikoyat"
                             v-model="shikoyat.shaxs.value" :error="shikoyat.shaxs.error" />
@@ -199,6 +201,10 @@ export default {
                     error: null
                 },
             },
+            errorInputXabarName: false,
+            errorInputXabarBody: false,
+            errorInputShikoyatName: false,
+            errorInputShikoyatBody: false,
             alert: {
                 title: 'alertSuccess.title',
                 message: 'alertSuccess.message'
@@ -225,13 +231,45 @@ export default {
         success() {
             this.isOpen = true
         },
+        checkToString(inputName, e) {
+            if (/\d/.test(e.value)) {
+                e.error = this.$t("Faqat so'zlardan iborat bo'lishi kerak.");
+                if (inputName == "xabar.name") {
+                    this.errorInputXabarName = true
+                }
+                if (inputName == "xabar.body") {
+                    this.errorInputXabarBody = true
+                }
+                if (inputName == "shikoyat.name") {
+                    this.errorInputShikoyatName = true
+                }
+                if (inputName == "shikoyat.body") {
+                    this.errorInputShikoyatBody = true
+                }
+
+            } else {
+                e.error = null
+                if (inputName == "xabar.name") {
+                    this.errorInputXabarName = false
+                }
+                if (inputName == "xabar.body") {
+                    this.errorInputXabarBody = false
+                }
+                if (inputName == "shikoyat.name") {
+                    this.errorInputShikoyatName = false
+                }
+                if (inputName == "shikoyat.body") {
+                    this.errorInputShikoyatBody = false
+                }
+            }
+        },
         async shikoyatSubmit() {
             let error = this.validateShikoyat()
             if (error) {
                 return;
             }
 
-            if (!error) {
+            if (!error && !this.errorInputShikoyatName && !this.errorInputShikoyatBody) {
                 this.loadingShikoyat = true;
                 this.$recaptcha('login').then((token) => {
                     this.$store.dispatch('aloqa', {
@@ -271,7 +309,7 @@ export default {
                 return;
             }
 
-            if (!error) {
+            if (!error && !this.errorInputXabarName && !this.errorInputXabarBody) {
                 this.loading = true;
 
                 this.$recaptcha('login').then((token) => {
@@ -346,7 +384,9 @@ export default {
                 xabar.name.error = this.$t('validate.required');
                 error = true
             } else {
-                xabar.name.error = null;
+                if (!this.errorInputXabarName) {
+                    xabar.name.error = null;
+                }
             }
             if (!xabar.phone.value) {
                 xabar.phone.error = this.$t('validate.required');
@@ -363,7 +403,9 @@ export default {
                 xabar.body.error = this.$t('validate.required');
                 error = true
             } else {
-                xabar.body.error = null;
+                if (!this.errorInputXabarBody) {
+                    xabar.body.error = null;
+                }
             }
 
             return error;
@@ -375,7 +417,9 @@ export default {
                 shikoyat.name.error = this.$t('validate.required');
                 error = true
             } else {
-                shikoyat.name.error = null;
+                if (!this.errorInputShikoyatName) {
+                    shikoyat.name.error = null;
+                }
             }
             if (!shikoyat.phone.value) {
                 shikoyat.phone.error = this.$t('validate.required');
@@ -392,12 +436,15 @@ export default {
                 shikoyat.body.error = this.$t('validate.required');
                 error = true
             } else {
-                shikoyat.body.error = null;
+                if (!this.errorInputShikoyatBody) {
+                    shikoyat.body.error = null;
+                }
             }
             if (!shikoyat.shaxs.value) {
                 shikoyat.shaxs.error = this.$t('validate.required');
                 error = true
             } else {
+
                 shikoyat.shaxs.error = null;
             }
 

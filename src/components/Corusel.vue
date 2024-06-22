@@ -70,10 +70,12 @@ export default {
             const pagination = document.querySelector(".pagination");
 
             if (slides && slides.length > 0 && pagination) {
-                slides[this.currentSlide].classList.remove("active");
-                if (pagination.children.length > 0) {
-                    pagination.children[this.currentSlide].classList.remove("corusel-pagination-active");
-                }
+                slides.forEach((slide, index) => {
+                    slide.classList.remove("active");
+                    if (pagination.children[index]) {
+                        pagination.children[index].classList.remove("corusel-pagination-active");
+                    }
+                });
 
                 this.currentSlide = slideIndex;
                 slides[this.currentSlide].classList.add("active");
@@ -90,6 +92,22 @@ export default {
                 this.goToSlide((this.currentSlide + 1) % this.data.length);
             }, this.slideInterval);
         },
+        clearAutoplay() {
+            if (this.slideTimer) {
+                clearInterval(this.slideTimer);
+            }
+        },
+        clearCarouselState() {
+            const slides = document.querySelectorAll(".carousel-slide");
+            const pagination = document.querySelector(".pagination");
+
+            if (slides && slides.length > 0 && pagination) {
+                slides.forEach((slide) => {
+                    slide.classList.remove("active");
+                });
+                pagination.innerHTML = '';
+            }
+        }
     },
     mounted() {
         this.init();
@@ -97,15 +115,17 @@ export default {
 
         // Stop autoplay when mouse hovers over the carousel
         carouselContainer.addEventListener("mouseenter", () => {
-            if (this.slideTimer) {
-                clearInterval(this.slideTimer);
-            }
+            this.clearAutoplay();
         });
 
         // Resume autoplay when mouse leaves the carousel
         carouselContainer.addEventListener("mouseleave", () => {
             this.startAutoplay();
         });
+    },
+    beforeUnmount() {
+        this.clearAutoplay();
+        this.clearCarouselState();
     },
     watch: {
         data: {
@@ -155,5 +175,18 @@ export default {
     bottom: 2rem;
     display: flex;
     align-items: center;
+}
+
+.corusel-pagination {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.corusel-pagination-active {
+    border: 2px solid #fff;
+    border-radius: 50%;
 }
 </style>

@@ -57,7 +57,7 @@
             <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="sendAorcrm" :disabled="loading" :title="$('Jo’natish')" class="w-full" />
+                <ButtonVioletLogin @click="sendAorcrm" :disabled="loading" :title="$t('Jo’natish')" class="w-full" />
             </div>
         </Modal>
 
