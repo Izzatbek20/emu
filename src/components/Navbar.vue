@@ -122,7 +122,7 @@
                             <a href="tel://+998712009669" class="flex flex-row items-center cursor-pointer">
                                 <Phone class="size-4 h-4" :fillColor="'fill-text-gray'" />
                                 <span class="text-text-gray">
-                                    +998 71 <span class="text-violet font-bold">200 96-36</span>
+                                    +998 71 <span class="text-violet font-bold">200 96-69</span>
                                 </span>
                             </a>
                         </li>
@@ -190,6 +190,7 @@ import SearchPanel from '@/components/SearchPanel.vue'
 export default {
     data() {
         return {
+            lang: this.$i18n.locale,
             menus: menus,
             profil: profil,
             til: til,
@@ -213,10 +214,9 @@ export default {
     setup() {
         const navTo = ref(null)
         const navData = ref(null)
-        const lang = ref('uz')
 
         return {
-            navTo, navData, lang
+            navTo, navData
         }
     },
     methods: {
