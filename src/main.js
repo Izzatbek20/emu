@@ -17,9 +17,10 @@ import VueTheMask from 'vue-the-mask'
 import vueClickOutsideElement from 'vue-click-outside-element'
 
 import {
-    VueReCaptcha,
-    useReCaptcha
+    VueReCaptcha
 } from 'vue-recaptcha-v3'; // reCAPTCHA ni import qilib oling
+import VueLazyload from 'vue-lazyload';
+import whiteBackground from "@/assets/images/white.webp";
 
 
 
@@ -30,6 +31,12 @@ UiComponents.map(component => app.component(component.name, component))
 
 app.use(i18n)
 
+app.use(VueLazyload, {
+    preLoad: 1.3,
+    error: whiteBackground,
+    loading: whiteBackground,
+    attempt: 1
+})
 app.use(vueClickOutsideElement)
 app.use(VueSplide);
 app.use(VueTheMask);

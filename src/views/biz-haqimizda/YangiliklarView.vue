@@ -19,9 +19,9 @@
                     <!-- Content -->
                     <Card v-if="topNew && !isLoading" class="bg-white p-5 w-full">
                         <div class="flex flex-row max-md:flex-col justify-between gap-5">
-                            <div class="basis-1/3 max-md:flex-1">
+                            <div class="basis-1/3 max-md:flex-1 flex items-center justify-center">
                                 <router-link :to="{ name: 'yangilik', params: { id: topNew.id } }">
-                                    <img :src="topNew.image" alt="image"
+                                    <img v-lazy="topNew.image" :alt="topNew.title"
                                         class="rounded-lg object-cover object-center" />
                                 </router-link>
                             </div>
@@ -43,7 +43,7 @@
                         </div>
                     </Card>
 
-                    <div class="grid grid-cols-3 max-md:grid-cols-2 max-[360px]:grid-cols-1 gap-5 mt-5">
+                    <div class="grid grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1 gap-5 mt-5">
                         <YangiliklarItem v-if="!isLoading" v-for="(item, i) in data" :key="i" :id="item.id"
                             :image="item.image" :title="item.title" :body="item.body" :date="item.date" />
                         <Shimmer v-if="isLoading" v-for="n in 6" :key="n" class="mb-5" style="height: 505px;" />
@@ -210,9 +210,10 @@ export default {
             }
         }
     },
-    mounted() {
+    beforeCreate() {
         this.$store.dispatch('news')
-
+    },
+    mounted() {
         let pin = document.getElementById("pin");
         let notPin = document.getElementById("pin-container");
 

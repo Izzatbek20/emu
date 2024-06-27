@@ -11,14 +11,9 @@
         <div class="flex flex-row items-start gap-8 mt-10">
             <div class="basis-3/4 max-xl:flex-1">
                 <Card class="bg-white p-5">
-                    <div v-if="isLoading" class="relative w-full flex items-center justify-center">
-                        <div class="absolute ">
-                            <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
-                        </div>
-                    </div>
-                    <div v-else class="flex flex-col justify-between gap-5">
+                    <div class="flex flex-col justify-between gap-5">
                         <div class="flex-1">
-                            <img :src="current_item.image" alt="image"
+                            <img v-lazy="current_item.image" :alt="current_item.title"
                                 class="rounded-lg object-cover object-center w-full" srcset="">
                         </div>
                         <div class="flex-1">
@@ -52,10 +47,11 @@ import YangiliklarItem from '@/components/YangiliklarItem.vue';
 import { mapGetters, mapState } from 'vuex';
 import emulogo from '@/assets/images/logo/emulogo.png';
 import { useHead } from '@vueuse/head';
+import Shimmer from '@/components/Shimmer.vue';
 
 export default {
     components: {
-        Navigation, BarGorizontal, Bar, Card, YangiliklarItem
+        Navigation, BarGorizontal, Bar, Card, YangiliklarItem, Shimmer
     },
     data() {
         return {
@@ -105,7 +101,7 @@ export default {
 
                     this.pageTitle = this.current_item.title
                     this.pageDescription = `${this.current_item.body.substring(0, 290).replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '')}`
-                    this.pageKeyword = `${this.current_item.body.substring(0, 290).replaceAll(' ', ', ').replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '').replaceAll('-,', '') }`
+                    this.pageKeyword = `${this.current_item.body.substring(0, 290).replaceAll(' ', ', ').replaceAll("<p>", '').replaceAll("</p>", '').replaceAll("<br>", '').replaceAll('-,', '')}`
 
                     useHead({
                         title: this.pageTitle,
@@ -161,8 +157,7 @@ export default {
             }
         }
     },
-    mounted() {
-        this.isLoading = false
+    beforeCreate() {
         this.$store.dispatch('one', this.$route.params.id).then()
     }
 }
