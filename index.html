@@ -9,15 +9,8 @@
 
 <body class="bg-light-gray overflow-y-auto scroll-smooth">
   <div id="app"></div>
-  <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
-  <script>
-    // 2. This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  </script>
-
+  <script rel="preconnect" src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
+  <script rel="preconnect" src="https://www.youtube.com/iframe_api"></script>
   <script type="module" src="/src/main.js"></script>
 </body>
 
