@@ -18,7 +18,7 @@
         </div>
 
         <!-- Modal yuk -->
-        <Modal title="Yukni kuzatish" :isOpen="modalYuk" @close="closeModal">
+        <Modal :title="$t('yukniKuzatish')" :isOpen="modalYuk" @close="closeModal">
 
             <div class="h5 my-10 text-center">Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting</div>
 
@@ -43,18 +43,18 @@
         </Modal>
 
         <!-- Modal hamkor -->
-        <Modal title="Hamkorlik bo’yicha" :isOpen="modalHamkor" @close="closeModal">
+        <Modal :title="$t('Hamkorlik bo’yicha')" :isOpen="modalHamkor" @close="closeModal">
 
-            <div class="h5 my-10 text-center">Xizmatdan foydalanish uchun ma’lumotlaringizni qoldiring</div>
+            <div class="h5 my-10 text-center">{{ $t('xizmatdanFoydalanishUchunMa’lumotlaringizniQoldiring') }}</div>
 
-            <Input label="Sizning ismingiz" placeholder="Ism" :required="true" v-model="name.value" :error="name.error"
+            <Input :label="$t('Sizning ismingiz')" :placeholder="$t('Ism')" :required="true" v-model="name.value"
+                :error="name.error" :disabled="loading" />
+            <InputPhone :label="$t('Telefon raqamingiz')" :required="true" v-model="phone.value" :error="phone.error"
                 :disabled="loading" />
-            <InputPhone label="Telefon raqamingiz" :required="true" v-model="phone.value" :error="phone.error"
-                :disabled="loading" />
-            <Input label="Biznes faoliyatingiz" :required="true" v-model="biznes.value" :error="biznes.error"
+            <Input :label="$t('Biznes faoliyatingiz')" :required="true" v-model="biznes.value" :error="biznes.error"
                 :disabled="loading" />
 
-            <p class="txt-small text-center">Menedjerlarimiz siz bilan tez orada bog’lanishadi</p>
+            <p class="txt-small text-center">{{ $t('Menedjerlarimiz siz bilan tez orada bog’lanishadi') }}</p>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
                 <ButtonVioletLogin @click="sendAorcrm" :disabled="loading" :title="$t('Jo’natish')" class="w-full" />
@@ -201,7 +201,7 @@ export default {
 
             this.$store.dispatch("orderStatue", this.order_id.value).then(response => {
                 if (!response.tracking) {
-                    this.order_not = "ID topilmadi"
+                    this.order_not = this.$t('ID topilmadi')
                 } else {
                     this.order_id = {
                         value: null,

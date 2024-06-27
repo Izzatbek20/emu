@@ -36,7 +36,7 @@
                 <a href="tel://+998712009669" class="flex flex-row items-center cursor-pointer xs:max-md:hidden">
                     <Phone class="size-4 h-4" :fillColor="'fill-text-gray'" />
                     <span class="text-text-gray">
-                        +998 71 <span class="text-violet font-bold">200 96-36</span>
+                        +998 71 <span class="text-violet font-bold">200 96-69</span>
                     </span>
                 </a>
                 <ul class="flex relative flex-row items-center gap-x-5">

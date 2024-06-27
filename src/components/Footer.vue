@@ -44,7 +44,7 @@
                                 <div class="flex flex-col items-start ">
                                     <div class="h7 max-lg:txt-micro-2-600">{{ $t('Telefon') }}</div>
                                     <div class="txt-micro max-lg:txt-nano ">
-                                        +998712009669
+                                        +998 71 200 96 69
                                     </div>
                                 </div>
                             </div>

@@ -24,10 +24,10 @@
                         <div class="flex flex-row gap-2">
                             <Clock :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">
+                                <div class="text-violet text-lg max-xl:text-base font-normal leading-none mb-1">
                                     {{ $t('Ish vaqti') }}
                                 </div>
-                                <div class="text-lg max-xl:text-base font-normal leading-none">
+                                <div class="text-base max-xl:text-sm font-normal leading-none">
                                     {{ $t('24 soat (Bayram kunlaridan tashqari)') }}
                                 </div>
                             </div>
@@ -36,9 +36,9 @@
                         <div class="flex flex-row gap-2">
                             <Phone :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{
+                                <div class="text-violet text-lg max-xl:text-base font-normal leading-none mb-1">{{
                                     $t('Telefon') }}</div>
-                                <div class="text-lg max-xl:text-base font-normal leading-none">+998712009669
+                                <div class="text-base max-xl:text-sm font-normal leading-none">+998 71 200 96 69
                                 </div>
                             </div>
                         </div>
@@ -46,9 +46,10 @@
                         <div class="flex flex-row gap-2">
                             <Email :fillColor="'fill-violet'" />
                             <div>
-                                <div class="text-gray text-lg max-xl:text-base font-normal leading-none">{{ $t('E-mail')
+                                <div class="text-violet text-lg max-xl:text-base font-normal leading-none mb-1">{{
+                                    $t('E-mail')
                                     }}:</div>
-                                <div class="text-lg max-xl:text-base font-normal leading-none">info@emu.uz
+                                <div class="text-base max-xl:text-sm font-normal leading-none">info@emu.uz
                                 </div>
                             </div>
                         </div>
