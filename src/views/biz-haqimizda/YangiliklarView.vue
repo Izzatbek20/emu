@@ -9,15 +9,20 @@
         <Navigation>{{ $t('Kompaniya yangiliklari') }}</Navigation>
 
         <div class="flex flex-row items-start gap-8 mt-10">
-            <div id="pin-conatiner" class="basis-3/4 max-xl:flex-1 max-md:p-4">
-
+            <div id="pin-container" class="basis-3/4 max-xl:flex-1 max-md:p-4">
                 <div class="w-full">
-                    <Card v-if="topNew" class="bg-white p-5 w-full">
+                    <!-- Shimmer Effect -->
+                    <div v-if="isLoading">
+                        <Shimmer class="mb-5" style="height: 500px;" />
+                    </div>
+
+                    <!-- Content -->
+                    <Card v-if="topNew && !isLoading" class="bg-white p-5 w-full">
                         <div class="flex flex-row max-md:flex-col justify-between gap-5">
                             <div class="basis-1/3 max-md:flex-1">
                                 <router-link :to="{ name: 'yangilik', params: { id: topNew.id } }">
-                                    <img :src="topNew.image" alt="image" class="rounded-lg object-cover object-center"
-                                        srcset="">
+                                    <img :src="topNew.image" alt="image"
+                                        class="rounded-lg object-cover object-center" />
                                 </router-link>
                             </div>
                             <div class="basis-2/3 max-md:flex-1">
@@ -39,18 +44,12 @@
                     </Card>
 
                     <div class="grid grid-cols-3 max-md:grid-cols-2 max-[360px]:grid-cols-1 gap-5 mt-5">
-                        <YangiliklarItem v-for="(item, i) in data" :key="i" :id="item.id" :image="item.image"
-                            :title="item.title" :body="item.body" :date="item.date" />
+                        <YangiliklarItem v-if="!isLoading" v-for="(item, i) in data" :key="i" :id="item.id"
+                            :image="item.image" :title="item.title" :body="item.body" :date="item.date" />
+                        <Shimmer v-if="isLoading" v-for="n in 6" :key="n" class="mb-5" style="height: 505px;" />
                     </div>
 
                 </div>
-
-                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
-                    <div class="absolute ">
-                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
-                    </div>
-                </div>
-
             </div>
             <div class="basis-1/4 max-xl:hidden">
                 <Bar id="pin" :name="'bizHaqimizda'" />
@@ -69,6 +68,7 @@ import Navigation from '@/components/Navigation.vue';
 import Pagination from '@/components/Pagination.vue';
 import RaxbariyatItem from '@/components/RaxbariyatItem.vue';
 import YangiliklarItem from '@/components/YangiliklarItem.vue';
+import Shimmer from '@/components/Shimmer.vue'; // Import the Shimmer component
 import { data } from '@/constants/news';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -80,12 +80,12 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default {
     components: {
-        Navigation, RaxbariyatItem, BarGorizontal, Card, YangiliklarItem, Pagination, Bar
+        Navigation, RaxbariyatItem, BarGorizontal, Card, YangiliklarItem, Pagination, Bar, Shimmer
     },
     data() {
         return {
             data: [],
-            pagination: [],
+            pagination: null,
             topNew: null,
             origin: import.meta.env.VITE_EMU_API_ORIGIN,
             pageTitle: `${this.$t('Kompaniya yangiliklari')} - ${import.meta.env.VITE_EMU_APP_NAME}`,
@@ -214,7 +214,7 @@ export default {
         this.$store.dispatch('news')
 
         let pin = document.getElementById("pin");
-        let notPin = document.getElementById("pin-conatiner");
+        let notPin = document.getElementById("pin-container");
 
         ScrollTrigger.create({
             trigger: pin,
