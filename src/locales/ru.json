@@ -22,11 +22,11 @@
         "savollar": "Часто задаваемые вопросы",
         "umumiyShartlar": "Контракт и общие условия ",
         "kuryerXizmati": "Внутренняя курьерская служба",
-        "xalqaroKuryerlikXizmati": "Международные курьерские услуги",
-        "ustamaTolovli": "Доставка предоплаченной почты",
-        "fullfilmentView": "Услуга FULLFILMENT",
-        "individual": "Индивидуальная служба доставки",
-        "kargo": "Грузовые перевозки ЭMU",
+        "xalqaroKuryerlikXizmati": "Международная курьерская служба",
+        "ustamaTolovli": "Служба доставки почтовых отправлений с доплатой",
+        "fullfilmentView": "Услуга Fulfillment",
+        "individual": "Услуга грузоперевозки",
+        "kargo": "Услуга ЭМУ карго",
         "buyurtmaStatusi": "Статус заказа"
     },
     "profil": {

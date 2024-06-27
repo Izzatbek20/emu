@@ -21,12 +21,12 @@
         "kuryerChaqirish": "Call a courier",
         "savollar": "FAQ",
         "umumiyShartlar": "Contract and general conditions",
-        "kuryerXizmati": "Domestic courier service",
-        "xalqaroKuryerlikXizmati": "International Courier services",
-        "ustamaTolovli": "Prepaid post delivery",
-        "fullfilmentView": "FULFILLMENT service",
-        "individual": "Individual delivery service",
-        "kargo": "Freight transportaion EMU",
+        "kuryerXizmati": "Internal courier service",
+        "xalqaroKuryerlikXizmati": "International courier service",
+        "ustamaTolovli": "Postal delivery service with surcharge",
+        "fullfilmentView": "Fulfillment service",
+        "individual": "Cargo transportation service",
+        "kargo": "EMU Cargo service",
         "buyurtmaStatusi": "Order status"
     },
 
@@ -342,7 +342,7 @@
     "seo_home_title": "O'zbekistonda va Toshkentda kurerlik xizmati",
     "seo_home_description": "Bizning kompaniyamiz o’z mijozlarining talablari va istaklarini inobatga olgan holda yukni ishonchli va tezkor yetkazib berishni kafolatlaydi.",
     "seo_home_keywords": "kuryerlik hizmati, tezkor kuryer xizmati, O'zbekiston bo'ylab kuryer, kuryer xizmati Toshkent, kuryer xizmati Narxlar, Express  kuryer xizmati",
-   
+
 
 
     "": ""
