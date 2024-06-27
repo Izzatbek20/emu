@@ -3,4 +3,5 @@
 @font-face {
     font-family: "AsylbekM09Handel";
     src: url("asylbekm09handel_kz.otf");
+    font-display: swap;
 }
