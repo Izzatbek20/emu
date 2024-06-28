@@ -93,14 +93,13 @@
         </Modal>
 
         <!-- Modal success -->
-        <Modal title="Muvaffaqiyat" :isOpen="isOpenSuccess" :clickOutside="false" @close="closeModalSuccess">
+        <Modal title="Muvaffaqiyat" :isOpen="modalHamkor">
 
-            <div class="txt-big text-center mt-8 mb-2">Tez orada</div>
-            <div class="text-center h5 text-violet mb-2">{{ calculator.from.adress }}</div>
-            <div class="txt-big text-center">manziliga kuryerimiz yetib boradi. Iltimos aloqada bo’ling.</div>
-
+            <div class="txt-big text-center mt-8 mb-2"
+                v-html="$t('kuryerChaqirishSuccessMessage', { address: calculator.from.adress })">
+            </div>
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="closeModalSuccess" title="Asosiy menyuga qaytish" class="w-full" />
+                <ButtonVioletLogin :title="$t('Asosiy menyuga qaytish')" class="w-full" />
             </div>
         </Modal>
 

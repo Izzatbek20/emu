@@ -13,11 +13,7 @@
 
                 <Collaps v-for="(item, i) in data" :key="i" :title="item.title" :body="item.text" />
 
-                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
-                    <div class="absolute ">
-                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
-                    </div>
-                </div>
+                <Shimmer v-if="isLoading" v-for="n in 10" :key="n" class="mb-5" style="height: 5rem" />
             </div>
             <div class="basis-1/4 max-xl:hidden">
                 <Bar id="pin" :name="'mijoz'" />
@@ -42,6 +38,7 @@ import { mapGetters, mapState } from 'vuex';
 
 import { useHead } from '@vueuse/head';
 import emulogo from '@/assets/images/logo/emulogo.png';
+import Shimmer from '@/components/Shimmer.vue';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,7 +60,7 @@ export default {
         };
     },
     components: {
-        BarGorizontal, Bar, Navigation
+        BarGorizontal, Bar, Navigation, Shimmer
     },
     computed: {
         ...mapState({

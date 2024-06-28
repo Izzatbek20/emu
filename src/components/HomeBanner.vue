@@ -20,25 +20,23 @@
         <!-- Modal yuk -->
         <Modal :title="$t('yukniKuzatish')" :isOpen="modalYuk" @close="closeModal">
 
-            <div class="h5 my-10 text-center">Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting</div>
+            <div class="h5 my-10 text-center">{{ $t('Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting')
+                }}</div>
 
             <Input :required="true" :error="(order_id.error || order_not)" v-model="order_id.value" />
 
             <template v-if="orderStatus && orderStatus.order">
                 <div>
-                    <b>Status</b>: {{ orderStatus.order.status }}
+                    <b>{{ $t('Status') }}</b>: {{ $t(orderStatus.order.status) }}
                 </div>
             </template>
 
             <template v-else>
-                <p class="txt-small text-center"><span class="text-red">*</span> Yuk id raqamini shaxsiy kabinetingizda
-                    jo’natmalar yoki
-                    qabul qilingan
-                    yuklar bo’limidan bilib olishimgiz mumkin</p>
+                <p class="txt-small text-center"><span class="text-red">*</span> {{ $t('TrakingDescription') }}</p>
             </template>
 
             <div class="mt-2 p-3 text-center space-x-4 md:block">
-                <ButtonVioletLogin @click="getOrderStatue" title="Kuzatish" class="w-full" />
+                <ButtonVioletLogin @click="getOrderStatue" :title="$t('Kuzatish')" class="w-full" />
             </div>
         </Modal>
 

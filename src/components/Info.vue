@@ -2,7 +2,9 @@
     <div>
         <div class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-7 mt-10">
 
-            <div v-for="data in datas"
+            <Shimmer v-if="isLoading" v-for="n in 8" :key="n" class="mb-5" style="height: 10rem" />
+
+            <div v-else v-for="data in datas"
                 class="p-5 bg-white flex flex-col max-xl:flex-row max-xl:items-start items-center gap-4 rounded-2xl">
                 <img :src="data.icon" :alt="data.title" class="max-xl:size-10 icon-img size-14">
                 <div class="text-center max-xl:text-start">
@@ -15,7 +17,8 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex"
+import { mapGetters, mapState } from "vuex"
+import Shimmer from "./Shimmer.vue";
 
 export default {
     data() {
@@ -24,10 +27,13 @@ export default {
             origin: import.meta.env.VITE_EMU_API_ORIGIN,
         }
     },
+    components: {
+        Shimmer
+    },
     computed: {
-        // ...mapGetters({
-        //     isLoading: 'isLoading'
-        // }),
+        ...mapGetters({
+            isLoading: 'isLoadingAfzalliklar'
+        }),
         ...mapState({
             afzalliklar: state => state.emuAdmin.afzalliklar,
         })

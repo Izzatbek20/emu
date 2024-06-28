@@ -342,8 +342,27 @@
     "Hamkorlik bo’yicha": "Regarding cooperation",
     "Biznes faoliyatingiz": "Business activity",
 
-    "seo_home_title": "O'zbekistonda va Toshkentda kurerlik xizmati",
-    "seo_home_description": "Bizning kompaniyamiz o’z mijozlarining talablari va istaklarini inobatga olgan holda yukni ishonchli va tezkor yetkazib berishni kafolatlaydi.",
+    "Kuzatish": "Observation",
+    "Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting": "Enter the cargo identification number to find out where your cargo is located",
+    "TrakingDescription": "You can find out the cargo identification number in your personal account in the department of shipments or received goods",
+    "Status": "Status",
+
+    "NEW": "New",
+    "DEPARTURING": "Departuring",
+    "DEPARTURE": "Departure",
+    "ACCEPTED": "Accepted",
+    "DELIVERY": "Delivery",
+    "COURIERDELIVERED": "Courier Delivered",
+    "COURIERRETURN": "Courier Returned",
+    "COMPLETE": "Complete",
+
+    "Muvaffaqiyat": "Success",
+    "Asosiy menyuga qaytish": "Return to the Main Menu",
+    "kuryerChaqirishSuccessMessage": "Our courier will arrive soon at <div class=\"text-center h5 text-violet mb-2\">{address}.</div> Please stay in touch.",
+
+
+    "seo_home_title": "Courier service in Uzbekistan and Tashkent",
+    "seo_home_description": "Our company guarantees reliable and fast cargo delivery, taking into account the requirements and wishes of its customers.",
     "seo_home_keywords": "kuryerlik hizmati, tezkor kuryer xizmati, O'zbekiston bo'ylab kuryer, kuryer xizmati Toshkent, kuryer xizmati Narxlar, Express  kuryer xizmati",
 
 

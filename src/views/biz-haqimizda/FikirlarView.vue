@@ -12,14 +12,9 @@
             <div class="basis-3/4 max-xl:flex-1">
 
                 <div class="grid grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-5 mt-5">
+                    <Shimmer v-for="(item, i) in 3" :key="i" v-if="isLoading" style="height: 19rem;" />
                     <FikirlarItem v-for="(item, i) in data" :key="i" :v="item.v" :title="item.title" :text="item.text"
                         :content="item.content" />
-                </div>
-
-                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
-                    <div class="absolute ">
-                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
-                    </div>
                 </div>
             </div>
             <div class=" basis-1/4 max-xl:hidden">
@@ -53,12 +48,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { mapGetters, mapState } from 'vuex';
 import { useHead } from '@vueuse/head';
 import emulogo from '@/assets/images/logo/emulogo.png';
+import Shimmer from '@/components/Shimmer.vue';
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     components: {
-        Navigation, RaxbariyatItem, Bar, Card, FikirlarItem, Pagination, BarGorizontal, Title, BizniMijozlar
+        Navigation, RaxbariyatItem, Bar, Card, FikirlarItem, Pagination, BarGorizontal, Title, BizniMijozlar, Shimmer
     },
     data() {
         return {

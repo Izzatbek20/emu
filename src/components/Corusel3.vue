@@ -6,7 +6,7 @@
                     <img :src="item" alt="image" class="object-cover object-center rounded-xl w-full h-full" srcset="">
                 </div>
             </div>
-            <div :style="data.length === 1 ? 'display:none' : null" class="pagination"></div>
+            <div :style="data.length === 1 ? 'display:none' : null" class="pagination pl-4"></div>
         </div>
     </div>
 </template>

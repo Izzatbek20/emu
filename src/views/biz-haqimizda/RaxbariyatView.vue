@@ -11,13 +11,10 @@
         <div id="pin-conatiner" class="flex flex-row items-start gap-8 mt-10 ">
             <div class="basis-3/4 max-xl:flex-1 max-md:p-4">
 
+                <Shimmer v-for="(item, i) in 3" :key="i" v-if="isLoading" style="height: 8rem;" class="my-3" />
+
                 <RaxbariyatItem v-for="(item, i) in data" :key="i" :user="item" />
 
-                <div v-if="isLoading" class="relative w-full flex items-center justify-center">
-                    <div class="absolute ">
-                        <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
-                    </div>
-                </div>
             </div>
             <div class="basis-1/4 max-xl:hidden">
                 <Bar id="pin" :name="'bizHaqimizda'" />
@@ -36,13 +33,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { mapGetters, mapState } from 'vuex';
 import emulogo from '@/assets/images/logo/emulogo.png';
 import { useHead } from '@vueuse/head';
+import Shimmer from '@/components/Shimmer.vue';
 
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
     components: {
-        Navigation, RaxbariyatItem, BarGorizontal, Bar
+        Navigation, RaxbariyatItem, BarGorizontal, Bar, Shimmer
     },
     data() {
         return {

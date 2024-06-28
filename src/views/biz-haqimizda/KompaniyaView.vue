@@ -21,9 +21,7 @@
             </div>
         </div>
 
-        <Card class="bg-white mt-20">
-            <About />
-        </Card>
+        <About />
 
         <Card class="bg-orange mt-20">
             <Title class="text-white" :pt="false">{{ $t('Nega aynan EMU express pochtasini tanlashingiz kerak?') }}

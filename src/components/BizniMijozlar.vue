@@ -2,7 +2,8 @@
     <div
         class="grid grid-cols-6 max-2xl::grid-cols-5 max-xl:grid-cols-4 max-lg:grid-cols-3 gap-5 max-sm:gap-3 mt-10 flex-wrap">
 
-        <div v-for="data in datas"
+        <Shimmer v-if="isLoading" v-for="n in 12" :key="n" class="mb-5" style="height: 7.5rem" />
+        <div v-else v-for="data in datas"
             class="py-9 px-10  max-sm:py-4 max-sm:px-5  flex flex-row items-center justify-center gap-2 rounded-lg"
             :class="bgItems">
             <img :src="data" class="icon-img" :style="iconColor == 'fill-white' ? svgColorWhite : svgColorViolet">
@@ -11,7 +12,8 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex"
+import { mapGetters, mapState } from "vuex"
+import Shimmer from "./Shimmer.vue";
 
 export default {
     data() {
@@ -21,6 +23,9 @@ export default {
             datas: [],
             origin: import.meta.env.VITE_EMU_API_ORIGIN,
         }
+    },
+    components: {
+        Shimmer
     },
     props: {
         bgItems: {
@@ -33,9 +38,9 @@ export default {
         }
     },
     computed: {
-        // ...mapGetters({
-        //     isLoading: 'isLoading'
-        // }),
+        ...mapGetters({
+            isLoading: 'isLoadingOurClient'
+        }),
         ...mapState({
             ourClient: state => state.emuAdmin.ourClient,
         })

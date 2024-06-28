@@ -2,15 +2,15 @@
     <Splide :has-track="false" :options="options" class="p-0 cursor-ew-resize">
 
         <SplideTrack class="flex flex-row gap-7 mt-10 flex-wrap">
+
+            <SplideSlide v-if="isLoading" v-for="n in 3" :key="n"
+                class="w-[32.5%] max-[479px]:w-[80.5%] max-md:w-[52.5%] max-lg:w-[40.5%] max-xl:w-[45.5%]">
+                <Shimmer :key="n" />
+            </SplideSlide>
             <SplideSlide v-for="(data, index) in datas" :key="index"
                 class="w-[32.5%] max-[479px]:w-[80.5%] max-md:w-[52.5%] max-lg:w-[40.5%] max-xl:w-[45.5%]">
                 <MijozItem :item="data" />
             </SplideSlide>
-            <div v-if="isLoading" class="relative w-full flex items-center justify-center">
-                <div class="absolute ">
-                    <Spinner :fillColor="'fill-violet'" class="ml-2 size-6" />
-                </div>
-            </div>
         </SplideTrack>
         <div class="splide__arrows hidden">
             <div class="splide__arrow_in">
@@ -38,13 +38,15 @@ import '@splidejs/vue-splide/css/sea-green';
 import '@splidejs/vue-splide/css/core';
 import MijozItem from './MijozItem.vue';
 import { mapGetters, mapState } from 'vuex';
+import Shimmer from './Shimmer.vue';
 
 export default {
     components: {
         Splide,
         SplideSlide,
         SplideTrack,
-        MijozItem
+        MijozItem,
+        Shimmer
     },
     data() {
         return {

@@ -17,6 +17,15 @@ const getters = {
     isLoading(state) {
         return Boolean(!state.data)
     },
+    isLoadingInfo(state) {
+        return Boolean(!state.info)
+    },
+    isLoadingAfzalliklar(state) {
+        return Boolean(!state.afzalliklar)
+    },
+    isLoadingOurClient(state) {
+        return Boolean(!state.ourClient)
+    },
     isLoadingNews(state) {
         return Boolean(!state.news)
     },

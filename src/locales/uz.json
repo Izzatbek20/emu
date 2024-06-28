@@ -337,6 +337,24 @@
     "Hamkorlik bo’yicha": "Hamkorlik bo’yicha",
     "Biznes faoliyatingiz": "Biznes faoliyatingiz",
 
+    "Kuzatish": "Kuzatish",
+    "Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting": "Yukingiz qayerda ekanligini bilish uchun yuk ID raqamini kiriting",
+    "TrakingDescription": "Yuk id raqamini shaxsiy kabinetingizda jo’ natmalar yoki qabul qilingan yuklar bo’limidan bilib olishimgiz mumkin",
+    "Status": "Status",
+
+    "NEW": "Yangi",
+    "DEPARTURING": "Jo'natilmoqda",
+    "DEPARTURE": "Jo'natildi",
+    "ACCEPTED": "Qabul qilindi",
+    "DELIVERY": "Yetkazilmoqda",
+    "COURIERDELIVERED": "Kuryer tomonidan yetkazildi",
+    "COURIERRETURN": "Kuryer tomonidan qaytarildi",
+    "COMPLETE": "Yetkazilgan",
+
+    "Muvaffaqiyat": "Muvaffaqiyat",
+    "Asosiy menyuga qaytish": "Asosiy menyuga qaytish",
+    "kuryerChaqirishSuccessMessage": "Tez orada  <div class=\"text-center h5 text-violet mb-2\">{address}</div> manziliga kuryerimiz yetib boradi. Iltimos aloqada bo’ling.",
+
     "seo_home_title": "O'zbekistonda va Toshkentda kurerlik xizmati",
     "seo_home_description": "Bizning kompaniyamiz o’z mijozlarining talablari va istaklarini inobatga olgan holda yukni ishonchli va tezkor yetkazib berishni kafolatlaydi.",
     "seo_home_keywords": "kuryerlik hizmati, tezkor kuryer xizmati, O'zbekiston bo'ylab kuryer, kuryer xizmati Toshkent, kuryer xizmati Narxlar, Express  kuryer xizmati",
